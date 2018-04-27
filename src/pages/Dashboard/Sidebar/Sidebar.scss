@@ -1,78 +1,75 @@
 body {
-    margin: 0px;
+  margin: 0px;
 }
 .sidebar {
-    background-color: #3a4651;
-    -webkit-transition: left 0.3s ease;
-    transition: left 0.3s ease;
-}
-.sidebar .sidebar-container {
-    overflow-y: auto;
-    overflow-x: hidden;
+  background-color: #3a4651;
+  -webkit-transition: left 0.3s ease;
+  transition: left 0.3s ease;
+  height: 100%;
 }
 .sidebar .sidebar-header {
-    color: #fff;
-    text-align: left;
-    padding-left: 25px;
-    line-height: 70px;
-    font-size: 16px;
+  color: #fff;
+  text-align: left;
+  padding-left: 25px;
+  line-height: 70px;
+  font-size: 16px;
 }
 
 .sidebar .sidebar-menu {
-    font-size: 14px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  font-size: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .sidebar .sidebar-menu > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 20px;
-    padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 15px;
 }
-.bb{
-    border-bottom: 1px solid #575c60 !important;
+.bb {
+  border-bottom: 1px solid #575c60 !important;
 }
 .sidebar .sidebar-menu li a {
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none; 
-    display: block;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  display: block;
 }
 
 .sidebar .sidebar-menu > li > a i {
-    margin-right: 5px;
-    font-size: 16px;
+  margin-right: 5px;
+  font-size: 16px;
 }
 
 .fa {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .sidebar .sidebar-menu > li > a i.arrow {
-    font-size: 20px;
+  font-size: 20px;
 }
 .sidebar .sidebar-menu .arrow {
-    float: right;
-    font-size: 18px;
-    line-height: initial;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    margin-right: 0;
+  float: right;
+  font-size: 18px;
+  line-height: initial;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  margin-right: 0;
 }
 .metismenu .arrow {
-    float: right;
-    line-height: 1.42857;
+  float: right;
+  line-height: 1.42857;
 }
 .report-container {
-    background: #404244;
-    color: #fff;
+  background: #404244;
+  color: #fff;
 }
 
 .reports {
-    margin-left: 6em;
+  margin-left: 6em;
 }

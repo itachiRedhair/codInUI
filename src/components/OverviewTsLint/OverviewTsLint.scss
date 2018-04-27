@@ -1,14 +1,12 @@
 .overview-tslint {
-  display: table-cell;
-  vertical-align: middle;
-  height: 12em;
+  display: flex;
+  justify-content: space-between;
 }
 .error-number-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  height: 100%;
 }
 .error-number-container::before {
   content: "";

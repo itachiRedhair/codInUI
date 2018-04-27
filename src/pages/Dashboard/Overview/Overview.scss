@@ -1,3 +1,8 @@
-.row-group {
+.overview-row-group {
   padding: 1em;
+  display: flex;
+}
+
+.overview-row-group > .overview-col {
+  display: flex;
 }

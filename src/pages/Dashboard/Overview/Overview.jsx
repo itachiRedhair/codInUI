@@ -15,22 +15,55 @@ export default class Overview extends Component {
   render() {
     return (
       <React.Fragment>
-        <Row className="row-group">
-          <Col md={9}>
+        <Row className="overview-row-group">
+          <Col md={9} className="overview-col">
             <OverviewGraph />
           </Col>
-          <Col md={3}>
+          <Col md={3} className="overview-col">
             <CPICard />
           </Col>
         </Row>
-        <Row className="row-group">
-          <Col md={5}>
+        <Row className="overview-row-group">
+          <Col md={5} className="overview-col">
             <OverviewTsLint />
           </Col>
-          <Col md={2}>
+          <Col md={2} className="overview-col">
             <OverviewCoverage />
           </Col>
-          <Col md={5}>
+          <Col md={5} className="overview-col">
+            <RecentSubmits />
+          </Col>
+        </Row>
+        <Row className="overview-row-group">
+          <Col md={5} className="overview-col">
+            <OverviewTsLint />
+          </Col>
+          <Col md={2} className="overview-col">
+            <OverviewCoverage />
+          </Col>
+          <Col md={5} className="overview-col">
+            <RecentSubmits />
+          </Col>
+        </Row>
+        <Row className="overview-row-group">
+          <Col md={5} className="overview-col">
+            <OverviewTsLint />
+          </Col>
+          <Col md={2} className="overview-col">
+            <OverviewCoverage />
+          </Col>
+          <Col md={5} className="overview-col">
+            <RecentSubmits />
+          </Col>
+        </Row>
+        <Row className="overview-row-group">
+          <Col md={5} className="overview-col">
+            <OverviewTsLint />
+          </Col>
+          <Col md={2} className="overview-col">
+            <OverviewCoverage />
+          </Col>
+          <Col md={5} className="overview-col">
             <RecentSubmits />
           </Col>
         </Row>

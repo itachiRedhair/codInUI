@@ -1,14 +1,17 @@
 .dashboard-container {
   padding: 0;
   width: 100%;
+  overflow: hidden;
 }
 
 .sidebar-container {
   position: relative;
   padding: 0;
   height: 100vh;
+  overflow-y: auto;
 }
 
-.navbar-container {
+.navbar-and-content-container {
   padding: 0;
+  height: 100vh;
 }
