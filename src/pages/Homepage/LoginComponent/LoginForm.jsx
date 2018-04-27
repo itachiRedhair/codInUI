@@ -30,7 +30,7 @@ class LoginComponent extends Component {
     handleSubmit = () => {
         this.props.userLogIn("username", "password").then(() => {
             //TODO: route to dahsboard      
-            this.props.history.push("/dashboard");
+            this.props.history.push("/dashboard/overview");
         });
     };
 

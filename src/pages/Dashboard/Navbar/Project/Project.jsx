@@ -13,10 +13,19 @@ export default class Project extends Component {
 
 
     render() {
+        const projectDropdown = {
+            background: 'transparent',
+            color: 'blue',
+            border: '#d7dde4',
+            fontSize: '2rem',
+            // boxShadow: 'none',
+            marginLeft: '1rem'
+        }
         return (
             <div className="profile dropdown">
                 <DropdownButton
                     title="Project"
+                    style={projectDropdown}
                     key="1"
                     id={`dropdown-basic-1`}
                     list={this.projectList} />

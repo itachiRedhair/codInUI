@@ -11,7 +11,7 @@ body {
   color: #fff;
   text-align: left;
   padding-left: 25px;
-  line-height: 70px;
+  line-height: 58px;
   font-size: 16px;
 }
 
@@ -72,4 +72,40 @@ body {
 
 .reports {
   margin-left: 6em;
+}
+
+.profile-sidebar {
+  display: flex;
+  flex-direction: row;
+  height: 9.5rem;
+  background: #2a3f54;
+  color: #fff;  
+}
+.profile-pic {
+  width: 35%;
+  float: left;
+}
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0rem 1rem 2rem;
+  width: 100%;
+  float: left;
+}
+
+.img-circle.profile_img {
+  width: 110%;
+//   background: #fff;
+  margin-left: 33%;
+  z-index: 1000;
+  position: inherit;
+  margin-top: 20px;
+  border: 1px solid rgba(52, 73, 94, 0.44);
+  padding: 4px;
+}
+.partition {
+  height: 1.5rem;
+}
+.link {
+    color: #edf1f7;
 }

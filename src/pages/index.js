@@ -14,7 +14,7 @@ export default class App extends Component {
                 <div>
                     <Switch>
                         <Route exact path="/" component={Homepage} />
-                        <Route path="/dashboard" component={Dashboard} />
+                        <Route path="/dashboard/overview" component={Dashboard} />
                     </Switch>
                 </div>
             </React.Fragment>

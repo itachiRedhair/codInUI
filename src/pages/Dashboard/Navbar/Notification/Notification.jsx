@@ -5,9 +5,9 @@ import './Notification.scss';
 export default class Notification extends Component {
     render() {
         return (
-            <div className="notifications new">
+            <div className="notifications new align-new">
                 <a href="" data-toggle="dropdown">
-                    <i className="fa fa-bell-o"></i>
+                    <i className="fa fa-bell-o align"></i>
                     <sup>
                         <span className="counter">8</span>
                     </sup>

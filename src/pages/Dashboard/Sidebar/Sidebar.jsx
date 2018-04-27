@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, NavLink } from "react-router-dom";
 import "./Sidebar.scss";
 
 export default class Sidebar extends Component {
@@ -7,12 +7,46 @@ export default class Sidebar extends Component {
     return (
       <div className="sidebar">
         <div className="sidebar-header">CodeIn</div>
+        <div className="profile-sidebar">
+          <div className="profile-pic">
+            <img
+              src="http://www.hrserviceinc.com/testsite/wp-content/uploads/2015/12/job_description.png"
+              alt="..."
+              className="img-circle profile_img"
+            />
+          </div>
+          <div className="profile-info">
+            <div>Project 1</div>
+            <div>Created on: 25/04/2018</div>
+            <div>
+              <NavLink
+                activeStyle={{
+                  fontWeight: "bold",
+                  //   background: "#f0f3f6",
+                  color: "black"
+                }}
+                to="/dashboard/overview"
+              >
+                <i className="fa fa-users link" />
+                <span class="link">Collaborators</span>
+              </NavLink>
+            </div>
+          </div>
+        </div>
+        {/* <div className="partition"></div> */}
         <nav className="menu">
           <ul className="sidebar-menu metismenu" id="sidebar-menu">
             <li className="active">
-              <a>
+              <NavLink
+                activeStyle={{
+                  fontWeight: "bold",
+                  background: "#f0f3f6",
+                  color: "black"
+                }}
+                to="/dashboard/overview"
+              >
                 <i className="fa fa-tachometer" /> Overview
-              </a>
+              </NavLink>
             </li>
             <div className="report-container">
               <div className="reports">Reports</div>
