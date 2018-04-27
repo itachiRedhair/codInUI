@@ -10,19 +10,19 @@ import Content from "./../Content";
 import "./DashboardComponent.scss";
 
 export default class DashboardComponent extends Component {
-    render() {
-        return (
-            <Grid className="dashboard-container">
-                <Row>
-                    <Col md={2} className="sidebar-container">
-                        <Sidebar />
-                    </Col>
-                    <Col md={10} className="navbar-container">
-                        <Navbar />
-                        <Content />
-                    </Col>
-                </Row>
-            </Grid>
-        );
-    }
+  render() {
+    return (
+      <Grid className="dashboard-container">
+        <Row>
+          <Col md={2} className="sidebar-container">
+            <Sidebar />
+          </Col>
+          <Col md={10} className="navbar-and-content-container">
+            <Navbar />
+            <Content />
+          </Col>
+        </Row>
+      </Grid>
+    );
+  }
 }

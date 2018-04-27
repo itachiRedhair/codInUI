@@ -68,7 +68,7 @@ const tempOptions = {
 };
 
 export default () => (
-  <Card>
+  <Card title="Trend Graph">
     <Echart options={tempOptions} width="400px" height="300px" />
   </Card>
 );
