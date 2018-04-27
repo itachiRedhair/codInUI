@@ -3,32 +3,31 @@ import React from "react";
 //Components imports
 import Echart from "./../Echart";
 import Card from "./../../commonui/Card";
+import EchartCard from "./../../components/EchartCard";
 
 //Syltes import
-import "./OverviewCoverage.scss";
+import "./CoverageSummary.scss";
 
 const tempOptions = {
   series: [
     {
       type: "liquidFill",
       data: [0.6],
-      radius: "50%",
+      radius: "80%",
       amplitude: "8%",
       label: {
         show: true,
-        color: '#294D99',
-        insideColor: '#fff',
+        color: "#294D99",
+        insideColor: "#fff",
         fontSize: 15,
-        align: 'center',
-        baseline: 'middle',
-        position: 'inside'
-    },
+        align: "center",
+        baseline: "middle",
+        position: "inside"
+      }
     }
   ]
 };
 
 export default () => (
-  <Card className="overview-coverage">
-    <Echart width="130px" height="130px" options={tempOptions} />
-  </Card>
+  <EchartCard height="160px" options={tempOptions} autoSize />
 );

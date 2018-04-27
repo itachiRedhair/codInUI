@@ -38,10 +38,7 @@ export default class EchartComponent extends Component {
 
   render() {
     return (
-      <div
-        className="overview-graph-container"
-        style={{ height: this.props.height, width: this.props.width }}
-      />
+      <div style={{ height: this.props.height, width: this.props.width }} />
     );
   }
 }
