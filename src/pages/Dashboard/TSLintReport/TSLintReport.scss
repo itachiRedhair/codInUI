@@ -7,6 +7,10 @@
   display: flex;
 }
 
+.tslint-row-group.tslint-bar {
+  height: 22em;
+}
+
 .tslint-row-group:last-child {
   margin-bottom: 3em;
 }

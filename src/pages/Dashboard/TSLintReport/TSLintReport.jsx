@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 
 //Components imports
+import TSLintBar from "./../../../components/TSLintBar";
+import TSLintSunBurst from "./../../../components/TSLintSunBurst";
 import TSLintSummary from "./../../../components/TSLintSummary";
 import TSLintHistory from "./../../../components/TSLintHistory";
 import TSLintHeatmap from "./../../../components/TSLintHeatmap";
@@ -21,12 +23,12 @@ export default class TSLintReport extends Component {
             <TSLintHistory />
           </Col>
         </Row>
-        <Row className="tslint-row-group">
+        <Row className="tslint-row-group tslint-bar">
           <Col md={7} className="tslint-col">
-            TSLintBar
+            <TSLintBar />
           </Col>
           <Col md={5} className="tslint-col">
-            TSLintSunBurst
+            <TSLintSunBurst />
           </Col>
         </Row>
         <Row className="tslint-row-group">
