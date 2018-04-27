@@ -1,0 +1,25 @@
+.overview-tslint {
+  display: table-cell;
+  vertical-align: middle;
+  height: 12em;
+}
+.error-number-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+.error-number-container::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  height: 80%;
+  border-right: 2px solid grey;
+}
+.piechart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}

@@ -1,0 +1,15 @@
+.homepage-container {
+  background-image: url("../../../assets/images/Homepage/homepage-bg.jpg");
+  min-height: 100vh;
+}
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100vh;
+  padding-bottom: 5em;
+}
+
+.login-form {
+}
