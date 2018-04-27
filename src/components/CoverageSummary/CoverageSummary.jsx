@@ -29,5 +29,5 @@ const tempOptions = {
 };
 
 export default () => (
-  <EchartCard height="160px" options={tempOptions} autoSize />
+  <EchartCard height="160px" title="Coverage" options={tempOptions} autoSize />
 );

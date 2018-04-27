@@ -7,6 +7,7 @@ import CPICard from "./../../../components/CPICard";
 import RecentSubmits from "./../../../components/RecentSubmits";
 import TSLintSummary from "./../../../components/TSLintSummary";
 import CoverageSummary from "./../../../components/CoverageSummary";
+import OverviewHeatmap from "./../../../components/OverviewHeatmap";
 
 //Syles imports
 import "./Overview.scss";
@@ -35,36 +36,8 @@ export default class Overview extends Component {
           </Col>
         </Row>
         <Row className="overview-row-group">
-          <Col md={5} className="overview-col">
-            <TSLintSummary />
-          </Col>
-          <Col md={2} className="overview-col">
-            <CoverageSummary />
-          </Col>
-          <Col md={5} className="overview-col">
-            <RecentSubmits />
-          </Col>
-        </Row>
-        <Row className="overview-row-group">
-          <Col md={5} className="overview-col">
-            <TSLintSummary />
-          </Col>
-          <Col md={2} className="overview-col">
-            <CoverageSummary />
-          </Col>
-          <Col md={5} className="overview-col">
-            <RecentSubmits />
-          </Col>
-        </Row>
-        <Row className="overview-row-group">
-          <Col md={5} className="overview-col">
-            <TSLintSummary />
-          </Col>
-          <Col md={2} className="overview-col">
-            <CoverageSummary />
-          </Col>
-          <Col md={5} className="overview-col">
-            <RecentSubmits />
+          <Col md={12} className="overview-col">
+            <OverviewHeatmap />
           </Col>
         </Row>
       </React.Fragment>

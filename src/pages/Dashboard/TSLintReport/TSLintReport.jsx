@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 
 //Components imports
-import OverviewGraph from "./../../../components/OverviewGraph";
-import CPICard from "./../../../components/CPICard";
-import RecentSubmits from "./../../../components/RecentSubmits";
 import TSLintSummary from "./../../../components/TSLintSummary";
-import CoverageSummary from "./../../../components/CoverageSummary";
+import TSLintHistory from "./../../../components/TSLintHistory";
+import TSLintHeatmap from "./../../../components/TSLintHeatmap";
 
 //Syles imports
 import "./TSLintReport.scss";
@@ -17,10 +15,10 @@ export default class TSLintReport extends Component {
       <React.Fragment>
         <Row className="tslint-row-group">
           <Col md={4} className="tslint-col">
-            TSLintSummary
+            <TSLintSummary />
           </Col>
           <Col md={8} className="tslint-col">
-            TSLintHistory
+            <TSLintHistory />
           </Col>
         </Row>
         <Row className="tslint-row-group">
@@ -33,7 +31,7 @@ export default class TSLintReport extends Component {
         </Row>
         <Row className="tslint-row-group">
           <Col md={12} className="tslint-col">
-            TSLintHeatmap
+            <TSLintHeatmap />
           </Col>
         </Row>
       </React.Fragment>

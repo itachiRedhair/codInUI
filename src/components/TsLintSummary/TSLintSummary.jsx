@@ -11,21 +11,26 @@ import "./TSLintSummary.scss";
 const tempOptions = {
   tooltip: {
     trigger: "item",
-    formatter: "{a} <br/>{b} : {c} ({d}%)"
+    formatter: "{c}"
+  },
+  grid: {
+    height: "100%",
+    width: "100%"
   },
   series: [
     {
-      name: "访问来源",
       type: "pie",
       radius: "80%",
       center: ["50%", "50%"],
       data: [
-        { value: 335, name: "直接访问" },
-        { value: 310, name: "邮件营销" },
-        { value: 234, name: "联盟广告" },
-        { value: 135, name: "视频广告" },
-        { value: 1548, name: "搜索引擎" }
+        { value: 335, name: "semicolon" },
+        { value: 310, name: "eofline" },
+        { value: 234, name: "whitespace" }
       ],
+      label: {
+        // show: false,
+        position: "inside"
+      },
       itemStyle: {
         emphasis: {
           shadowBlur: 10,
@@ -40,15 +45,20 @@ const tempOptions = {
 export default class TSLintSummary extends Component {
   render() {
     return (
-      <Card>
-        <Row className="tslint-summary">
-          <Col md={6} className="error-number-container">
-            6 Errors
-          </Col>
-          <Col md={6}>
-            <Echart width="150px" height="150px" options={tempOptions} />
-          </Col>
-        </Row>
+      <Card title="TSLint Summary">
+        <div className="tslint-summary-container">
+          <Row className="tslint-summary">
+            <Col md={4} className="error-number-container">
+              <div>
+                <div className="error-number">6</div>
+                <div>Errors</div>
+              </div>
+            </Col>
+            <Col md={8}>
+              <Echart width="185px" height="185px" options={tempOptions} />
+            </Col>
+          </Row>
+        </div>
       </Card>
     );
   }

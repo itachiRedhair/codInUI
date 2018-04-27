@@ -12,11 +12,11 @@ const tempOptions = {
   series: [
     {
       type: "gauge",
-      data: [{ value: 9, name: "CPI" }]
+      data: [{ value: 83 }]
     }
   ]
 };
 
 export default () => (
-  <EchartCard height="300px" options={tempOptions} autoSize />
+  <EchartCard title="CPI" height="300px" options={tempOptions} autoSize />
 );

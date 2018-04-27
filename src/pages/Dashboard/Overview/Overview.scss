@@ -6,3 +6,7 @@
 .overview-row-group > .overview-col {
   display: flex;
 }
+
+.overview-row-group:last-child {
+  margin-bottom: 3em;
+}

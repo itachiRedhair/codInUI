@@ -6,3 +6,7 @@
 .tslint-row-group > .tslint-col {
   display: flex;
 }
+
+.tslint-row-group:last-child {
+  margin-bottom: 3em;
+}

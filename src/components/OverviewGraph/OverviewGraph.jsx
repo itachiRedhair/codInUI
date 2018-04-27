@@ -10,13 +10,10 @@ const tempOptions = {
     trigger: "axis"
   },
   legend: {
-    data: ["TSLint Errors", "Coverage", "Code Duplicacy"]
+    data: ["TSLint Errors", "Coverage", "CPI"]
   },
   grid: {
-    left: "3%",
-    right: "4%",
-    bottom: "3%",
-    containLabel: true
+    // containLabel: true
   },
   xAxis: {
     type: "category",
@@ -30,17 +27,17 @@ const tempOptions = {
     {
       name: "TSLint Errors",
       type: "line",
-      data: [120, 132, 101, 134, 90, 230, 210]
+      data: [25, 68, 32, 21, 12, 43, 72]
     },
     {
       name: "Coverage",
       type: "line",
-      data: [220, 182, 191, 234, 290, 330, 310]
+      data: [42, 59, 64, 68, 79, 86, 97]
     },
     {
-      name: "Code Duplicacy",
+      name: "CPI",
       type: "line",
-      data: [150, 232, 201, 154, 190, 330, 410]
+      data: [41, 62, 45, 45, 34, 68, 86]
     }
   ]
 };

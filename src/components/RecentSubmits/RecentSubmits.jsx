@@ -3,12 +3,13 @@ import { Table } from "react-bootstrap";
 
 //Components imports
 import Card from "./../../commonui/Card";
+import "./RecentSubmits.scss";
 
 export default class RecentSubmit extends Component {
   render() {
     return (
-      <Card>
-        <Table responsive>
+      <Card title="Recent Submits">
+        <Table className="recent-submit-table" responsive>
           <thead>
             <tr>
               <th>Collaborator</th>
