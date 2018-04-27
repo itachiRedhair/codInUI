@@ -3,29 +3,20 @@ import React from "react";
 //Components imports
 import Echart from "./../Echart";
 import Card from "./../../commonui/Card";
+import EchartCard from "./../../components/EchartCard";
+
+//Styles imports
+import "./CPICard.scss";
 
 const tempOptions = {
-  tooltip: {
-    formatter: "{a} <br/>{b} : {c}%"
-  },
-  toolbox: {
-    feature: {
-      restore: {},
-      saveAsImage: {}
-    }
-  },
   series: [
     {
-      name: "业务指标",
       type: "gauge",
-      detail: { formatter: "{value}%" },
-      data: [{ value: 97, name: "完成率" }]
+      data: [{ value: 9, name: "CPI" }]
     }
   ]
 };
 
 export default () => (
-  <Card>
-    <Echart width="200px" height="300px" options={tempOptions} />
-  </Card>
+  <EchartCard height="300px" options={tempOptions} autoSize />
 );

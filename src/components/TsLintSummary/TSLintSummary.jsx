@@ -6,7 +6,7 @@ import Echart from "./../../components/Echart";
 import Card from "./../../commonui/Card";
 
 //Styles imports
-import "./OverviewTsLint.scss";
+import "./TSLintSummary.scss";
 
 const tempOptions = {
   tooltip: {
@@ -17,8 +17,8 @@ const tempOptions = {
     {
       name: "访问来源",
       type: "pie",
-      radius: "55%",
-      center: ["50%", "60%"],
+      radius: "80%",
+      center: ["50%", "50%"],
       data: [
         { value: 335, name: "直接访问" },
         { value: 310, name: "邮件营销" },
@@ -37,15 +37,15 @@ const tempOptions = {
   ]
 };
 
-export default class OverviewTsLint extends Component {
+export default class TSLintSummary extends Component {
   render() {
     return (
       <Card>
-        <Row className="overview-tslint">
+        <Row className="tslint-summary">
           <Col md={6} className="error-number-container">
             6 Errors
           </Col>
-          <Col md={6} className="piechart-container">
+          <Col md={6}>
             <Echart width="150px" height="150px" options={tempOptions} />
           </Col>
         </Row>

@@ -1,23 +1,20 @@
-.overview-tslint {
+.tslint-summary {
   display: flex;
   justify-content: space-between;
+  margin: 0;
 }
+
 .error-number-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
+
 .error-number-container::before {
   content: "";
   position: absolute;
   right: 0;
   height: 80%;
   border-right: 2px solid grey;
-}
-.piechart-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
 }
