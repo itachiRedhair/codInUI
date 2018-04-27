@@ -28,7 +28,7 @@ export default class Sidebar extends Component {
                 to="/dashboard/overview"
               >
                 <i className="fa fa-users link" />
-                <span class="link">Collaborators</span>
+                <span className="link">Collaborators</span>
               </NavLink>
             </div>
           </div>
@@ -52,21 +52,25 @@ export default class Sidebar extends Component {
               <div className="reports">Reports</div>
             </div>
             <li className="active open bb">
-              <a href="">
+              <NavLink
+                activeStyle={{
+                  fontWeight: "bold",
+                  background: "#f0f3f6",
+                  color: "black"
+                }}
+                to="/dashboard/tslint"
+              >
                 <i className="fa fa-file-text-o" /> TS Lint Report
-                <i className="fa arrow" />
-              </a>
+              </NavLink>
             </li>
             <li className="active open bb">
               <a href="">
                 <i className="fa fa-file-text-o" /> Coverage Report
-                <i className="fa arrow" />
               </a>
             </li>
             <li className="active open">
               <a href="">
                 <i className="fa fa-file-text-o" /> Side Report
-                <i className="fa arrow" />
               </a>
             </li>
             <div className="report-container">
@@ -75,13 +79,11 @@ export default class Sidebar extends Component {
             <li className="active open bb">
               <a href="">
                 <i className="fa fa-file-text-o" /> Feedback
-                <i className="fa arrow" />
               </a>
             </li>
             <li className="active open">
               <a href="">
                 <i className="fa fa-cog" /> Settings
-                <i className="fa arrow" />
               </a>
             </li>
             {/* <li className="active open">

@@ -30,6 +30,7 @@ export default class Profile extends Component {
                 <div className="img" style={divStyle}> </div>
                 <DropdownButton
                     style={profileDropdown}
+                    title=""
                     key="1"
                     pullRight id="split-button-pull-right"
                     id={`dropdown-basic-1`}

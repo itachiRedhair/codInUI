@@ -21,7 +21,6 @@ class EchartCards extends Component {
     let { echartWidth, title, ...echartProps } = this.props;
 
     if (this.props.autoSize) {
-      const height = this.containerElement.current.clientHeight;
       const width = this.containerElement.current.clientWidth;
       echartWidth = `${width * 0.95}px`;
     }
