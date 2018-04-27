@@ -13,11 +13,23 @@ export default class Profile extends Component {
 
 
     render() {
+        const imgUrl = 'https://media.licdn.com/dms/image/C4D03AQG3joys19g75w/profile-displayphoto-shrink_200_200/0?e=1529992800&v=beta&t=Z9ofdDDVOWV-BFRJkmGwSuALctIKKdAVhKu9BTcG_bY';
+        const divStyle = {
+            backgroundImage: 'url(' + imgUrl + ')',
+        };
+        const profileDropdown = {
+            background: 'transparent',
+            color: 'blue',
+            border: '#d7dde4',
+            boxShadow: 'none',
+            marginLeft: '-1rem'
+        }
         return (
 
             <div className="profile dropdown">
+                <div className="img" style={divStyle}> </div>
                 <DropdownButton
-                    title="Profile"
+                    style={profileDropdown}
                     key="1"
                     pullRight id="split-button-pull-right"
                     id={`dropdown-basic-1`}

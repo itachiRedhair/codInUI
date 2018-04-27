@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "webpack-watch": "webpack",
-    "start": "webpack-dev-server --host 10.29.9.66 --port 8080 --color --progress --hot"
+    "start": "webpack-dev-server --color --progress --hot"
   },
   "keywords": [],
   "author": "",
