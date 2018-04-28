@@ -49,7 +49,7 @@ export default class TSLintSummary extends Component {
         <div className="tslint-summary-container">
           <Row className="tslint-summary">
             <Col md={4} className="error-number-container">
-              <div>
+              <div className="digit">
                 <div className="error-number">6</div>
                 <div>Errors</div>
               </div>

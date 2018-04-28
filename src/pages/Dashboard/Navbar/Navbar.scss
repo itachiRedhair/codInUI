@@ -1,5 +1,7 @@
+@import "../../../styles/_theme.scss";
+
 .header {
-  background-color: #d7dde4;
+  background-color: $card-bg;
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
   display: -webkit-box;

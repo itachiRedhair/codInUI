@@ -228,12 +228,22 @@ const tempOptions = {
   xAxis: {
     type: "category",
     data: hours,
+    axisLine: {
+      lineStyle: {
+        color: "white"
+      }
+    },
     splitArea: {
       show: true
     }
   },
   yAxis: {
     type: "category",
+    axisLine: {
+      lineStyle: {
+        color: "white"
+      }
+    },
     data: days,
     splitArea: {
       show: true

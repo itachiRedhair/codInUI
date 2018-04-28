@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, NavLink } from "react-router-dom";
 import "./Sidebar.scss";
+import "../../../styles/_theme.scss";
 
 export default class Sidebar extends Component {
   render() {
@@ -40,8 +41,8 @@ export default class Sidebar extends Component {
               <NavLink
                 activeStyle={{
                   fontWeight: "bold",
-                  background: "#f0f3f6",
-                  color: "black"
+                  background: "#242424",
+                  color: "white"
                 }}
                 to="/dashboard/overview"
               >
@@ -55,8 +56,8 @@ export default class Sidebar extends Component {
               <NavLink
                 activeStyle={{
                   fontWeight: "bold",
-                  background: "#f0f3f6",
-                  color: "black"
+                  background: "#242424",
+                  color: "white"
                 }}
                 to="/dashboard/tslint"
               >

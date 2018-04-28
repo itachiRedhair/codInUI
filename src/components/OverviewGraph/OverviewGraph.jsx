@@ -10,6 +10,9 @@ const tempOptions = {
     trigger: "axis"
   },
   legend: {
+    textStyle: {
+      color: "white"
+    },
     data: ["TSLint Errors", "Coverage", "CPI"]
   },
   grid: {
@@ -17,11 +20,21 @@ const tempOptions = {
   },
   xAxis: {
     type: "category",
+    axisLine: {
+      lineStyle: {
+        color: "white"
+      }
+    },
     boundaryGap: false,
     data: ["1", "2", "3", "4", "5", "6", "7"]
   },
   yAxis: {
-    type: "value"
+    type: "value",
+    axisLine: {
+      lineStyle: {
+        color: "white"
+      }
+    }
   },
   series: [
     {

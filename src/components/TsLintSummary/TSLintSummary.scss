@@ -1,3 +1,5 @@
+@import "./../../styles/_theme.scss";
+
 .tslint-summary-container {
   display: flex;
   flex-direction: column;
@@ -23,9 +25,14 @@
   margin: -3rem;
 }
 
+.digit {
+  color: $card-text;
+}
+
 .error-number-container::before {
   content: "";
   position: absolute;
+  color: $card-text;
   right: 0;
   height: 80%;
   border-right: 2px solid grey;

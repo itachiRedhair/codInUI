@@ -1,5 +1,8 @@
+@import "./../../styles/_theme.scss";
+
 .recent-submit-table {
   text-align: left;
+  color: $card-text;
 }
 
 .recent-submit-table-scroll {

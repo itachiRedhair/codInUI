@@ -1,6 +1,8 @@
+@import "../../../styles/_theme.scss";
+
 .content-container {
   padding: 2em;
-  background: #f0f3f6;
+  background: $content-bg;
   overflow-y: scroll;
   height: 100%;
 }

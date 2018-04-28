@@ -1,8 +1,10 @@
+@import "../../../styles/_theme.scss";
+
 body {
   margin: 0px;
 }
 .sidebar {
-  background-color: #3a4651;
+  background-color: $sidebar-bg;
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
   height: 100%;
@@ -66,7 +68,7 @@ body {
   line-height: 1.42857;
 }
 .report-container {
-  background: #404244;
+  background: $sidebar-bg;
   color: #fff;
 }
 
@@ -78,7 +80,7 @@ body {
   display: flex;
   flex-direction: row;
   height: 9.5rem;
-  background: #2a3f54;
+  background: $sidebar-bg;
   color: #fff;  
 }
 .profile-pic {

@@ -30,6 +30,9 @@ const tempOptions = {
     }
   },
   legend: {
+    textStyle: {
+      color: "white"
+    },
     data: ["Errors", "Warnings", "Information"]
   },
   grid: {
@@ -40,10 +43,20 @@ const tempOptions = {
   },
   xAxis: {
     type: "",
+    axisLine: {
+      lineStyle: {
+        color: "white"
+      }
+    },
     show: false
   },
   yAxis: {
     type: "category",
+    axisLine: {
+      lineStyle: {
+        color: "white"
+      }
+    },
     data: data
   },
   series: [
