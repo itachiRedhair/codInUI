@@ -1,49 +1,70 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, NavLink } from "react-router-dom";
+
+//Styles imports
 import "./Sidebar.scss";
 import "../../../styles/_theme.scss";
 
+const navLinkActiveStyle = {
+  fontWeight: "bold",
+  background: "#242424",
+  color: "white",
+  paddingLeft: "1em",
+  borderLeft: "0.5em solid green"
+};
+
 export default class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showProjectDropdownContent: false
+    };
+  }
+
+  handleProjectInfoClick = e => {
+    e.preventDefault();
+    this.setState(({ showProjectDropdownContent }) => {
+      return { showProjectDropdownContent: !showProjectDropdownContent };
+    });
+  };
+
   render() {
     return (
       <div className="sidebar">
-        <div className="sidebar-header">CodeIn</div>
-        <div className="profile-sidebar">
-          <div className="profile-pic">
-            <img
-              src="http://www.hrserviceinc.com/testsite/wp-content/uploads/2015/12/job_description.png"
-              alt="..."
-              className="img-circle profile_img"
-            />
-          </div>
-          <div className="profile-info">
-            <div>Project 1</div>
-            <div>Created on: 25/04/2018</div>
-            <div>
-              <NavLink
-                activeStyle={{
-                  fontWeight: "bold",
-                  //   background: "#f0f3f6",
-                  color: "black"
-                }}
-                to="/dashboard/overview"
-              >
-                <i className="fa fa-users link" />
-                <span className="link">Collaborators</span>
-              </NavLink>
-            </div>
-          </div>
+        <div className="sidebar-header">
+          <span>Cod</span>
+          <span>In</span>
         </div>
-        {/* <div className="partition"></div> */}
+        <div className="project-info" onClick={this.handleProjectInfoClick}>
+          <div>
+            <div className="project-name">
+              Project 1 &nbsp;
+              <i className="fas fa-pen-square " />
+            </div>
+            <div className="project-date">Created on: 25/04/2018</div>
+          </div>
+          {this.state.showProjectDropdownContent ? (
+            <i className="fas fa-caret-up project-dropdown-icon" />
+          ) : (
+            <i className="fas fa-caret-down project-dropdown-icon" />
+          )}
+        </div>
+        <div
+          className={`project-dropdown-content ${
+            this.state.showProjectDropdownContent ? "reveal" : ""
+          }`}
+        >
+          <ul>
+            <li>Collaborators</li>
+            <li>Settings</li>
+          </ul>
+        </div>
         <nav className="menu">
           <ul className="sidebar-menu metismenu" id="sidebar-menu">
             <li className="active">
               <NavLink
-                activeStyle={{
-                  fontWeight: "bold",
-                  background: "#242424",
-                  color: "white"
-                }}
+                activeStyle={navLinkActiveStyle}
                 to="/dashboard/overview"
               >
                 <i className="fa fa-tachometer" /> Overview
@@ -53,26 +74,25 @@ export default class Sidebar extends Component {
               <div className="reports">Reports</div>
             </div>
             <li className="active open bb">
-              <NavLink
-                activeStyle={{
-                  fontWeight: "bold",
-                  background: "#242424",
-                  color: "white"
-                }}
-                to="/dashboard/tslint"
-              >
+              <NavLink activeStyle={navLinkActiveStyle} to="/dashboard/tslint">
                 <i className="fa fa-file-text-o" /> TS Lint Report
               </NavLink>
             </li>
             <li className="active open bb">
-              <a href="">
+              <NavLink
+                activeStyle={navLinkActiveStyle}
+                to="/dashboard/coverage"
+              >
                 <i className="fa fa-file-text-o" /> Coverage Report
-              </a>
+              </NavLink>
             </li>
             <li className="active open">
-              <a href="">
+              <NavLink
+                activeStyle={navLinkActiveStyle}
+                to="/dashboard/side-report"
+              >
                 <i className="fa fa-file-text-o" /> Side Report
-              </a>
+              </NavLink>
             </li>
             <div className="report-container">
               <div className="reports">Application</div>

@@ -11,7 +11,11 @@ class Card extends Component {
         <div className="card-title">
           {this.props.title ? this.props.title : "Card Title"}
         </div>
-        <div className="card-content">{this.props.children}</div>
+        <div
+          className={`card-content ${this.props.contentScroll ? "" : ""}`}
+        >
+          {this.props.children}
+        </div>
       </div>
     );
   }

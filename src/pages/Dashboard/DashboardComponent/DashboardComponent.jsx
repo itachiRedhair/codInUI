@@ -12,8 +12,7 @@ import "./DashboardComponent.scss";
 export default class DashboardComponent extends Component {
   render() {
     return (
-      <Grid className="dashboard-container">
-        <Row>
+        <Row className="dashboard-container">
           <Col md={2} className="sidebar-container">
             <Sidebar />
           </Col>
@@ -22,7 +21,6 @@ export default class DashboardComponent extends Component {
             <Content />
           </Col>
         </Row>
-      </Grid>
     );
   }
 }

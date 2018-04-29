@@ -3,18 +3,24 @@
 body {
   margin: 0px;
 }
+
 .sidebar {
   background-color: $sidebar-bg;
+  color: $sidebar-primary-text;
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
   height: 100%;
 }
+
 .sidebar .sidebar-header {
-  color: #fff;
-  text-align: left;
-  padding-left: 25px;
-  line-height: 58px;
-  font-size: 16px;
+  color: $sidebar-primary-text;
+  text-align: center;
+  line-height: 6rem;
+  font-size: 4rem;
+}
+
+.sidebar .sidebar-header span:nth-child(2) {
+  color: $theme-color;
 }
 
 .sidebar .sidebar-menu {
@@ -30,11 +36,14 @@ body {
   padding-left: 20px;
   padding-right: 15px;
 }
+
 .bb {
   border-bottom: 1px solid #575c60 !important;
 }
+
 .sidebar .sidebar-menu li a {
-  color: rgba(255, 255, 255, 0.5);
+  padding-left: 1em;
+  color: $sidebar-secondary-text;
   text-decoration: none;
   display: block;
 }
@@ -52,9 +61,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .sidebar .sidebar-menu > li > a i.arrow {
   font-size: 20px;
 }
+
 .sidebar .sidebar-menu .arrow {
   float: right;
   font-size: 18px;
@@ -63,41 +74,58 @@ body {
   transition: all 0.3s ease;
   margin-right: 0;
 }
+
 .metismenu .arrow {
   float: right;
   line-height: 1.42857;
 }
+
 .report-container {
   background: $sidebar-bg;
-  color: #fff;
+  color: $sidebar-primary-text;
 }
 
 .reports {
-  margin-left: 6em;
+  text-align: center;
+  // border-bottom: 0.1em solid $theme-color;
 }
 
-.profile-sidebar {
+.project-info {
+  color: $sidebar-primary-text;
+  padding: 2em;
   display: flex;
-  flex-direction: row;
-  height: 9.5rem;
-  background: $sidebar-bg;
-  color: #fff;  
+  justify-content: space-between;
 }
-.profile-pic {
-  width: 35%;
-  float: left;
+
+.project-name {
+  font-size: 2rem;
+  margin-right: 1em;
 }
-.profile-info {
+
+.project-date {
+  font-size: 1rem;
+}
+
+.project-dropdown-icon {
   display: flex;
   flex-direction: column;
-  padding: 2rem 0rem 1rem 2rem;
-  width: 100%;
-  float: left;
+  justify-content: center;
+  color: $theme-color;
+}
+
+.project-dropdown-content {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.project-dropdown-content.reveal {
+  height: 4em;
 }
 
 .img-circle.profile_img {
   width: 110%;
-//   background: #fff;
+  //   background: #fff;
   margin-left: 33%;
   z-index: 1000;
   position: inherit;
@@ -105,9 +133,11 @@ body {
   border: 1px solid rgba(52, 73, 94, 0.44);
   padding: 4px;
 }
+
 .partition {
   height: 1.5rem;
 }
+
 .link {
-    color: #edf1f7;
+  color: #edf1f7;
 }

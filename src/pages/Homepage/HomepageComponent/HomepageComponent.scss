@@ -1,6 +1,9 @@
 .homepage-container {
   background-image: url("../../../assets/images/Homepage/homepage-bg.jpg");
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .login-form-container {
@@ -9,6 +12,7 @@
   justify-content: flex-end;
   height: 100vh;
   padding-bottom: 5em;
+  background: white;
 }
 
 .login-form {

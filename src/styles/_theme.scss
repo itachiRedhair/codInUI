@@ -1,9 +1,51 @@
+$primary-text: white;
+$secondary-text: white;
+
+$primary-bg: #0c0c0c;
+$secondary-bg: #242424;
+
 $card-bg: #181818;
-$card-text: white;
+$card-heading-text: white;
 
 $sidebar-bg: #181818;
-$sidebar-text-color: white;
+$sidebar-primary-text: white;
+$sidebar-secondary-text: rgba(255, 255, 255, 0.5);
 
 $content-bg: #242424;
 
 $navbar-bg: #0c0c0c;
+
+$theme-color: green;
+
+@font-face {
+  font-family: Raleway;
+  src: url("../../../assets/fonts/raleway/Raleway-Light.ttf");
+}
+
+body {
+  font-family: "Raleway";
+}
+
+.dropdown-menu.dropdown-menu-right {
+  border-radius: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.6em;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $secondary-bg;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $theme-color;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $theme-color;
+}

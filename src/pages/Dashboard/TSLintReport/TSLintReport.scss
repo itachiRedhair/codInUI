@@ -11,6 +11,10 @@
   height: 22em;
 }
 
+.tslint-row-group.tslint-bar:hover {
+  height: auto;
+}
+
 .tslint-row-group:last-child {
   margin-bottom: 3em;
 }

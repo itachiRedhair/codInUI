@@ -13,6 +13,10 @@ const tempOptions = {
     {
       type: "liquidFill",
       data: [0.6],
+      color: ["#132639"],
+      outline: {
+        show: false
+      },
       radius: "80%",
       amplitude: "8%",
       label: {
