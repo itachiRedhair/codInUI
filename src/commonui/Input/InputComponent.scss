@@ -10,6 +10,10 @@
     border: none;
     border-radius: 0;
     box-shadow: none;
-    border-bottom: 0.15em solid $form-active-color;
+    border-bottom: 0.15em solid $form-inactive-color;
   }
+}
+
+.input-label {
+  color: green;
 }

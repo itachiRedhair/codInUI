@@ -1,6 +1,11 @@
-.custom-button{
-    color: white;
-    border: none;
-    border-radius: 0;
-    background: blue;
+@import "../../styles/_theme.scss";
+
+.custom-button {
+  color: white;
+  border: none;
+  border-radius: 0;
+  background: $theme-color;
+  &.active {
+    background: lightgreen;
+  }
 }

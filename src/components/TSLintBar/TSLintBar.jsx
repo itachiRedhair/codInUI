@@ -10,10 +10,10 @@ import "./TSLintBar.scss";
 
 const data = [
   "appComponent.ts",
-  "index.js",
+  "index.ts",
   "homeComponent.ts",
-  "index.html",
-  "config.js",
+  "router.service.ts",
+  "app.service.ts",
   "routerModule.ts",
   "env.ts",
   "config.js",
@@ -108,6 +108,7 @@ class TSLintBar extends Component {
           options={tempOptions}
           height={25 * (data.length < 5 ? 5 : data.length - 5) + 300}
           autoSize
+          contentScroll
         />
       </div>
     );

@@ -23,18 +23,18 @@ export default class TSLintReport extends Component {
             <TSLintHistory />
           </Col>
         </Row>
-        <Row className="tslint-row-group tslint-bar">
-          <Col md={7} className="tslint-col">
-            <TSLintBar />
-          </Col>
-          <Col md={5} className="tslint-col">
-            <TSLintSunBurst />
-          </Col>
-        </Row>
         <Row className="tslint-row-group">
           <Col md={12} className="tslint-col">
             <TSLintHeatmap />
           </Col>
+        </Row>
+        <Row className="tslint-row-group tslint-bar">
+          <Col md={12} className="tslint-col">
+            <TSLintBar />
+          </Col>
+          {/* <Col md={5} className="tslint-col">
+            <TSLintSunBurst />
+          </Col> */}
         </Row>
       </React.Fragment>
     );

@@ -41,7 +41,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|ttf|woff|woff2|otf)$/,
         include: dir_src,
         use: [
           {

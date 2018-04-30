@@ -1,135 +1,138 @@
-@import '../../../../styles/_variables.scss';
+@import "../../../../styles/_variables.scss";
+@import "../../../../styles/_theme.scss";
 
 .header .header-block-nav {
+  .notifications {
+    font-size: 16px;
 
-	.notifications {
-		font-size: 16px;
+    a {
+      padding-right: 10px;
+    }
 
+    .counter {
+      font-weight: bold;
+      font-size: 14px;
+      position: relative;
+      top: -3px;
+      left: -2px;
+    }
 
-		a {
-			padding-right: 10px;
-		}
+    &.new .counter {
+      color: $color-primary;
+      font-weight: bold;
+    }
 
-		.counter {
-			font-weight: bold;
-			font-size: 14px;
-			position: relative;
-			top: -3px;
-			left: -2px;
-		}
+    // @include media-down(sm) {
+    // 	position: static;
+    // }
+  }
 
-		&.new .counter {
-			color: $color-primary;
-			font-weight: bold;
-		}
+  .notifications-dropdown-menu {
+    white-space: normal;
+    left: auto;
+    right: 0;
+    min-width: 350px;
 
-		// @include media-down(sm) {
-		// 	position: static;
-		// }
-	}
+    &:before {
+      position: absolute;
+      right: 20px;
+      bottom: 100%;
+      margin-right: -1px;
+      // @include triangle(up, 10px, $dropdown-border);
+    }
 
+    &:after {
+      position: absolute;
+      right: 20px;
+      bottom: 100%;
+      // @include triangle(up, 9px, $dropdown-bg);
+    }
 
-	.notifications-dropdown-menu {
-		white-space: normal;
-		left: auto;
-		right: 0;
-		min-width: 350px;
+    .notifications-container {
+      .notification-item {
+        border-bottom: 1px solid $dropbown-color-border;
+        padding: 5px;
 
-		&:before {
-			position: absolute;
-			right: 20px;
-			bottom: 100%;
-			margin-right: -1px;
-			// @include triangle(up, 10px, $dropdown-border);
-		}
+        &:hover {
+          background-color: $dropdown-link-hover-color-bg;
+        }
+      }
 
-		&:after {
-			position: absolute;
-			right: 20px;
-			bottom: 100%;
-			// @include triangle(up, 9px, $dropdown-bg);
-		}
+      .img-col {
+        display: table-cell;
+        padding: 5px;
+      }
 
+      .body-col {
+        padding: 5px;
+        display: table-cell;
+      }
 
-		.notifications-container {
-			.notification-item {
-				border-bottom: 1px solid $dropbown-color-border;
-				padding: 5px;
+      .img {
+        width: 40px;
+        height: 40px;
+        border-radius: 3px;
+        vertical-align: top;
+        display: inline-block;
 
-				&:hover {
-					background-color: $dropdown-link-hover-color-bg;
-				}
-			}
+        // @include bg-cover();
+      }
 
+      p {
+        color: $color-text;
+        display: inline-block;
+        line-height: 18px;
+        font-size: 13px;
+        margin: 0;
+        vertical-align: top;
 
-			.img-col {
-				display: table-cell;
-				padding: 5px;
-			}
+        .accent {
+          font-weight: bold;
+        }
+      }
+    }
 
-			.body-col {
-				padding: 5px;
-				display: table-cell;
-			}
+    footer {
+      text-align: center;
 
-			.img {
-				width: 40px;
-				height: 40px;
-				border-radius: 3px;
-				vertical-align: top;
-				display: inline-block;
+      a {
+        // color: $dropdown-link-color;
+        transition: none;
 
-				// @include bg-cover();
-			}
+        &:hover {
+          background-color: $dropdown-link-hover-color-bg;
+          color: $color-primary;
+        }
+      }
+    }
 
+    // @include media-down(sm) {
+    // 	min-width: 100px;
+    // 	width: 100%;
+    // 	margin-top: 5px;
 
-			p {
-				color: $color-text;
-				display: inline-block;
-				line-height: 18px;
-				font-size: 13px;
-				margin: 0;
-				vertical-align: top;
+    // 	&:before,
+    // 	&:after {
+    // 		right: 107px;
+    // 	}
+    // }
+  }
+}
 
-				.accent {
-					font-weight: bold;
-				}
-			}
-
-		}
-
-
-
-		footer {
-			text-align: center;
-
-			a {
-				// color: $dropdown-link-color;
-				transition: none;
-
-				&:hover {
-					background-color: $dropdown-link-hover-color-bg;
-					color: $color-primary;
-				}
-			}
-		}
-
-		// @include media-down(sm) {
-		// 	min-width: 100px;
-		// 	width: 100%;
-		// 	margin-top: 5px;
-
-		// 	&:before,
-		// 	&:after {
-		// 		right: 107px;
-		// 	}
-		// }
-	}
+.notifications {
+  a {
+    i {
+      color: $theme-color;
+    }
+    sup {
+      color: $primary-text;
+    }
+  }
 }
 
 .align {
-    padding: 1rem 0rem 1rem 1rem;
+  padding: 1rem 0rem 1rem 1rem;
 }
 .align-new {
-    padding-right: 2rem;
+  padding-right: 2rem;
 }

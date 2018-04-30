@@ -1,4 +1,5 @@
 @import "../../../../styles/_variables.scss";
+@import "../../../../styles/_theme.scss";
 
 .img {
   display: inline-block;
@@ -28,10 +29,4 @@
 
 .arrow {
   color: $color-primary;
-}
-
-.profile-dropdown {
-  background: #d7dde4;
-  color: blue;
-  border: #d7dde4;
 }

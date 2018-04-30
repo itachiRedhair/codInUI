@@ -33,7 +33,10 @@ class EchartCards extends Component {
   render() {
     return (
       <div ref={this.containerElement} className="echart-card-container">
-        <Card title={this.props.title ? this.props.title : "Card Title"}>
+        <Card
+          {...this.props}
+          title={this.props.title ? this.props.title : "Card Title"}
+        >
           {this.state.child}
         </Card>
       </div>
