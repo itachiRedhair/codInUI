@@ -13,3 +13,20 @@
 
 .login-form {
 }
+.login-signup{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.ls-content{
+    display: flex;
+    flex-direction: row;
+}
+.login-btn{
+    height: 42px;
+    width: 230px;
+}
+
+.signup-button {
+    width: 227px;
+}
