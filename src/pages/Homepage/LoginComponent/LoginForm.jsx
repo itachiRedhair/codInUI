@@ -70,12 +70,13 @@ class LoginComponent extends Component {
         />
         <Checkbox list={[`Keep me logged in`]} />
         <Row>
-          <Col md={3} mdPush={9}>
+          <Col md={3} mdPush={8}>
             <Button onClick={this.handleSubmit} className="login-button">
               Login <i className="fas fa-arrow-right arrow-icon" />
             </Button>
           </Col>
         </Row>
+        <div className="signup-prompt">New Here? Sign up.</div>
       </form>
     );
   }

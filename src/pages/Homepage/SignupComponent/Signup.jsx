@@ -75,7 +75,7 @@ class SignupComponent extends Component {
           onChange={this.handleConfirmPasswordChange}
         />
         <Row>
-          <Col md={3} mdPush={9}>
+          <Col md={3} mdPush={8}>
             <Button onClick={this.handleSubmit} className="login-button">
               Signup <i className="fas fa-arrow-right arrow-icon" />
             </Button>

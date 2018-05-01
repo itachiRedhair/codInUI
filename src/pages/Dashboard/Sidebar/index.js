@@ -15,4 +15,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false
+})(Sidebar);

@@ -12,15 +12,19 @@ import "./DashboardComponent.scss";
 export default class DashboardComponent extends Component {
   render() {
     return (
-        <Row className="dashboard-container">
-          <Col md={2} className="sidebar-container">
-            <Sidebar />
-          </Col>
-          <Col md={10} className="navbar-and-content-container">
-            <Navbar />
-            <Content />
-          </Col>
-        </Row>
+      <React.Fragment>
+        <div className="dashboard-container">
+          <Navbar />
+          <Row className="dashboard-row-container">
+            <Col md={2} className="sidebar-container responsive">
+              <Sidebar />
+            </Col>
+            <Col md={10} className="dashboard-content-container">
+              <Content />
+            </Col>
+          </Row>
+        </div>
+      </React.Fragment>
     );
   }
 }
