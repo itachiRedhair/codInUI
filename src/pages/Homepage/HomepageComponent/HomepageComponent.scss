@@ -1,3 +1,5 @@
+@import "./../../../styles/_theme.scss";
+
 .homepage-container {
   background-image: url("../../../assets/images/Homepage/homepage-bg.jpg");
   height: 100vh;
@@ -18,19 +20,35 @@
 .login-form {
 }
 .login-signup{
-    align-items: center;
+    // align-items: center;
     display: flex;
     flex-direction: column;
+    margin-left: 7.1em;
 }
 .ls-content{
     display: flex;
+    flex: 1;
+    width: 41%;
     flex-direction: row;
 }
 .login-btn{
+    // background: white;
+    cursor: pointer;    
     height: 42px;
-    width: 230px;
+    width: 100%;
 }
 
 .signup-button {
-    width: 227px;
+    cursor: pointer;        
+    // background: white;
+    width: 100%;
+}
+
+.border-bottom{
+    border-bottom: 7px solid $theme-color;
+}
+
+.grid-container{
+    margin-top: 16em;
+    margin-left: 48em;
 }

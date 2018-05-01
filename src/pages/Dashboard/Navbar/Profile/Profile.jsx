@@ -20,7 +20,7 @@ export default class Profile extends Component {
     };
     const profileDropdown = {
       background: "transparent",
-      color: "blue",
+      color: "green",
       border: "#d7dde4",
       boxShadow: "none",
       marginLeft: "-1rem"
