@@ -15,12 +15,17 @@ import {
 // ------------------------------------
 // Constants
 // ------------------------------------
+export const SIGNUP = "SIGNUP";
 export const AUTH_LOGIN = "AUTH_LOGIN";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
 
 // ------------------------------------
 // Action Creators
 // ------------------------------------
+
+const signup = () => ({
+  type: SIGNUP
+});
 
 const login = () => ({
   type: AUTH_LOGIN
@@ -58,7 +63,33 @@ export const userLogIn = (email, password) => (dispatch, getState) => {
   });
 };
 
+export const userSignUp = (email, password, confirm) => (
+  dispatch,
+  getState
+) => {
+  return new Promise((resolve, reject) => {
+    dispatch(setLoadingStatus(true));
+
+    signUpRequest({ email, password, confirm })
+      .then(response => {
+        dispatch(setLoadingStatus(false));
+        if (response) {
+          dispatch(signup());
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      })
+      .catch(err => {
+        dispatch(setLoadingStatus(false));
+        console.log(err);
+        resolve(false);
+      });
+  });
+};
+
 export const actions = {
+  userSignUp,
   userLogIn,
   userLogOut
 };
@@ -68,6 +99,9 @@ export const actions = {
 // ------------------------------------
 
 const ACTION_HANDLERS = {
+  [SIGNUP]: (state, action) => ({
+    ...state
+  }),
   [AUTH_LOGIN]: (state, action) => ({
     ...state,
     isAuthenticated: true

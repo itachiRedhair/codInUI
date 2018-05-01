@@ -14,10 +14,12 @@ import "./Signup.scss";
 class SignupComponent extends Component {
   constructor(props, context) {
     super(props, context);
-
+    console.log("props in signup", props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      confirm: "",
+      register: false
     };
   }
 
@@ -27,16 +29,25 @@ class SignupComponent extends Component {
 
   handlePasswordChange = e => this.setState({ password: e.target.value });
 
+  handleConfirmPasswordChange = e => this.setState({ confirm: e.target.value });
+
   handleSubmit = () => {
-    this.props.userLogIn("username", "password").then(() => {
-      //TODO: route to dahsboard
-      this.props.history.push("/dashboard/overview");
-    });
+    console.log(this.state.email, this.state.password, this.state.confirm);
+    this.props
+      .userSignUp(this.state.email, this.state.password, this.state.confirm)
+      .then(signup => {
+        if (signup) {
+          this.setState({ register: true });
+        }
+        console.log("signed up", signup);
+      });
   };
 
   render() {
+    const message = <div>Successfully Registered</div>;
     const email = this.state.email;
     const password = this.state.password;
+    const confirm = this.state.confirm;
     return (
       <form className="form-container">
         <Input
@@ -60,8 +71,8 @@ class SignupComponent extends Component {
           type="password"
           label="Password"
           placeholder="Confirm Password"
-          value={password}
-          onChange={this.handlePasswordChange}
+          value={confirm}
+          onChange={this.handleConfirmPasswordChange}
         />
         <Row>
           <Col md={3} mdPush={9}>
@@ -70,6 +81,7 @@ class SignupComponent extends Component {
             </Button>
           </Col>
         </Row>
+        {this.state.register ? message : null}
       </form>
     );
   }

@@ -55,7 +55,7 @@ export const signUpRequest = ({ email, password, confirm }) => {
 
 export const projectRegisterRequest = () => {
   const url = `${constants.API_URL}/v1/project/register`;
-    const name="Insite2 "
+  const name = "Insite2 ";
   const options = {
     headers: getHeaders(),
     method: "POST",
@@ -71,5 +71,20 @@ export const projectRegisterRequest = () => {
     })
     .catch(err => {
       throw new Error("Project Register Failed");
+    });
+};
+
+export const getUserProject = () => {
+  const url = `${constants.API_URL}/v1/user/project`;
+  const options = {
+    method: "GET",
+    credentials:"include"
+  };
+  return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Adding Project Failed");
     });
 };

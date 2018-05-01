@@ -121,6 +121,8 @@ body {
 
 .project-dropdown-content.reveal {
   height: 4em;
+  padding-bottom: 7em;
+  padding-left: 1em;
 }
 
 .img-circle.profile_img {
@@ -148,4 +150,12 @@ body {
 .navActiveStyle {
     padding-left: "1em";
     border-left: "0.5em solid green"
+}
+.add-project {
+    padding: 0.5em 0.7em;
+    display: flex;
+    flex-direction: row;
+}
+.fa-align {
+    padding: 2px 4px;
 }
