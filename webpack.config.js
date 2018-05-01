@@ -12,7 +12,6 @@ const config = require("./config");
 const { dir_src, dir_dist } = config;
 
 module.exports = {
-  mode: "development",
   entry: path.join(dir_src, "index.js"),
   output: {
     path: dir_dist,

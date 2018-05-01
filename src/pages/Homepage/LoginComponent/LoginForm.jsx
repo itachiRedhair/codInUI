@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { Route, withRouter } from "react-router-dom";
 
-//components
+//Components imports
 import Input from "./../../../commonui/Input";
 import Button from "./../../../commonui/Button";
 import Checkbox from "./../../../commonui/Checkbox";
+
+//Constants imports
+import constants from "./../../../constants";
 
 //styles
 import "./../../../styles/_form.scss";
@@ -17,7 +20,8 @@ class LoginComponent extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      loginFailed: false
     };
   }
 
@@ -28,17 +32,26 @@ class LoginComponent extends Component {
   handlePasswordChange = e => this.setState({ password: e.target.value });
 
   handleSubmit = () => {
-    this.props.userLogIn("username", "password").then(() => {
-      //TODO: route to dahsboard
-      this.props.history.push("/dashboard/overview");
-    });
+    console.log(this.state.email, this.state.password);
+    this.props
+      .userLogIn(this.state.email, this.state.password)
+      .then(isLoggedIn => {
+        if (isLoggedIn) this.props.history.push("/dashboard/overview");
+        else this.setState({ loginFailed: true });
+      });
   };
 
   render() {
     const email = this.state.email;
     const password = this.state.password;
     return (
-      <form className="form-container">
+      <form className="form-container" autoComplete="on">
+        {this.state.loginFailed ? (
+          <div className="error-message">
+            Username or password is incorrect.
+          </div>
+        ) : null}
+
         <Input
           id="formControlEmail"
           type="email"

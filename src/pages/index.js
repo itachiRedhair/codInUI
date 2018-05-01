@@ -3,7 +3,6 @@ import { Redirect, Switch, Route } from "react-router-dom";
 
 //Components imports
 import Homepage from "./Homepage";
-import Signup from "./Signup";
 import Dashboard from "./Dashboard";
 import Loader from "./../components/Loader";
 
