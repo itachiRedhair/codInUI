@@ -92,7 +92,7 @@ body {
 
 .project-info {
   color: $sidebar-primary-text;
-  padding: 2em;
+  padding: 1em;
   display: flex;
   justify-content: space-between;
 }
@@ -155,7 +155,16 @@ body {
     padding: 0.5em 0.7em;
     display: flex;
     flex-direction: row;
+    cursor: pointer;
 }
 .fa-align {
     padding: 2px 4px;
+}
+// .project-list {
+//     overflow-y: scroll;
+//     // height: 4em;
+// }
+.project-list-scroll {
+    overflow-y: scroll;
+    height: 4em;
 }

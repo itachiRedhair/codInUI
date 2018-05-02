@@ -31,13 +31,14 @@ export const loginRequest = ({ email, password }) => {
     });
 };
 
-export const signUpRequest = ({ email, password, confirm }) => {
+export const signUpRequest = ({ name, email, password, confirm }) => {
   const url = `${constants.API_URL}/v1/user/signup`;
 
   const options = {
     headers: getHeaders(),
     method: "POST",
     body: JSON.stringify({
+      name,
       email,
       password,
       confirm
@@ -53,9 +54,9 @@ export const signUpRequest = ({ email, password, confirm }) => {
     });
 };
 
-export const projectRegisterRequest = () => {
+export const projectRegisterRequest = projectNamee => {
   const url = `${constants.API_URL}/v1/project/register`;
-  const name = "Insite2 ";
+  const name = projectNamee;
   const options = {
     headers: getHeaders(),
     method: "POST",
@@ -78,7 +79,7 @@ export const getUserProject = () => {
   const url = `${constants.API_URL}/v1/user/project`;
   const options = {
     method: "GET",
-    credentials:"include"
+    credentials: "include"
   };
   return fetch(url, options)
     .then(response => {

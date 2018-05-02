@@ -63,14 +63,14 @@ export const userLogIn = (email, password) => (dispatch, getState) => {
   });
 };
 
-export const userSignUp = (email, password, confirm) => (
+export const userSignUp = (name, email, password, confirm) => (
   dispatch,
   getState
 ) => {
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
 
-    signUpRequest({ email, password, confirm })
+    signUpRequest({ name, email, password, confirm })
       .then(response => {
         dispatch(setLoadingStatus(false));
         if (response) {

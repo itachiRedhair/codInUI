@@ -6,7 +6,7 @@ import { userSignUp } from "./../../../modules/auth";
 
 const mapDispatchToProps = dispatch => {
   return {
-    userSignUp: (username, password, confirm) => dispatch(userSignUp(username, password, confirm))
+    userSignUp: (name, email, password, confirm) => dispatch(userSignUp(name, email, password, confirm))
   };
 };
 

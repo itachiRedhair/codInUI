@@ -14,8 +14,9 @@ export const SHOW_USER_PROJECT = "SHOW_USER_PROJECT";
 // Action Creators
 // ------------------------------------
 
-const registerProject = () => ({
-  type: PROJECT_REGISTER
+const registerProject = project => ({
+  type: PROJECT_REGISTER,
+  payload: project
 });
 
 const listProject = projects => ({
@@ -30,12 +31,11 @@ const listProject = projects => ({
 export const createProject = name => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
-
-    projectRegisterRequest({ name })
+    projectRegisterRequest(name)
       .then(response => {
         dispatch(setLoadingStatus(false));
         if (response) {
-          dispatch(registerProject());
+          dispatch(registerProject(response.project));
           resolve(true);
         } else {
           resolve(false);
@@ -75,11 +75,12 @@ export const actions = {
 const ACTION_HANDLERS = {
   [PROJECT_REGISTER]: (state, action) => ({
     ...state,
+    projects: [...state.projects, action.payload],
     isProjectUploaded: true
   }),
   [SHOW_USER_PROJECT]: (state, action) => ({
     ...state,
-    projects: action.payload
+    projects: [...action.payload]
   })
 };
 
@@ -88,7 +89,8 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 
 const initialState = {
-  isProjectUploaded: false
+  isProjectUploaded: false,
+  projects: []
 };
 
 export default (state = initialState, action) => {
