@@ -44,11 +44,19 @@ export default class Sidebar extends Component {
 
   render() {
     var rows = [];
-    console.log("******", this.props.projects);
+    // console.log("******", this.props.projects);
+    var projects = [];
+    if (this.props.projects != undefined) {
+      this.props.projects.map(value => {
+          projects.push(value.name)
+        // console.log("***value***", value);
+      });
+    }
+
     for (var i = 0; i < this.state.projectList.length; i++) {
       rows.push(
         <div key={i} onClick={this.handleClicked}>
-          {this.state.projectList[i]}
+          {projects[i]}
         </div>
       );
     }
