@@ -1,5 +1,18 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, NavLink } from "react-router-dom";
+import {
+  Modal,
+  ModalBody,
+  ModalHeader,
+  MenuItem,
+  ModalFooter
+} from "react-bootstrap";
+
+//Component imports
+import ModalComponent from "../../../commonui/Modal";
+import Button from "../../../commonui/Button";
+import Input from "./../../../commonui/Input";
+import Collaborator from "./CollaboratorComponent";
 
 //Styles imports
 import "./Sidebar.scss";
@@ -16,11 +29,16 @@ const navLinkActiveStyle = {
 export default class Sidebar extends Component {
   constructor(props) {
     super(props);
-    this.handleClicked = this.handleClicked.bind(this);
+    // this.handleClicked = this.handleClicked.bind(this);
     this.state = {
       showProjectDropdownContent: false,
-      projectList: ["Project 1", "Project 2", "Project 3"],
-      selectedProject: "Project 1"
+      selectedProject: "",
+      showProjectModal: false,
+      showCollaboratorModal: false,
+      isProjectSelected: false,
+      projectName: "",
+      isProjectCreated: false,
+      projectId: ""
     };
   }
 
@@ -35,34 +53,83 @@ export default class Sidebar extends Component {
     });
   };
 
-  handleClicked(val) {
+  handleClicked = e => {
     this.setState({
-      selectedProject: val.target.textContent,
+      selectedProject: e.target.textContent,
+      isProjectSelected: true,
+      projectId: e.target.getAttribute('value'),
       showProjectDropdownContent: false
     });
   }
 
+  showProjectModal = () => {
+    this.setState({
+        showProjectModal: true
+    });
+    
+  };
+  addCollaboratorModal = () => {
+    this.props.setModalState(true);
+  };
+  hideProjectModal = () => {
+    this.setState({
+        showProjectModal: false
+    });
+  };
+
+  handleNameChange = e => this.setState({ projectName: e.target.value });
+
+  addProject = () => {
+    this.props.createProject(this.state.projectName).then(projectCreated => {
+      if (projectCreated) {
+        this.setState({ isProjectCreated: true });
+      } else {
+        this.setState({ isProjectCreated: false });
+      }
+    });
+  };
   render() {
+    const setHeight = {
+      height: "1.5em"
+    };
+    const projectName = this.state.projectName;
     var rows = [];
-    console.log("******", this.props.projects);
-    for (var i = 0; i < this.state.projectList.length; i++) {
-      rows.push(
-        <div key={i} onClick={this.handleClicked}>
-          {this.state.projectList[i]}
+    let projects = [];
+    console.log("----------props project----", this.props.projects);
+    if (this.props.projects) {
+      projects = this.props.projects.map(projectName => (
+        <div
+          
+          key={projectName.name}
+          value={projectName._id}
+          style={setHeight}
+          onClick={this.handleClicked}
+        >
+          {projectName.name}
         </div>
-      );
+      ));
     }
+
     return (
       <div className="sidebar">
         {/* <div className="sidebar-header">
           <span>Cod</span>
           <span>In</span>
         </div> */}
-        <div className="project-info" onClick={this.handleProjectInfoClick}>
-          <div>
-            <div className="project-name">
-              {this.state.selectedProject} &nbsp;
-              <i className="fa fa-gear setting" />
+        <div className="project-info">
+          <div onClick={this.handleProjectInfoClick}>
+            <div className="project-name" >
+              {this.state.isProjectSelected && projects.length != 0
+                ? this.state.selectedProject
+                : !this.state.isProjectSelected && projects.length != 0
+                  ? projects[0]
+                  : "Add Project"}
+            </div>
+            <div className="collaborator">
+              <i
+                className="fa fa-gear setting"
+                onClick={this.addCollaboratorModal}
+              />
             </div>
             <div className="project-date">Created on: 25/04/2018</div>
           </div>
@@ -77,8 +144,12 @@ export default class Sidebar extends Component {
             this.state.showProjectDropdownContent ? "reveal" : ""
           }`}
         >
-          <div className="project-list">{rows}</div>
-          <div className="add-project">
+          <div
+            className={`${projects.length >= 3 ? "project-list-scroll" : ""}`}
+          >
+            {projects}
+          </div>
+          <div className="add-project" onClick={this.showProjectModal}>
             <div>Add Project</div>
             <i className="fa fa-plus-circle fa-align" />
           </div>
@@ -140,6 +211,31 @@ export default class Sidebar extends Component {
               </li>
             </ul>
           </nav>
+          {this.state.showProjectModal && (
+            <ModalComponent
+              show={this.state.showProjectModal}
+              onHide={this.hideProjectModal}
+            >
+              <ModalHeader>
+                <i className="fa fa-close" onClick={this.hideProjectModal} />
+              </ModalHeader>
+              <ModalBody>
+                <Input
+                  type="text"
+                  label="Name"
+                  placeholder="Name of project"
+                  value={projectName}
+                  onChange={this.handleNameChange}
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button bsStyle="primary" onClick={this.addProject}>
+                  Add Project
+                </Button>
+              </ModalFooter>
+            </ModalComponent>
+          )}
+          {this.props.showModal && <Collaborator />}
         </div>
       </div>
     );

@@ -6,8 +6,7 @@ import { actions } from "./../../../modules/auth";
 
 const mapDispatchToProps = dispatch => {
   return {
-    userSignUp: (username, password, confirm) =>
-      dispatch(actions.userSignUp(username, password, confirm))
+    userSignUp: (name, email, password, confirm) => dispatch(actions.userSignUp(name, email, password, confirm))
   };
 };
 

@@ -1,41 +1,40 @@
+//constants imports
+import constants from "./../constants";
+import config from "./../../config";
+
 //Action Creator Imports
 import { setLoadingStatus } from "./loader.js";
 
 //API imports
-import { projectRegisterRequest, getUserProject } from "./../utilities/api";
+import { getUserSuggestions } from "./../utilities/api";
 
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const PROJECT_REGISTER = "PROJECT_REGISTER";
-export const SHOW_USER_PROJECT = "SHOW_USER_PROJECT";
+export const GET_SUGGESTIONS = "GET_SUGGESTIONS";
 
 // ------------------------------------
 // Action Creators
 // ------------------------------------
 
-const registerProject = project => ({
-  type: PROJECT_REGISTER,
-  payload: project
-});
-
-const listProject = projects => ({
-  type: SHOW_USER_PROJECT,
-  payload: projects
+const typeahead = names => ({
+  type: GET_SUGGESTIONS,
+  payload: names
 });
 
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
 
-export const createProject = name => (dispatch, getState) => {
+export const userSuggestions = name => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
-    projectRegisterRequest(name)
+
+    getUserSuggestions({ name })
       .then(response => {
         dispatch(setLoadingStatus(false));
         if (response) {
-          dispatch(registerProject(response.project));
+          dispatch(typeahead(response.suggestions));
           resolve(true);
         } else {
           resolve(false);
@@ -49,23 +48,8 @@ export const createProject = name => (dispatch, getState) => {
   });
 };
 
-export const showProject = () => (dispatch, getState) => {
-  getUserProject()
-    .then(response => {
-      if (response) {
-        console.log(response);
-        dispatch(listProject(response));
-      } else {
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
-
 export const actions = {
-  createProject,
-  showProject
+  typeahead
 };
 
 // ------------------------------------
@@ -73,14 +57,9 @@ export const actions = {
 // ------------------------------------
 
 const ACTION_HANDLERS = {
-  [PROJECT_REGISTER]: (state, action) => ({
+  [GET_SUGGESTIONS]: (state, action) => ({
     ...state,
-    projects: [...state.projects, action.payload],
-    isProjectUploaded: true
-  }),
-  [SHOW_USER_PROJECT]: (state, action) => ({
-    ...state,
-    projects: [...action.payload]
+    names: [...action.payload]
   })
 };
 
@@ -89,8 +68,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 
 const initialState = {
-  isProjectUploaded: false,
-  projects: []
+  names: []
 };
 
 export default (state = initialState, action) => {

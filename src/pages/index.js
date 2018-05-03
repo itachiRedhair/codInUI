@@ -9,7 +9,7 @@ import Dashboard from "./Dashboard";
 import Loader from "./../components/Loader";
 
 //ActionCreatorImports
-import { actions } from "./../modules/auth";
+import { actions as authAction } from "./../modules/auth";
 import { setLoadingStatus } from "./../modules/loader";
 
 //API imports
@@ -33,7 +33,7 @@ class App extends Component {
         this.setState({
           isUserRequestComplete: true
         });
-        if (!userInfo) {
+        if (userInfo) {
           this.props.login();
           this.props.history.push("/dashboard/overview");
         }
@@ -66,7 +66,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: () => dispatch(actions.login()),
+    login: () => dispatch(authAction.login()),
     setLoadingStatus: loadingStatus => dispatch(setLoadingStatus(loadingStatus))
   };
 };

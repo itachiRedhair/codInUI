@@ -28,7 +28,7 @@ export const getUser = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(true);
-    }, 1200);
+    }, 500);
   });
 };
 
@@ -61,7 +61,7 @@ export const logoutRequest = () => {
   const options = {
     headers: getHeaders(),
     method: "POST",
-    credentials: "include"
+    // credentials: "include"
   };
 
   return fetch(url, options)
@@ -74,13 +74,14 @@ export const logoutRequest = () => {
     });
 };
 
-export const signUpRequest = ({ email, password, confirm }) => {
+export const signUpRequest = ({ name, email, password, confirm }) => {
   const url = `${constants.API_URL}/v1/user/signup`;
 
   const options = {
     headers: getHeaders(),
     method: "POST",
     body: JSON.stringify({
+      name,
       email,
       password,
       confirm
@@ -96,9 +97,9 @@ export const signUpRequest = ({ email, password, confirm }) => {
     });
 };
 
-export const projectRegisterRequest = () => {
+export const projectRegisterRequest = projectNamee => {
   const url = `${constants.API_URL}/v1/project/register`;
-  const name = "Insite2 ";
+  const name = projectNamee;
   const options = {
     headers: getHeaders(),
     method: "POST",
@@ -131,3 +132,18 @@ export const getUserProject = () => {
       throw new Error("Adding Project Failed");
     });
 };
+
+export const getUserSuggestions = (name) => {
+    const url = `${constants.API_URL}/v1/user/suggestions/${name}`;
+    const options = {
+      method: "GET",
+      credentials: "include"
+    };
+    return fetch(url, options)
+      .then(response => {
+        return response.json();
+      })
+      .catch(err => {
+        throw new Error("Loading Suggestion Failed");
+      });
+  };

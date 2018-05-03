@@ -14,8 +14,8 @@ import "./Signup.scss";
 class SignupComponent extends Component {
   constructor(props, context) {
     super(props, context);
-    console.log("props in signup", props);
     this.state = {
+      name: "",
       email: "",
       password: "",
       confirm: "",
@@ -24,6 +24,8 @@ class SignupComponent extends Component {
   }
 
   getValidationState = () => {};
+
+  handleNameChange = e => this.setState({ name: e.target.value })
 
   handleEmailChange = e => this.setState({ email: e.target.value });
 
@@ -34,7 +36,7 @@ class SignupComponent extends Component {
   handleSubmit = () => {
     console.log(this.state.email, this.state.password, this.state.confirm);
     this.props
-      .userSignUp(this.state.email, this.state.password, this.state.confirm)
+      .userSignUp(this.state.name, this.state.email, this.state.password, this.state.confirm)
       .then(signup => {
         if (signup) {
           this.setState({ register: true });
@@ -45,11 +47,20 @@ class SignupComponent extends Component {
 
   render() {
     const message = <div>Successfully Registered</div>;
+    const name = this.state.name;
     const email = this.state.email;
     const password = this.state.password;
     const confirm = this.state.confirm;
     return (
       <form className="form-container">
+        <Input
+          id="SignupName"
+          type="text"
+          label="Name"
+          placeholder="Enter your Name."
+          value={name}
+          onChange={this.handleNameChange}
+        />
         <Input
           id="SignupEmail"
           type="email"
