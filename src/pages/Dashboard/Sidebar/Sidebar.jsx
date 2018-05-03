@@ -54,7 +54,6 @@ export default class Sidebar extends Component {
   };
 
   handleClicked = e => {
-      console.log("==========+++++value+++++=====", e.target.getAttribute('value'));
     this.setState({
       selectedProject: e.target.textContent,
       isProjectSelected: true,
