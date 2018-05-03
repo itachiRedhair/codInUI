@@ -89,3 +89,18 @@ export const getUserProject = () => {
       throw new Error("Adding Project Failed");
     });
 };
+
+export const getUserSuggestions = (name) => {
+    const url = `${constants.API_URL}/v1/user/suggestions/:${name}`;
+    const options = {
+      method: "GET",
+      credentials: "include"
+    };
+    return fetch(url, options)
+      .then(response => {
+        return response.json();
+      })
+      .catch(err => {
+        throw new Error("Loading Suggestion Failed");
+      });
+  };
