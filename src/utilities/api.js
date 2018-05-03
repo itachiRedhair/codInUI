@@ -8,6 +8,30 @@ const getHeaders = () => {
   };
 };
 
+export const getUser = () => {
+  // const url = `${constants.API_URL}/v1/user/me`;
+
+  // const options = {
+  //   headers: getHeaders(),
+  //   method: "GET",
+  //   credentials: "include"
+  // };
+
+  // return fetch(url, options)
+  //   .then(response => {
+  //     console.log(response);
+  //     return response.json();
+  //   })
+  //   .catch(err => {
+  //     throw new Error("User information retrieval failed.");
+  //   });
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true);
+    }, 500);
+  });
+};
+
 export const loginRequest = ({ email, password }) => {
   const url = `${constants.API_URL}/v1/user/login`;
 
@@ -28,6 +52,26 @@ export const loginRequest = ({ email, password }) => {
     })
     .catch(err => {
       throw new Error("Login Failed");
+    });
+};
+
+
+export const logoutRequest = () => {
+  const url = `${constants.API_URL}/v1/user/logout`;
+
+  const options = {
+    headers: getHeaders(),
+    method: "POST",
+    // credentials: "include"
+  };
+
+  return fetch(url, options)
+    .then(response => {
+      console.log(response);
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Logout Failed");
     });
 };
 
@@ -91,7 +135,7 @@ export const getUserProject = () => {
 };
 
 export const getUserSuggestions = (name) => {
-    const url = `${constants.API_URL}/v1/user/suggestions/:${name}`;
+    const url = `${constants.API_URL}/v1/user/suggestions/${name}`;
     const options = {
       method: "GET",
       credentials: "include"

@@ -5,7 +5,7 @@ import "./Notification.scss";
 export default class Notification extends Component {
   render() {
     return (
-      <div className="notifications new align-new">
+      <div className="notifications new align-new responsive">
         <a href="" data-toggle="dropdown">
           <i className="fa fa-bell-o align" />
           <sup>

@@ -12,16 +12,16 @@ body {
   height: 100%;
 }
 
-.sidebar .sidebar-header {
-  color: $sidebar-primary-text;
-  text-align: center;
-  line-height: 6rem;
-  font-size: 4rem;
-}
+// .sidebar .sidebar-header {
+//   color: $sidebar-primary-text;
+//   text-align: center;
+//   line-height: 6rem;
+//   font-size: 4rem;
+// }
 
-.sidebar .sidebar-header span:nth-child(2) {
-  color: $theme-color;
-}
+// .sidebar .sidebar-header span:nth-child(2) {
+//   color: $theme-color;
+// }
 
 .sidebar .sidebar-menu {
   font-size: 14px;
@@ -145,20 +145,31 @@ body {
 }
 
 .setting {
-    cursor: pointer;
+  cursor: pointer;
 }
 .navActiveStyle {
-    padding-left: "1em";
-    border-left: "0.5em solid green"
+  padding-left: "1em";
+  border-left: "0.5em solid green";
 }
 .add-project {
-    padding: 0.5em 0.7em;
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
+  padding: 0.5em 0.7em;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
 }
 .fa-align {
-    padding: 2px 4px;
+  padding: 2px 4px;
+}
+
+@media only screen and (max-width: 992px) {
+  .nav-container.responsive {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .nav-container.reveal {
+    height: auto;
+  }
 }
 // .project-list {
 //     overflow-y: scroll;

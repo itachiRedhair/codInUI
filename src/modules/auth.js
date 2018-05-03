@@ -8,6 +8,7 @@ import { setLoadingStatus } from "./loader.js";
 //API imports
 import {
   loginRequest,
+  logoutRequest,
   signUpRequest,
   projectRegisterRequest
 } from "./../utilities/api";
@@ -39,7 +40,28 @@ const logOut = () => ({
 // Thunk Action Creators
 // ------------------------------------
 
-export const userLogOut = () => (dispatch, getState) => {};
+export const userLogOut = () => (dispatch, getState) => {
+  console.log("userlogout called in auth.js");
+  return new Promise((resolve, reject) => {
+    dispatch(setLoadingStatus(true));
+
+    logoutRequest()
+      .then(response => {
+        dispatch(setLoadingStatus(false));
+        if (response) {
+          dispatch(logOut());
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      })
+      .catch(err => {
+        dispatch(setLoadingStatus(false));
+        console.log(err);
+        resolve(false);
+      });
+  });
+};
 
 export const userLogIn = (email, password) => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
@@ -91,7 +113,8 @@ export const userSignUp = (name, email, password, confirm) => (
 export const actions = {
   userSignUp,
   userLogIn,
-  userLogOut
+  userLogOut,
+  login
 };
 
 // ------------------------------------

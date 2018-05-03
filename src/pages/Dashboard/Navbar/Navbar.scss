@@ -51,3 +51,27 @@
   display: flex;
   flex-direction: row;
 }
+
+.logo-container {
+  color: $primary-text;
+  text-align: center;
+  line-height: 6rem;
+  font-size: 4rem;
+}
+
+.logo-container span:nth-child(2) {
+  color: $theme-color;
+}
+
+@media only screen and (max-width: 992px) {
+  .profile-container.responsive {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    padding: 0;
+  }
+  .profile-custom.responsive {
+    padding: 0;
+  }
+}

@@ -16,15 +16,15 @@ export default class Overview extends Component {
   render() {
     return (
       <React.Fragment>
-        <Row className="overview-row-group">
-          <Col md={9} className="overview-col">
+        <Row className="overview-row-group col-container">
+          <Col xs={12} sm={12} md={9} className="overview-col">
             <OverviewGraph />
           </Col>
           <Col md={3} className="overview-col">
             <CPICard />
           </Col>
         </Row>
-        <Row className="overview-row-group">
+        <Row className="overview-row-group col-container">
           <Col md={5} className="overview-col">
             <TSLintSummary />
           </Col>
@@ -35,7 +35,7 @@ export default class Overview extends Component {
             <RecentSubmits />
           </Col>
         </Row>
-        <Row className="overview-row-group">
+        <Row className="overview-row-group col-container">
           <Col md={12} className="overview-col">
             <OverviewHeatmap />
           </Col>

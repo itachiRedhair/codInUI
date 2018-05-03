@@ -1,6 +1,11 @@
 .dashboard-container {
   overflow: hidden;
-  margin: 0;  
+  margin: 0;
+  height: 100vh;
+}
+
+.dashboard-row-container {
+  margin: 0;
 }
 
 .sidebar-container {
@@ -10,7 +15,12 @@
   overflow-y: auto;
 }
 
-.navbar-and-content-container {
+.dashboard-content-container {
   padding: 0;
-  height: 100vh;
+}
+
+@media only screen and (max-width: 992px) {
+  .sidebar-container.responsive {
+    height: auto;
+  }
 }

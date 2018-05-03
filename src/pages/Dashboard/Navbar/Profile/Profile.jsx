@@ -6,10 +6,22 @@ import { MenuItem } from "react-bootstrap";
 
 export default class Profile extends Component {
   profileList = [
-    { name: "Profile" },
-    { name: "Notifications" },
-    { name: "Settings" },
-    { name: "Logout" }
+    {
+      name: "Profile",
+      onClickHanlder: () => {}
+    },
+    {
+      name: "Notifications",
+      onClickHanlder: () => {}
+    },
+    {
+      name: "Settings",
+      onClickHanlder: () => {}
+    },
+    {
+      name: "Logout",
+      onClickHandler: this.props.userLogOut
+    }
   ];
 
   render() {

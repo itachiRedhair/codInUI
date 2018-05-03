@@ -136,3 +136,9 @@
 .align-new {
   padding-right: 2rem;
 }
+
+@media only screen and (max-width: 992px) {
+  .notifications.new.align-new.responsive {
+    padding-right: 0.3em;
+  }
+}

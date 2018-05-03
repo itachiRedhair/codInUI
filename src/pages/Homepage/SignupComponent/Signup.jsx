@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Link } from "react-router-dom";
 
 //components
 import Input from "./../../../commonui/Input";
@@ -14,7 +14,6 @@ import "./Signup.scss";
 class SignupComponent extends Component {
   constructor(props, context) {
     super(props, context);
-    console.log("props in signup", props);
     this.state = {
       name: "",
       email: "",
@@ -37,7 +36,7 @@ class SignupComponent extends Component {
   handleSubmit = () => {
     console.log(this.state.email, this.state.password, this.state.confirm);
     this.props
-      .userSignUp(this.state.email, this.state.password, this.state.confirm)
+      .userSignUp(this.state.name, this.state.email, this.state.password, this.state.confirm)
       .then(signup => {
         if (signup) {
           this.setState({ register: true });
@@ -55,7 +54,7 @@ class SignupComponent extends Component {
     return (
       <form className="form-container">
         <Input
-          id="formControlName"
+          id="SignupName"
           type="text"
           label="Name"
           placeholder="Enter your Name."
@@ -63,7 +62,7 @@ class SignupComponent extends Component {
           onChange={this.handleNameChange}
         />
         <Input
-          id="formControlEmail"
+          id="SignupEmail"
           type="email"
           label="Email"
           placeholder="Enter your email id."
@@ -71,7 +70,7 @@ class SignupComponent extends Component {
           onChange={this.handleEmailChange}
         />
         <Input
-          id="formControlPassword"
+          id="SignupPassword"
           type="password"
           label="Password"
           placeholder="Password please."
@@ -79,7 +78,7 @@ class SignupComponent extends Component {
           onChange={this.handlePasswordChange}
         />
         <Input
-          id="formControlConfirmPassword"
+          id="SignupConfirmPassword"
           type="password"
           label="Password"
           placeholder="Confirm Password"
@@ -87,13 +86,16 @@ class SignupComponent extends Component {
           onChange={this.handleConfirmPasswordChange}
         />
         <Row>
-          <Col md={3} mdPush={9}>
+          <Col md={3} mdPush={8}>
             <Button onClick={this.handleSubmit} className="login-button">
               Signup <i className="fas fa-arrow-right arrow-icon" />
             </Button>
           </Col>
         </Row>
         {this.state.register ? message : null}
+        <div className="login-prompt" onClick={this.props.toggleLogin}>
+          Log in.
+        </div>
       </form>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Link } from "react-router-dom";
 
 //Components imports
 import Input from "./../../../commonui/Input";
@@ -53,15 +53,15 @@ class LoginComponent extends Component {
         ) : null}
 
         <Input
-          id="formControlEmail"
-          type="email"
+          id="LoginEmail"
+          type="text"
           label="Email"
           placeholder="Enter your email id."
           value={email}
           onChange={this.handleEmailChange}
         />
         <Input
-          id="formControlPassword"
+          id="LoginPassword"
           type="password"
           label="Password"
           placeholder="Password please."
@@ -70,12 +70,15 @@ class LoginComponent extends Component {
         />
         <Checkbox list={[`Keep me logged in`]} />
         <Row>
-          <Col md={3} mdPush={9}>
+          <Col md={3} mdPush={8}>
             <Button onClick={this.handleSubmit} className="login-button">
               Login <i className="fas fa-arrow-right arrow-icon" />
             </Button>
           </Col>
         </Row>
+        <div className="signup-prompt" onClick={this.props.toggleSignup}>
+          New Here? Sign up.
+        </div>
       </form>
     );
   }

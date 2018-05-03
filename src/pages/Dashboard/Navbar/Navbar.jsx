@@ -11,8 +11,14 @@ export default class Navbar extends Component {
     return (
       <div className="header">
         <Row className="navbar-row">
-          <Col md={3} mdPush={9} className="profile-container">
-            <div className="profile-custom">
+          <Col md={3}>
+            <div className="logo-container">
+              <span>Cod</span>
+              <span>In</span>
+            </div>
+          </Col>
+          <Col md={3} mdPush={6} className="profile-container responsive">
+            <div className="profile-custom responsive">
               <Notification />
               <Profile />
             </div>

@@ -15,7 +15,7 @@ export default class TSLintReport extends Component {
   render() {
     return (
       <React.Fragment>
-        <Row className="tslint-row-group">
+        <Row className="tslint-row-group col-container">
           <Col md={4} className="tslint-col">
             <TSLintSummary />
           </Col>
@@ -23,12 +23,12 @@ export default class TSLintReport extends Component {
             <TSLintHistory />
           </Col>
         </Row>
-        <Row className="tslint-row-group">
+        <Row className="tslint-row-group col-container">
           <Col md={12} className="tslint-col">
             <TSLintHeatmap />
           </Col>
         </Row>
-        <Row className="tslint-row-group tslint-bar">
+        <Row className="tslint-row-group col-container tslint-bar">
           <Col md={12} className="tslint-col">
             <TSLintBar />
           </Col>
