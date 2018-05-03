@@ -48,11 +48,11 @@
 }
 
 .login-signup {
-  height: 0;
+  max-height: 0;
   overflow: hidden;
-  transition: all 1.5s ease;
+  transition: all 0.8s ease;
 }
 
 .login-signup.reveal {
-  height: auto;
+  max-height: 35em;
 }

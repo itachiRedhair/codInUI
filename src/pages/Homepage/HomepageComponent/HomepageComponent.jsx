@@ -24,9 +24,10 @@ export default class HomepageComponent extends Component {
       isLogin: false
     });
   };
-  handleTestClick = prevState => {
-    this.setState({
-      testClicked: !prevState.testClicked
+  handleTestClick = e => {
+    this.setState(prevState => {
+      console.log(prevState);
+      return { testClicked: !prevState.testClicked };
     });
   };
   render() {
@@ -36,32 +37,20 @@ export default class HomepageComponent extends Component {
           <Col md={6} mdPush={6}>
             <Row>
               <Col md={7} mdPush={2} className="login-signup-container">
-                <div className="login-signup-button-container">
-                  <button
-                    className={`login-btn ${
-                      this.state.isLogin ? "border-bottom" : ""
-                    }`}
-                    onClick={this.toggleLogin}
-                  >
-                    Login
-                  </button>
-                  <button
-                    className={`signup-btn ${
-                      this.state.isLogin ? "" : "border-bottom"
-                    }`}
-                    onClick={this.toggleSignup}
-                  >
-                    Signup
-                  </button>
+                <div
+                  className={`login-signup ${
+                    this.state.isLogin ? "reveal" : ""
+                  }`}
+                >
+                  <Login toggleSignup={this.toggleSignup} />
                 </div>
                 <div
                   className={`login-signup ${
-                    this.state.testClicked ? "reveal" : ""
+                    !this.state.isLogin ? "reveal" : ""
                   }`}
                 >
-                  {this.state.isLogin ? <Login /> : <Signup />}
+                  <Signup toggleLogin={this.toggleLogin} />
                 </div>
-                <div onClick={this.handleTestClick}>test click</div>
               </Col>
             </Row>
           </Col>

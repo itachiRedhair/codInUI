@@ -1,3 +1,5 @@
-import HomepageComponent from './HomepageComponent.jsx';
+import { withRouter } from "react-router-dom";
 
-export default HomepageComponent;
+import HomepageComponent from "./HomepageComponent.jsx";
+
+export default withRouter(HomepageComponent);

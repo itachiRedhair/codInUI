@@ -2,11 +2,12 @@ import LoginComponent from "./LoginForm.jsx";
 import { connect } from "react-redux";
 
 //action creators
-import { userLogIn } from "./../../../modules/auth";
+import { actions } from "./../../../modules/auth";
 
 const mapDispatchToProps = dispatch => {
   return {
-    userLogIn: (username, password) => dispatch(userLogIn(username, password))
+    userLogIn: (username, password) =>
+      dispatch(actions.userLogIn(username, password))
   };
 };
 

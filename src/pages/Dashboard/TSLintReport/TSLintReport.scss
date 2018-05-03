@@ -1,10 +1,14 @@
 .tslint-row-group {
   padding: 1em;
-  display: flex;
 }
 
-.tslint-row-group > .tslint-col {
+.col-container {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.col-container > .tslint-col {
+  flex-grow: 1;
 }
 
 .tslint-row-group.tslint-bar {
@@ -15,6 +19,12 @@
   height: auto;
 }
 
-.tslint-row-group:last-child {
-  margin-bottom: 3em;
+.tslint-row-group {
+  padding: 1em;
+  // display: flex;
+  // flex-wrap: wrap;
+}
+
+.tslint-row-group:last-of-type {
+  margin-bottom: 15em;
 }

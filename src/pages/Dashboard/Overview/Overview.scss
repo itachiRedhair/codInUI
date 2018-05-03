@@ -1,12 +1,18 @@
 .overview-row-group {
   padding: 1em;
-  display: flex;
+  // display: flex;
+  // flex-wrap: wrap;
 }
 
-.overview-row-group > .overview-col {
+.col-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
-.overview-row-group:last-child {
-  margin-bottom: 3em;
+.col-container > .overview-col {
+  flex-grow: 1;
+}
+
+.overview-row-group:last-of-type {
+  margin-bottom: 15em;
 }

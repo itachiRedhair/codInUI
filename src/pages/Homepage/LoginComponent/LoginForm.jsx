@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Link } from "react-router-dom";
 
 //Components imports
 import Input from "./../../../commonui/Input";
@@ -53,15 +53,15 @@ class LoginComponent extends Component {
         ) : null}
 
         <Input
-          id="formControlEmail"
-          type="email"
+          id="LoginEmail"
+          type="text"
           label="Email"
           placeholder="Enter your email id."
           value={email}
           onChange={this.handleEmailChange}
         />
         <Input
-          id="formControlPassword"
+          id="LoginPassword"
           type="password"
           label="Password"
           placeholder="Password please."
@@ -76,7 +76,9 @@ class LoginComponent extends Component {
             </Button>
           </Col>
         </Row>
-        <div className="signup-prompt">New Here? Sign up.</div>
+        <div className="signup-prompt" onClick={this.props.toggleSignup}>
+          New Here? Sign up.
+        </div>
       </form>
     );
   }
