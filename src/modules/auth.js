@@ -41,14 +41,14 @@ const logOut = () => ({
 // ------------------------------------
 
 export const userLogOut = () => (dispatch, getState) => {
-  console.log("userlogout called in auth.js");
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
 
     logoutRequest()
       .then(response => {
         dispatch(setLoadingStatus(false));
-        if (response) {
+        console.log(response.message);
+        if (response.message === constants.responseMessage.LOGGED_OUT) {
           dispatch(logOut());
           resolve(true);
         } else {
@@ -85,14 +85,14 @@ export const userLogIn = (email, password) => (dispatch, getState) => {
   });
 };
 
-export const userSignUp = (email, password, confirm) => (
+export const userSignUp = (name, email, password, confirm) => (
   dispatch,
   getState
 ) => {
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
 
-    signUpRequest({ email, password, confirm })
+    signUpRequest({ name, email, password, confirm })
       .then(response => {
         dispatch(setLoadingStatus(false));
         if (response) {

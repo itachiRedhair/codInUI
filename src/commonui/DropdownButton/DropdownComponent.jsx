@@ -5,7 +5,6 @@ import { DropdownButton, MenuItem, SplitButton } from "react-bootstrap";
 import './DropdownComponent.scss';
 
 const DropdownComponent = ({...props, children}) => {
-    console.log("props from profile", props, children);
     const list = props.list.map(item => {
         return <MenuItem eventKey={item.name} key={item.name} onClick={item.onClickHandler}>{item.name}</MenuItem>
     })

@@ -1,5 +1,17 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, NavLink } from "react-router-dom";
+import {
+  Modal,
+  ModalBody,
+  ModalHeader,
+  MenuItem,
+  ModalFooter
+} from "react-bootstrap";
+
+//Component imports
+import ModalComponent from "../../../commonui/Modal";
+import Button from "../../../commonui/Button";
+import Input from "./../../../commonui/Input";
 
 //Styles imports
 import "./Sidebar.scss";
@@ -19,8 +31,12 @@ export default class Sidebar extends Component {
     this.handleClicked = this.handleClicked.bind(this);
     this.state = {
       showProjectDropdownContent: false,
-      projectList: ["Project 1", "Project 2", "Project 3"],
-      selectedProject: "Project 1"
+      selectedProject: "",
+      showModal: false,
+      hideModal: false,
+      isProjectSelected: false,
+      projectName: "",
+      isProjectCreated: false
     };
   }
 
@@ -38,19 +54,53 @@ export default class Sidebar extends Component {
   handleClicked(val) {
     this.setState({
       selectedProject: val.target.textContent,
+      isProjectSelected: true,
       showProjectDropdownContent: false
     });
   }
 
+  showProjectModal = () => {
+    this.setState({
+      showModal: true
+    });
+  };
+
+  hideProjectModal = () => {
+    this.setState({
+      showModal: false
+    });
+  };
+
+  handleNameChange = e => this.setState({ projectName: e.target.value });
+
+  addProject = () => {
+    this.props.createProject(this.state.projectName).then(projectCreated => {
+      if (projectCreated) {
+        this.setState({ isProjectCreated: true });
+      } else {
+        this.setState({ isProjectCreated: false });
+      }
+    });
+  };
+
   render() {
+    const setHeight = {
+      height: "1.5em"
+    };
+    const projectName = this.state.projectName;
     var rows = [];
-    console.log("******", this.props.projects);
-    for (var i = 0; i < this.state.projectList.length; i++) {
-      rows.push(
-        <div key={i} onClick={this.handleClicked}>
-          {this.state.projectList[i]}
+    let projects = [];
+    if (this.props.projects) {
+      projects = this.props.projects.map((projectName, index) => (
+        <div
+          key={index}
+          value={projectName.name}
+          style={setHeight}
+          onClick={this.handleClicked}
+        >
+          {projectName.name}
         </div>
-      );
+      ));
     }
     return (
       <div className="sidebar">
@@ -61,7 +111,11 @@ export default class Sidebar extends Component {
         <div className="project-info" onClick={this.handleProjectInfoClick}>
           <div>
             <div className="project-name">
-              {this.state.selectedProject} &nbsp;
+              {this.state.isProjectSelected && projects.length != 0
+                ? this.state.selectedProject
+                : !this.state.isProjectSelected && projects.length != 0
+                  ? projects[0]
+                  : "Add Project"}
               <i className="fa fa-gear setting" />
             </div>
             <div className="project-date">Created on: 25/04/2018</div>
@@ -77,8 +131,12 @@ export default class Sidebar extends Component {
             this.state.showProjectDropdownContent ? "reveal" : ""
           }`}
         >
-          <div className="project-list">{rows}</div>
-          <div className="add-project">
+          <div
+            className={`${projects.length >= 3 ? "project-list-scroll" : ""}`}
+          >
+            {projects}
+          </div>
+          <div className="add-project" onClick={this.showProjectModal}>
             <div>Add Project</div>
             <i className="fa fa-plus-circle fa-align" />
           </div>
@@ -140,6 +198,30 @@ export default class Sidebar extends Component {
               </li>
             </ul>
           </nav>
+          {this.state.showModal && (
+            <ModalComponent
+              show={this.state.showModal}
+              onHide={this.hideProjectModal}
+            >
+              <ModalHeader>
+                <i className="fa fa-close" onClick={this.hideProjectModal} />
+              </ModalHeader>
+              <ModalBody>
+                <Input
+                  type="text"
+                  label="Name"
+                  placeholder="Name of project"
+                  value={projectName}
+                  onChange={this.handleNameChange}
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button bsStyle="primary" onClick={this.addProject}>
+                  Add Project
+                </Button>
+              </ModalFooter>
+            </ModalComponent>
+          )}
         </div>
       </div>
     );

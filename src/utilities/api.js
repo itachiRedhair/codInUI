@@ -2,6 +2,8 @@ import fetch from "isomorphic-fetch";
 
 import constants from "./../constants";
 
+const { API_URL } = constants;
+
 const getHeaders = () => {
   return {
     "Content-Type": "application/json"
@@ -9,27 +11,27 @@ const getHeaders = () => {
 };
 
 export const getUser = () => {
-  // const url = `${constants.API_URL}/v1/user/me`;
+  const url = `${constants.API_URL}/v1/user/me`;
 
-  // const options = {
-  //   headers: getHeaders(),
-  //   method: "GET",
-  //   credentials: "include"
-  // };
+  const options = {
+    headers: getHeaders(),
+    method: "GET",
+    credentials: "include"
+  };
 
-  // return fetch(url, options)
-  //   .then(response => {
-  //     console.log(response);
-  //     return response.json();
-  //   })
-  //   .catch(err => {
-  //     throw new Error("User information retrieval failed.");
-  //   });
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(true);
-    }, 1200);
-  });
+  return fetch(url, options)
+    .then(response => {
+      console.log(response);
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("User information retrieval failed.");
+    });
+  // return new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     resolve(true);
+  //   }, 500);
+  // });
 };
 
 export const loginRequest = ({ email, password }) => {
@@ -66,7 +68,6 @@ export const logoutRequest = () => {
 
   return fetch(url, options)
     .then(response => {
-      console.log(response);
       return response.json();
     })
     .catch(err => {
@@ -74,13 +75,14 @@ export const logoutRequest = () => {
     });
 };
 
-export const signUpRequest = ({ email, password, confirm }) => {
+export const signUpRequest = ({ name, email, password, confirm }) => {
   const url = `${constants.API_URL}/v1/user/signup`;
 
   const options = {
     headers: getHeaders(),
     method: "POST",
     body: JSON.stringify({
+      name,
       email,
       password,
       confirm
@@ -96,9 +98,9 @@ export const signUpRequest = ({ email, password, confirm }) => {
     });
 };
 
-export const projectRegisterRequest = () => {
+export const projectRegisterRequest = projectNamee => {
   const url = `${constants.API_URL}/v1/project/register`;
-  const name = "Insite2 ";
+  const name = projectNamee;
   const options = {
     headers: getHeaders(),
     method: "POST",
@@ -129,5 +131,20 @@ export const getUserProject = () => {
     })
     .catch(err => {
       throw new Error("Adding Project Failed");
+    });
+};
+
+export const getUserSuggestions = name => {
+  const url = `${constants.API_URL}/v1/user/suggestions/:${name}`;
+  const options = {
+    method: "GET",
+    credentials: "include"
+  };
+  return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Loading Suggestion Failed");
     });
 };
