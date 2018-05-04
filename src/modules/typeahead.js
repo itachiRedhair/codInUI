@@ -17,25 +17,24 @@ export const GET_SUGGESTIONS = "GET_SUGGESTIONS";
 // Action Creators
 // ------------------------------------
 
-const typeahead = () => ({
-  type: GET_SUGGESTIONS
+const typeahead = names => ({
+  type: GET_SUGGESTIONS,
+  payload: names
 });
 
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
 
-export const userLogOut = () => (dispatch, getState) => {};
-
-export const userLogIn = (email, password) => (dispatch, getState) => {
+export const userSuggestions = name => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
 
-    loginRequest({ email, password })
+    getUserSuggestions({ name })
       .then(response => {
         dispatch(setLoadingStatus(false));
         if (response) {
-          dispatch(login());
+          dispatch(typeahead(response.suggestions));
           resolve(true);
         } else {
           resolve(false);
@@ -59,7 +58,8 @@ export const actions = {
 
 const ACTION_HANDLERS = {
   [GET_SUGGESTIONS]: (state, action) => ({
-    ...state
+    ...state,
+    names: [...action.payload]
   })
 };
 
@@ -68,7 +68,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 
 const initialState = {
-  isAuthenticated: false
+  names: []
 };
 
 export default (state = initialState, action) => {

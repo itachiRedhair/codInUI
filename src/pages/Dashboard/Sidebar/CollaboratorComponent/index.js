@@ -1,17 +1,20 @@
-import Collaborator from "./Collaborator.jsx";
+import Collaborator from "./CollaboratorComponent.jsx";
+
 import { connect } from "react-redux";
 
 //action creators
-import { createProject, showProject } from "./../../../modules/project";
+import { userSuggestions } from "../../../../modules/typeahead";
+import { setModalState } from "../../../../modules/modalState";
 
 const mapDispatchToProps = {
-  createProject,
-  showProject
+    userSuggestions,
+    setModalState
 };
 
 const mapStateToProps = state => {
   return {
-    projects: state.projectReducer.projects
+    names: state.typeaheadReducer.names,
+    showModal: state.modalReducer.showModal
   };
 };
 

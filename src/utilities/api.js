@@ -63,7 +63,7 @@ export const logoutRequest = () => {
   const options = {
     headers: getHeaders(),
     method: "POST",
-    credentials: "include"
+    // credentials: "include"
   };
 
   return fetch(url, options)
@@ -134,17 +134,17 @@ export const getUserProject = () => {
     });
 };
 
-export const getUserSuggestions = name => {
-  const url = `${constants.API_URL}/v1/user/suggestions/:${name}`;
-  const options = {
-    method: "GET",
-    credentials: "include"
+export const getUserSuggestions = (name) => {
+    const url = `${constants.API_URL}/v1/user/suggestions/${name}`;
+    const options = {
+      method: "GET",
+      credentials: "include"
+    };
+    return fetch(url, options)
+      .then(response => {
+        return response.json();
+      })
+      .catch(err => {
+        throw new Error("Loading Suggestion Failed");
+      });
   };
-  return fetch(url, options)
-    .then(response => {
-      return response.json();
-    })
-    .catch(err => {
-      throw new Error("Loading Suggestion Failed");
-    });
-};

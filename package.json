@@ -6,7 +6,7 @@
   "scripts": {
     "webpack-watch": "webpack",
     "start": "webpack-dev-server --color --progress --hot",
-    "dev": "webpack-dev-server --color --progress --hot --mode development"
+    "dev": "webpack-dev-server --host 10.29.9.66 --color --progress --hot --mode development"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-bootstrap": "^0.32.1",
+    "react-bootstrap-typeahead": "^3.1.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",

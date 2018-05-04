@@ -12,6 +12,7 @@ import {
 import ModalComponent from "../../../commonui/Modal";
 import Button from "../../../commonui/Button";
 import Input from "./../../../commonui/Input";
+import Collaborator from "./CollaboratorComponent";
 
 //Styles imports
 import "./Sidebar.scss";
@@ -28,15 +29,16 @@ const navLinkActiveStyle = {
 export default class Sidebar extends Component {
   constructor(props) {
     super(props);
-    this.handleClicked = this.handleClicked.bind(this);
+    // this.handleClicked = this.handleClicked.bind(this);
     this.state = {
       showProjectDropdownContent: false,
       selectedProject: "",
-      showModal: false,
-      hideModal: false,
+      showProjectModal: false,
+      showCollaboratorModal: false,
       isProjectSelected: false,
       projectName: "",
-      isProjectCreated: false
+      isProjectCreated: false,
+      projectId: ""
     };
   }
 
@@ -51,23 +53,27 @@ export default class Sidebar extends Component {
     });
   };
 
-  handleClicked(val) {
+  handleClicked = e => {
     this.setState({
-      selectedProject: val.target.textContent,
+      selectedProject: e.target.textContent,
       isProjectSelected: true,
+      projectId: e.target.getAttribute('value'),
       showProjectDropdownContent: false
     });
   }
 
   showProjectModal = () => {
     this.setState({
-      showModal: true
+        showProjectModal: true
     });
+    
   };
-
+  addCollaboratorModal = () => {
+    this.props.setModalState(true);
+  };
   hideProjectModal = () => {
     this.setState({
-      showModal: false
+        showProjectModal: false
     });
   };
 
@@ -82,7 +88,6 @@ export default class Sidebar extends Component {
       }
     });
   };
-
   render() {
     const setHeight = {
       height: "1.5em"
@@ -90,11 +95,13 @@ export default class Sidebar extends Component {
     const projectName = this.state.projectName;
     var rows = [];
     let projects = [];
+    console.log("----------props project----", this.props.projects);
     if (this.props.projects) {
-      projects = this.props.projects.map((projectName, index) => (
+      projects = this.props.projects.map(projectName => (
         <div
-          key={index}
-          value={projectName.name}
+          
+          key={projectName.name}
+          value={projectName._id}
           style={setHeight}
           onClick={this.handleClicked}
         >
@@ -102,21 +109,27 @@ export default class Sidebar extends Component {
         </div>
       ));
     }
+
     return (
       <div className="sidebar">
         {/* <div className="sidebar-header">
           <span>Cod</span>
           <span>In</span>
         </div> */}
-        <div className="project-info" onClick={this.handleProjectInfoClick}>
-          <div>
-            <div className="project-name">
+        <div className="project-info">
+          <div onClick={this.handleProjectInfoClick}>
+            <div className="project-name" >
               {this.state.isProjectSelected && projects.length != 0
                 ? this.state.selectedProject
                 : !this.state.isProjectSelected && projects.length != 0
                   ? projects[0]
                   : "Add Project"}
-              <i className="fa fa-gear setting" />
+            </div>
+            <div className="collaborator">
+              <i
+                className="fa fa-gear setting"
+                onClick={this.addCollaboratorModal}
+              />
             </div>
             <div className="project-date">Created on: 25/04/2018</div>
           </div>
@@ -198,9 +211,9 @@ export default class Sidebar extends Component {
               </li>
             </ul>
           </nav>
-          {this.state.showModal && (
+          {this.state.showProjectModal && (
             <ModalComponent
-              show={this.state.showModal}
+              show={this.state.showProjectModal}
               onHide={this.hideProjectModal}
             >
               <ModalHeader>
@@ -222,6 +235,7 @@ export default class Sidebar extends Component {
               </ModalFooter>
             </ModalComponent>
           )}
+          {this.props.showModal && <Collaborator />}
         </div>
       </div>
     );
