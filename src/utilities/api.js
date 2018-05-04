@@ -147,3 +147,17 @@ export const getUserSuggestions = (name) => {
         throw new Error("Loading Suggestion Failed");
       });
   };
+
+  export const getOverviewData = (name) => {
+    const url = `../assets/data/overviewData.json`;
+    const options = {
+      method: "GET"
+    };
+    return fetch(url, options)
+      .then(response => {
+        return response.json();
+      })
+      .catch(err => {
+        throw new Error("Loading Overview Data Failed");
+      });
+  };

@@ -1,0 +1,19 @@
+{
+    "overviewData":[
+    {
+      "name": "TSLint Errors",
+      "type": "line",
+      "data": [25, 68, 32, 21, 12, 43, 72]
+    },
+    {
+      "name": "Coverage",
+      "type": "line",
+      "data": [42, 59, 64, 68, 79, 86, 97]
+    },
+    {
+      "name": "CPI",
+      "type": "line",
+      "data": [41, 62, 45, 45, 34, 68, 86]
+    }
+  ]
+}
