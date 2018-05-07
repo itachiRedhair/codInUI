@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack-watch": "webpack",
+    "webpack-watch": "webpack --mode development",
     "start": "webpack-dev-server --color --progress --hot",
-    "dev": "webpack-dev-server --host 10.29.9.66 --color --progress --hot --mode development"
+    "dev": "webpack-dev-server --color --progress --hot --mode development"
   },
   "keywords": [],
   "author": "",

@@ -37,8 +37,7 @@ export default class Sidebar extends Component {
       showCollaboratorModal: false,
       isProjectSelected: false,
       projectName: "",
-      isProjectCreated: false,
-      projectId: ""
+      isProjectCreated: false
     };
   }
 
@@ -57,23 +56,23 @@ export default class Sidebar extends Component {
     this.setState({
       selectedProject: e.target.textContent,
       isProjectSelected: true,
-      projectId: e.target.getAttribute('value'),
+      //   projectId: e.target.getAttribute('value'),
       showProjectDropdownContent: false
     });
-  }
+    this.props.setProjectId(e.target.getAttribute("value"));
+  };
 
   showProjectModal = () => {
     this.setState({
-        showProjectModal: true
+      showProjectModal: true
     });
-    
   };
   addCollaboratorModal = () => {
     this.props.setModalState(true);
   };
   hideProjectModal = () => {
     this.setState({
-        showProjectModal: false
+      showProjectModal: false
     });
   };
 
@@ -95,11 +94,9 @@ export default class Sidebar extends Component {
     const projectName = this.state.projectName;
     var rows = [];
     let projects = [];
-    console.log("----------props project----", this.props.projects);
     if (this.props.projects) {
       projects = this.props.projects.map(projectName => (
         <div
-          
           key={projectName.name}
           value={projectName._id}
           style={setHeight}
@@ -110,6 +107,13 @@ export default class Sidebar extends Component {
       ));
     }
 
+    const addProject = (
+      <div className="add-project" onClick={this.showProjectModal}>
+        <div>Add Project</div>
+        <i className="fa fa-plus-circle fa-align" />
+      </div>
+    );
+
     return (
       <div className="sidebar">
         {/* <div className="sidebar-header">
@@ -118,16 +122,16 @@ export default class Sidebar extends Component {
         </div> */}
         <div className="project-info">
           <div onClick={this.handleProjectInfoClick}>
-            <div className="project-name" >
-              {this.state.isProjectSelected && projects.length != 0
-                ? this.state.selectedProject
-                : !this.state.isProjectSelected && projects.length != 0
-                  ? projects[0]
-                  : "Add Project"}
+            <div className="project-name">
+              {this.state.isProjectSelected && projects.length != 0 ? (
+                this.state.selectedProject
+              ) : !this.state.isProjectSelected && projects.length != 0 ? (
+                projects[0]
+              ) : addProject}
             </div>
             <div className="collaborator">
               <i
-                className="fa fa-gear setting"
+                className="fa fa-users setting"
                 onClick={this.addCollaboratorModal}
               />
             </div>
@@ -149,10 +153,7 @@ export default class Sidebar extends Component {
           >
             {projects}
           </div>
-          <div className="add-project" onClick={this.showProjectModal}>
-            <div>Add Project</div>
-            <i className="fa fa-plus-circle fa-align" />
-          </div>
+          { projects.length != 0 ? addProject : '' }
         </div>
         <div
           className={`nav-container responsive ${
@@ -235,7 +236,15 @@ export default class Sidebar extends Component {
               </ModalFooter>
             </ModalComponent>
           )}
-          {this.props.showModal && <Collaborator />}
+          {this.props.showModal && (
+            <Collaborator
+              projectIdState={
+                this.state.isProjectSelected
+                  ? this.props.projectId
+                  : this.props.projects[0]._id
+              }
+            />
+          )}
         </div>
       </div>
     );

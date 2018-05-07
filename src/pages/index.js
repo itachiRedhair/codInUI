@@ -29,11 +29,12 @@ class App extends Component {
   componentDidMount() {
     this.props.setLoadingStatus(true);
     getUser()
-      .then(userInfo => {
+      .then(response => {
         this.setState({
           isUserRequestComplete: true
         });
-        if (userInfo) {
+        console.log("in component did mount of index.js=>,userinfo", response);
+        if (response.message !== "UNAUTHORIZED") {
           this.props.login();
           this.props.history.push("/dashboard/overview");
         }

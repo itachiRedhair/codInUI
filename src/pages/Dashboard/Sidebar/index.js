@@ -2,19 +2,21 @@ import Sidebar from "./Sidebar.jsx";
 import { connect } from "react-redux";
 
 //action creators
-import { createProject, showProject } from "./../../../modules/project";
+import { createProject, showProject, setProjectId } from "./../../../modules/project";
 import { setModalState } from "./../../../modules/modalState";
 
 const mapDispatchToProps = {
   createProject,
   showProject,
-  setModalState
+  setModalState,
+  setProjectId
 };
 
 const mapStateToProps = state => {
   return {
     projects: state.projectReducer.projects,
-    showModal: state.modalReducer.showModal
+    showModal: state.modalReducer.showModal,
+    projectId: state.projectReducer.projectId
   };
 };
 

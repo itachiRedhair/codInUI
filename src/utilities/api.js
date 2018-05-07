@@ -2,6 +2,8 @@ import fetch from "isomorphic-fetch";
 
 import constants from "./../constants";
 
+const { API_URL } = constants;
+
 const getHeaders = () => {
   return {
     "Content-Type": "application/json"
@@ -9,27 +11,27 @@ const getHeaders = () => {
 };
 
 export const getUser = () => {
-  // const url = `${constants.API_URL}/v1/user/me`;
+  const url = `${constants.API_URL}/v1/user/me`;
 
-  // const options = {
-  //   headers: getHeaders(),
-  //   method: "GET",
-  //   credentials: "include"
-  // };
+  const options = {
+    headers: getHeaders(),
+    method: "GET",
+    credentials: "include"
+  };
 
-  // return fetch(url, options)
-  //   .then(response => {
-  //     console.log(response);
-  //     return response.json();
-  //   })
-  //   .catch(err => {
-  //     throw new Error("User information retrieval failed.");
-  //   });
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(true);
-    }, 500);
-  });
+  return fetch(url, options)
+    .then(response => {
+      console.log(response);
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("User information retrieval failed.");
+    });
+  // return new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     resolve(true);
+  //   }, 500);
+  // });
 };
 
 export const loginRequest = ({ email, password }) => {
@@ -55,19 +57,17 @@ export const loginRequest = ({ email, password }) => {
     });
 };
 
-
 export const logoutRequest = () => {
   const url = `${constants.API_URL}/v1/user/logout`;
 
   const options = {
     headers: getHeaders(),
     method: "POST",
-    // credentials: "include"
+    credentials: "include"
   };
 
   return fetch(url, options)
     .then(response => {
-      console.log(response);
       return response.json();
     })
     .catch(err => {
@@ -148,3 +148,30 @@ export const getUserSuggestions = (name) => {
         throw new Error("Loading Suggestion Failed");
       });
   };
+
+  export const addCollaborator = ( contributorParameters ) => {
+      console.log("***********contrib api************", contributorParameters);
+    const url = `${constants.API_URL}/v1/project/contributor`;
+    const contributorName = contributorParameters.name;
+    const contributorID = contributorParameters.contributorID;
+    const projectID = contributorParameters.projectID
+    const options = {
+      headers: getHeaders(),
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify({
+        contributorName,
+        contributorID,
+        projectID
+      })
+    };
+  
+    return fetch(url, options)
+      .then(response => {
+        return response.json();
+      })
+      .catch(err => {
+        throw new Error("Project Register Failed");
+      });
+  };
+

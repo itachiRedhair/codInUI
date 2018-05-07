@@ -41,14 +41,13 @@ const logOut = () => ({
 // ------------------------------------
 
 export const userLogOut = () => (dispatch, getState) => {
-  console.log("userlogout called in auth.js");
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
 
     logoutRequest()
       .then(response => {
         dispatch(setLoadingStatus(false));
-        if (response) {
+        if (response.message === constants.responseMessage.LOGGED_OUT) {
           dispatch(logOut());
           resolve(true);
         } else {
@@ -57,7 +56,6 @@ export const userLogOut = () => (dispatch, getState) => {
       })
       .catch(err => {
         dispatch(setLoadingStatus(false));
-        console.log(err);
         resolve(false);
       });
   });
@@ -79,7 +77,6 @@ export const userLogIn = (email, password) => (dispatch, getState) => {
       })
       .catch(err => {
         dispatch(setLoadingStatus(false));
-        console.log(err);
         resolve(false);
       });
   });
@@ -104,7 +101,6 @@ export const userSignUp = (name, email, password, confirm) => (
       })
       .catch(err => {
         dispatch(setLoadingStatus(false));
-        console.log(err);
         resolve(false);
       });
   });

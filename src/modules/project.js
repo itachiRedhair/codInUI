@@ -9,6 +9,7 @@ import { projectRegisterRequest, getUserProject } from "./../utilities/api";
 // ------------------------------------
 export const PROJECT_REGISTER = "PROJECT_REGISTER";
 export const SHOW_USER_PROJECT = "SHOW_USER_PROJECT";
+export const SET_PROJECT_ID = "SET_PROJECT_ID";
 
 // ------------------------------------
 // Action Creators
@@ -24,6 +25,10 @@ const listProject = projects => ({
   payload: projects
 });
 
+export const setProjectId = projectId => ({
+    type :SET_PROJECT_ID,
+    payload: projectId
+})
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
@@ -53,7 +58,6 @@ export const showProject = () => (dispatch, getState) => {
   getUserProject()
     .then(response => {
       if (response) {
-        console.log(response);
         dispatch(listProject(response));
       } else {
       }
@@ -65,7 +69,8 @@ export const showProject = () => (dispatch, getState) => {
 
 export const actions = {
   createProject,
-  showProject
+  showProject,
+  
 };
 
 // ------------------------------------
@@ -81,6 +86,10 @@ const ACTION_HANDLERS = {
   [SHOW_USER_PROJECT]: (state, action) => ({
     ...state,
     projects: [...action.payload]
+  }),
+  [SET_PROJECT_ID]: (state, action) => ({
+      ...state,
+      projectId: action.payload
   })
 };
 
@@ -90,7 +99,8 @@ const ACTION_HANDLERS = {
 
 const initialState = {
   isProjectUploaded: false,
-  projects: []
+  projects: [],
+  projectId: ""
 };
 
 export default (state = initialState, action) => {

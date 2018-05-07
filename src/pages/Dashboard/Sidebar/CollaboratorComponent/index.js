@@ -5,10 +5,12 @@ import { connect } from "react-redux";
 //action creators
 import { userSuggestions } from "../../../../modules/typeahead";
 import { setModalState } from "../../../../modules/modalState";
+import { registerCollaborator } from "../../../../modules/collaborator.js";
 
 const mapDispatchToProps = {
     userSuggestions,
-    setModalState
+    setModalState,
+    registerCollaborator
 };
 
 const mapStateToProps = state => {

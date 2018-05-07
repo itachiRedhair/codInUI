@@ -24,7 +24,10 @@ export default class Collaborator extends Component {
       name: "",
       showModal: true,
       isLoading: false,
-      options: []
+      options: [],
+      contributorID: "",
+      collaboratorName: "",
+      projectID:""
     };
   }
 
@@ -35,8 +38,6 @@ export default class Collaborator extends Component {
     //   showModal: false
     // });
     this.props.setModalState(false);
-    console.log("=============props============",this.props);
-
   };
 
   _handleSearch = query => {
@@ -48,6 +49,22 @@ export default class Collaborator extends Component {
       options
     });
   };
+
+  _getCollaboratorId = e => {
+    this.setState({
+        contributorID: e.target.getAttribute('value'),
+        collaboratorName: e.target.getAttribute('user'),
+        projectID: e.target.getAttribute('pid')
+    })
+  };
+
+  _addCollaborator = () => {
+      this.props.registerCollaborator({
+          name: this.state.collaboratorName,
+          contributorID: this.state.contributorID,
+          projectID: this.state.projectID
+      })
+  }
 
   render() {
     return (
@@ -67,13 +84,21 @@ export default class Collaborator extends Component {
             placeholder="Search for a Codin user..."
             renderMenuItemChildren={(option, props) => (
               <ul>
-                <li key={option._id} user={option.email}>
+                <li
+                  onClick={this._getCollaboratorId}
+                  key={option._id}
+                  value={option._id}
+                  user={option.email}
+                  pid={this.props.projectIdState}
+                >
                   {option.email}
                 </li>
               </ul>
             )}
           />
-          <Button bsStyle="primary" onClick={this.addCollaborator}>
+          Collaborator id: { this.state.contributorID }
+          Project id: {this.props.projectIdState}
+          <Button bsStyle="primary" onClick={this._addCollaborator}>
             Add Collaborator
           </Button>
         </ModalBody>
