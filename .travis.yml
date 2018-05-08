@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - 8.10
+script: 'true'
+deploy:
+  provider: s3
+  access_key_id: AKIAI4ZO66BREZY3542Q
+  secret_access_key:
+    secure: "eRovD81n9VQfsPAjtYEpdQo4QjRiK03XKmG2hNP4+l0FkPVDHkC0q+1qEvuwuQyvHCkEy0DbI68VSQrB/u4N4MNnq1w32puS09tpzlY22/RoxbvIplA4RaqDEjqJb2GZNkwfjlQ0HsVGVZKC0XigOq7jxhBASgftb0b7txKhBXZ3bD2h5z11TBQsqf33E7woQ6mcDx0+bty7lBoxsvC+LSL3TuJ1T8oUEt5v3fDHUy8szA9eYI0jAh4T7b57o7gOwMBemSjEceHalS51zGCe5BB2vozjyt8kIW4WBZKzWt2B2PbGzB0OSK0O2P4rGih4IzAfjR4mmsb7VVznkpAPiWDGcfAOWGvoJzSpYd0aX/TurZ9f5rSKQF5kHesGkcBS2gqJ6pLwXBDFZhIvFzxG8EcdTP4SZZP9rgwOtpkNsLgycHwhiavUb6dFtWtVzVyTD8kqohyW36xFiZtZG9dknXDiGjqPPjUa3RcsLwi8r8c+lyeiNXxJLP+3maJG+ZzW+kVHf8RNd4ChAX+fd4EnhDYSQM0cm8zzAnA9NlogE76Qu8e0BZgBPzSmW0GU6sfk/f4bFeJ5eq+nCMGSMeST8kuu6ehy2KWgfql8ZGaVUMk0flLtCbV1q28F9PqJbpdBxWAB8iM19MJs41Do/zi96u4srGkBeziVHe4HotFospw="
+  bucket: codin-ui
+  local-dir: dist
+  upload-dir: dist
+  acl: public_read
+  skip_cleanup: true
+  on:
+    repo: itachiRedhair/codInUI
+    branch: tslint-souvik
