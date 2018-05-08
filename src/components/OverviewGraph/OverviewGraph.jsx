@@ -55,27 +55,8 @@ class OverviewGraph extends Component {
     }
   }
   componentDidMount() {
-    console.log('componentDidMount')
-    this.props.showOverviewData('dummy');
-    
-  }
-
-  componentWillReceiveProps(){
-    console.log('componentWillReceiveProps')
-    
-  }
-
-  componentWillUpdate(){
-    console.log('componentWillUpdate')
-    
-    // console.log('props', this.props);
-    // const overviewChartOptions = {
-    //   ...tempOptions,
-    //   series: [...this.props.overviewData]
-    // };
-    // this.setState({overviewChartOptions},()=>{
-    // console.log(this.state.overviewChartOptions)      
-    // })
+    // Fetch data
+    this.props.showOverviewData('dummy');  
   }
 
   render() {

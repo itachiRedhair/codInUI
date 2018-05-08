@@ -4,5 +4,7 @@ import projectReducer from "./project";
 import typeaheadReducer from "./typeahead";
 import modalReducer from "./modalState";
 import overviewDataReducer from "./overviewData";
+import overviewHeatMapReducer from "./overviewHeatMap"
+import tsLintHeatMapReducer from "./tsLintHeatMap"
 
-export { authReducer, loaderReducer, projectReducer, typeaheadReducer, modalReducer, overviewDataReducer };
+export { authReducer, loaderReducer, projectReducer, typeaheadReducer, modalReducer, overviewDataReducer, overviewHeatMapReducer, tsLintHeatMapReducer };

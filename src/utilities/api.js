@@ -161,3 +161,32 @@ export const getUserSuggestions = (name) => {
         throw new Error("Loading Overview Data Failed");
       });
   };
+
+  export const getOverviewHeatMapData = (id) => {
+    const url = `../assets/data/overviewHeatMapData.json`;
+    const options = {
+      method: 'GET'
+    };
+    return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Loading HeatMap data failed");
+    });
+  };
+
+  export const getTsLintHeatMapData = (id) => {
+    const url = `../assets/data/tsLintHeatMapData.json`;
+    const options = {
+      method: 'GET'
+    };
+    return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Loading HeatMap data failed");
+    });
+  };
+  
