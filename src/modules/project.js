@@ -26,9 +26,9 @@ const listProject = projects => ({
 });
 
 export const setProjectId = projectId => ({
-    type :SET_PROJECT_ID,
-    payload: projectId
-})
+  type: SET_PROJECT_ID,
+  payload: projectId
+});
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
@@ -58,6 +58,7 @@ export const showProject = () => (dispatch, getState) => {
   getUserProject()
     .then(response => {
       if (response) {
+          console.log("------project response-----", response);
         dispatch(listProject(response));
       } else {
       }
@@ -69,8 +70,7 @@ export const showProject = () => (dispatch, getState) => {
 
 export const actions = {
   createProject,
-  showProject,
-  
+  showProject
 };
 
 // ------------------------------------
@@ -85,11 +85,11 @@ const ACTION_HANDLERS = {
   }),
   [SHOW_USER_PROJECT]: (state, action) => ({
     ...state,
-    projects: [...action.payload]
+    projects: [...action.payload.projects]
   }),
   [SET_PROJECT_ID]: (state, action) => ({
-      ...state,
-      projectId: action.payload
+    ...state,
+    projectId: action.payload
   })
 };
 

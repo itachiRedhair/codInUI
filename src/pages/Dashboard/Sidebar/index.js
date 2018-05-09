@@ -16,8 +16,7 @@ const mapStateToProps = state => {
   return {
     projects: state.projectReducer.projects,
     showModal: state.modalReducer.showModal,
-    projectId: state.projectReducer.projectId,
-    loginResponse: state.authReducer.loginResponse
+    projectId: state.projectReducer.projectId
   };
 };
 

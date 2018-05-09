@@ -95,40 +95,34 @@ export default class Sidebar extends Component {
     var rows = [];
     let projects = [];
     let contributorProjects = [];
-
-    // if (this.props.loginResponse) {
-    //   this.props.loginResponse.projects.map(contributor => {
-    //     if (
-    //       typeof contributor === "object" &&
-    //       contributor.role == "Contributor"
-    //     ) {
-    //       console.log("contributor.name", contributor.name);
-    //       contributorProjects.push(
-    //         <div
-    //           value={contributor._id}
-    //           style={setHeight}
-    //           onClick={this.handleClicked}
-    //         >
-    //           {contributor.name}
-    //         </div>
-    //       );
-    //     }
-    //   });
-    //   console.log("----contributor----", contributorProjects);
-    // }
-
-    if (this.props.projects) {
-      projects = this.props.projects.map(projectName => (
-        <div
-          value={projectName._id}
-          style={setHeight}
-          onClick={this.handleClicked}
-        >
-          {projectName.name}
-        </div>
-      ));
+    if (this.props.projects.length !== 0) {
+      this.props.projects.map(project => {
+        if (project.role == "Admin") {
+          projects.push(
+            <div
+              key={project.id}
+              value={project.id}
+              style={setHeight}
+              onClick={this.handleClicked}
+            >
+              {project.name}
+            </div>
+          );
+        } else {
+          contributorProjects.push(
+            <div
+              key={project.id}
+              value={project.id}
+              style={setHeight}
+              onClick={this.handleClicked}
+            >
+              {project.name}
+            </div>
+          );
+        }
+      });
     }
-    console.log("----projects----", projects);
+
     const addProject = (
       <div className="add-project" onClick={this.showProjectModal}>
         <div>Add Project</div>
@@ -143,19 +137,24 @@ export default class Sidebar extends Component {
           <span>In</span>
         </div> */}
         <div className="project-info">
-          <div onClick={this.handleProjectInfoClick}>
-            <div className="project-name">
-              {this.state.isProjectSelected && projects.length != 0
-                ? this.state.selectedProject
-                : !this.state.isProjectSelected && projects.length != 0
-                  ? projects[0]
-                  : addProject}
-            </div>
-            <div className="collaborator">
-              <i
-                className="fa fa-users setting"
-                onClick={this.addCollaboratorModal}
-              />
+          <div className="project-content">
+            <div
+              className="project-info-content"
+              onClick={this.handleProjectInfoClick}
+            >
+              <div className="project-name">
+                {this.state.isProjectSelected && projects.length != 0
+                  ? this.state.selectedProject
+                  : !this.state.isProjectSelected && projects.length != 0
+                    ? projects[0]
+                    : addProject}
+              </div>
+              <div className="collaborator">
+                <i
+                  className="fa fa-users setting"
+                  onClick={this.addCollaboratorModal}
+                />
+              </div>
             </div>
             <div className="project-date">Created on: 25/04/2018</div>
           </div>
@@ -170,17 +169,17 @@ export default class Sidebar extends Component {
             this.state.showProjectDropdownContent ? "reveal" : ""
           }`}
         >
+          <div className="sub-heading">Your Projects</div>
           <div
             className={`${projects.length >= 3 ? "project-list-scroll" : ""}`}
           >
-            <div className="sub-heading">Your Projects</div>
             <div>{projects}</div>
           </div>
+          <div className="sub-heading">As Contributor</div>
           <div
-            className={`${projects.length >= 3 ? "project-list-scroll" : ""}`}
+            className={`${contributorProjects.length >= 3 ? "project-list-scroll" : ""}`}
           >
-            <div className="sub-heading">As Contributor</div>
-            {/* <div>{contributorProjects}</div> */}
+            <div>{contributorProjects}</div>
           </div>
           {projects.length != 0 ? addProject : ""}
         </div>
@@ -270,7 +269,7 @@ export default class Sidebar extends Component {
               projectIdState={
                 this.state.isProjectSelected
                   ? this.props.projectId
-                  : this.props.projects[0]._id
+                  : this.props.projects[0].id
               }
             />
           )}

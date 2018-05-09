@@ -1,8 +1,8 @@
 import config from "./../config";
 
 const constants = {
-  API_URL: config.env.DEV ? "http://codin-backend.qbbvxnf82n.us-east-1.elasticbeanstalk.com" : "prod_url",
-  // API_URL: config.env.DEV ? "http://10.29.9.61:3000" : "prod_url",
+//   API_URL: config.env.DEV ? "http://codin-backend.qbbvxnf82n.us-east-1.elasticbeanstalk.com" : "prod_url",
+  API_URL: config.env.DEV ? "http://localhost:3000" : "prod_url",
   
 
   httpStatus: {

@@ -6,13 +6,13 @@ import config from "./../../config";
 import { setLoadingStatus } from "./loader.js";
 
 //API imports
-import { addCollaborator } from "./../utilities/api";
+import { addCollaborator, getContributors } from "./../utilities/api";
 
 // ------------------------------------
 // Constants
 // ------------------------------------
 export const ADD_COLLABORATOR = "ADD_COLLABORATOR";
-
+export const SHOW_COLLABORATOR = "SHOW_COLLABORATOR";
 // ------------------------------------
 // Action Creators
 // ------------------------------------
@@ -22,6 +22,10 @@ const collaboratorAdded = names => ({
   payload: names
 });
 
+const showCollaborators = contributors => ({
+    type: SHOW_COLLABORATOR,
+    payload: contributors
+  });
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
@@ -48,6 +52,28 @@ export const registerCollaborator = ( params ) => (dispatch, getState) => {
   });
 };
 
+export const getCollaborators = (projectId) => (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      dispatch(setLoadingStatus(true));
+      getContributors(projectId)
+        .then(response => {
+          dispatch(setLoadingStatus(false));
+          if (response) {
+              console.log("-------response-----", response);
+            dispatch(showCollaborators(response.contributors));
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        })
+        .catch(err => {
+          dispatch(setLoadingStatus(false));
+          console.log(err);
+          resolve(false);
+        });
+    });
+  };
+
 export const actions = {
   collaboratorAdded
 };
@@ -58,7 +84,11 @@ export const actions = {
 
 const ACTION_HANDLERS = {
   [ADD_COLLABORATOR]: (state, action) => ({
-    ...state
+    ...state,
+  }),
+  [SHOW_COLLABORATOR]: (state, action) => ({
+    ...state,
+    contributors: action.payload
   })
 };
 
@@ -67,7 +97,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 
 const initialState = {
-  
+  contributors: []
 };
 
 export default (state = initialState, action) => {

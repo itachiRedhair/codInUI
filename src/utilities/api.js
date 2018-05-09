@@ -134,44 +134,57 @@ export const getUserProject = () => {
     });
 };
 
-export const getUserSuggestions = (name) => {
-    const url = `${constants.API_URL}/v1/user/suggestions/${name}`;
-    const options = {
-      method: "GET",
-      credentials: "include"
-    };
-    return fetch(url, options)
-      .then(response => {
-        return response.json();
-      })
-      .catch(err => {
-        throw new Error("Loading Suggestion Failed");
-      });
+export const getUserSuggestions = name => {
+  const url = `${constants.API_URL}/v1/user/suggestions/${name}`;
+  const options = {
+    method: "GET",
+    credentials: "include"
+  };
+  return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Loading Suggestion Failed");
+    });
+};
+
+export const addCollaborator = contributorParameters => {
+  const url = `${constants.API_URL}/v1/project/contributor`;
+  const contributorName = contributorParameters.name;
+  const contributorID = contributorParameters.contributorID;
+  const projectID = contributorParameters.projectID;
+  const options = {
+    headers: getHeaders(),
+    method: "POST",
+    credentials: "include",
+    body: JSON.stringify({
+      contributorName,
+      contributorID,
+      projectID
+    })
   };
 
-  export const addCollaborator = ( contributorParameters ) => {
-      console.log("***********contrib api************", contributorParameters);
-    const url = `${constants.API_URL}/v1/project/contributor`;
-    const contributorName = contributorParameters.name;
-    const contributorID = contributorParameters.contributorID;
-    const projectID = contributorParameters.projectID
-    const options = {
-      headers: getHeaders(),
-      method: "POST",
-      credentials: "include",
-      body: JSON.stringify({
-        contributorName,
-        contributorID,
-        projectID
-      })
-    };
-  
-    return fetch(url, options)
-      .then(response => {
-        return response.json();
-      })
-      .catch(err => {
-        throw new Error("Project Register Failed");
-      });
-  };
+  return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Project Register Failed");
+    });
+};
 
+export const getContributors = projectId => {
+  const url = `${constants.API_URL}/v1/project/${projectId}`;
+  const options = {
+    method: "GET",
+    credentials: "include"
+  };
+  return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Loading Contributors Failed");
+    });
+};
