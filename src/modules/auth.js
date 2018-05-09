@@ -19,6 +19,7 @@ import {
 export const SIGNUP = "SIGNUP";
 export const AUTH_LOGIN = "AUTH_LOGIN";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
+export const IS_SIGNEDUP = "IS_SIGNEDUP";
 
 // ------------------------------------
 // Action Creators
@@ -28,14 +29,18 @@ const signup = () => ({
   type: SIGNUP
 });
 
-const login = () => ({
-  type: AUTH_LOGIN
+const login = response => ({
+  type: AUTH_LOGIN,
+  payload: response
 });
 
 const logOut = () => ({
   type: AUTH_LOGOUT
 });
 
+const isSignedUp = () => ({
+  type: IS_SIGNEDUP
+});
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
@@ -69,7 +74,7 @@ export const userLogIn = (email, password) => (dispatch, getState) => {
       .then(response => {
         dispatch(setLoadingStatus(false));
         if (response) {
-          dispatch(login());
+          dispatch(login(response));
           resolve(true);
         } else {
           resolve(false);
@@ -92,8 +97,9 @@ export const userSignUp = (name, email, password, confirm) => (
     signUpRequest({ name, email, password, confirm })
       .then(response => {
         dispatch(setLoadingStatus(false));
-        if (response) {
+        if (response.result.ok == 1) {
           dispatch(signup());
+          dispatch(isSignedUp());
           resolve(true);
         } else {
           resolve(false);
@@ -110,7 +116,8 @@ export const actions = {
   userSignUp,
   userLogIn,
   userLogOut,
-  login
+  login,
+  isSignedUp
 };
 
 // ------------------------------------
@@ -121,8 +128,13 @@ const ACTION_HANDLERS = {
   [SIGNUP]: (state, action) => ({
     ...state
   }),
+  [IS_SIGNEDUP]: (state, action) => ({
+    ...state,
+    signedUp: true
+  }),
   [AUTH_LOGIN]: (state, action) => ({
     ...state,
+    loginResponse: action.payload,
     isAuthenticated: true
   }),
   [AUTH_LOGOUT]: (state, action) => ({
@@ -136,7 +148,9 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 
 const initialState = {
-  isAuthenticated: false
+  isAuthenticated: false,
+  loginResponse: {},
+  signedUp: false
 };
 
 export default (state = initialState, action) => {
