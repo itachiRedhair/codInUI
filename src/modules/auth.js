@@ -70,7 +70,7 @@ export const userLogIn = (email, password) => (dispatch, getState) => {
     loginRequest({ email, password })
       .then(response => {
         dispatch(setLoadingStatus(false));
-        if (response) {
+        if (response.code === constants.httpStatus.OK) {
           dispatch(login());
           resolve(true);
         } else {
