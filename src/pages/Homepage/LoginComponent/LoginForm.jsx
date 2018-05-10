@@ -12,7 +12,7 @@ import constants from "./../../../constants";
 
 //styles
 import "./../../../styles/_form.scss";
-import "./loginForm.scss";
+import "./LoginForm.scss";
 
 class LoginComponent extends Component {
   constructor(props, context) {
