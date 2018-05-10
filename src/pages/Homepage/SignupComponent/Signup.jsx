@@ -92,7 +92,7 @@ class SignupComponent extends Component {
             </Button>
           </Col>
         </Row>
-        {this.state.register ? message : null}
+        {this.props.signedUp ? message : null}
         <div className="login-prompt" onClick={this.props.toggleLogin}>
           Log in.
         </div>

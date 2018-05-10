@@ -40,7 +40,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif|ttf|woff|woff2|otf)$/,
+        test: /\.(png|jpg|gif|ttf|woff|woff2|otf|json)$/,
         include: dir_src,
         use: [
           {
@@ -50,7 +50,16 @@ module.exports = {
             }
           }
         ]
-      }
+      },
+      {
+        test: /\.(json)$/,
+        include: dir_src,
+        use: [
+          {
+            loader: "file-loader"
+          }
+        ]
+      },
     ]
   },
   plugins: [

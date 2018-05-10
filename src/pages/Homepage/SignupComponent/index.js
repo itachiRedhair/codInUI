@@ -10,4 +10,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(SignupComponent);
+const mapStateToProps = state => {
+    return {
+        signedUp: state.authReducer.signedUp
+    };
+  };
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupComponent);

@@ -120,7 +120,7 @@ body {
 }
 
 .project-dropdown-content.reveal {
-  height: 4em;
+  height: 15em;
   padding-bottom: 7em;
   padding-left: 1em;
 }
@@ -176,6 +176,24 @@ body {
 //     // height: 4em;
 // }
 .project-list-scroll {
-    overflow-y: scroll;
-    height: 4em;
+  overflow-y: scroll;
+  height: 4em;
 }
+.sub-heading {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+.project-content {
+  display: flex;
+  flex-direction: column;
+}
+.project-info-content {
+  display: flex;
+  flex-direction: row;
+}
+.collaborator {
+    padding-top: 0.4em;
+}
+//     overflow-y: scroll;
+//     height: 4em;
+// }

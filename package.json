@@ -1,10 +1,10 @@
 {
-  "name": "code-investigator",
+  "name": "codeInUI",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack-watch": "webpack",
+    "webpack-watch": "webpack --mode development",
     "start": "webpack-dev-server --color --progress --hot",
     "dev": "webpack-dev-server --color --progress --hot --mode development"
   },
