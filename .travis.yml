@@ -14,7 +14,7 @@ deploy:
   local-dir: dist
   acl: public_read
   on:
-    repo: souvikckr/codInUI
+    repo: itachiRedhair/codInUI
     branch: develop
 env:
   global:
