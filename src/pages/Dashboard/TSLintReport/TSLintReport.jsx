@@ -12,6 +12,7 @@ import TSLintHeatmap from "./../../../components/TSLintHeatmap";
 import "./TSLintReport.scss";
 
 export default class TSLintReport extends Component {
+  //test comment for travis deployment
   render() {
     return (
       <React.Fragment>
