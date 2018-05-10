@@ -164,13 +164,40 @@ export const addCollaborator = contributorParameters => {
       projectID
     })
   };
-
   return fetch(url, options)
     .then(response => {
       return response.json();
     })
     .catch(err => {
-      throw new Error("Project Register Failed");
+      throw new Error("Loading Collaborator Failed");
+    });
+};
+
+export const getOverviewData = name => {
+  const url = `../assets/data/overviewData.json`;
+  const options = {
+    method: "GET"
+  };
+  return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Loading Overview Data Failed");
+    });
+};
+
+export const getOverviewHeatMapData = id => {
+  const url = `../assets/data/overviewHeatMapData.json`;
+  const options = {
+    method: "GET"
+  };
+  return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Loading HeatMap data failed");
     });
 };
 
@@ -186,5 +213,19 @@ export const getContributors = projectId => {
     })
     .catch(err => {
       throw new Error("Loading Contributors Failed");
+    });
+};
+
+export const getTsLintHeatMapData = id => {
+  const url = `../assets/data/tsLintHeatMapData.json`;
+  const options = {
+    method: "GET"
+  };
+  return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Loading HeatMap data failed");
     });
 };

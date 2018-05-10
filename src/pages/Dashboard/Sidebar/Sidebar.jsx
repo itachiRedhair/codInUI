@@ -42,7 +42,7 @@ export default class Sidebar extends Component {
   }
 
   componentDidMount() {
-    this.props.showProject();
+    // this.props.showProject();
   }
 
   handleProjectInfoClick = e => {

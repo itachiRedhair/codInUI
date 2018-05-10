@@ -1,3 +1,14 @@
 import OverviewHeatmap from "./OverviewHeatmap.jsx";
+import { connect } from "react-redux";
+import { showOverViewHeatMap } from "../../modules/overviewHeatMap";
 
-export default OverviewHeatmap;
+const mapDispatchToProps = {
+    showOverViewHeatMap
+}
+
+const mapStateToProps = state => {
+   return {
+    overviewHeatMapdata: state.overviewHeatMapReducer.overviewHeatMapdata
+   } 
+}
+export default connect(mapStateToProps, mapDispatchToProps) (OverviewHeatmap);
