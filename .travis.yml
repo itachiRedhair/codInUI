@@ -15,7 +15,7 @@ deploy:
   acl: public_read
   on:
     repo: souvikckr/codInUI
-    branch: tslint-souvik
+    branch: develop
 env:
   global:
     secure: l+QqmOy21+njPbim1PyFYwvPKiwPoQVsGmJio9CBd3aFqwvimpcUgvIS9XfjVwh/ow+6aKWdFjn25NiwMHl/fmx6QH9NaFweJ+1YOo6a3Pe3v994d3sh8ZDE9AVto8EGYjtuQPZdaG6F1LAs8i19fvQUf4xG1SHPiMk3W+wimSPpQk328+BM6MVkpGnUpKvRKAgpUj2fRavkIj7+HJ6PbMDICasMc5K8BiHu3TgU9Wl5uW9Cpqhaf3b+aRSu1xiYzCQSbWVpPeh7bdpoQqKAThaLK7f8Ynx8HJqvlXYxsvUp7EKmt5rQ0oj2jrU2pflMlx2HA1b34V8FbHHVmr41sXjpW39rWqihtfwK6ss65T/0T1Ac1aVnx7xKfcMhI9snGUjRQcvoDHLrz6cLTLNzMuiSWJ70Bp5maInqL8Bq3nVxygPw8NAVnbm/uhycSxoeYUoROjPDNeXf2/jYrSOXwilcdjEpVmS+aMazDijN2WikgAleiCj3IQUnlgBvCONhl8D68p38qJR75af4ei8oJYtlXt/FzTt8RRFuAKTmIKfCLKitjLtSzOrVGd7cReCML7SOnBU2/5oRungYF9yW0WbAcHgVQn8lO+cWiXH3+FmtR/MrgkHbHgZC4CW3G+JoSeQz6rEevQP/rCwGdTUwCViL7VxjgXDnoYbnoSHeJus=
