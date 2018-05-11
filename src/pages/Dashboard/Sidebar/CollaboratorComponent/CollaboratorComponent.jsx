@@ -70,8 +70,8 @@ export default class Collaborator extends Component {
 
   render() {
     console.log(
-      "--------this.props.projectIdState---------",
-      this.props.projectIdState
+      "--------this.props.contributors---------",
+      this.props.contributors
     );
     const setHeight = {
       height: "1.5em"
@@ -131,8 +131,8 @@ export default class Collaborator extends Component {
               </ul>
             )}
           />
-          Collaborator id: {this.state.contributorID}
-          Project id: {this.props.projectIdState}
+          {/* Collaborator id: {this.state.contributorID}
+          Project id: {this.props.projectIdState} */}
         </ModalBody>
         <ModalFooter>
           <Button bsStyle="primary" onClick={this._addCollaborator}>

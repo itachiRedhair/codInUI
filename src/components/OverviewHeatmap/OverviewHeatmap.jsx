@@ -279,10 +279,6 @@ const tempOptions = {
 };
 
 class OverviewHeatmap extends Component {
-  componentDidMount(){
-    console.log("props", this.props);
-  }
-  
   render() {
     return (
       <EchartCard

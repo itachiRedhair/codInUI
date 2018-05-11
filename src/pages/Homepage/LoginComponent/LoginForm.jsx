@@ -44,6 +44,7 @@ class LoginComponent extends Component {
   render() {
     const email = this.state.email;
     const password = this.state.password;
+    console.log("----props in login----", this.props);
     return (
       <form className="form-container" autoComplete="on">
         {this.state.loginFailed ? (

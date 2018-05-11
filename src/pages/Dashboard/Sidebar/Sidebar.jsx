@@ -42,7 +42,7 @@ export default class Sidebar extends Component {
   }
 
   componentDidMount() {
-    // this.props.showProject();
+    this.props.showProject();
   }
 
   handleProjectInfoClick = e => {
@@ -177,7 +177,7 @@ export default class Sidebar extends Component {
           </div>
           <div className="sub-heading">As Contributor</div>
           <div
-            className={`${contributorProjects.length >= 3 ? "project-list-scroll" : ""}`}
+            className={`${projects.length >= 3 ? "project-list-scroll" : ""}`}
           >
             <div>{contributorProjects}</div>
           </div>

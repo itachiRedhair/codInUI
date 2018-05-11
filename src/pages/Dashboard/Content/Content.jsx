@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 //Components imports
 import Overview from "./../Overview";
 import TSLintReport from "./../TSLintReport";
+import Coverage from "./../Coverage";
 
 //Styles imports
 import "./Content.scss";
@@ -15,6 +16,7 @@ export default class Content extends Component {
         <Switch>
           <Route exact path="/dashboard/overview" component={Overview} />
           <Route exact path="/dashboard/tslint" component={TSLintReport} />
+          <Route exact path="/dashboard/coverage" component={Coverage} />          
         </Switch>
       </div>
     );
