@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
-// import Page from "./coverage/index.html";
-import Iframe from "react-iframe";
+import { Row, Col, ProgressBar } from "react-bootstrap";
+
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-// var htmlDoc = { __html: Page };
+import  ProgressBarComponent  from "../../../commonui/ProgressBar"
+
+// Ag-Grid Implementation
+
+import { AgGridReact, AgGridColumn } from "ag-grid-react";
 
 //Components imports
 
@@ -19,39 +22,48 @@ let data = [
       branches: { total: 213, covered: 4, skipped: 0, pct: 1.88 }
     },
     "/polyfills.ts": {
-      lines: { total: 2, covered: 2, skipped: 0, pct: 100 },
+      lines: { total: 4, covered: 2, skipped: 0, pct: 100 },
+      functions: { total: 8, covered: 3, skipped: 0, pct: 100 },
+      statements: { total: 5, covered: 1, skipped: 0, pct: 100 },
+      branches: { total: 4, covered: 2, skipped: 0, pct: 100 }
+    },
+    "/app.ts": {
+      lines: { total: 7, covered: 2, skipped: 0, pct: 100 },
       functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
       statements: { total: 2, covered: 2, skipped: 0, pct: 100 },
       branches: { total: 0, covered: 0, skipped: 0, pct: 100 }
     },
-    "/app.ts": {
-        lines: { total: 2, covered: 2, skipped: 0, pct: 100 },
-        functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
-        statements: { total: 2, covered: 2, skipped: 0, pct: 100 },
-        branches: { total: 0, covered: 0, skipped: 0, pct: 100 }
-      },
-      "/button.ts": {
-        lines: { total: 2, covered: 2, skipped: 0, pct: 100 },
-        functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
-        statements: { total: 2, covered: 2, skipped: 0, pct: 100 },
-        branches: { total: 0, covered: 0, skipped: 0, pct: 100 }
-      },
-      "/component.ts": {
-        lines: { total: 2, covered: 2, skipped: 0, pct: 100 },
-        functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
-        statements: { total: 2, covered: 2, skipped: 0, pct: 100 },
-        branches: { total: 0, covered: 0, skipped: 0, pct: 100 }
-      }
+    "/button.ts": {
+      lines: { total: 4, covered: 3, skipped: 0, pct: 100 },
+      functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
+      statements: { total: 2, covered: 2, skipped: 0, pct: 100 },
+      branches: { total: 0, covered: 0, skipped: 0, pct: 100 }
+    },
+    "/component.ts": {
+      lines: { total: 2, covered: 2, skipped: 0, pct: 100 },
+      functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
+      statements: { total: 2, covered: 2, skipped: 0, pct: 100 },
+      branches: { total: 0, covered: 0, skipped: 0, pct: 100 }
+    }
   }
 ];
 
 export default class TSLintReport extends Component {
-    constructor(props) {
-        super();
-        this.setState = {
-            products: []
-        }
-    }
+  constructor(props) {
+    super();
+    this.state = {
+      products: [],
+      columnDefs: [
+        { headerName: "File", field: "name" },
+        { headerName: "Progress", field: "progress" },
+        { headerName: "Lines", field: "lines" },        
+        { headerName: "Branches", field: "branches" },
+        { headerName: "Functions", field: "functions" },
+        { headerName: "Statements", field: "statements" }
+      ],
+      rowData: []
+    };
+  }
   componentDidMount() {
     console.log(
       "-----------data in data table--------",
@@ -62,36 +74,64 @@ export default class TSLintReport extends Component {
     console.log("keys", keyData);
     let valueData = Object.values(data[0]);
     let coverageData = {};
-    let productData = [];
+    let column = {};
+    let row = [];
     for (let i = 1; i < valueData.length; i++) {
       coverageData = {
         name: keyData[i],
+        progress: valueData[i].statements.covered / valueData[i].statements.total * 100,
         lines: valueData[i].lines.covered / valueData[i].lines.total * 100,
-        branches: valueData[i].lines.covered / valueData[i].lines.total * 100,
-        functions: valueData[i].lines.covered / valueData[i].lines.total * 100,
-        statements: valueData[i].lines.covered / valueData[i].lines.total * 100
+        branches: valueData[i].branches.covered / valueData[i].branches.total * 100,
+        functions: valueData[i].functions.covered / valueData[i].functions.total * 100,
+        statements: valueData[i].statements.covered / valueData[i].statements.total * 100
       };
-      productData.push(coverageData);
+      row.push(coverageData);
     }
-    // this.setState({
-    //     products: productData
-    // })
-    // console.log("covergae data", product);
+    this.setState({
+      rowData: row
+    });
   }
 
-  render() {
-    return <div>hello</div>;
+  pBar = () => {
+    return (
+      <div>
+        <ProgressBarComponent data={this.state.rowData} />
+      </div>
+    );
+  };
 
-      <BootstrapTable ref="table" data={productData}>
-        <TableHeaderColumn dataField="name" isKey={true} dataSort={true}>
-          Name
-        </TableHeaderColumn>
-        <TableHeaderColumn dataField="lines" dataSort={true}>
-          Lines
-        </TableHeaderColumn>
-        <TableHeaderColumn dataField="branches">Branches</TableHeaderColumn>
-        <TableHeaderColumn dataField="functions">Functions</TableHeaderColumn>
-        <TableHeaderColumn dataField="price">statements</TableHeaderColumn>
-      </BootstrapTable>
+  render() {
+    const tableStyle = {
+      color: "white"
+    };
+    return (
+      // <div>hello</div>
+      //   <div style={tableStyle}>
+      <div
+        className="ag-theme-balham"
+        style={{
+          height: "500px",
+          width: "90%"
+        }}
+      >
+        <AgGridReact
+          rowData={this.state.rowData}
+          suppressRowClickSelection
+          rowSelection="multiple"
+          enableColResize
+          enableSorting
+          enableFilter
+          groupHeaders
+        >
+          <AgGridColumn field="name" width={135} />
+          <AgGridColumn field="progress" width={135} enableValue cellRendererFramework={ProgressBarComponent} />          
+          <AgGridColumn field="lines" width={135} />
+          <AgGridColumn field="branches" width={135} />
+          <AgGridColumn field="functions" width={135} />
+          <AgGridColumn field="statements" width={135} />
+        </AgGridReact>
+      </div>
+      //   </div>
+    );
   }
 }

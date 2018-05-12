@@ -58,7 +58,7 @@ export const showProject = () => (dispatch, getState) => {
   getUserProject()
     .then(response => {
       if (response) {
-          console.log("------project response-----", response);
+          console.log("------project response-in apiS----", response);
         dispatch(listProject(response));
       } else {
       }
@@ -85,7 +85,7 @@ const ACTION_HANDLERS = {
   }),
   [SHOW_USER_PROJECT]: (state, action) => ({
     ...state,
-    projects: [...action.payload.projects]
+    projects: [...action.payload]
   }),
   [SET_PROJECT_ID]: (state, action) => ({
     ...state,

@@ -33,14 +33,20 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          "style-loader",
+          "style-loader", 
           "css-loader",
           "resolve-url-loader",
           "sass-loader?sourceMap"
         ]
       },
       {
-        test: /\.(png|jpg|gif|ttf|woff|woff2|otf|json)$/,
+        test: /\.html$/,
+        use: [
+          "html-loader"
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif|ttf|woff|woff2|otf)$/,
         include: dir_src,
         use: [
           {
@@ -50,16 +56,7 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test: /\.(json)$/,
-        include: dir_src,
-        use: [
-          {
-            loader: "file-loader"
-          }
-        ]
-      },
+      }
     ]
   },
   plugins: [

@@ -35,7 +35,6 @@ export const registerCollaborator = ( params ) => (dispatch, getState) => {
     dispatch(setLoadingStatus(true));
     addCollaborator( params )
       .then(response => {
-          console.log("response from collaborator", response);
         dispatch(setLoadingStatus(false));
         if (response) {
           dispatch(collaboratorAdded());
@@ -59,7 +58,7 @@ export const getCollaborators = (projectId) => (dispatch, getState) => {
         .then(response => {
           dispatch(setLoadingStatus(false));
           if (response) {
-              console.log("-------response-----", response);
+              console.log("-------response-of collaborator----", response);
             dispatch(showCollaborators(response.contributors));
             resolve(true);
           } else {

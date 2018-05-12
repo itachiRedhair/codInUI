@@ -14,6 +14,9 @@ import Button from "../../../commonui/Button";
 import Input from "./../../../commonui/Input";
 import Collaborator from "./CollaboratorComponent";
 
+//API imports
+import { getUser } from "../../../utilities/api";
+
 //Styles imports
 import "./Sidebar.scss";
 import "../../../styles/_theme.scss";
@@ -37,12 +40,22 @@ export default class Sidebar extends Component {
       showCollaboratorModal: false,
       isProjectSelected: false,
       projectName: "",
-      isProjectCreated: false
+      isProjectCreated: false,
+      userDataId: ""
     };
   }
 
   componentDidMount() {
     this.props.showProject();
+    getUser()
+      .then(response => {
+        this.setState({
+            userDataId: response._id
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   handleProjectInfoClick = e => {
@@ -95,14 +108,15 @@ export default class Sidebar extends Component {
     var rows = [];
     let projects = [];
     let contributorProjects = [];
+    console.log("----this.props.projects---", this.props.projects);
     if (this.props.projects.length !== 0) {
       this.props.projects.map(project => {
-        if (project.role == "Admin") {
+        if (project.created_by == this.state.userDataId) {
           projects.push(
             <div
-              key={project.id}
-              value={project.id}
-              style={setHeight}
+              key={project._id}
+              value={project._id}
+              style={setHeight} 
               onClick={this.handleClicked}
             >
               {project.name}
@@ -111,8 +125,8 @@ export default class Sidebar extends Component {
         } else {
           contributorProjects.push(
             <div
-              key={project.id}
-              value={project.id}
+              key={project._id}
+              value={project._id}
               style={setHeight}
               onClick={this.handleClicked}
             >
@@ -269,7 +283,7 @@ export default class Sidebar extends Component {
               projectIdState={
                 this.state.isProjectSelected
                   ? this.props.projectId
-                  : this.props.projects[0].id
+                  : this.props.projects[0]._id
               }
             />
           )}

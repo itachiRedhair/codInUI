@@ -32,6 +32,7 @@ export default class Collaborator extends Component {
   }
 
   componentDidMount = () => {
+      console.log("this.props.projectIdstate",this.props.projectIdState);
     this.props.getCollaborators(this.props.projectIdState);
   };
 
@@ -43,6 +44,7 @@ export default class Collaborator extends Component {
   };
 
   _handleSearch = query => {
+      console.log("---------query in collaborator----------", query);
     this.setState({ isLoading: true });
     this.props.userSuggestions(query);
     var options = this.props.names;
@@ -131,8 +133,8 @@ export default class Collaborator extends Component {
               </ul>
             )}
           />
-          {/* Collaborator id: {this.state.contributorID}
-          Project id: {this.props.projectIdState} */}
+          Collaborator id: {this.state.contributorID}
+          Project id: {this.props.projectIdState}
         </ModalBody>
         <ModalFooter>
           <Button bsStyle="primary" onClick={this._addCollaborator}>
