@@ -5,32 +5,53 @@ import Echart from "./../Echart";
 import Card from "./../../commonui/Card";
 import EchartCard from "./../../components/EchartCard";
 
+//Api imports
+import { getUserProject } from "../../utilities/api";
+
 class OverviewGraph extends Component {
   constructor(props) {
-    super();
+    super(props);
+    this.state = {
+      projectId: "",
+      reportData: [],
+      chartData: [],
+      chartDays: [],
+      tOptions: {}
+    }
   }
 
-
   componentDidMount() {
-    this.props.listTslintReport(this.props.projectId, "week").then(response => {
-        console.log("report in this case",response);
+    console.log('componentDidMount: called', this.state.projectId);
+    getUserProject().then(response => {
+      this.setState({
+        projectId: response[1]._id
+      });
+      if (this.state.projectId) {
+        this.props.listTslintReport(this.state.projectId, "week").then(response => {
+          let tsLintData = [];
+          let tsLintDays = [];
+          for (let i = 0; i < response.length; i++) {
+            if (response[i].summary) {
+              tsLintData.push(response[i].summary.total);
+              tsLintDays.push(new Date(response[i].meta.submitted_at).toDateString());
+            }
+          }
+          this.setState({
+            chartData: tsLintData,
+            chartDays: tsLintDays,
+            reportData: response
+          })
+        });
+
+      }
     });
+
   }
 
 
   render() {
-    let tsLintData = [];
-    let tsLintDays = [];
-    if (this.props.reportList) {
-      for (let i = 0; i < this.props.reportList.length; i++) {
-        tsLintData.push(this.props.reportList[i].summary.total);
-        tsLintDays.push(this.props.reportList[i].meta.submitted_at);
-      }
-      console.log("----report list for chart--------", tsLintData);
-      console.log("----report list days for chart--------", tsLintDays);
-      
-    }
-    let tempOptions = {
+    console.log('[OverviewGraph.jsx] render: called')
+    const tempOptions = {
       tooltip: {
         trigger: "axis"
       },
@@ -51,10 +72,10 @@ class OverviewGraph extends Component {
           }
         },
         boundaryGap: false,
-        data: tsLintDays
+        data: this.state.chartDays
       },
       yAxis: {
-        type: "value", 
+        type: "value",
         axisLine: {
           lineStyle: {
             color: "white"
@@ -65,19 +86,24 @@ class OverviewGraph extends Component {
         {
           name: "TSLint Errors",
           type: "line",
-          data: tsLintData
+          data: this.state.chartData
         }
       ]
     };
-
-    return (
-      <EchartCard
-        title="Trend Graph"
-        options={tempOptions}
-        height="300px"
-        autoSize
-      />
-    );
+    if (this.state.chartData.length === 0) {
+      return (
+        <div>Echarts should be here</div>
+      );
+    } else {
+      return (
+        <EchartCard
+          title="Trend Graph"
+          options={tempOptions}
+          height="300px"
+          autoSize
+        />
+      );
+    }
   }
 }
 

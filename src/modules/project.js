@@ -57,7 +57,6 @@ export const showProject = () => (dispatch, getState) => {
   getUserProject()
     .then(response => {
       if (response) {
-          console.log("------project response-in apiS----", response);
         dispatch(listProject(response));
       } else {
       }

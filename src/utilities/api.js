@@ -21,7 +21,6 @@ export const getUser = () => {
 
   return fetch(url, options)
     .then(response => {
-      console.log(response);
       return response.json();
     })
     .catch(err => {
@@ -49,7 +48,6 @@ export const loginRequest = ({ email, password }) => {
 
   return fetch(url, options)
     .then(response => {
-      console.log(response);
       return response.json();
     })
     .catch(err => {

@@ -33,10 +33,9 @@ class App extends Component {
         this.setState({
           isUserRequestComplete: true
         });
-        console.log("in component did mount of index.js=>,userinfo", response);
         if (response.message !== "UNAUTHORIZED") {
           this.props.login();
-          this.props.history.push("/dashboard/overview");
+          this.props.history.push("/dashboard");
         }
         this.props.setLoadingStatus(false);
       })
