@@ -1,0 +1,13 @@
+@import "../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
+@import "../../../node_modules/ag-grid/dist/styles/ag-grid.css";
+@import "../../../node_modules/ag-grid/dist/styles/ag-theme-balham.css";
+
+.container {
+  // background: red;
+  height: 50vh;
+  width: 50vh;
+}
+
+.ag-theme-balham {
+  text-align: left;
+}

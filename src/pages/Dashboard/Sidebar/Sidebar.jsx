@@ -16,6 +16,7 @@ import Collaborator from "./CollaboratorComponent";
 
 //API imports
 import { getUser } from "../../../utilities/api";
+import { getUserProject } from "../../../utilities/api";
 
 //Styles imports
 import "./Sidebar.scss";
@@ -47,10 +48,17 @@ export default class Sidebar extends Component {
 
   componentDidMount() {
     this.props.showProject();
+    getUserProject()
+      .then(response => {
+        this.props.setProjectId(response[1]._id);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     getUser()
       .then(response => {
         this.setState({
-            userDataId: response._id
+          userDataId: response._id
         });
       })
       .catch(err => {
@@ -108,7 +116,6 @@ export default class Sidebar extends Component {
     var rows = [];
     let projects = [];
     let contributorProjects = [];
-    console.log("----this.props.projects---", this.props.projects);
     if (this.props.projects.length !== 0) {
       this.props.projects.map(project => {
         if (project.created_by == this.state.userDataId) {
@@ -116,7 +123,7 @@ export default class Sidebar extends Component {
             <div
               key={project._id}
               value={project._id}
-              style={setHeight} 
+              style={setHeight}
               onClick={this.handleClicked}
             >
               {project.name}

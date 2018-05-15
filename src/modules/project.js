@@ -10,7 +10,6 @@ import { projectRegisterRequest, getUserProject } from "./../utilities/api";
 export const PROJECT_REGISTER = "PROJECT_REGISTER";
 export const SHOW_USER_PROJECT = "SHOW_USER_PROJECT";
 export const SET_PROJECT_ID = "SET_PROJECT_ID";
-
 // ------------------------------------
 // Action Creators
 // ------------------------------------

@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import { Row, Col, ProgressBar } from "react-bootstrap";
 
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-import  ProgressBarComponent  from "../../../commonui/ProgressBar"
+import ProgressBarComponent from "../../../commonui/ProgressBar";
 
 // Ag-Grid Implementation
 
 import { AgGridReact, AgGridColumn } from "ag-grid-react";
 
 //Components imports
+import CoverageComponentTable from "../../../components/CoverageComponentTable";
+import CoverageComponentPie from "../../../components/CoverageComponentPie";
 
 //Syles imports
 import "./Coverage.scss";
@@ -29,21 +31,21 @@ let data = [
     },
     "/app.ts": {
       lines: { total: 7, covered: 2, skipped: 0, pct: 100 },
-      functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
+      functions: { total: 7, covered: 3, skipped: 0, pct: 100 },
       statements: { total: 2, covered: 2, skipped: 0, pct: 100 },
-      branches: { total: 0, covered: 0, skipped: 0, pct: 100 }
+      branches: { total: 1, covered: 1, skipped: 0, pct: 100 }
     },
     "/button.ts": {
       lines: { total: 4, covered: 3, skipped: 0, pct: 100 },
-      functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
+      functions: { total: 6, covered: 3, skipped: 0, pct: 100 },
       statements: { total: 2, covered: 2, skipped: 0, pct: 100 },
-      branches: { total: 0, covered: 0, skipped: 0, pct: 100 }
+      branches: { total: 7, covered: 5, skipped: 0, pct: 100 }
     },
     "/component.ts": {
       lines: { total: 2, covered: 2, skipped: 0, pct: 100 },
-      functions: { total: 0, covered: 0, skipped: 0, pct: 100 },
+      functions: { total: 12, covered: 8, skipped: 0, pct: 100 },
       statements: { total: 2, covered: 2, skipped: 0, pct: 100 },
-      branches: { total: 0, covered: 0, skipped: 0, pct: 100 }
+      branches: { total: 11, covered: 9, skipped: 0, pct: 100 }
     }
   }
 ];
@@ -56,34 +58,77 @@ export default class TSLintReport extends Component {
       columnDefs: [
         { headerName: "File", field: "name" },
         { headerName: "Progress", field: "progress" },
-        { headerName: "Lines", field: "lines" },        
+        { headerName: "Lines", field: "lines" },
         { headerName: "Branches", field: "branches" },
         { headerName: "Functions", field: "functions" },
         { headerName: "Statements", field: "statements" }
       ],
-      rowData: []
+      rowData: [],
+      hData: []
     };
   }
   componentDidMount() {
-    console.log(
-      "-----------data in data table--------",
-      Object.values(data[0])
-    );
-
     let keyData = Object.keys(data[0]);
     console.log("keys", keyData);
     let valueData = Object.values(data[0]);
     let coverageData = {};
+    let wholeData = {};
     let column = {};
     let row = [];
+    let piePrefix = data[0].total;
+
+    let headData = [
+      {
+        name: "lines",
+        value: piePrefix.lines.covered / piePrefix.lines.total * 100
+      },
+      {
+        name: "branches",
+        value: piePrefix.branches.covered / piePrefix.branches.total * 100
+      },
+      {
+        name: "functions",
+        value: piePrefix.functions.covered / piePrefix.functions.total * 100
+      },
+      {
+        name: "statements",
+        value: piePrefix.statements.covered / piePrefix.statements.total * 100
+      }
+    ];
+    this.setState({
+        hData: headData
+    })
+
     for (let i = 1; i < valueData.length; i++) {
       coverageData = {
         name: keyData[i],
-        progress: valueData[i].statements.covered / valueData[i].statements.total * 100,
-        lines: valueData[i].lines.covered / valueData[i].lines.total * 100,
-        branches: valueData[i].branches.covered / valueData[i].branches.total * 100,
-        functions: valueData[i].functions.covered / valueData[i].functions.total * 100,
-        statements: valueData[i].statements.covered / valueData[i].statements.total * 100
+        progress: (
+          valueData[i].statements.covered /
+          valueData[i].statements.total *
+          100
+        ).toFixed(2),
+        lines:
+          (valueData[i].lines.covered / valueData[i].lines.total * 100).toFixed(
+            2
+          ) + `${"%"}`,
+        branches:
+          (
+            valueData[i].branches.covered /
+            valueData[i].branches.total *
+            100
+          ).toFixed(2) + `${"%"}`,
+        functions:
+          (
+            valueData[i].functions.covered /
+            valueData[i].functions.total *
+            100
+          ).toFixed(2) + `${"%"}`,
+        statements:
+          (
+            valueData[i].statements.covered /
+            valueData[i].statements.total *
+            100
+          ).toFixed(2) + `${"%"}`
       };
       row.push(coverageData);
     }
@@ -92,46 +137,24 @@ export default class TSLintReport extends Component {
     });
   }
 
-  pBar = () => {
-    return (
-      <div>
-        <ProgressBarComponent data={this.state.rowData} />
-      </div>
-    );
-  };
-
   render() {
     const tableStyle = {
       color: "white"
     };
+    console.log("this.state.rowadta", this.state.rowData);
     return (
-      // <div>hello</div>
-      //   <div style={tableStyle}>
-      <div
-        className="ag-theme-balham"
-        style={{
-          height: "500px",
-          width: "90%"
-        }}
-      >
-        <AgGridReact
-          rowData={this.state.rowData}
-          suppressRowClickSelection
-          rowSelection="multiple"
-          enableColResize
-          enableSorting
-          enableFilter
-          groupHeaders
-        >
-          <AgGridColumn field="name" width={135} />
-          <AgGridColumn field="progress" width={135} enableValue cellRendererFramework={ProgressBarComponent} />          
-          <AgGridColumn field="lines" width={135} />
-          <AgGridColumn field="branches" width={135} />
-          <AgGridColumn field="functions" width={135} />
-          <AgGridColumn field="statements" width={135} />
-        </AgGridReact>
-      </div>
-      //   </div>
+      <React.Fragment>
+        <Row className="coverage-row-group col-container">
+          <Col md={12} className="coverage-col">
+            <CoverageComponentPie headData={this.state.hData} />
+          </Col>
+        </Row>
+        <Row className="coverage-row-group col-container">
+          <Col md={12} className="coverage-col">
+            <CoverageComponentTable rowD={this.state.rowData} />
+          </Col>
+        </Row>
+      </React.Fragment>
     );
   }
 }

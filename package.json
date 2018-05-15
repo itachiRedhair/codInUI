@@ -7,7 +7,9 @@
     "test": "SET NODE_ENV=test && jest",
     "webpack-watch": "webpack --mode development",
     "start": "webpack-dev-server --color --progress --hot",
-    "dev": "webpack-dev-server --color --progress --hot --mode development"
+    "dev": "webpack-dev-server --host localhost --color --progress --hot --mode development",
+    "office": "webpack-dev-server --host 10.29.9.61 --color --progress --hot --mode office"
+    
   },
   "keywords": [],
   "author": "",

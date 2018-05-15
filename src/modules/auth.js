@@ -74,7 +74,6 @@ export const userLogIn = (email, password) => (dispatch, getState) => {
       .then(response => {
         dispatch(setLoadingStatus(false));
         if (response) {
-            console.log("response of login ", response);
           dispatch(login(response._id));
           resolve(true);
         } else {

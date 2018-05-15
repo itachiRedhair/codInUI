@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { authReducer, loaderReducer, projectReducer, typeaheadReducer, modalReducer, contributorReducer } from "./../modules";
+import { authReducer, loaderReducer, projectReducer, typeaheadReducer, modalReducer, contributorReducer, reportReducer } from "./../modules";
 
 export default combineReducers({
   authReducer,
@@ -8,5 +8,6 @@ export default combineReducers({
   projectReducer,
   typeaheadReducer,
   modalReducer,
-  contributorReducer
+  contributorReducer,
+  reportReducer
 });

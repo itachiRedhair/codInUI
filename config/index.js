@@ -13,7 +13,8 @@ const config = {
 config.env = {
   DEV: config.environment === "development",
   PROD: config.environment === "production",
-  TEST: config.environment === "test"
+  TEST: config.environment === "test",
+  OFFICE: config.environment === "office"
 };
 
 module.exports = config;

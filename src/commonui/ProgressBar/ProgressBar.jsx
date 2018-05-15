@@ -6,12 +6,19 @@ import "./ProgressBar.scss";
 
 export default class ProgressBarComponent extends Component {
   render() {
-    console.log(
-      "-*----this.props in progress bar component-------",
-      this.props
+    let backGround;
+    if (this.props.value <= 20) {
+      backGround = "danger";
+    } else if (this.props.value <= 60) {
+      backGround = "warning";
+    } else {
+      backGround = "success";
+    }
+ 
+    return (
+      <div>
+        <ProgressBar bsStyle={backGround} active now={this.props.value} />
+      </div>
     );
-    return <div>
-        <ProgressBar active now={this.props.value} />
-    </div>;
   }
 }
