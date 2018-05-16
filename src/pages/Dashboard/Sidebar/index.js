@@ -4,12 +4,14 @@ import { connect } from "react-redux";
 //action creators
 import { createProject, showProject, setProjectId } from "./../../../modules/project";
 import { setModalState } from "./../../../modules/modalState";
+import { listTslintReport } from "./../../../modules/report";
 
 const mapDispatchToProps = {
   createProject,
   showProject,
   setModalState,
-  setProjectId
+  setProjectId,
+  listTslintReport
 };
 
 const mapStateToProps = state => {

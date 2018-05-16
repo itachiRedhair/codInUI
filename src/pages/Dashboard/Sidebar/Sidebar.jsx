@@ -48,13 +48,13 @@ export default class Sidebar extends Component {
 
   componentDidMount() {
     this.props.showProject();
-    getUserProject()
-      .then(response => {
-        this.props.setProjectId(response[1]._id);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // getUserProject()
+    //   .then(response => {
+    //     this.props.setProjectId(response[1]._id);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
     getUser()
       .then(response => {
         this.setState({
@@ -80,6 +80,7 @@ export default class Sidebar extends Component {
       //   projectId: e.target.getAttribute('value'),
       showProjectDropdownContent: false
     });
+    this.props.listTslintReport(e.target.getAttribute("value"), "week");
     this.props.setProjectId(e.target.getAttribute("value"));
   };
 

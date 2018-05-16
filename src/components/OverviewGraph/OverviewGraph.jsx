@@ -17,40 +17,22 @@ class OverviewGraph extends Component {
       chartData: [],
       chartDays: [],
       tOptions: {}
-    }
+    };
   }
 
-  componentDidMount() {
-    console.log('componentDidMount: called', this.state.projectId);
-    getUserProject().then(response => {
-      this.setState({
-        projectId: response[1]._id
-      });
-      if (this.state.projectId) {
-        this.props.listTslintReport(this.state.projectId, "week").then(response => {
-          let tsLintData = [];
-          let tsLintDays = [];
-          for (let i = 0; i < response.length; i++) {
-            if (response[i].summary) {
-              tsLintData.push(response[i].summary.total);
-              tsLintDays.push(new Date(response[i].meta.submitted_at).toDateString());
-            }
-          }
-          this.setState({
-            chartData: tsLintData,
-            chartDays: tsLintDays,
-            reportData: response
-          })
-        });
-
-      }
-    });
-
+  componentDidMount() {    
   }
-
 
   render() {
-    console.log('[OverviewGraph.jsx] render: called')
+    console.log("[OverviewGraph.jsx] render: called");
+    let tsLintData = [];
+    let tsLintDays = [];
+    for (let i = 0; i < this.props.reportList.length; i++) {
+      if (this.props.reportList[i].summary) {
+        tsLintData.push(this.props.reportList[i].summary.total);
+        tsLintDays.push(new Date(this.props.reportList[i].meta.submitted_at).toDateString());
+      }
+    }
     const tempOptions = {
       tooltip: {
         trigger: "axis"
@@ -72,7 +54,7 @@ class OverviewGraph extends Component {
           }
         },
         boundaryGap: false,
-        data: this.state.chartDays
+        data: tsLintDays
       },
       yAxis: {
         type: "value",
@@ -86,14 +68,12 @@ class OverviewGraph extends Component {
         {
           name: "TSLint Errors",
           type: "line",
-          data: this.state.chartData
+          data: tsLintData
         }
       ]
     };
-    if (this.state.chartData.length === 0) {
-      return (
-        <div>Echarts should be here</div>
-      );
+    if (tsLintDays.length === 0) {
+      return <div>Echarts should be here</div>;
     } else {
       return (
         <EchartCard
