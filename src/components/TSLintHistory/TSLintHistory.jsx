@@ -9,7 +9,7 @@ const tempOptions = {
   tooltip: {
     trigger: "axis"
   },
-  legend: {
+  legend: { 
     textStyle: {
       color: "white"
     },

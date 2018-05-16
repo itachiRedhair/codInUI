@@ -10,34 +10,35 @@ import "./EchartCard.scss";
 class EchartCards extends Component {
   constructor(props) {
     super(props);
-
     this.containerElement = React.createRef();
     this.state = {
-      child: null
+      child: null,
+      echartWidth: ""
     };
   }
 
   componentDidMount() {
     let { echartWidth, title, ...echartProps } = this.props;
-
     if (this.props.autoSize) {
       const width = this.containerElement.current.clientWidth;
       echartWidth = `${width * 0.95}px`;
+      this.setState({
+        echartWidth
+      })
     }
-
-    const child = <Echart {...echartProps} width={echartWidth} />;
-
-    this.setState({ child });
   }
 
   render() {
-    return (
+    let { echartWidth, title, ...echartProps } = this.props;
+    const child = <Echart {...echartProps} width={this.state.echartWidth} />;
+    console.log("[EchartCard.jsx]:render called");
+    return ( 
       <div ref={this.containerElement} className="echart-card-container">
         <Card
           {...this.props}
           title={this.props.title ? this.props.title : "Card Title"}
         >
-          {this.state.child}
+          {child}
         </Card>
       </div>
     );

@@ -25,12 +25,12 @@ export default class Overview extends Component {
           </Col>
         </Row>
         <Row className="overview-row-group col-container">
-          <Col md={5} className="overview-col">
+          <Col md={7} className="overview-col">
             <TSLintSummary />
           </Col>
-          <Col md={2} className="overview-col">
+          {/* <Col md={2} className="overview-col">
             <CoverageSummary />
-          </Col>
+          </Col> */}
           <Col md={5} className="overview-col">
             <RecentSubmits />
           </Col>

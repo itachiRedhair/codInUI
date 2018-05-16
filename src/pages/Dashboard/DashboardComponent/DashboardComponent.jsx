@@ -16,10 +16,10 @@ export default class DashboardComponent extends Component {
         <div className="dashboard-container">
           <Navbar />
           <Row className="dashboard-row-container">
-            <Col md={2} className="sidebar-container responsive">
+            <Col md={3} className="sidebar-container responsive">
               <Sidebar />
             </Col>
-            <Col md={10} className="dashboard-content-container">
+            <Col md={9} className="dashboard-content-container">
               <Content />
             </Col>
           </Row>

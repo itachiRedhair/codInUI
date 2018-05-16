@@ -121,25 +121,47 @@ export default class Sidebar extends Component {
       this.props.projects.map(project => {
         if (project.created_by == this.state.userDataId) {
           projects.push(
-            <div
-              key={project._id}
-              value={project._id}
-              style={setHeight}
-              onClick={this.handleClicked}
-            >
-              {project.name}
-            </div>
+            <li>
+              <NavLink
+                key={project._id}
+                value={project._id}
+                style={setHeight}
+                onClick={this.handleClicked}
+                to="/dashboard/overview"                
+              >
+                {project.name}
+              </NavLink>
+            </li>
+            // <div
+            //   key={project._id}
+            //   value={project._id}
+            //   style={setHeight}
+            //   onClick={this.handleClicked}
+            // >
+            //   {project.name}
+            // </div>
           );
         } else {
           contributorProjects.push(
-            <div
-              key={project._id}
-              value={project._id}
-              style={setHeight}
-              onClick={this.handleClicked}
-            >
-              {project.name}
-            </div>
+            <li>
+              <NavLink
+                key={project._id}
+                value={project._id}
+                style={setHeight}
+                onClick={this.handleClicked}
+                to="/dashboard/overview"
+              >
+                {project.name}
+              </NavLink>
+            </li>
+            // <div
+            //   key={project._id}
+            //   value={project._id}
+            //   style={setHeight}
+            //   onClick={this.handleClicked}
+            // >
+            //   {project.name}
+            // </div>
           );
         }
       });
@@ -168,7 +190,7 @@ export default class Sidebar extends Component {
                 {this.state.isProjectSelected && projects.length != 0
                   ? this.state.selectedProject
                   : !this.state.isProjectSelected && projects.length != 0
-                    ? projects[0]
+                    ? "Your Projects"
                     : addProject}
               </div>
               <div className="collaborator">
@@ -183,32 +205,40 @@ export default class Sidebar extends Component {
           {this.state.showProjectDropdownContent ? (
             <i className="fas fa-caret-up project-dropdown-icon" />
           ) : (
-            <i className="fas fa-caret-down project-dropdown-icon" />
-          )}
+              <i className="fas fa-caret-down project-dropdown-icon" />
+            )}
         </div>
         <div
           className={`project-dropdown-content ${
             this.state.showProjectDropdownContent ? "reveal" : ""
-          }`}
+            }`}
         >
           <div className="sub-heading">Your Projects</div>
           <div
             className={`${projects.length >= 3 ? "project-list-scroll" : ""}`}
           >
-            <div>{projects}</div>
+            <div>
+              <ul>
+                {projects}
+              </ul>
+            </div>
           </div>
           <div className="sub-heading">As Contributor</div>
           <div
             className={`${projects.length >= 3 ? "project-list-scroll" : ""}`}
           >
-            <div>{contributorProjects}</div>
+            <div>
+              <ul>
+                {contributorProjects}
+              </ul>
+            </div>
           </div>
           {projects.length != 0 ? addProject : ""}
         </div>
         <div
           className={`nav-container responsive ${
             this.state.showProjectDropdownContent ? "reveal" : ""
-          }`}
+            }`}
         >
           <nav className="menu">
             <ul className="sidebar-menu metismenu" id="sidebar-menu">

@@ -193,9 +193,8 @@ export const getReport = (projectId, duration) => {
   }/v1/report/tslint/${projectId}/summary/${duration}`;
   const options = {
     method: "GET",
-    credentials: "include"
+    credentials: "include" 
   };
-  console.log("url", url);
   return fetch(url, options)
     .then(response => {
       return response.json();

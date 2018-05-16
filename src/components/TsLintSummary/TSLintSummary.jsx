@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+var _ = require('lodash');
 import { Row, Col } from "react-bootstrap";
 
 //Components imports
@@ -8,58 +9,85 @@ import Card from "./../../commonui/Card";
 //Styles imports
 import "./TSLintSummary.scss";
 
-const tempOptions = {
-  tooltip: {
-    trigger: "item",
-    formatter: "{c}"
-  },
-  grid: {
-    height: "100%",
-    width: "100%"
-  },
-  series: [
-    {
-      type: "pie",
-      radius: "80%",
-      center: ["50%", "50%"],
-      data: [
-        { value: 335, name: "semicolon" },
-        { value: 310, name: "eofline" },
-        { value: 234, name: "whitespace" }
-      ],
-      label: {
-        // show: false,
-        position: "inside"
-      },
-      itemStyle: {
-        emphasis: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: "rgba(0, 0, 0, 0.5)"
+export default class TSLintSummary extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+
+    let summaryData = [];
+    let len = this.props.reportList.length;
+    let errorCountData = [];
+    let totalErrorCount = "";
+    if (len > 0) {
+      totalErrorCount = this.props.reportList[len - 1].summary.total;
+      let recentData = this.props.reportList[len - 1].summary.errorCounts;
+      let keys = Object.keys(recentData);
+      let values = Object.values(recentData);
+      let errLen = Math.min(5, keys.length);
+      for(let i=0; i<errLen; i++){
+        let eData = {
+          value: values[i],
+          name: keys[i]
         }
+        errorCountData.push(eData);
       }
     }
-  ]
-};
 
-export default class TSLintSummary extends Component {
-  render() {
-    return (
-      <Card title="TSLint Summary">
-        <div className="tslint-summary-container">
-          <Row className="tslint-summary">
-            <Col md={4} className="error-number-container">
-              <div className="digit">
-                <div className="error-number">6</div>
-                <div>Errors</div>
-              </div>
-            </Col>
-            <Col md={8}>
-              <Echart width="185px" height="185px" options={tempOptions} />
-            </Col>
-          </Row>
-        </div>
-      </Card>
-    );
+    const tempOptions = {
+      tooltip: {
+        trigger: "item",
+        formatter: "{c}"
+      },
+      grid: {
+        height: "100%",
+        width: "100%"
+      },
+      series: [
+        {
+          type: "pie",
+          radius: "80%",
+          center: ["50%", "50%"],
+          data: errorCountData,
+          label: {
+            // show: false,
+            position: "outside"
+          },
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: "rgba(0, 0, 0, 0.5)"
+            }
+          }
+        }
+      ]
+    };
+
+    if(errorCountData.length === 0){
+      return <div>Echarts should be here</div>;
+    }
+else {
+  return (
+    <Card title="TSLint Summary">
+      <div className="tslint-summary-container">
+        <Row className="tslint-summary">
+          <Col md={4} className="error-number-container">
+            <div className="digit">
+              <div className="error-number">{totalErrorCount}</div>
+              <div>Errors</div>
+            </div>
+          </Col>
+          <Col md={8}>
+            <Echart width="185px" height="185px" options={tempOptions} />
+          </Col>
+        </Row>
+      </div>
+    </Card>
+  );
+}
+    
   }
 }

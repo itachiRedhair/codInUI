@@ -22,6 +22,7 @@ export const listTslintReport = (projectId, duration) => (dispatch, getState) =>
   new Promise((resolve, reject) => {
     getReport(projectId, duration)
       .then(response => {
+        console.log("---response--",response);
         if (response) {
           dispatch(showReport(response));
           resolve(response);
