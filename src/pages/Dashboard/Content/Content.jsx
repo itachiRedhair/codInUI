@@ -6,7 +6,7 @@ import Overview from "./../Overview";
 import TSLintReport from "./../TSLintReport";
 import Coverage from "./../Coverage";
 import DashboardComponent from "./../DashboardComponent";
-import Landing from "./../Landing";
+// import Landing from "./../Landing";
 
 //Styles imports
 import "./Content.scss";

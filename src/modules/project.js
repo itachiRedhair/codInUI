@@ -72,6 +72,7 @@ export const showProject = () => (dispatch, getState) => {
     getUserProject()
       .then(response => {
         if (response) {
+            console.log("checking response for sidebar",response);
           dispatch(listProject(response));
           resolve(response);
         } else {
@@ -133,10 +134,10 @@ const ACTION_HANDLERS = {
     ...state,
     projectName: action.payload
   }),
-  [SHOW_USER_PROJECT]: (state, action) => ({
-    ...state,
-    submitList: action.payload
-  })
+//   [SHOW_USER_PROJECT]: (state, action) => ({
+//     ...state,
+//     submitList: action.payload
+//   })
 };
 
 // ------------------------------------

@@ -47,6 +47,7 @@ export default class Sidebar extends Component {
   }
 
   componentDidMount() {
+      console.log("[Component did mount]");
     this.props.showProject();
     // getUserProject()
     //   .then(response => {
@@ -117,6 +118,7 @@ export default class Sidebar extends Component {
     var rows = [];
     let projects = [];
     let contributorProjects = [];
+    console.log("jkdasdasd",this.props.projects);
     if (this.props.projects.length !== 0) {
       this.props.projects.map(project => {
         if (project.created_by == this.state.userDataId) {

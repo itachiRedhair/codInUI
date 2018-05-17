@@ -31,7 +31,6 @@ class EchartCards extends Component {
   render() {
     let { echartWidth, title, ...echartProps } = this.props;
     const child = <Echart {...echartProps} />;
-    console.log("[EchartCard.jsx]:render called");
     return (
       <div ref={this.containerElement} className="echart-card-container">
         <Card

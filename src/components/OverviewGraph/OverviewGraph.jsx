@@ -24,7 +24,6 @@ class OverviewGraph extends Component {
   }
 
   render() {
-    console.log("[OverviewGraph.jsx] render: called");
     let tsLintData = [];
     let tsLintDays = [];
     for (let i = 0; i < this.props.reportList.length; i++) {
