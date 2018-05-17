@@ -1,3 +1,6 @@
+@import "../../../styles/_theme.scss";
+
+
 .dashboard-container {
   overflow: hidden;
   margin: 0;
@@ -23,4 +26,11 @@
   .sidebar-container.responsive {
     height: auto;
   }
+}
+
+.landing-container {
+  padding: 2em;
+  background: $content-bg;
+  overflow-y: scroll;
+  height: 100vh;
 }

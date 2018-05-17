@@ -7,9 +7,13 @@ import { projectRegisterRequest, getUserProject } from "./../utilities/api";
 // ------------------------------------
 // Constants
 // ------------------------------------
+
 export const PROJECT_REGISTER = "PROJECT_REGISTER";
 export const SHOW_USER_PROJECT = "SHOW_USER_PROJECT";
 export const SET_PROJECT_ID = "SET_PROJECT_ID";
+export const SET_PROJECT_NAME = "SET_PROJECT_NAME";
+export const SHOW_SUBMIT_LIST = "SHOW_SUBMIT_LIST";
+
 // ------------------------------------
 // Action Creators
 // ------------------------------------
@@ -24,10 +28,20 @@ const listProject = projects => ({
   payload: projects
 });
 
+const showSubmits = list => ({
+  type: SHOW_SUBMIT_LIST,
+  payload: list
+})
+
 export const setProjectId = projectId => ({
   type: SET_PROJECT_ID,
   payload: projectId
 });
+
+export const setProjectName = projectName => ({
+  type: SET_PROJECT_NAME,
+  payload: projectName
+})
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
@@ -54,17 +68,43 @@ export const createProject = name => (dispatch, getState) => {
 };
 
 export const showProject = () => (dispatch, getState) => {
-  getUserProject()
-    .then(response => {
-      if (response) {
-        dispatch(listProject(response));
-      } else {
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  return new Promise((resolve, reject) => {
+    getUserProject()
+      .then(response => {
+        if (response) {
+          dispatch(listProject(response));
+          resolve(response);
+        } else {
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 };
+
+export const submissionList = projectId => (dispatch, getState) => {
+  return new Promise((resolve, reject) => {
+    dispatch(setLoadingStatus(true));
+    getRecentSubmits(projectId)
+      .then(response => {
+        console.log("submission response", response);
+        dispatch(setLoadingStatus(false));
+        if (response) {
+          dispatch(showSubmits(response));
+          resolve(response);
+        } else {
+          resolve(false);
+        }
+      })
+      .catch(err => {
+        dispatch(setLoadingStatus(false));
+        console.log(err);
+        resolve(false);
+      });
+  });
+};
+
 
 export const actions = {
   createProject,
@@ -88,6 +128,14 @@ const ACTION_HANDLERS = {
   [SET_PROJECT_ID]: (state, action) => ({
     ...state,
     projectId: action.payload
+  }),
+  [SET_PROJECT_NAME]: (state, action) => ({
+    ...state,
+    projectName: action.payload
+  }),
+  [SHOW_USER_PROJECT]: (state, action) => ({
+    ...state,
+    submitList: action.payload
   })
 };
 
@@ -98,7 +146,9 @@ const ACTION_HANDLERS = {
 const initialState = {
   isProjectUploaded: false,
   projects: [],
-  projectId: ""
+  submitList: [],
+  projectId: "",
+  projectName: ""
 };
 
 export default (state = initialState, action) => {

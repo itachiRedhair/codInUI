@@ -16,7 +16,7 @@ export default class Content extends Component {
     return (
       <div className="content-container">
         <Switch>
-          <Route exact path="/dashboard" component={Landing}/>
+          {/* <Route exact path="/dashboard" component={Landing}/> */}
           <Route exact path="/dashboard/overview" component={Overview} />
           <Route exact path="/dashboard/tslint" component={TSLintReport} />
           <Route exact path="/dashboard/coverage" component={Coverage} />          

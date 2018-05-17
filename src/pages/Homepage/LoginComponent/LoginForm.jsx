@@ -36,7 +36,7 @@ class LoginComponent extends Component {
     this.props
       .userLogIn(this.state.email, this.state.password)
       .then(isLoggedIn => {
-        if (isLoggedIn) this.props.history.push("/dashboard");
+        if (isLoggedIn) this.props.history.push("/landing");
         else this.setState({ loginFailed: true });
       });
   };

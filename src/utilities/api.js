@@ -203,3 +203,18 @@ export const getReport = (projectId, duration) => {
       throw new Error("Loading Reports Failed");
     });
 };
+
+export const getRecentSubmits = projectId => {
+  const url = `${constants.API_URL}/v1/project/${projectId}/submissions`;
+  const options = {
+    method: "GET",
+    credentials: "include"
+  };
+  return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Loading List of Submissions Failed");
+    });
+};

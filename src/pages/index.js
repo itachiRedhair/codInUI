@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import PrivateRoute from "./../components/PrivateRoute";
 import Homepage from "./Homepage";
 import Dashboard from "./Dashboard";
+import LandingComponent from "./Dashboard/LandingComponent"
 import Loader from "./../components/Loader";
 
 //ActionCreatorImports
@@ -35,7 +36,7 @@ class App extends Component {
         });
         if (response.message !== "UNAUTHORIZED") {
           this.props.login();
-          this.props.history.push("/dashboard");
+          this.props.history.push("/landing");
         }
         this.props.setLoadingStatus(false);
       })
@@ -54,7 +55,8 @@ class App extends Component {
           <Switch>
             <Route exact key="login" path="/" component={Homepage} />
             <Route exact key="signup" path="/signup" component={Homepage} />
-            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/landing" component={LandingComponent} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />            
           </Switch>
         </div>
       </React.Fragment>

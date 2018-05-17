@@ -132,14 +132,6 @@ export default class Sidebar extends Component {
                 {project.name}
               </NavLink>
             </li>
-            // <div
-            //   key={project._id}
-            //   value={project._id}
-            //   style={setHeight}
-            //   onClick={this.handleClicked}
-            // >
-            //   {project.name}
-            // </div>
           );
         } else {
           contributorProjects.push(
@@ -154,14 +146,6 @@ export default class Sidebar extends Component {
                 {project.name}
               </NavLink>
             </li>
-            // <div
-            //   key={project._id}
-            //   value={project._id}
-            //   style={setHeight}
-            //   onClick={this.handleClicked}
-            // >
-            //   {project.name}
-            // </div>
           );
         }
       });
@@ -176,10 +160,6 @@ export default class Sidebar extends Component {
 
     return (
       <div className="sidebar">
-        {/* <div className="sidebar-header">
-          <span>Cod</span>
-          <span>In</span>
-        </div> */}
         <div className="project-info">
           <div className="project-content">
             <div
@@ -190,7 +170,7 @@ export default class Sidebar extends Component {
                 {this.state.isProjectSelected && projects.length != 0
                   ? this.state.selectedProject
                   : !this.state.isProjectSelected && projects.length != 0
-                    ? "Your Projects"
+                    ? this.props.projectName
                     : addProject}
               </div>
               <div className="collaborator">
