@@ -13,26 +13,26 @@ class EchartCards extends Component {
     this.containerElement = React.createRef();
     this.state = {
       child: null,
-      echartWidth: ""
+      echartWidth: null
     };
   }
 
   componentDidMount() {
-    let { echartWidth, title, ...echartProps } = this.props;
-    if (this.props.autoSize) {
-      const width = this.containerElement.current.clientWidth;
-      echartWidth = `${width * 0.95}px`;
-      this.setState({
-        echartWidth
-      })
-    }
+    // let { echartWidth, title, ...echartProps } = this.props;
+    // if (this.props.autoSize) {
+    //   const width = this.containerElement.current.clientWidth;
+    //   echartWidth = `${width * 0.95}px`;
+    //   this.setState({
+    //     echartWidth
+    //   })
+    // }
   }
 
   render() {
     let { echartWidth, title, ...echartProps } = this.props;
-    const child = <Echart {...echartProps} width={this.state.echartWidth} />;
+    const child = <Echart {...echartProps} />;
     console.log("[EchartCard.jsx]:render called");
-    return ( 
+    return (
       <div ref={this.containerElement} className="echart-card-container">
         <Card
           {...this.props}

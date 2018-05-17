@@ -1,3 +1,37 @@
+@import "../../../styles/_theme.scss";
+
 .landing-container {
-    color: white;
+  color: white;
+  align-items: center;
+}
+.newsfeed-placeholder {
+  border: 2px dashed rgba(27, 31, 35, 0.3);
+  border-radius: 5px;
+}
+.p-5 {
+  padding: 32px !important;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.lh-condensed {
+  line-height: 1.25 !important;
+}
+.btn {
+  background: $theme-color;
+  color: white;
+}
+.tab-container {
+    width: 50%;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: $primary-text;
+    cursor: default;
+    background-color: $theme-color;
+    border: 1px solid $theme-color;
+    border-bottom-color: transparent;
+}
+.nav-tabs {
+    border-bottom: 1px solid $theme-color;
 }

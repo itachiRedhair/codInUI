@@ -269,27 +269,6 @@ export default class Sidebar extends Component {
                   <i className="fa fa-file-text-o" /> Coverage Report
                 </NavLink>
               </li>
-              <li className="active open">
-                <NavLink
-                  activeStyle={navLinkActiveStyle}
-                  to="/dashboard/side-report"
-                >
-                  <i className="fa fa-file-text-o" /> Side Report
-                </NavLink>
-              </li>
-              <div className="report-container">
-                <div className="reports">Application</div>
-              </div>
-              <li className="active open bb">
-                <a href="">
-                  <i className="fa fa-file-text-o" /> Feedback
-                </a>
-              </li>
-              <li className="active open">
-                <a href="">
-                  <i className="fa fa-cog" /> Settings
-                </a>
-              </li>
             </ul>
           </nav>
           {this.state.showProjectModal && (
