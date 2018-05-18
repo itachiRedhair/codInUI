@@ -6,7 +6,28 @@ import Card from "./../../commonui/Card";
 import "./RecentSubmits.scss";
 
 export default class RecentSubmit extends Component {
+
+
+  componentDidMount() {
+    this.props.submissionList(this.props.projectId);
+  }
+
   render() {
+
+    let recentSubmits = []
+    if (this.props.submitList.length > 0) {
+      let response = this.props.submitList;
+      for (let i = 0; i < response.length; i++) {
+        let divElement =
+        <tr>
+          <td>{response[i].meta.submitted_by.name}</td>
+          <td>{new Date(response[i].meta.submitted_at).toString()}</td>
+          <td>9.2</td>
+        </tr>
+        recentSubmits.push(divElement);
+      }
+    }
+
     return (
       <Card title="Recent Submits">
         <Table className="recent-submit-table" responsive>
@@ -18,21 +39,7 @@ export default class RecentSubmit extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Prajapati Murali</td>
-              <td>Today 2:30pm(IST)</td>
-              <td>9.2</td>
-            </tr>
-            <tr>
-              <td>Bhalo Souvik</td>
-              <td>Yesterday 8:30pm(IST)</td>
-              <td>9.2</td>
-            </tr>
-            <tr>
-              <td>Zundana Anand</td>
-              <td>4/23/2018 4:20am(IST)</td>
-              <td>9.2</td>
-            </tr>
+            {recentSubmits}
           </tbody>
         </Table>
       </Card>

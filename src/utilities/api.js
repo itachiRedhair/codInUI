@@ -96,9 +96,10 @@ export const signUpRequest = ({ name, email, password, confirm }) => {
     });
 };
 
-export const projectRegisterRequest = projectNamee => {
+export const projectRegisterRequest = (projectNamee, projectType) => {
   const url = `${constants.API_URL}/v1/project/register`;
   const name = projectNamee;
+  const type = projectType;
   const options = {
     headers: getHeaders(),
     method: "POST",
@@ -191,6 +192,23 @@ export const getReport = (projectId, duration) => {
   const url = `${
     constants.API_URL
   }/v1/report/tslint/${projectId}/summary/${duration}`;
+  const options = {
+    method: "GET",
+    credentials: "include" 
+  };
+  return fetch(url, options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      throw new Error("Loading Reports Failed");
+    });
+};
+
+export const getReportDetails = (projectId, duration) => {
+  const url = `${
+    constants.API_URL
+  }/v1/report/tslint/${projectId}/details/${duration}`;
   const options = {
     method: "GET",
     credentials: "include" 

@@ -5,7 +5,9 @@ import {
   ModalBody,
   ModalHeader,
   MenuItem,
-  ModalFooter
+  ModalFooter,
+  DropdownButton,
+  ButtonToolbar
 } from "react-bootstrap";
 
 //Component imports
@@ -41,13 +43,14 @@ export default class Sidebar extends Component {
       showCollaboratorModal: false,
       isProjectSelected: false,
       projectName: "",
+      projectType: "Choose Type",
       isProjectCreated: false,
       userDataId: ""
     };
   }
 
   componentDidMount() {
-      console.log("[Component did mount]");
+    console.log("[Component did mount]");
     this.props.showProject();
     // getUserProject()
     //   .then(response => {
@@ -100,6 +103,10 @@ export default class Sidebar extends Component {
   };
 
   handleNameChange = e => this.setState({ projectName: e.target.value });
+  handleTypeChange = e => {
+    console.log("type change", e.target.getAttribute('value'));
+    this.setState({ projectType: e.target.getAttribute('value') })
+  }
 
   addProject = () => {
     this.props.createProject(this.state.projectName).then(projectCreated => {
@@ -118,7 +125,6 @@ export default class Sidebar extends Component {
     var rows = [];
     let projects = [];
     let contributorProjects = [];
-    console.log("jkdasdasd",this.props.projects);
     if (this.props.projects.length !== 0) {
       this.props.projects.map(project => {
         if (project.created_by == this.state.userDataId) {
@@ -129,7 +135,7 @@ export default class Sidebar extends Component {
                 value={project._id}
                 style={setHeight}
                 onClick={this.handleClicked}
-                to="/dashboard/overview"                
+                to="/dashboard/overview"
               >
                 {project.name}
               </NavLink>
@@ -152,6 +158,14 @@ export default class Sidebar extends Component {
         }
       });
     }
+
+    const profileDropdown = {
+      background: "transparent",
+      color: "green",
+      border: "#d7dde4",
+      boxShadow: "none",
+      marginLeft: "-1rem"
+    };
 
     const addProject = (
       <div className="add-project" onClick={this.showProjectModal}>
@@ -269,6 +283,15 @@ export default class Sidebar extends Component {
                   value={projectName}
                   onChange={this.handleNameChange}
                 />
+                <DropdownButton
+                  style={profileDropdown}
+                  title={this.state.projectType}
+                  key="1"
+                  id={`dropdown-basic-1`}
+                >
+                  <MenuItem eventKey="1" value="angular" onClick={this.handleTypeChange} active>Angular</MenuItem>
+                  <MenuItem eventKey="2" value="react" onClick={this.handleTypeChange}>React</MenuItem>
+                </DropdownButton>
               </ModalBody>
               <ModalFooter>
                 <Button bsStyle="primary" onClick={this.addProject}>

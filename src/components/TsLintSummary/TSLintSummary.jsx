@@ -15,6 +15,10 @@ export default class TSLintSummary extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.listTslintReport(this.props.proj, "recent");
+  }
+
   render() {
     let summaryData = [];
     let len = this.props.reportList.length;
@@ -23,8 +27,8 @@ export default class TSLintSummary extends Component {
     let xAxisData = [];
     let yAxisData = [];
     if (len > 0) {
-      totalErrorCount = this.props.reportList[len - 1].summary.total;
-      let recentData = this.props.reportList[len - 1].summary.errorCounts;
+      totalErrorCount = this.props.reportList[0].summary.total;
+      let recentData = this.props.reportList[0].summary.errorCounts;
       let keys = Object.keys(recentData);
       let values = Object.values(recentData);
       let errLen = Math.min(5, keys.length);
@@ -43,7 +47,6 @@ export default class TSLintSummary extends Component {
         }
         errorCountData.push(eData);
       }
-      console.log("xaxisdata", xAxisData);
     }
 
     const tempOptions = {

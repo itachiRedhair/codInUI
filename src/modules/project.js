@@ -2,7 +2,7 @@
 import { setLoadingStatus } from "./loader.js";
 
 //API imports
-import { projectRegisterRequest, getUserProject } from "./../utilities/api";
+import { projectRegisterRequest, getUserProject, getRecentSubmits } from "./../utilities/api";
 
 // ------------------------------------
 // Constants
@@ -46,10 +46,10 @@ export const setProjectName = projectName => ({
 // Thunk Action Creators
 // ------------------------------------
 
-export const createProject = name => (dispatch, getState) => {
+export const createProject = (name, type) => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
-    projectRegisterRequest(name)
+    projectRegisterRequest(name, type)
       .then(response => {
         dispatch(setLoadingStatus(false));
         if (response) {
@@ -85,11 +85,12 @@ export const showProject = () => (dispatch, getState) => {
 };
 
 export const submissionList = projectId => (dispatch, getState) => {
+  console.log("[inside submissionlis ]")
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
     getRecentSubmits(projectId)
       .then(response => {
-        console.log("submission response", response);
+        console.log("------submission response-------", response);
         dispatch(setLoadingStatus(false));
         if (response) {
           dispatch(showSubmits(response));
@@ -134,10 +135,10 @@ const ACTION_HANDLERS = {
     ...state,
     projectName: action.payload
   }),
-//   [SHOW_USER_PROJECT]: (state, action) => ({
-//     ...state,
-//     submitList: action.payload
-//   })
+  [SHOW_SUBMIT_LIST]: (state, action) => ({
+    ...state,
+    submitList: action.payload
+  })
 };
 
 // ------------------------------------

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import path from "path";
 
 //Components imports
 import Echart from "./../Echart";
@@ -9,7 +10,7 @@ import EchartCard from "./../../components/EchartCard";
 import "./TSLintBar.scss";
 
 const data = [
-  "appComponent.ts",
+  "Component.ts",
   "index.ts",
   "homeComponent.ts",
   "router.service.ts",

@@ -21,6 +21,7 @@ class OverviewGraph extends Component {
   }
 
   componentDidMount() {    
+    this.props.listTslintReport(this.props.projectId, "week");    
   }
 
   render() {

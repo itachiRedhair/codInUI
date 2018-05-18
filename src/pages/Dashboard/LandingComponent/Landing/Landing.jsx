@@ -43,10 +43,10 @@ export default class Landing extends Component {
   }
 
   handleClicked = e => {
-    this.props.listTslintReport(e.target.getAttribute("value"), "week");
+    // this.props.listTslintReport(e.target.getAttribute("value"), "week");
     this.props.setProjectId(e.target.getAttribute("value"));
     this.props.setProjectName(e.target.textContent);
-    // this.props.submissionList(e.target.getAttribute("value"));
+    this.props.submissionList(e.target.getAttribute("value"));
   }
 
   render() {
