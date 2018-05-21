@@ -46,6 +46,7 @@ export const listTslintReport = (projectId, duration) => (dispatch, getState) =>
       .then(response => {
         console.log("---response-of-report details---",response);
         if (response) {
+            console.log("*******************RESPONSE*********", response);
           dispatch(showReportDetails(response));
           resolve(response);
         } else {
@@ -73,7 +74,7 @@ const ACTION_HANDLERS = {
   }),
   [TS_LINT_REPORT_DETAILS]: (state, action) => ({
     ...state,
-    reportListDetails: [...action.payload]
+    reportListDetails: action.payload
   })
 };
 

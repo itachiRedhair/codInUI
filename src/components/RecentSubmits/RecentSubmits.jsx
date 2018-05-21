@@ -17,7 +17,7 @@ export default class RecentSubmit extends Component {
     let recentSubmits = []
     if (this.props.submitList.length > 0) {
       let response = this.props.submitList;
-      for (let i = 0; i < response.length; i++) {
+      for (let i = response.length-1; i > 0; i--) {
         let divElement =
         <tr>
           <td>{response[i].meta.submitted_by.name}</td>

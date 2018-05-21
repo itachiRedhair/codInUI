@@ -58,7 +58,6 @@ export const getCollaborators = (projectId) => (dispatch, getState) => {
         .then(response => {
           dispatch(setLoadingStatus(false));
           if (response) {
-              console.log("-------response-of collaborator----", response);
             dispatch(showCollaborators(response.contributors));
             resolve(true);
           } else {

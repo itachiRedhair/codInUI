@@ -72,7 +72,6 @@ export const showProject = () => (dispatch, getState) => {
     getUserProject()
       .then(response => {
         if (response) {
-            console.log("checking response for sidebar",response);
           dispatch(listProject(response));
           resolve(response);
         } else {
@@ -85,12 +84,10 @@ export const showProject = () => (dispatch, getState) => {
 };
 
 export const submissionList = projectId => (dispatch, getState) => {
-  console.log("[inside submissionlis ]")
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
     getRecentSubmits(projectId)
       .then(response => {
-        console.log("------submission response-------", response);
         dispatch(setLoadingStatus(false));
         if (response) {
           dispatch(showSubmits(response));

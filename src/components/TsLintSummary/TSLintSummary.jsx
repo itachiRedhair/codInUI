@@ -50,20 +50,16 @@ export default class TSLintSummary extends Component {
     }
 
     const tempOptions = {
-      // tooltip: {
-      //   trigger: "item",
-      //   formatter: "{c}"
-      // },
-      // grid: {
-      //   height: "100%",
-      //   width: "100%"
-      // },
       grid: {
         show: false
       },
       xAxis: {
         name: "Errors",
         type: "category",
+        axisLabel: {
+            rotate: -15,
+            color: "white"
+        },
         axisLine: {
           show: false
         },
@@ -72,7 +68,10 @@ export default class TSLintSummary extends Component {
       yAxis: {
         name: "Counts",
         axisLine: {
-          show: false
+            show: true
+          },
+        axisLabel: {
+            color: "white"
         },
         // data: yAxisData
       },
@@ -81,14 +80,9 @@ export default class TSLintSummary extends Component {
           type: "bar",
           xAxisIndex: 0,
           yAxisIndex: 0,
-          data: errorCountData
-          // itemStyle: {
-          //   emphasis: {
-          //     shadowBlur: 10,
-          //     shadowOffsetX: 0,
-          //     shadowColor: "rgba(0, 0, 0, 0.5)"
-          //   }
-          // }
+          data: errorCountData,
+          barWidth: "10px",
+          barCategoryGap: "10"
         }
       ]
     };
@@ -108,7 +102,7 @@ export default class TSLintSummary extends Component {
                 </div>
               </Col>
               <Col md={8}>
-                <Echart width="500px" height="300px" options={tempOptions} />
+                <Echart width="400px" height="300px" options={tempOptions} />
               </Col>
             </Row>
           </div>

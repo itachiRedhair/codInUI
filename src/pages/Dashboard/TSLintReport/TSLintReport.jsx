@@ -32,9 +32,9 @@ export default class TSLintReport extends Component {
           <Col md={12} className="tslint-col">
             <TSLintBar />
           </Col>
-          <Col md={5} className="tslint-col">
+          {/* <Col md={5} className="tslint-col">
             <TSLintSunBurst />
-          </Col>
+          </Col> */}
         </Row>
       </React.Fragment>
     );

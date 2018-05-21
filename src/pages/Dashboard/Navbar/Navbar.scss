@@ -54,9 +54,10 @@
 
 .logo-container {
   color: $primary-text;
-  text-align: center;
+//   text-align: center;
   line-height: 6rem;
   font-size: 4rem;
+  padding-left: 0.74em;
 }
 
 .logo-container span:nth-child(2) {
