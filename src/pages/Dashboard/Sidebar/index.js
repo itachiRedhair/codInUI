@@ -2,7 +2,7 @@ import Sidebar from "./Sidebar.jsx";
 import { connect } from "react-redux";
 
 //action creators
-import { createProject, showProject, setProjectId } from "./../../../modules/project";
+import { createProject, showProject, setProjectId, submissionList } from "./../../../modules/project";
 import { setModalState } from "./../../../modules/modalState";
 import { listTslintReport } from "./../../../modules/report";
 
@@ -11,7 +11,8 @@ const mapDispatchToProps = {
   showProject,
   setModalState,
   setProjectId,
-  listTslintReport
+  listTslintReport,
+  submissionList
 };
 
 const mapStateToProps = state => {

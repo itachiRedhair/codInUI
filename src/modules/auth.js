@@ -69,13 +69,12 @@ export const userLogOut = () => (dispatch, getState) => {
 export const userLogIn = (email, password) => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
-
     loginRequest({ email, password })
       .then(response => {
         dispatch(setLoadingStatus(false));
         if (response) {
           dispatch(login(response._id));
-          resolve(true);
+          resolve(response);
         } else {
           resolve(false);
         }

@@ -32,7 +32,6 @@ export default class Collaborator extends Component {
   }
 
   componentDidMount = () => {
-      console.log("this.props.projectIdstate",this.props.projectIdState);
     this.props.getCollaborators(this.props.projectIdState);
   };
 
@@ -44,7 +43,6 @@ export default class Collaborator extends Component {
   };
 
   _handleSearch = query => {
-      console.log("---------query in collaborator----------", query);
     this.setState({ isLoading: true });
     this.props.userSuggestions(query);
     var options = this.props.names;

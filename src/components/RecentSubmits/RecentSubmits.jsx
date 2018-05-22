@@ -7,17 +7,15 @@ import "./RecentSubmits.scss";
 
 export default class RecentSubmit extends Component {
 
-
   componentDidMount() {
     this.props.submissionList(this.props.projectId);
   }
 
   render() {
-
     let recentSubmits = []
     if (this.props.submitList.length > 0) {
       let response = this.props.submitList;
-      for (let i = response.length-1; i > 0; i--) {
+      for (let i = response.length-1; i >= 0; i--) {
         let divElement =
         <tr>
           <td>{response[i].meta.submitted_by.name}</td>

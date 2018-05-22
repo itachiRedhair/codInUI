@@ -3,9 +3,11 @@ import Landing from "./Landing.jsx";
 import { connect } from "react-redux";
 
 //action creators
-import { createProject, showProject, setProjectId, setProjectName, submissionList } from "./../../../../modules/project";
+import { createProject, showProject, setProjectId, setProjectName } from "./../../../../modules/project";
 import { setModalState } from "./../../../../modules/modalState";
 import { listTslintReport } from "./../../../../modules/report";
+import { recentList } from "./../../../../modules/recent";
+
 
 const mapDispatchToProps = {
   createProject,
@@ -13,8 +15,8 @@ const mapDispatchToProps = {
   setModalState,
   setProjectId,
   setProjectName,
-  submissionList,
-  listTslintReport
+  listTslintReport,
+  recentList
 };
 
 const mapStateToProps = state => {
@@ -24,7 +26,8 @@ const mapStateToProps = state => {
     projectId: state.projectReducer.projectId,
     projectName: state.projectReducer.projectName,
     submitList: state.projectReducer.submitList,
-    uid: state.authReducer.uid
+    uid: state.authReducer.uid,
+    recentData: state.recentReducer.recentData
   };
 };
 

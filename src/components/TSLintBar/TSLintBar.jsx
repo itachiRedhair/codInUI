@@ -9,19 +9,6 @@ import EchartCard from "./../../components/EchartCard";
 //Styles import
 import "./TSLintBar.scss";
 
-// const data = [
-//   "Component.ts",
-//   "index.ts",
-//   "homeComponent.ts",
-//   "router.service.ts",
-//   "app.service.ts",
-//   "routerModule.ts",
-//   "env.ts",
-//   "config.js",
-//   "routerModule.ts",
-//   "env.ts"
-// ];
-
 export default class TSLintBar extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +21,6 @@ export default class TSLintBar extends Component {
     this.props
       .listTslintReportDetails(this.props.projectId, "recent")
       .then(response => {
-        console.log("/////////////**********response kjghkj", response);
         this.setState({
           reportListDetails: response
         });
@@ -46,26 +32,22 @@ export default class TSLintBar extends Component {
     let errorCount = [];
     let warningCount = [];
     let filePath = "";
-    console.log(
-      ".......this.props.listTslintReportDetails.length",
-      this.state.reportListDetails
-    );
     if (this.state.reportListDetails.length > 0) {
       let dataLength = this.state.reportListDetails.length;
       let dataAlias = this.state.reportListDetails;
 
       for (let i = 0; i < dataLength; i++) {
-        if (dataAlias[i].file.includes("app")) {
+        // if (dataAlias[i].file.includes("app")) {
           filePath = dataAlias[i].file.substring(
-            dataAlias[i].file.lastIndexOf("app") + 4,
+            dataAlias[i].file.lastIndexOf("/") + 1,
             dataAlias[i].file.length
           );
-        } else {
-          filePath = dataAlias[i].file.substring(
-            dataAlias[i].file.lastIndexOf("src") + 4,
-            dataAlias[i].file.length
-          );
-        }
+        // } else {
+        //   filePath = dataAlias[i].file.substring(
+        //     dataAlias[i].file.lastIndexOf("src") + 4,
+        //     dataAlias[i].file.length
+        //   );
+        // }
         for (let j = 0; j < dataAlias[i].output.length; j++) {
           if (dataAlias[i].output[j].ruleSeverity === "ERROR") {
             errorCount.push(dataAlias[i].output[j].count);
@@ -75,17 +57,13 @@ export default class TSLintBar extends Component {
         }
         fileNames.push(filePath);
       }
-      console.log("------errorcount-----", errorCount);
-      console.log("------warningcount-----", warningCount);
-      console.log("------filename-----", fileNames);
     }
 
     const tempOptions = {
       tooltip: {
         trigger: "axis",
         axisPointer: {
-          // 坐标轴指示器，坐标轴触发有效
-          type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+          type: "shadow" 
         }
       },
       legend: {
@@ -126,10 +104,12 @@ export default class TSLintBar extends Component {
           label: {
             normal: {
               show: true,
+              itemStyle: {
+                color: "white"
+              },
               position: "insideRight"
             }
           },
-          //   data: [320, 302, 301, 334, 390, 330, 320, 310, 230, 400]
           data: errorCount
         },
         {
@@ -142,7 +122,6 @@ export default class TSLintBar extends Component {
               position: "insideRight"
             }
           },
-          //   data: [120, 132, 101, 134, 90, 230, 210, 301, 334, 390]
           data: warningCount
         }
       ]

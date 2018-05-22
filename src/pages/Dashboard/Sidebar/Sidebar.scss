@@ -95,6 +95,7 @@ body {
   padding: 1em;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .project-name {
@@ -193,4 +194,10 @@ body {
 }
 .collaborator {
     padding-top: 0.4em;
+    display: flex;
+    flex-direction: row;
+}
+.project-list {
+    color: white !important;
+    padding: 16px;
 }

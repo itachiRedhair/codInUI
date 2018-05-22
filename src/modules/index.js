@@ -5,5 +5,6 @@ import typeaheadReducer from "./typeahead";
 import modalReducer from "./modalState";
 import contributorReducer from "./collaborator";
 import reportReducer from "./report";
+import recentReducer from "./recent";
  
-export { authReducer, loaderReducer, projectReducer, typeaheadReducer, modalReducer, contributorReducer, reportReducer };
+export { authReducer, loaderReducer, projectReducer, typeaheadReducer, modalReducer, contributorReducer, reportReducer, recentReducer };

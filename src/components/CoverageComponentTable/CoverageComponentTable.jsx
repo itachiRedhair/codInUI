@@ -18,7 +18,6 @@ export default class CoverageComponentTable extends Component {
   componentDidMount() {}
 
   render() {
-    console.log("--------props in coverage table component-------", this.props);
     return (
       <Card title="Coverage Details">
         <div

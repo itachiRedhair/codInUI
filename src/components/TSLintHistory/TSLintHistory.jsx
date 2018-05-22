@@ -28,6 +28,9 @@ const tempOptions = {
   },
   yAxis: {
     type: "value",
+    splitLine: {
+        show: false
+    },
     axisLine: {
       lineStyle: {
         color: "white"

@@ -134,7 +134,7 @@ const ACTION_HANDLERS = {
   }),
   [SHOW_SUBMIT_LIST]: (state, action) => ({
     ...state,
-    submitList: action.payload
+    submitList: [...action.payload]
   })
 };
 

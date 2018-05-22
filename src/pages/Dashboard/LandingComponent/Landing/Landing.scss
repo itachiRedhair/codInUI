@@ -9,10 +9,10 @@
 .landing-sidebar {
   display: flex;
   flex-direction: column;
-  width: 35%;
+//   width: 35%;         //changed due to grid
 }
 .landing-body {
-    width: 56%;
+    // width: 56%; //changed due to grid
     margin-left: 6em;
 }
 .newsfeed-placeholder {
@@ -109,4 +109,14 @@ p {
 }
 .recent-activities-time{
     font-size: 0.9em;
+}
+
+// detail component
+.detail-component {
+    display: flex;
+}
+.detail-component-errors  {
+    padding-bottom: 1em;
+    font-size: 1.3em;
+    padding-right: 5em;
 }

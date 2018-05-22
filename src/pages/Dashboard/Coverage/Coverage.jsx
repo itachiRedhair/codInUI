@@ -69,7 +69,6 @@ export default class TSLintReport extends Component {
   }
   componentDidMount() {
     let keyData = Object.keys(data[0]);
-    console.log("keys", keyData);
     let valueData = Object.values(data[0]);
     let coverageData = {};
     let wholeData = {};
@@ -141,7 +140,6 @@ export default class TSLintReport extends Component {
     const tableStyle = {
       color: "white"
     };
-    console.log("this.state.rowadta", this.state.rowData);
     return (
       <React.Fragment>
         <Row className="coverage-row-group col-container">

@@ -13,7 +13,6 @@ import "./CoverageComponentPie.scss";
 
 export default class CoverageComponentPie extends Component {
   componentDidMount() {
-    console.log("*********props for pie*********", this.props);
   }
 
   render() {
@@ -46,7 +45,6 @@ export default class CoverageComponentPie extends Component {
         }
       ]
     };
-    console.log("--------props in coverage table component-------", this.props);
     return (
       <Card title="Coverage Details">
         <Col md={6}>

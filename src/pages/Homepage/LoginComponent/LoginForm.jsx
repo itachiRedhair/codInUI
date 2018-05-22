@@ -15,73 +15,81 @@ import "./../../../styles/_form.scss";
 import "./loginForm.scss";
 
 class LoginComponent extends Component {
-  constructor(props, context) {
-    super(props, context);
+    constructor(props, context) {
+        super(props, context);
 
-    this.state = {
-      email: "",
-      password: "",
-      loginFailed: false
+        this.state = {
+            email: "",
+            password: "",
+            loginFailed: false,
+            connectionFailed: false
+        };
+    }
+
+    getValidationState = () => { };
+
+    handleEmailChange = e => this.setState({ email: e.target.value });
+
+    handlePasswordChange = e => this.setState({ password: e.target.value });
+
+    handleSubmit = () => {
+        this.props
+            .userLogIn(this.state.email, this.state.password)
+            .then((loginResponse) => {
+                if (loginResponse._id) {
+                    this.props.history.push("/landing");
+                }
+                else if (loginResponse === 404) {
+                    this.setState({ connectionFailed: true })
+                }
+                else if (loginResponse === 401) this.setState({ loginFailed: true });
+            });
     };
-  }
 
-  getValidationState = () => {};
-
-  handleEmailChange = e => this.setState({ email: e.target.value });
-
-  handlePasswordChange = e => this.setState({ password: e.target.value });
-
-  handleSubmit = () => {
-    console.log(this.state.email, this.state.password);
-    this.props
-      .userLogIn(this.state.email, this.state.password)
-      .then(isLoggedIn => {
-        if (isLoggedIn) this.props.history.push("/landing");
-        else this.setState({ loginFailed: true });
-      });
-  };
-
-  render() {
-    const email = this.state.email;
-    const password = this.state.password;
-    return (
-      <form className="form-container" autoComplete="on">
-        {this.state.loginFailed ? (
-          <div className="error-message">
-            Username or password is incorrect.
-          </div>
-        ) : null}
-
-        <Input
-          id="LoginEmail"
-          type="text"
-          label="Email"
-          placeholder="Enter your email id."
-          value={email}
-          onChange={this.handleEmailChange}
-        />
-        <Input
-          id="LoginPassword"
-          type="password"
-          label="Password"
-          placeholder="Password please."
-          value={password}
-          onChange={this.handlePasswordChange}
-        />
-        <Checkbox list={[`Keep me logged in`]} />
-        <Row>
-          <Col md={3} mdPush={8}>
-            <Button onClick={this.handleSubmit} className="login-button">
-              Login <i className="fas fa-arrow-right arrow-icon" />
-            </Button>
-          </Col>
-        </Row>
-        <div className="signup-prompt" onClick={this.props.toggleSignup}>
-          New Here? Sign up.
+    render() {
+        const email = this.state.email;
+        const password = this.state.password;
+        return (
+            <form className="form-container" autoComplete="on">
+                {this.state.loginFailed ? (
+                    <div className="error-message">
+                        Username or password is incorrect.
+                    </div>
+                ) : this.state.connectionFailed ? (
+                    <div className="error-message">
+                        Connection Failed
+                    </div>
+                ) : null}
+                <Input
+                    id="LoginEmail"
+                    type="text"
+                    label="Email"
+                    placeholder="Enter your email id."
+                    value={email}
+                    onChange={this.handleEmailChange}
+                />
+                <Input
+                    id="LoginPassword"
+                    type="password"
+                    label="Password"
+                    placeholder="Password please."
+                    value={password}
+                    onChange={this.handlePasswordChange}
+                />
+                <Checkbox list={[`Keep me logged in`]} />
+                <Row>
+                    <Col md={3} mdPush={8}>
+                        <Button onClick={this.handleSubmit} className="login-button">
+                            Login <i className="fas fa-arrow-right arrow-icon" />
+                        </Button>
+                    </Col>
+                </Row>
+                <div className="signup-prompt" onClick={this.props.toggleSignup}>
+                    New Here? Sign up.
         </div>
-      </form>
-    );
-  }
+            </form>
+        );
+    }
 }
 
 export default withRouter(LoginComponent);
