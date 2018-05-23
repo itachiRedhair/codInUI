@@ -99,7 +99,7 @@ export default class Landing extends Component {
                                 onClick={this.handleClicked}
                                 to="/dashboard/overview"
                             >
-                                {project.name}
+                                {project.name}&nbsp;<i className="far fa-copyright" />
                             </NavLink>
                         </li>
                     );

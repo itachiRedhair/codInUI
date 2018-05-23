@@ -25,7 +25,7 @@ export default class RecentSubmit extends Component {
         recentSubmits.push(divElement);
       }
     }
-
+    
     return (
       <Card title="Recent Submits">
         <Table className="recent-submit-table" responsive>

@@ -5,6 +5,7 @@ import { Row, Col } from "react-bootstrap";
 //Components imports
 import Echart from "./../../components/Echart";
 import Card from "./../../commonui/Card";
+import { getChartOptions, TYPE_BAR } from "./../../utilities/chartOptions";
 
 //Styles imports
 import "./TSLintSummary.scss";
@@ -60,52 +61,27 @@ export default class TSLintSummary extends Component {
                 return "green"
             }
         }
-        const tempOptions = {
-            tooltip: {
-                trigger: "axis",
-                axisPointer: {
-                    type: "shadow"
-                }
-            },
+        const options = {
             grid: {
                 show: false
             },
             xAxis: {
                 name: "Errors",
                 type: "category",
-                nameTextStyle: {
-                    color: "white"
-                },
                 axisLabel: {
                     rotate: -15,
                     color: "white"
-                },
-                axisLine: {
-                    show: true,
-                    lineStyle: {
-                        color: "white"
-                    }
                 },
                 data: xAxisData
             },
             yAxis: {
                 name: "Counts",
-                nameTextStyle: {
-                    color: "white"
-                },
                 splitLine: {
-                    show: false
-                },
-                axisLine: {
                     show: true,
                     lineStyle: {
-                        color: "white"
+                        color: "rgba(255,255,255,0.1)"
                     }
                 },
-                axisLabel: {
-                    color: "white"
-                },
-                // data: yAxisData
             },
             series: [
                 {
@@ -121,7 +97,7 @@ export default class TSLintSummary extends Component {
                 }
             ]
         };
-
+        const tempOptions = getChartOptions(TYPE_BAR, options);
         if (errorCountData.length === 0) {
             return <div>Echarts should be here</div>;
         }

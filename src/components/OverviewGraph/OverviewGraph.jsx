@@ -4,9 +4,10 @@ import React, { Component } from "react";
 import Echart from "./../Echart";
 import Card from "./../../commonui/Card";
 import EchartCard from "./../../components/EchartCard";
-
+import { getChartOptions, TYPE_LINE } from "./../../utilities/chartOptions";
 //Api imports
 import { getUserProject } from "../../utilities/api";
+
 
 class OverviewGraph extends Component {
     constructor(props) {
@@ -32,52 +33,21 @@ class OverviewGraph extends Component {
         let tsLintDays = [];
         for (let i = 0; i < this.props.reportList.length; i++) {
             if (this.props.reportList[i].summary) {
-                let errArray = Object.values(this.props.reportList[i].summary.lint.errorCounts);
-                let topErrArray = errArray.sort().splice(0,5);
-                console.log("--- error array----", errArray.reverse());
+                // let errArray = Object.values(this.props.reportList[i].summary.lint.errorCounts);
+                // let topErrArray = errArray.sort().splice(0,5);
                 tsLintErrorData.push(this.props.reportList[i].summary.lint.totalErrors);
-                tsLintWarningData.push(this.props.reportList[i].summary.lint.totalWarnings); 
-                cyclomatic.push(this.props.reportList[i].summary.quality.cyclomatic);                
-                maintainability.push(this.props.reportList[i].summary.quality.maintainability);                                               
+                tsLintWarningData.push(this.props.reportList[i].summary.lint.totalWarnings);
+                cyclomatic.push(this.props.reportList[i].summary.quality.cyclomatic.toFixed(2));
+                maintainability.push(this.props.reportList[i].summary.quality.maintainability.toFixed(2));
                 tsLintDays.push(new Date(this.props.reportList[i].meta.submitted_at).toDateString());
             }
         }
-        const tempOptions = {
-            tooltip: {
-                trigger: "axis"
-            },
+        const options = {
             legend: {
-                textStyle: {
-                    color: "white"
-                },
-                data: ["TSLint Errors", "Warnings", "Cyclomatic", "Maintainability"]
-            },
-            grid: {
-                show: false
+                data: [{ name: "TSLint Errors", textStyle: { color: "#ff3232" } }, { name: "Warnings", textStyle: { color: "#fd822f" } }, { name: "Cyclomatic", textStyle: { color: "#0082f0" } }, { name: "Maintainability", textStyle: { color: "#ffff99" } }]
             },
             xAxis: {
-                type: "category",
-                boundaryGap: true,
-                minInterval: 3600 * 1000 * 24,
-
-                axisLine: {
-                    lineStyle: {
-                        color: "white"
-                    }
-                },
-                boundaryGap: false,
                 data: tsLintDays
-            },
-            yAxis: {
-                type: "value",
-                splitLine: {
-                    show: false
-                },
-                axisLine: {
-                    lineStyle: {
-                        color: "white"
-                    }
-                }
             },
             series: [
                 {
@@ -114,6 +84,7 @@ class OverviewGraph extends Component {
                 }
             ]
         };
+        const tempOptions = getChartOptions(TYPE_LINE, options);
         if (tsLintDays.length === 0) {
             return <div>Echarts should be here</div>;
         } else {

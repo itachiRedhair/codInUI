@@ -1,5 +1,5 @@
 
-import TSLintHistory from "./TSLintHistory.jsx";
+import CodeQuality from "./CodeQuality.jsx";
 import { connect } from "react-redux";
 
 //action creators
@@ -18,4 +18,4 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
   pure: false
-})(TSLintHistory);
+})(CodeQuality);

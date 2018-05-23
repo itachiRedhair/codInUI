@@ -4,70 +4,79 @@ import React, { Component } from "react";
 import Echart from "./../Echart";
 import Card from "./../../commonui/Card";
 import EchartCard from "./../../components/EchartCard";
+import { getChartOptions, TYPE_LINE } from "./../../utilities/chartOptions";
 
-const tempOptions = {
-  tooltip: {
-    trigger: "axis"
-  },
-  legend: { 
-    textStyle: {
-      color: "white"
-    },
-    data: ["Error", "Warning", "Info"]
-  },
+//Api imports
+import { getUserProject } from "../../utilities/api";
 
-  xAxis: {
-    type: "category",
-    axisLine: {
-      lineStyle: {
-        color: "white"
-      }
-    },
-    boundaryGap: false,
-    data: ["1", "2", "3", "4", "5", "6", "7"]
-  },
-  yAxis: {
-    type: "value",
-    splitLine: {
-        show: false
-    },
-    axisLine: {
-      lineStyle: {
-        color: "white"
-      }
+class TSLintHistory extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            projectId: "",
+            reportList: [],
+            chartData: [],
+            chartDays: [],
+            tOptions: {}
+        };
     }
-  },
 
-  series: [
-    {
-      name: "Error",
-      type: "line",
-      data: [120, 132, 101, 134, 90, 230, 210]
-    },
-    {
-      name: "Warning",
-      type: "line",
-      data: [220, 182, 191, 234, 290, 330, 310]
-    },
-    {
-      name: "Info",
-      type: "line",
-      data: [150, 232, 201, 154, 190, 330, 410]
+    componentDidMount() {
+        this.props.listTslintReport(this.props.projectId, "week");
     }
-  ]
-};
 
-class TSLintBar extends Component {
-  render() {
-    return (
-      <EchartCard
-        title="History"
-        options={tempOptions}
-        height="240px"
-        autoSize
-      />
-    );
-  }
+    render() {
+        let tsLintErrorData = [];
+        let tsLintWarningData = [];
+        let tsLintDays = [];
+        for (let i = 0; i < this.props.reportList.length; i++) {
+            if (this.props.reportList[i].summary) {
+                tsLintErrorData.push(this.props.reportList[i].summary.lint.totalErrors);
+                tsLintWarningData.push(this.props.reportList[i].summary.lint.totalWarnings);                                    
+                tsLintDays.push(new Date(this.props.reportList[i].meta.submitted_at).toDateString());
+            }
+        }
+        const options = {
+            legend: {
+                data: [{name: "TSLint Errors", textStyle: { color: "#ff3232"}}, {name: "Warnings", textStyle: { color: "#fd822f"}}]
+            },
+            xAxis: {
+                data: tsLintDays
+            },
+            series: [
+                {
+                    name: "TSLint Errors",
+                    type: "line",
+                    lineStyle: {
+                        color: "#ff3232"
+                    },
+                    data: tsLintErrorData
+                },
+                {
+                    name: "Warnings",
+                    type: "line",
+                    lineStyle: {
+                        color: "#fd822f"
+                    },
+                    data: tsLintWarningData
+                }
+            ]
+        };
+        
+        const tempOptions = getChartOptions(TYPE_LINE, options)
+        if (tsLintDays.length === 0) {
+            return <div>Echarts should be here</div>;
+        } else {
+            return (
+                <EchartCard
+                    title="Trend Graph"
+                    options={tempOptions}
+                    height="300px"
+                    autoSize
+                />
+            );
+        }
+    }
 }
 
-export default TSLintBar;
+export default TSLintHistory;

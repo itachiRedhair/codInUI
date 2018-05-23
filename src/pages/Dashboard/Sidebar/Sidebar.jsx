@@ -79,6 +79,8 @@ export default class Sidebar extends Component {
         this.props.listTslintReport(e.target.getAttribute("value"), "week");
         this.props.submissionList(e.target.getAttribute("value"));
         this.props.setProjectId(e.target.getAttribute("value"));
+        this.props.listTslintReport(e.target.getAttribute("value"), "week");
+
     };
 
     showProjectModal = () => {
@@ -144,7 +146,7 @@ export default class Sidebar extends Component {
                                 onClick={this.handleClicked}
                                 to="/dashboard/overview"
                             >
-                                {project.name}
+                                {project.name}&nbsp;<i className="far fa-copyright" />
                             </NavLink>
                         </li>
                     );

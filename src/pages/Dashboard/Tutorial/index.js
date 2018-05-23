@@ -1,9 +1,8 @@
-
-import TSLintHistory from "./TSLintHistory.jsx";
+import Tutorial from "./Tutorial.jsx";
 import { connect } from "react-redux";
 
 //action creators
-import { listTslintReport } from "../../modules/report";
+import { listTslintReport } from "../../../modules/report";
 
 const mapDispatchToProps = {
     listTslintReport
@@ -18,4 +17,4 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
   pure: false
-})(TSLintHistory);
+})(Tutorial);
