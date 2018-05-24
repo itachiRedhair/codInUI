@@ -47,6 +47,7 @@ class TSLintHistory extends Component {
                 {
                     name: "TSLint Errors",
                     type: "line",
+                    smooth: true,                    
                     lineStyle: {
                         color: "#ff3232"
                     },
@@ -55,6 +56,7 @@ class TSLintHistory extends Component {
                 {
                     name: "Warnings",
                     type: "line",
+                    smooth: true,                    
                     lineStyle: {
                         color: "#fd822f"
                     },

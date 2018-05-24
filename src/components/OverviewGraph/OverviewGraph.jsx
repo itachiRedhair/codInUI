@@ -53,6 +53,7 @@ class OverviewGraph extends Component {
                 {
                     name: "TSLint Errors",
                     type: "line",
+                    smooth: true,                    
                     lineStyle: {
                         color: "#ff3232"
                     },
@@ -61,6 +62,7 @@ class OverviewGraph extends Component {
                 {
                     name: "Warnings",
                     type: "line",
+                    smooth: true,                    
                     lineStyle: {
                         color: "#fd822f"
                     },
@@ -69,6 +71,7 @@ class OverviewGraph extends Component {
                 {
                     name: "Cyclomatic",
                     type: "line",
+                    smooth: true,                    
                     lineStyle: {
                         color: "#0082f0"
                     },
@@ -77,6 +80,7 @@ class OverviewGraph extends Component {
                 {
                     name: "Maintainability",
                     type: "line",
+                    smooth: true,                    
                     lineStyle: {
                         color: "#ffff99"
                     },
