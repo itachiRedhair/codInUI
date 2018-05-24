@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Table } from "react-bootstrap";
+var moment = require('moment');
 
 //Components imports
 import Card from "./../../commonui/Card";
@@ -16,6 +17,8 @@ export default class RecentSubmit extends Component {
     if (this.props.submitList.length > 0) {
       let response = this.props.submitList;
       for (let i = response.length-1; i >= 0; i--) {
+        // var day = moment.locale(response[i].meta.submitted_at);
+        // console.log("moment", day);
         let divElement =
         <tr>
           <td>{response[i].meta.submitted_by.name}</td>
@@ -24,6 +27,7 @@ export default class RecentSubmit extends Component {
         </tr>
         recentSubmits.push(divElement);
       }
+      recentSubmits.splice(Math.min(5, recentSubmits.length));
     }
     
     return (

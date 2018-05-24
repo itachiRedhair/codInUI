@@ -3,6 +3,7 @@ import { merge } from 'lodash';
 export const TYPE_LINE = "line";
 export const TYPE_BAR = "bar";
 export const TYPE_PIE = "pie";
+export const TYPE_HEATMAP = "heatmap";
 
 let barOptions = {
     tooltip: {
@@ -83,6 +84,39 @@ let categoryLineOptions = {
     }
 };
 
+let heatMapOptions = {
+    tooltip: {
+        position: "top"
+    },
+    animation: false,
+    grid: {
+        height: "auto",
+        width: "auto"
+        // y: "10%"
+    },
+    xAxis: {
+        type: "category",
+        axisLine: {
+            lineStyle: {
+                color: "white"
+            }
+        },
+        splitArea: {
+            show: true
+        }
+    },
+    yAxis: {
+        type: "category",
+        axisLine: {
+            lineStyle: {
+                color: "white"
+            }
+        },
+        splitArea: {
+            show: true
+        }
+    }
+}
 export const getChartOptions = (type, overrides) => {
     let options = {};
     switch (type) {
@@ -90,6 +124,8 @@ export const getChartOptions = (type, overrides) => {
             return merge(options, categoryLineOptions, overrides);
         case TYPE_BAR:
             return merge(options, barOptions, overrides);
+        case TYPE_HEATMAP:
+            return merge(options, heatMapOptions, overrides);
         default:
             break;
     }

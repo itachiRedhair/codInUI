@@ -29,9 +29,9 @@ const signup = () => ({
   type: SIGNUP
 });
 
-const login = userId => ({
+const login = userResponse => ({
   type: AUTH_LOGIN,
-  payload: userId
+  payload: userResponse
 });
 
 const logOut = () => ({
@@ -73,7 +73,7 @@ export const userLogIn = (email, password) => (dispatch, getState) => {
       .then(response => {
         dispatch(setLoadingStatus(false));
         if (response) {
-          dispatch(login(response._id));
+          dispatch(login(response));
           resolve(response);
         } else {
           resolve(false);
@@ -134,7 +134,7 @@ const ACTION_HANDLERS = {
   [AUTH_LOGIN]: (state, action) => ({
     ...state,
     isAuthenticated: true,
-    uid: action.payload
+    user: action.payload
   }),
   [AUTH_LOGOUT]: (state, action) => ({
     ...state,
@@ -149,7 +149,7 @@ const ACTION_HANDLERS = {
 const initialState = {
   isAuthenticated: false,
   signedUp: false,
-  uid: ""
+  user: []
 };
 
 export default (state = initialState, action) => {

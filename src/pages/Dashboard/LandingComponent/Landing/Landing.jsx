@@ -14,6 +14,7 @@ import { Route, Switch, Redirect, NavLink } from "react-router-dom";
 //Components imports
 
 import Navbar from "./../../Navbar";
+import FirstRender from "./../FirstRender";
 
 //API imports
 import { getUser } from "../../../../utilities/api";
@@ -143,7 +144,7 @@ export default class Landing extends Component {
         }
 
         if (this.state.projects.length === 0) {
-            return <div>Sorry, no value available</div>;
+            return <FirstRender />;
         } else {
             return (
                 <React.Fragment>

@@ -17,7 +17,7 @@ export default class TSLintSummary extends Component {
     }
 
     componentDidMount() {
-        this.props.listTslintReport(this.props.projectId, "week");
+        // this.props.listTslintReport(this.props.projectId, "week");
     }
 
     render() {

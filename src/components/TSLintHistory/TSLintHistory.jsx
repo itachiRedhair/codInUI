@@ -22,7 +22,7 @@ class TSLintHistory extends Component {
     }
 
     componentDidMount() {
-        this.props.listTslintReport(this.props.projectId, "week");
+        // this.props.listTslintReport(this.props.projectId, "week");
     }
 
     render() {

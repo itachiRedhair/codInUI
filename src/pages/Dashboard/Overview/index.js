@@ -9,12 +9,14 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => {
-  return {
-    reportList: state.reportReducer.reportList,
-    projectId: state.projectReducer.projectId
-  };
+    return {
+        isLoading: state.loaderReducer.isLoading,
+        reportList: state.reportReducer.reportList,
+        isFetching: state.reportReducer.isFetching,        
+        projectId: state.projectReducer.projectId
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false
+    pure: false
 })(Overview);

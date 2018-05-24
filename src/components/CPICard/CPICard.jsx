@@ -5,12 +5,15 @@ import Echart from "./../Echart";
 import Card from "./../../commonui/Card";
 import EchartCard from "./../../components/EchartCard";
 
-//Styles imports
-import "./CPICard.scss";
+//Function Imports
+import { getCPI }  from "./../../utilities/cpi";
 
+//Styles imports  
+import "./CPICard.scss";
+ 
 export default class CPICard extends Component {
   componentDidMount() {
-    this.props.listTslintReport(this.props.projectId, "week");
+    // this.props.listTslintReport(this.props.projectId, "week");
   }
 
   render() {
@@ -24,21 +27,17 @@ export default class CPICard extends Component {
       cyclomatic = this.props.reportList[len - 1].summary.quality.cyclomatic;
       maintainability = this.props.reportList[len - 1].summary.quality
         .maintainability;
-      const max = Math.max(totalErrors, cyclomatic, maintainability);
-      const Es = totalErrors * 100 / max;
-      const Ms = (max - maintainability) * 100 / max;
-      const Cs = cyclomatic * 100 / max;
-      const We = 0.5;
-      const Wm = 0.3;
-      const Wc = 0.2;
-      const weighted = We*Es+Wm*Ms+Wc*Cs;
-      const AvgWtd = weighted/3;
-
-    //   let dscore = 0.5 * totalErrors + 0.2 * cyclomatic + 0.3 * maintainability;
-    //   let nscore =
-    //     0.5 * totalErrors + 0.2 * cyclomatic + (dscore - 0.3 * maintainability);
-    //   let pscore = nscore / dscore * 100;
-      cpiScore = (100-AvgWtd).toFixed(1);
+        cpiScore = getCPI(totalErrors,cyclomatic,maintainability);
+    //   const max = Math.max(totalErrors, cyclomatic, maintainability);
+    //   const Es = totalErrors * 100 / max;
+    //   const Ms = (max - maintainability) * 100 / max;
+    //   const Cs = cyclomatic * 100 / max;
+    //   const We = 0.5;
+    //   const Wm = 0.3;
+    //   const Wc = 0.2;
+    //   const weighted = We*Es+Wm*Ms+Wc*Cs;
+    //   const AvgWtd = weighted/3;
+    //   cpiScore = (100-AvgWtd).toFixed(1);
     }
     const tempOptions = {
       series: [

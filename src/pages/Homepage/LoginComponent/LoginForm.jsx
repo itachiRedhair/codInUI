@@ -22,7 +22,8 @@ class LoginComponent extends Component {
             email: "",
             password: "",
             loginFailed: false,
-            connectionFailed: false
+            connectionFailed: false,
+            serviceUnavailable: false
         };
     }
 
@@ -43,6 +44,7 @@ class LoginComponent extends Component {
                     this.setState({ connectionFailed: true })
                 }
                 else if (loginResponse === 401) this.setState({ loginFailed: true });
+                else this.setState({serviceUnavailable: true})
             });
     };
 

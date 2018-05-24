@@ -10,16 +10,27 @@ import TSLintSummary from "./../../../components/TSLintSummary";
 import CoverageSummary from "./../../../components/CoverageSummary";
 import OverviewHeatmap from "./../../../components/OverviewHeatmap";
 import Tutorial from "./../Tutorial";
+import Loader from "./../../../components/Loader";
+
 
 //Syles imports
 import "./Overview.scss";
 
 export default class Overview extends Component {
+    constructor(props) {
+        super(props);
+    }
+    
     componentDidMount() {
         this.props.listTslintReport(this.props.projectId, "week");
     }
+
     render() {
-        if (this.props.reportList.length === 0) {
+        if (this.props.isFetching) {
+            return (<div><Loader /></div>)
+        }
+        else if(this.props.reportList.length === 0)
+        {
             return <Tutorial />
         }
         else {
@@ -44,8 +55,8 @@ export default class Overview extends Component {
                         </Col>
                     </Row>
                     {/* <Col md={2} className="overview-col">
-                  <CoverageSummary />
-                </Col> */}
+                            <CoverageSummary />
+                        </Col> */}
                     <Row>
                         <Col md={12} className="overview-col">
                             <RecentSubmits />
