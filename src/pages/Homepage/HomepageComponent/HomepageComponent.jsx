@@ -34,13 +34,13 @@ export default class HomepageComponent extends Component {
     return (
       <div className="homepage-container">
         <Row>
-          <Col className="background-alpha" md={7}>
+          <Col className="background-alpha" md={8}>
             <div className="welcome-text-container">
               <div className="welcome-text-lg">Welcome to <span className="codin">Cod<span>In</span></span></div>
               <div className="welcome-text-sm">Login to access your projects and reports</div>
             </div>
           </Col>
-          <Col md={5}>
+          <Col md={4}>
             <Row>
               <Col className="login-signup-container">
                 <div

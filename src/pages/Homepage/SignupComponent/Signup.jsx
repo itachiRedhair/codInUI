@@ -57,7 +57,7 @@ class SignupComponent extends Component {
           id="SignupName"
           type="text"
           label="Name"
-          placeholder="Enter your Name."
+          placeholder="Enter your name"
           value={name}
           onChange={this.handleNameChange}
         />
@@ -65,7 +65,7 @@ class SignupComponent extends Component {
           id="SignupEmail"
           type="email"
           label="Email"
-          placeholder="Enter your email id."
+          placeholder="Enter your email"
           value={email}
           onChange={this.handleEmailChange}
         />
@@ -73,7 +73,7 @@ class SignupComponent extends Component {
           id="SignupPassword"
           type="password"
           label="Password"
-          placeholder="Password please."
+          placeholder="Enter your password"
           value={password}
           onChange={this.handlePasswordChange}
         />
@@ -81,7 +81,7 @@ class SignupComponent extends Component {
           id="SignupConfirmPassword"
           type="password"
           label="Password"
-          placeholder="Confirm Password"
+          placeholder="Confirm the password"
           value={confirm}
           onChange={this.handleConfirmPasswordChange}
         />
@@ -94,7 +94,7 @@ class SignupComponent extends Component {
         </Row>
         {this.props.signedUp ? message : null}
         <div className="login-prompt" onClick={this.props.toggleLogin}>
-          Log in.
+          Already have an account? Log in
         </div>
       </form>
     );

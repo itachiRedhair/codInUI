@@ -55,7 +55,7 @@ class LoginComponent extends Component {
             <form className="form-container" >
                 {this.state.loginFailed ? (
                     <div className="error-message">
-                        Username or password is incorrect.
+                        Email or password is incorrect.
                     </div>
                 ) : this.state.connectionFailed ? (
                     <div className="error-message">
