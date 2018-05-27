@@ -34,20 +34,26 @@ export default class HomepageComponent extends Component {
     return (
       <div className="homepage-container">
         <Row>
-          <Col md={6} mdPush={6}>
+          <Col className="background-alpha" md={7}>
+            <div className="welcome-text-container">
+              <div className="welcome-text-lg">Welcome to <span className="codin">Cod<span>In</span></span></div>
+              <div className="welcome-text-sm">Login to access your projects and reports</div>
+            </div>
+          </Col>
+          <Col md={5}>
             <Row>
-              <Col md={7} mdPush={2} className="login-signup-container">
+              <Col className="login-signup-container">
                 <div
                   className={`login-signup ${
                     this.state.isLogin ? "reveal" : ""
-                  }`}
+                    }`}
                 >
                   <Login toggleSignup={this.toggleSignup} />
                 </div>
                 <div
                   className={`login-signup ${
                     !this.state.isLogin ? "reveal" : ""
-                  }`}
+                    }`}
                 >
                   <Signup toggleLogin={this.toggleLogin} />
                 </div>

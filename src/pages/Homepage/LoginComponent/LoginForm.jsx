@@ -12,7 +12,7 @@ import constants from "./../../../constants";
 
 //styles
 import "./../../../styles/_form.scss";
-import "./loginForm.scss";
+import "./LoginForm.scss";
 
 class LoginComponent extends Component {
     constructor(props, context) {
@@ -52,7 +52,7 @@ class LoginComponent extends Component {
         const email = this.state.email;
         const password = this.state.password;
         return (
-            <form className="form-container" autoComplete="on">
+            <form className="form-container" >
                 {this.state.loginFailed ? (
                     <div className="error-message">
                         Username or password is incorrect.
@@ -66,7 +66,7 @@ class LoginComponent extends Component {
                     id="LoginEmail"
                     type="text"
                     label="Email"
-                    placeholder="Enter your email id."
+                    placeholder="Enter your email"
                     value={email}
                     onChange={this.handleEmailChange}
                 />
@@ -74,7 +74,7 @@ class LoginComponent extends Component {
                     id="LoginPassword"
                     type="password"
                     label="Password"
-                    placeholder="Password please."
+                    placeholder="Enter your password"
                     value={password}
                     onChange={this.handlePasswordChange}
                 />

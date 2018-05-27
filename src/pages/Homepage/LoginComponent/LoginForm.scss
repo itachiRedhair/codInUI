@@ -5,4 +5,9 @@
 .signup-prompt {
   text-align: start;
   cursor: pointer;
+  text-decoration: underline;
+}
+
+.form-container .form-control {
+  padding-left: 0px;
 }

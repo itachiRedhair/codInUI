@@ -1,19 +1,53 @@
 @import "./../../../styles/_theme.scss";
 
 .homepage-container {
-  background-image: url("../../../assets/images/Homepage/homepage-bg.jpg");
   height: 100vh;
+  background-color: #B1C0CB;
   overflow: hidden;
-  background-size: 100% 100%;
+}
+
+.background-alpha {
+  padding: 100px;
+  background-image: url("../../../assets/images/Homepage/coding.gif");
+  background-attachment: fixed;
+  background-size: 40%;  
+  background-position: 15% 100%;
   background-repeat: no-repeat;
+  min-height: 100vh;
+  box-shadow: inset -1px -1px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-text-container {
+  padding-bottom: 20em;
+  // color: white;
+ }
+
+.welcome-text-lg {
+  font-size: 4em;
+}
+.welcome-text-sm {
+  font-size: 1.3em;
+  text-align: right;
+}
+
+// TODO: Make this Global
+.codin {
+  font-weight: bold;
+}
+.codin span {
+  color:green;
 }
 
 .login-signup-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   height: 100vh;
-  padding-bottom: 3em;
+  justify-content: center;
+  background-color: white;
+  padding: 2em 4em;
 }
 
 .login-signup-button-container {
