@@ -39,6 +39,21 @@ export default class OverviewHeatmap extends Component {
             return [item[1], item[0], item[2]];
         });
 
+        const _mapColor = (params) => {
+            if(params.data[2]>0 && params.data[2]<= 25){
+                return "#ff3232";
+            }
+            else if(params.data[2]>25 && params.data[2]<= 50) {
+                return "#ff8c0a";
+            }
+            else if(params.data[2]>50 && params.data[2]<= 75) {
+                return "#fad22d";
+            }
+            else {
+                return "#0fc373";
+            }
+        }
+
         const options = {
             xAxis: {
                 data: dayNo
@@ -57,6 +72,7 @@ export default class OverviewHeatmap extends Component {
                         }
                     },
                     itemStyle: {
+                        color: _mapColor,
                         emphasis: {
                             shadowBlur: 10,
                             shadowColor: "rgba(0, 0, 0, 0.5)"

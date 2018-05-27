@@ -1,7 +1,7 @@
 .tutorial-container {
     color: white;
     font-size:  2em;
-    height: 91vh;
+    height: 50em;
     // overflow-y: scroll;
 }
 
@@ -77,4 +77,13 @@
   .shell-content {
       display: flex;
       flex-direction: column;
+  }
+
+  .project-type {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .type-a {
+      color: #0082f0;
   }

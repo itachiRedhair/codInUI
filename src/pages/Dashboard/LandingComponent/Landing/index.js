@@ -7,6 +7,10 @@ import { createProject, showProject, setProjectId, setProjectName } from "./../.
 import { setModalState } from "./../../../../modules/modalState";
 import { listTslintReport } from "./../../../../modules/report";
 import { recentList } from "./../../../../modules/recent";
+import { userDetails } from "./../../../../modules/user";
+import { setProjectModalState } from "./../../../../modules/projectModalState";
+
+
 
 
 const mapDispatchToProps = {
@@ -16,7 +20,9 @@ const mapDispatchToProps = {
   setProjectId,
   setProjectName,
   listTslintReport,
-  recentList
+  recentList,
+  userDetails,
+  setProjectModalState
 };
 
 const mapStateToProps = state => {
@@ -27,7 +33,8 @@ const mapStateToProps = state => {
     projectName: state.projectReducer.projectName,
     submitList: state.projectReducer.submitList,
     uid: state.authReducer.uid,
-    recentData: state.recentReducer.recentData
+    recentData: state.recentReducer.recentData,
+    showProjectModal: state.projectModalReducer.showProjectModal
   };
 };
 

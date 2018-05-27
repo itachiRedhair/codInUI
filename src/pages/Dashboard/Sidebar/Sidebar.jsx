@@ -15,6 +15,7 @@ import ModalComponent from "../../../commonui/Modal";
 import Button from "../../../commonui/Button";
 import Input from "./../../../commonui/Input";
 import Collaborator from "./CollaboratorComponent";
+import AddProjectComponent from "./../../../components/AddProjectComponent"
 
 //API imports
 import { getUser } from "../../../utilities/api";
@@ -81,13 +82,14 @@ export default class Sidebar extends Component {
         this.props.setProjectId(e.target.getAttribute("value"));
         this.props.setProjectName(e.target.textContent);        
         this.props.listTslintReport(e.target.getAttribute("value"), "week");
-
+        this.props.userDetails();
     };
 
     showProjectModal = () => {
-        this.setState({
-            showProjectModal: true
-        });
+        // this.setState({
+        //     showProjectModal: true
+        // });
+        this.props.setProjectModalState(true);
     };
     addCollaboratorModal = () => {
         this.props.setModalState(true);
@@ -98,21 +100,6 @@ export default class Sidebar extends Component {
         });
     };
 
-    handleNameChange = e => this.setState({ projectName: e.target.value });
-    handleTypeChange = e => {
-        console.log("type change", e.target.getAttribute('value'));
-        this.setState({ projectType: e.target.getAttribute('value') })
-    }
-
-    addProject = () => {
-        this.props.createProject(this.state.projectName).then(projectCreated => {
-            if (projectCreated) {
-                this.setState({ isProjectCreated: true });
-            } else {
-                this.setState({ isProjectCreated: false });
-            }
-        });
-    };
     render() {
         const setHeight = {
             height: "1.5em"
@@ -155,17 +142,9 @@ export default class Sidebar extends Component {
             });
         }
 
-        const profileDropdown = {
-            background: "transparent",
-            color: "green",
-            border: "#d7dde4",
-            boxShadow: "none",
-            marginLeft: "-1rem"
-        };
-
         const addProject = (
-            <div>
-                <div className="add-project"  onClick={this.addCollaboratorModal}>
+            <div className="register-container">
+                <div className=" add-project"  onClick={this.addCollaboratorModal}>
                     {/* <i
                         className="fa fa-users setting"
                        
@@ -173,7 +152,7 @@ export default class Sidebar extends Component {
                     <div>Add Collaborator</div>
                     <i className="fa fa-plus-circle fa-align" />
                 </div>
-                <div className="add-project" onClick={this.showProjectModal}>
+                <div className=" add-project" onClick={this.showProjectModal}>
                     <div>Add Project</div>
                     <i className="fa fa-plus-circle fa-align" />
                 </div>
@@ -199,12 +178,6 @@ export default class Sidebar extends Component {
                                         ? this.props.projectName
                                         : addProject}
                             </div>
-                            {/* <div className="collaborator">
-                                <i
-                                    className="fa fa-users setting"
-                                    onClick={this.addCollaboratorModal}
-                                />
-                            </div> */}
                         </div>
                         <div className="project-date">Created on: 25/04/2018</div>
                     </div>
@@ -230,16 +203,6 @@ export default class Sidebar extends Component {
                             </ul>
                         </div>
                     </div>
-                    {/* <div className="sub-heading">As Contributor</div>
-                    <div
-                        className={`${projects.length >= 3 ? "project-list-scroll" : ""}`}
-                    >
-                        <div>
-                            <ul>
-                                {contributorProjects}
-                            </ul>
-                        </div>
-                    </div> */}
                     {projects.length != 0 ? addProject : ""}
                 </div>
                 <div
@@ -255,7 +218,7 @@ export default class Sidebar extends Component {
                                     to="/dashboard/overview"
                                 >
                                     <i className="fa fa-tachometer" /> Overview
-                </NavLink>
+                                </NavLink>
                             </li>
                             <div className="report-container">
                                 <div className="reports">Reports</div>
@@ -266,7 +229,7 @@ export default class Sidebar extends Component {
                                     to="/dashboard/tslint"
                                 >
                                     <i className="fa fa-file-text-o" /> TS Lint Report
-                </NavLink>
+                                </NavLink>
                             </li>
                             <li className="active open bb">
                                 <NavLink
@@ -274,42 +237,12 @@ export default class Sidebar extends Component {
                                     to="/dashboard/coverage"
                                 >
                                     <i className="fa fa-file-text-o" /> Coverage Report
-                </NavLink>
+                                </NavLink>
                             </li>
                         </ul>
                     </nav>
-                    {this.state.showProjectModal && (
-                        <ModalComponent
-                            show={this.state.showProjectModal}
-                            onHide={this.hideProjectModal}
-                        >
-                            <ModalHeader>
-                                <i className="fa fa-close" onClick={this.hideProjectModal} />
-                            </ModalHeader>
-                            <ModalBody>
-                                <Input
-                                    type="text"
-                                    label="Name"
-                                    placeholder="Name of project"
-                                    value={projectName}
-                                    onChange={this.handleNameChange}
-                                />
-                                <DropdownButton
-                                    style={profileDropdown}
-                                    title={this.state.projectType}
-                                    key="1"
-                                    id={`dropdown-basic-1`}
-                                >
-                                    <MenuItem eventKey="1" value="angular" onClick={this.handleTypeChange} active>Angular</MenuItem>
-                                    <MenuItem eventKey="2" value="react" onClick={this.handleTypeChange}>React</MenuItem>
-                                </DropdownButton>
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button bsStyle="primary" onClick={this.addProject}>
-                                    Add Project
-                                </Button>
-                            </ModalFooter>
-                        </ModalComponent>
+                    {this.props.showProjectModal && (
+                        <AddProjectComponent />
                     )}
                     {this.props.showModal && (
                         <Collaborator

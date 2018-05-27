@@ -5,6 +5,8 @@ export const TYPE_BAR = "bar";
 export const TYPE_PIE = "pie";
 export const TYPE_HEATMAP = "heatmap";
 
+// Project secific echart options
+
 let barOptions = {
     tooltip: {
         trigger: "axis",
@@ -117,6 +119,7 @@ let heatMapOptions = {
         }
     }
 }
+
 export const getChartOptions = (type, overrides) => {
     let options = {};
     switch (type) {
