@@ -10,20 +10,18 @@ export default class Navbar extends Component {
   render() {
     return (
       <div className="header">
-        <Row className="navbar-row">
-          <Col md={3}>
-            <div className="logo-container">
-              <span>Cod</span>
-              <span>In</span>
-            </div>
-          </Col>
-          <Col md={3} mdPush={6} className="profile-container responsive">
-            <div className="profile-custom responsive">
-              <Notification />
-              <Profile />
-            </div>
-          </Col>
-        </Row>
+        <div>
+          <div className="logo-container">
+            <span>Cod</span>
+            <span>In</span>
+          </div>
+        </div>
+        <div className="profile-container responsive">
+          <div className="profile-custom responsive">
+            <Notification />
+            <Profile />
+          </div>
+        </div>
       </div>
     );
   }

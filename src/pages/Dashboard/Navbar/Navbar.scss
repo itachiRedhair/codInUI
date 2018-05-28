@@ -18,7 +18,15 @@
 .header .header-block-nav {
   margin-left: auto;
   white-space: nowrap;
-  padding-right: 15px;
+  // padding-right: 15px;
+}
+
+.navbar-row {
+  margin-left: 0px;
+  margin-right: 0px;
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-between;
 }
 
 .header .header-block-nav > ul {
@@ -43,11 +51,11 @@
   padding: 1em;
 }
 .profile-container {
-  padding: 1em;
+  // padding: 1em;
 }
 .profile-custom {
   float: right;
-  padding-right: 2em;
+  // padding-right: 2em;
   display: flex;
   flex-direction: row;
 }
@@ -57,7 +65,7 @@
 //   text-align: center;
   line-height: 6rem;
   font-size: 4rem;
-  padding-left: 1.1em;
+  // padding-left: 1.1em;
 }
 
 .logo-container span:nth-child(2) {
