@@ -135,10 +135,74 @@
 }
 .align-new {
   padding-right: 2rem;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 992px) {
   .notifications.new.align-new.responsive {
     padding-right: 0.3em;
   }
+}
+
+
+//Popover
+
+.popover {
+    max-width: none !important;
+}
+.not-desc {
+    padding-right: 1em;
+}
+
+.btn-property {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 37%;
+}
+.decline {
+    background: #ff3232ed !important;
+}
+
+
+//Notification Tooltip
+.tooltip.left {
+    width: 90%;
+    padding: 0 5px;
+    margin-left: -3px;
+}
+.tooltip.left .tooltip-arrow {
+    top: 50%;
+    // width: 100%;
+    right: 0;
+    margin-top: -5px;
+    border-width: 5px 0 5px 5px;
+    border-left-color: white;
+}
+.tooltip-inner {
+    max-width: none !important;
+    // width: 100%;
+    padding: 3px 8px;
+    color: black;
+    text-align: center;
+    background-color: white;
+    border-radius: 4px;
+}
+.overload-bottom {
+    top: 1.5em !important;
+    left: -8em !important;
+}
+.notification-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1em;
+    border-bottom: 1px dashed green;
+}
+.notification-content:last-child{
+    border-bottom: none;
+}
+.notification-panel {
+    display: flex;
+    flex-direction: column;
 }

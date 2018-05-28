@@ -1,7 +1,7 @@
 .tutorial-container {
     color: white;
     font-size:  2em;
-    height: 50em;
+    height: 60em;
     // overflow-y: scroll;
 }
 
@@ -10,11 +10,12 @@
 .shell-wrap {
     width: 30em;
     // margin: 100px auto 0 auto;
-    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    // box-shadow: 0 0 30px rgba(0,0,0,0.4);
   
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    padding: 1em;
   }
   
   .shell-top-bar {
@@ -23,7 +24,7 @@
     // padding: 5px 0;
     margin: 0;
     text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
-    font-size: 0.85em;
+    font-size: 0.75em;
     border: 1px solid #CCCCCC;
     border-bottom: none;
   
@@ -86,4 +87,19 @@
 
   .type-a {
       color: #0082f0;
+  }
+  .project-list {
+      display: flex;
+      flex-direction: column;
+  }
+  .green {
+    color: #45D40C;      
+  }
+
+  .steps {
+    font-size: 0.8em;
+    padding: 1em 0em 0em 2em;
+  }
+  .steps-space {
+    padding-bottom: 0.8em;
   }
