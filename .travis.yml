@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+- 8.1
+script:
+- npm run webpack-watch
+deploy:
+  provider: s3
+  access_key_id: AKIAI4ZO66BREZY3542Q
+  secret_access_key: 
+    secure: "QyY5So6oGJT6Y7VaY4M7QzeQzQmd5xCZULc4K6xJFQ6UulXVHXbFdQytaib5zYLK5IvQhX/jlCyMuzKdOLuGonuyYtFCcABokGrZbU5/qgYjDcSqAmoVg0uV1fQg4slYbVwsTn8U04uTRFcRXx4HZrUZk6SmhLF6qonBYOV7U2vc7hZzcs8g3bvpDGHYke1b3lJTkzDEYeYynIJa9azbIwvUlv79LCjSFl6U4rCvsNC572OERdTK34OxvUUIZOZpb6TUjE0G+x2wtfvwIuyeefx3JrvfE7Hg19QWLDYnOLjCkv27Kqb5N3+BRRW8ZVDsiBAslpHWr43h6dIhf6JYg6WtWopMLMaBWHAM3AMTSWFNzd3Lt7swiMMYbtCI9Ww+mEacCV3+GUFT5YpLnbA/vdW8+lb1cp/1I9oAqrDlKGdx/4AYJY6kqabHu4MrSDDac7Nc+dhADOUmBl1FEO8hSutaGFYQmbJq+7RKm5QFAEZM/onCXMLC1vEFOO/fpXAOJUHllMzduNcRlUPoQcsKe3c9WxSa9Ahjso41ag/HK0OrDVKZYtEuc4dpqNev6fL8SO6jBtaJh7iQCdSRT3Io9kd3rBqjRmq8BPlMWQZZ/EpQ2WXOET6J9Et5OSqr2sEC8J3hdeaTDV0caE/N75mX1JF6g5sb1r4h/ISgAr2jqcg="
+  bucket: codin-ui
+  skip_cleanup: true
+  region: us-east-1
+  local-dir: dist
+  acl: public_read
+  on:
+    repo: itachiRedhair/codInUI
+    branch: develop
+env:
+  global:
+    secure: l+QqmOy21+njPbim1PyFYwvPKiwPoQVsGmJio9CBd3aFqwvimpcUgvIS9XfjVwh/ow+6aKWdFjn25NiwMHl/fmx6QH9NaFweJ+1YOo6a3Pe3v994d3sh8ZDE9AVto8EGYjtuQPZdaG6F1LAs8i19fvQUf4xG1SHPiMk3W+wimSPpQk328+BM6MVkpGnUpKvRKAgpUj2fRavkIj7+HJ6PbMDICasMc5K8BiHu3TgU9Wl5uW9Cpqhaf3b+aRSu1xiYzCQSbWVpPeh7bdpoQqKAThaLK7f8Ynx8HJqvlXYxsvUp7EKmt5rQ0oj2jrU2pflMlx2HA1b34V8FbHHVmr41sXjpW39rWqihtfwK6ss65T/0T1Ac1aVnx7xKfcMhI9snGUjRQcvoDHLrz6cLTLNzMuiSWJ70Bp5maInqL8Bq3nVxygPw8NAVnbm/uhycSxoeYUoROjPDNeXf2/jYrSOXwilcdjEpVmS+aMazDijN2WikgAleiCj3IQUnlgBvCONhl8D68p38qJR75af4ei8oJYtlXt/FzTt8RRFuAKTmIKfCLKitjLtSzOrVGd7cReCML7SOnBU2/5oRungYF9yW0WbAcHgVQn8lO+cWiXH3+FmtR/MrgkHbHgZC4CW3G+JoSeQz6rEevQP/rCwGdTUwCViL7VxjgXDnoYbnoSHeJus=

@@ -68,19 +68,17 @@ export const createProject = (name, type) => (dispatch, getState) => {
 };
 
 export const showProject = () => (dispatch, getState) => {
-  return new Promise((resolve, reject) => {
-    getUserProject()
-      .then(response => {
-        if (response) {
-          dispatch(listProject(response));
-          resolve(response);
-        } else {
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  });
+  getUserProject()
+    .then(response => {
+      if (response) {
+        console.log("------project response-----", response);
+        dispatch(listProject(response));
+      } else {
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 export const submissionList = projectId => (dispatch, getState) => {
