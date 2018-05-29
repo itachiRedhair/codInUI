@@ -12,7 +12,7 @@ import {
 import { Route, Switch, Redirect, NavLink } from "react-router-dom";
 
 //Components imports
-
+import AddProjectComponent from "./../../../../components/AddProjectComponent";
 import Navbar from "./../../Navbar";
 import FirstRender from "./../FirstRender";
 
@@ -31,6 +31,7 @@ export default class Landing extends Component {
     }
 
     componentDidMount() {
+        
         this.props.recentList();
         this.props.showProject().then(response => {
             this.setState({
@@ -51,9 +52,15 @@ export default class Landing extends Component {
     handleClicked = e => {
         this.props.setProjectId(e.target.getAttribute("value"));
         this.props.setProjectName(e.target.textContent);
+        this.props.userDetails();
     };
 
+    showProjectModal = () => {
+        this.props.setProjectModalState(true);
+    }
+
     render() {
+
         const setHeight = {
             height: "1.5em",
             color: "white"
@@ -168,7 +175,7 @@ export default class Landing extends Component {
                                     <div className="box-header">
                                         <div>Repositories</div>
                                         <div>
-                                            <a className="btn btn-outline mt-2">Add New</a>
+                                            <a className="btn btn-outline mt-2" onClick={this.showProjectModal}>Add New</a>
                                         </div>
                                     </div>
                                     <div style={listStyle} className="box-body">
@@ -178,8 +185,6 @@ export default class Landing extends Component {
                                 </div>
                             </div>
                         </Col>
-
-
                         <Col md={8} >
                             <div className="landing-body">
                                 <div className="tab-container">
@@ -195,6 +200,9 @@ export default class Landing extends Component {
                             </div>
                         </Col>
                     </div>
+                    {this.props.showProjectModal && (
+                        <AddProjectComponent />
+                    )}
                 </React.Fragment>
             );
         }

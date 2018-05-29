@@ -122,8 +122,9 @@ body {
 
 .project-dropdown-content.reveal {
   height: 15em;
-  padding-bottom: 7em;
+  padding-bottom: 1em;
   padding-left: 1em;
+  overflow-y: scroll;
 }
 
 .img-circle.profile_img {
@@ -200,4 +201,9 @@ body {
 .project-list {
     color: white !important;
     padding: 16px;
+}
+
+.register-container {
+    display: flex;
+    flex-direction: row;
 }

@@ -108,7 +108,8 @@ export const projectRegisterRequest = (projectNamee, projectType) => {
         method: "POST",
         credentials: "include",
         body: JSON.stringify({
-            name
+            name,
+            type
         })
     };
 
@@ -199,7 +200,7 @@ export const getReport = (projectId, duration) => {
         method: "GET",
         credentials: "include"
     };
-    console.log("tslint url", url);
+ 
     return fetch(url, options)
         .then(response => {
             return response.json();
@@ -232,7 +233,6 @@ export const getRecentSubmits = projectId => {
         method: "GET",
         credentials: "include"
     };
-    console.log("url", url);
     return fetch(url, options)
         .then(response => {
             return response.json();
