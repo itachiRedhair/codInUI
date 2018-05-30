@@ -1,5 +1,26 @@
 @import "../../../styles/_variables.scss";
 @import "../../../styles/_theme.scss";
+
+
+.unseen-content {
+    background: $notif-dot;
+    position: absolute;
+    top: 1.5em;
+    right: 33.8em;
+    width: 9px ;
+    background: red;
+    font-size: 0.6em;
+    color: $primary-text;
+    border-radius: 0.3em;
+    z-index: 9999;
+}
+
+.unseen-count {
+    padding-left: 2px;
+}
+
+
+
 // .header .header-block-nav {
 //   .notifications {
 //     font-size: 16px;
