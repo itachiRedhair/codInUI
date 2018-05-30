@@ -40,6 +40,8 @@ export default class Sidebar extends Component {
         this.state = {
             showProjectDropdownContent: false,
             selectedProject: "",
+            selectedProjectType: "",
+            selectedProjectDate: "",
             showProjectModal: false,
             showCollaboratorModal: false,
             isProjectSelected: false,
@@ -73,6 +75,7 @@ export default class Sidebar extends Component {
     handleClicked = e => {
         this.setState({
             selectedProject: e.target.textContent,
+            selectedProjectType: e.target.getAttribute("value2"),
             isProjectSelected: true,
             //   projectId: e.target.getAttribute('value'),
             showProjectDropdownContent: false
@@ -116,11 +119,12 @@ export default class Sidebar extends Component {
                             <NavLink
                                 key={project._id}
                                 value={project._id}
+                                value2={project.type}                                
                                 style={setHeight}
                                 onClick={this.handleClicked}
                                 to="/dashboard/overview"
                             >
-                                {project.name}
+                               <i className="fa fa-user" /> |  {project.name}
                             </NavLink>
                         </li>
                     );
@@ -130,11 +134,12 @@ export default class Sidebar extends Component {
                             <NavLink
                                 key={project._id}
                                 value={project._id}
+                                value2={project.type}
                                 style={setHeight}
                                 onClick={this.handleClicked}
                                 to="/dashboard/overview"
                             >
-                                {project.name}&nbsp;<i className="far fa-copyright" />
+                                <i className="fa fa-user-o" /> | {project.name}
                             </NavLink>
                         </li>
                     );
@@ -179,7 +184,13 @@ export default class Sidebar extends Component {
                                         : addProject}
                             </div>
                         </div>
-                        <div className="project-date">Created on: 25/04/2018</div>
+                        <div className="project-date">
+                        {this.state.isProjectSelected && projects.length != 0
+                                    ? this.state.selectedProjectType
+                                    : !this.state.isProjectSelected && projects.length != 0
+                                        ? this.props.projectType
+                                        : addProject}| 25/04/2018 | 4 contributors
+                         </div>
                     </div>
                     {this.state.showProjectDropdownContent ? (
                         <i className="fas fa-caret-up project-dropdown-icon" />
@@ -220,9 +231,9 @@ export default class Sidebar extends Component {
                                     <i className="fa fa-tachometer" /> Overview
                                 </NavLink>
                             </li>
-                            <div className="report-container">
+                            {/* <div className="report-container">
                                 <div className="reports">Reports</div>
-                            </div>
+                            </div> */}
                             <li className="active open bb">
                                 <NavLink
                                     activeStyle={navLinkActiveStyle}

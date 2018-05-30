@@ -52,6 +52,7 @@ export default class Landing extends Component {
     handleClicked = e => {
         this.props.setProjectId(e.target.getAttribute("value"));
         this.props.setProjectName(e.target.textContent);
+        this.props.setProjectType(e.target.getAttribute("value2"))
         this.props.userDetails();
     };
 
@@ -89,6 +90,7 @@ export default class Landing extends Component {
                             <NavLink
                                 key={project._id}
                                 value={project._id}
+                                value2={project.type}
                                 style={setHeight}
                                 onClick={this.handleClicked}
                                 to="/dashboard/overview"
@@ -103,6 +105,7 @@ export default class Landing extends Component {
                             <NavLink
                                 key={project._id}
                                 value={project._id}
+                                value2={project.type}                                
                                 style={setHeight}
                                 onClick={this.handleClicked}
                                 to="/dashboard/overview"

@@ -10,10 +10,15 @@
 }
 
 .col-container > .overview-col {
-  flex-grow: 1;
+//   flex-grow: 1;
 }
 
 .overview-row-group:last-of-type {
   margin-bottom: 15em;
   
+}
+
+.overview-col {
+    flex:1;
+    min-height: 30vh;
 }

@@ -1,5 +1,6 @@
-import { merge } from 'lodash';
+import "../styles/_theme.scss";
 
+import { merge } from 'lodash';
 export const TYPE_LINE = "line";
 export const TYPE_BAR = "bar";
 export const TYPE_PIE = "pie";
@@ -16,12 +17,16 @@ let barOptions = {
     },
     legend: {
         textStyle: {
-            color: "white"
+            color: "white",
+            fontFamily: "FiraCode"
         }
     },
     xAxis: {
         nameTextStyle: {
             color: "white"
+        },
+        axisLabel: {
+            fontFamily: "FiraCode"
         },
         axisLine: {
             lineStyle: {
@@ -40,6 +45,9 @@ let barOptions = {
             }
         },
         axisLabel: {
+            fontFamily: "FiraCode"
+        },
+        axisLabel: {
             color: "white"
         }
     },
@@ -51,7 +59,8 @@ let categoryLineOptions = {
     },
     legend: {
         textStyle: {
-            color: "white"
+            color: "white",
+            fontFamily: "FiraCode"
         },
         data: []
     },
@@ -62,11 +71,16 @@ let categoryLineOptions = {
         type: "category",
         boundaryGap: true,
         minInterval: 3600 * 1000 * 24,
-
+        nameTextStyle: {
+            fontFamily: "FiraCode"
+        },
         axisLine: {
             lineStyle: {
                 color: "white"
             }
+        },
+        axisLabel: {
+            fontFamily: "FiraCode"
         },
         boundaryGap: false
     },
@@ -75,8 +89,11 @@ let categoryLineOptions = {
         splitLine: {
             show: true,
             lineStyle: {
-                color: "rgba(255,255,255,0.1)"
+                color: "rgba(255,255,255,0)"
             }
+        },
+        axisLabel: {
+            fontFamily: "FiraCode"
         },
         axisLine: {
             lineStyle: {
@@ -87,9 +104,7 @@ let categoryLineOptions = {
 };
 
 let heatMapOptions = {
-    tooltip: {
-        position: "top"
-    },
+    
     animation: false,
     grid: {
         height: "auto",
@@ -98,10 +113,14 @@ let heatMapOptions = {
     },
     xAxis: {
         type: "category",
+        
         axisLine: {
             lineStyle: {
                 color: "white"
             }
+        },
+        axisLabel: {
+            fontFamily: "FiraCode"
         },
         splitArea: {
             show: true
@@ -113,6 +132,9 @@ let heatMapOptions = {
             lineStyle: {
                 color: "white"
             }
+        },
+        axisLabel: {
+            fontFamily: "FiraCode"
         },
         splitArea: {
             show: true

@@ -3,7 +3,7 @@ import Landing from "./Landing.jsx";
 import { connect } from "react-redux";
 
 //action creators
-import { createProject, showProject, setProjectId, setProjectName } from "./../../../../modules/project";
+import { createProject, showProject, setProjectId, setProjectName, setProjectType } from "./../../../../modules/project";
 import { setModalState } from "./../../../../modules/modalState";
 import { listTslintReport } from "./../../../../modules/report";
 import { recentList } from "./../../../../modules/recent";
@@ -19,6 +19,7 @@ const mapDispatchToProps = {
   setModalState,
   setProjectId,
   setProjectName,
+  setProjectType,
   listTslintReport,
   recentList,
   userDetails,
@@ -31,6 +32,7 @@ const mapStateToProps = state => {
     showModal: state.modalReducer.showModal,
     projectId: state.projectReducer.projectId,
     projectName: state.projectReducer.projectName,
+    projectType: state.projectReducer.projectType,    
     submitList: state.projectReducer.submitList,
     uid: state.authReducer.uid,
     recentData: state.recentReducer.recentData,

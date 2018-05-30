@@ -18,12 +18,12 @@ $navbar-bg: #0c0c0c;
 $theme-color: green;
 
 @font-face {
-  font-family: Raleway;
-  src: url("../../../assets/fonts/raleway/Raleway-Light.ttf");
+  font-family: FiraCode;
+  src: url("../../../assets/fonts/firacode/FiraCode-Light.ttf");
 }
 
 body {
-  font-family: "Raleway";
+  font-family: "FiraCode";
 }
 
 .dropdown-menu.dropdown-menu-right {

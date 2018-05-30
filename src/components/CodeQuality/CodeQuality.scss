@@ -16,7 +16,7 @@
 .cyclomatic-number-container {
   display: flex;
   align-items: baseline;
-  margin-left: 4em;
+//   margin-left: 4em;
   margin-bottom: 2em;
   flex-direction: column;
   justify-content: space-around;
@@ -24,7 +24,7 @@
 }
 
 .error-number {
-  font-size: 10rem;
+  font-size: 6rem;
 //   margin: -3rem;
 }
 
@@ -39,4 +39,14 @@
   right: 0;
   height: 80%;
   border-right: 2px solid grey;
+}
+
+.error-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.divider {
+    border-right: .17em solid gray;
 }
