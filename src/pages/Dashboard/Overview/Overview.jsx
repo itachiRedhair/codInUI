@@ -20,7 +20,7 @@ export default class Overview extends Component {
     constructor(props) {
         super(props);
     }
-    
+
     componentDidMount() {
         this.props.listTslintReport(this.props.projectId, "week");
     }
@@ -29,8 +29,7 @@ export default class Overview extends Component {
         if (this.props.isFetching) {
             return (<div><Loader /></div>)
         }
-        else if(this.props.reportList.length === 0)
-        {
+        else if (this.props.reportList.length === 0) {
             return <Tutorial />
         }
         else {
@@ -40,13 +39,13 @@ export default class Overview extends Component {
                         <Col xs={12} sm={12} md={9} className="overview-col">
                             <OverviewGraph />
                         </Col>
-                        <Col md={3} className="overview-col">
-                            <CPICard />
-                        </Col>
                     </Row>
                     <Row className="overview-row-group col-container">
-                        <Col xs={12} sm={12} md={9} className="overview-col">
+                        <Col md={10} className="overview-col">
                             <CodeQuality />
+                        </Col>
+                        <Col md={2} className="overview-col">
+                            <CPICard />
                         </Col>
                     </Row>
                     <Row className="overview-row-group col-container">

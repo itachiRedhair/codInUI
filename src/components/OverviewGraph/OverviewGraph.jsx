@@ -28,7 +28,7 @@ class OverviewGraph extends Component {
     render() {
         let tsLintErrorData = [];
         let tsLintWarningData = [];
-        let cyclomatic = [];
+        // let cyclomatic = [];
         let maintainability = [];
         let tsLintDays = [];
         for (let i = 0; i < this.props.reportList.length; i++) {
@@ -37,8 +37,8 @@ class OverviewGraph extends Component {
                 // let topErrArray = errArray.sort().splice(0,5);
                 tsLintErrorData.push(this.props.reportList[i].summary.lint.totalErrors);
                 tsLintWarningData.push(this.props.reportList[i].summary.lint.totalWarnings);
-                cyclomatic.push(this.props.reportList[i].summary.quality.cyclomatic.toFixed(2));
-                maintainability.push(this.props.reportList[i].summary.quality.maintainability.toFixed(2));
+                // cyclomatic.push(this.props.reportList[i].summary.quality.cyclomatic.toFixed(2));
+                maintainability.push(this.props.reportList[i].summary.quality.averageMaintainability.toFixed(2));
                 tsLintDays.push(new Date(this.props.reportList[i].meta.submitted_at).toDateString());
             }
         }
@@ -69,15 +69,6 @@ class OverviewGraph extends Component {
                     data: tsLintWarningData
                 },
                 {
-                    name: "Cyclomatic",
-                    type: "line",
-                    smooth: true,                    
-                    lineStyle: {
-                        color: "#0082f0"
-                    },
-                    data: cyclomatic
-                },
-                {
                     name: "Maintainability",
                     type: "line",
                     smooth: true,                    
@@ -96,7 +87,7 @@ class OverviewGraph extends Component {
                 <EchartCard
                     title="Trend Graph"
                     options={tempOptions}
-                    height="300px"
+                    height="60vh"
                     autoSize
                 />
             );

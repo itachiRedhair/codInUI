@@ -19,15 +19,15 @@ export default class CPICard extends Component {
   render() {
     let cpiScore = 0;
     let totalErrors = 0;
-    let cyclomatic = 0;
+    // let cyclomatic = 0;
     let maintainability = 0;
     let len = this.props.reportList.length;
     if (this.props.reportList.length > 0) {
       totalErrors = this.props.reportList[len - 1].summary.lint.totalErrors;
-      cyclomatic = this.props.reportList[len - 1].summary.quality.cyclomatic;
+    //   cyclomatic = this.props.reportList[len - 1].summary.quality.cyclomatic;
       maintainability = this.props.reportList[len - 1].summary.quality
-        .maintainability;
-        cpiScore = getCPI(totalErrors,cyclomatic,maintainability);
+        .averageMaintainability;
+        cpiScore = getCPI(totalErrors,maintainability);
     //   const max = Math.max(totalErrors, cyclomatic, maintainability);
     //   const Es = totalErrors * 100 / max;
     //   const Ms = (max - maintainability) * 100 / max;

@@ -75,7 +75,7 @@ export default class AddProjectComponent extends Component {
                         <Input
                             type="text"
                             label="Name"
-                            placeholder="Name of project"
+                            placeholder="your-project@0.1.0"
                             value={this.state.projectName}
                             onChange={this.handleNameChange}
                         />

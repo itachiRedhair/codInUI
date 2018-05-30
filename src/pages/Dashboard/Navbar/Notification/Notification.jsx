@@ -23,17 +23,31 @@ export default class Notification extends Component {
             <Popover id="popover-trigger-click-root-close" title="Notifications">
                 <div className="notification-panel">
                     <div className="notification-content">
-                        <span className="not-desc">You have received an invitation from Abundavia</span>
+                        <div className="not-desc"><b>Jagdeep Soni</b> has invited you be to be a contributor of <b>Insite-UI@1.0.0</b></div>
                         <div className="btn-property">
-                            <a className="btn btn-outline mt-2" onClick={this.showProjectModal}>Accept</a>
-                            <a className="btn btn-outline mt-3 decline" onClick={this.showProjectModal}>Decline</a>
+                            <a className="btn btn-outline mt-2" onClick={this.showProjectModal}><i className="fa fa-check" /> Accept</a>
+                            <a className="btn btn-outline mt-3 decline" onClick={this.showProjectModal}><i className="fa fa-times" /> Decline</a>
                         </div>
                     </div>
                     <div className="notification-content">
-                        <span className="not-desc">You have received an invitation from Abundavia</span>
+                        <div className="not-desc"><b>Souvik</b> has invited you be to be a contributor of <b>bhalo@1.0.0</b></div>
                         <div className="btn-property">
-                            <a className="btn btn-outline mt-2" onClick={this.showProjectModal}>Accept</a>
-                            <a className="btn btn-outline mt-3 decline" onClick={this.showProjectModal}>Decline</a>
+                            <a className="btn btn-outline mt-2" onClick={this.showProjectModal}><i className="fa fa-check" /> Accept</a>
+                            <a className="btn btn-outline mt-3 decline" onClick={this.showProjectModal}><i className="fa fa-times" /> Decline</a>
+                        </div>
+                    </div>
+                    <div className="notification-content">
+                        <div className="not-desc"><b>Souvik</b> has invited you be to be a contributor of <b>bhalo@1.0.0</b></div>
+                        <div className="btn-property">
+                            <a className="btn btn-outline mt-2" onClick={this.showProjectModal}><i className="fa fa-check" /> Accept</a>
+                            <a className="btn btn-outline mt-3 decline" onClick={this.showProjectModal}><i className="fa fa-times" /> Decline</a>
+                        </div>
+                    </div>
+                    <div className="notification-content">
+                        <div className="not-desc"><b>Souvik</b> has invited you be to be a contributor of <b>bhalo@1.0.0</b></div>
+                        <div className="btn-property">
+                            <a className="btn btn-outline mt-2" onClick={this.showProjectModal}><i className="fa fa-check" /> Accept</a>
+                            <a className="btn btn-outline mt-3 decline" onClick={this.showProjectModal}><i className="fa fa-times" /> Decline</a>
                         </div>
                     </div>
                 </div>
@@ -44,7 +58,7 @@ export default class Notification extends Component {
                 <OverlayTrigger
                     trigger="click"
                     rootClose
-                    placement="left"
+                    placement="bottom"
                     overlay={popoverClickRootClose}
                 >
                     <div className="notifications new align-new responsive" ref={button => {

@@ -20,13 +20,14 @@ export default class CodeQuality extends Component {
     }
 
     render() {
-        
-        let cyclomatic = 0;
+
+        // let cyclomatic = 0;
         let maintainability = 0;
+        console.log("this.props.reportlisy", this.props.reportList);
         let len = this.props.reportList.length;
-        if(len > 0) {
-            cyclomatic = this.props.reportList[len-1].summary.quality.cyclomatic.toFixed(1);
-            maintainability = this.props.reportList[len-1].summary.quality.maintainability.toFixed(1);            
+        if (len > 0) {
+            // cyclomatic = this.props.reportList[len - 1].summary.quality.cyclomatic.toFixed(1);
+            maintainability = this.props.reportList[len - 1].summary.quality.averageMaintainability.toFixed(1);
         }
 
         if (len === 0) {
@@ -36,7 +37,7 @@ export default class CodeQuality extends Component {
             return (
                 <Card title="Code Quality">
                     <div className="tslint-summary-container">
-                        <Row className="tslint-summary">
+                        {/* <Row className="tslint-summary">
                             <Col md={4} className="cyclomatic-number-container">
                                 <div className="digit">
                                     <div className="error-number">{cyclomatic}</div>
@@ -49,7 +50,20 @@ export default class CodeQuality extends Component {
                                     <div>Maintainability</div>
                                 </div>
                             </Col>
-                        </Row>
+                        </Row> */}
+                        <div className="error-content">
+                            {/* <div className="digit">
+                                <div className="error-number">{cyclomatic}</div>
+                                <div>Cyclomatic Complexity</div>
+                            </div> */}
+                            {/* <div className="divider">
+
+                            </div> */}
+                            <div className="digit">
+                                <div className="error-number">{maintainability}</div>
+                                <div>Maintainability</div>
+                            </div>
+                        </div>
                     </div>
                 </Card>
             );
