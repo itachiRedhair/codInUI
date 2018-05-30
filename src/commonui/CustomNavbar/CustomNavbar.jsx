@@ -10,8 +10,11 @@ class CustomNavbar extends Component {
   constructor(props) {
     super(props);
   }
-  handleClick() {
+  handleClick = () => {
     this.props.history.push("/landing");
+  }
+  handleLogout = () => {
+      this.props.userLogOut();
   }
   // render() {
   //     return (
@@ -48,7 +51,7 @@ class CustomNavbar extends Component {
           <Nav pullRight>
             <Notification className="dropdown" />
             <NavDropdown eventKey={3} title="Anand Undavia" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>LogOut</MenuItem>
+              <MenuItem eventKey={3.1}><div onClick={this.handleLogout}>LogOut</div></MenuItem>
             </NavDropdown>
           </Nav>
         </Navbar>

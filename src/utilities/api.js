@@ -230,3 +230,54 @@ export const getRecentActivities = () => {
       throw new Error('Loading Recent Activities Failed');
     });
 };
+
+// Invitations and notification
+
+export const inviteContributor = contributorParameters => {
+    const url = `${constants.API_URL}/v1/user/invite`;
+    // const contributorName = contributorParameters.name;
+    const invitedUserID = contributorParameters.invitedUserID;
+    const projectID = contributorParameters.projectID;
+    const options = {
+        headers: getHeaders(),
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify({
+            // contributorName,
+            invitedUserID,
+            projectID
+        })
+    };
+    console.log("url", url);
+    return fetch(url, options)
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => {
+            throw new Error("Invitation Failed");
+        });
+};
+
+export const respondInvite = (acceptedStatus, pID) => {
+    const url = `${constants.API_URL}/v1/user/invite/respond`;
+    const accepted = acceptedStatus;
+    const projectID = pID;
+    const options = {
+        headers: getHeaders(),
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify({
+            projectID,
+            accepted
+        })
+    };
+
+    return fetch(url, options)
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => {
+            throw new Error("Invitation respond Failed");
+        });
+};
+

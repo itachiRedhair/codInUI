@@ -1,3 +1,11 @@
 import CustomNavbar from './CustomNavbar.jsx';
+import { connect } from 'react-redux';
 
-export default CustomNavbar;
+// action creators
+import { actions } from '../../modules/auth';
+
+const mapDispatchToProps = dispatch => ({
+  userLogOut: () => dispatch(actions.userLogOut()),
+});
+
+export default connect(null, mapDispatchToProps)(CustomNavbar);

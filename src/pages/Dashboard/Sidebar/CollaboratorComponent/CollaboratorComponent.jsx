@@ -61,10 +61,10 @@ export default class Collaborator extends Component {
   };
 
   _addCollaborator = () => {
-    this.props.registerCollaborator({
-      name: this.state.collaboratorName,
-      contributorID: this.state.contributorID,
-      projectID: this.state.projectID
+    this.props.sendInvitation({
+        //   name: this.state.collaboratorName,
+        invitedUserID: this.state.contributorID,
+        projectID: this.state.projectID
     });
   };
 
