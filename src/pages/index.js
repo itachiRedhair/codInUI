@@ -8,6 +8,7 @@ import Homepage from "./Homepage";
 import Dashboard from "./Dashboard";
 import LandingComponent from "./Dashboard/LandingComponent"
 import Loader from "./../components/Loader";
+import ReduxToastr from 'react-redux-toastr';
 
 //ActionCreatorImports
 import { actions as authAction } from "./../modules/auth";
@@ -51,18 +52,37 @@ class App extends Component {
     return this.state.isUserRequestComplete ? (
       <React.Fragment>
         <Loader />
+        <ReduxToastr
+          timeOut={4000}
+          newestOnTop={false}
+          preventDuplicates
+          position="top-right"
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          progressBar />
         <div>
           <Switch>
             <Route exact key="login" path="/" component={Homepage} />
             <Route exact key="signup" path="/signup" component={Homepage} />
             <PrivateRoute path="/landing" component={LandingComponent} />
-            <PrivateRoute path="/dashboard" component={Dashboard} />            
+            <PrivateRoute path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
       </React.Fragment>
     ) : (
-      <Loader />
-    );
+        <div>
+          <Loader />
+          <ReduxToastr
+            timeOut={4000}
+            newestOnTop={false}
+            preventDuplicates
+            position="top-right"
+            transitionIn="fadeIn"
+            transitionOut="fadeOut"
+            progressBar />
+        </div>
+
+      );
   }
 }
 

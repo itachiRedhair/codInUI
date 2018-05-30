@@ -11,3 +11,10 @@
   cursor: pointer;
   text-decoration: underline;
 }
+
+.form-action-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

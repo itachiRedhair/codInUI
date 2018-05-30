@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { Route, withRouter, Link } from "react-router-dom";
-
 //Components imports
 import Input from "./../../../commonui/Input";
 import Button from "./../../../commonui/Button";
@@ -44,7 +43,7 @@ class LoginComponent extends Component {
                     this.setState({ connectionFailed: true })
                 }
                 else if (loginResponse === 401) this.setState({ loginFailed: true });
-                else this.setState({serviceUnavailable: true})
+                else this.setState({ serviceUnavailable: true })
             });
     };
 
@@ -79,16 +78,13 @@ class LoginComponent extends Component {
                     onChange={this.handlePasswordChange}
                 />
                 <Checkbox list={[`Keep me logged in`]} />
-                <Row>
-                    <Col md={3} mdPush={8}>
-                        <Button onClick={this.handleSubmit} className="login-button">
-                            Login <i className="fas fa-arrow-right arrow-icon" />
-                        </Button>
-                    </Col>
-                </Row>
-                <div className="signup-prompt" onClick={this.props.toggleSignup}>
-                    New Here? Sign up.
-        </div>
+                <div className="form-action-container">
+                    <div className="signup-prompt" onClick={this.props.toggleSignup}>New Here? Sign up</div>
+
+                    <Button onClick={this.handleSubmit} className="btn btn-outline">
+                        Login <i className="fas fa-arrow-right arrow-icon" />
+                    </Button>
+                </div>
             </form>
         );
     }

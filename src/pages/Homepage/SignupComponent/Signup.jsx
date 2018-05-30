@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { Route, withRouter, Link } from "react-router-dom";
+import { toastr } from 'react-redux-toastr'
 
 //components
 import Input from "./../../../commonui/Input";
@@ -23,7 +24,7 @@ class SignupComponent extends Component {
     };
   }
 
-  getValidationState = () => {};
+  getValidationState = () => { };
 
   handleNameChange = e => this.setState({ name: e.target.value })
 
@@ -34,14 +35,19 @@ class SignupComponent extends Component {
   handleConfirmPasswordChange = e => this.setState({ confirm: e.target.value });
 
   handleSubmit = () => {
-    console.log(this.state.email, this.state.password, this.state.confirm);
+    // console.log(this.state.email, this.state.password, this.state.confirm);
     this.props
       .userSignUp(this.state.name, this.state.email, this.state.password, this.state.confirm)
       .then(signup => {
         if (signup) {
-          this.setState({ register: true });
+          toastr.success('Success', 'Sign up successful', {
+            timeOut: 1500,
+            onHideComplete: () => this.props.toggleLogin(),
+            showCloseButton: false,
+          })
+        } else {
+          // TODO: Show some error
         }
-        console.log("signed up", signup);
       });
   };
 
@@ -85,16 +91,13 @@ class SignupComponent extends Component {
           value={confirm}
           onChange={this.handleConfirmPasswordChange}
         />
-        <Row>
-          <Col md={3} mdPush={8}>
-            <Button onClick={this.handleSubmit} className="login-button">
-              Signup <i className="fas fa-arrow-right arrow-icon" />
-            </Button>
-          </Col>
-        </Row>
-        {this.props.signedUp ? message : null}
-        <div className="login-prompt" onClick={this.props.toggleLogin}>
-          Already have an account? Log in
+        <div className="form-action-container">
+          <div className="login-prompt" onClick={this.props.toggleLogin}>
+            Have an account? Log in
+          </div>
+          <Button onClick={this.handleSubmit} className="login-button">
+            Signup <i className="fas fa-arrow-right arrow-icon" />
+          </Button>
         </div>
       </form>
     );
