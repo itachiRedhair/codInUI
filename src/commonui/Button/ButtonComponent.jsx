@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import React from 'react';
+import { Button } from 'react-bootstrap';
 
-//styles
-import "./ButtonComponent.scss";
+// styles
+import './ButtonComponent.scss';
 
-const InputComponent = ({ children, ...props }) => {
-  return (
-    <Button {...props} className="custom-button">
-      {" "}
-      {children}{" "}
-    </Button>
-  );
-};
+const InputComponent = ({ children, ...props }) => (
+  <Button {...props} className="custom-button">
+    {' '}
+    {children}
+    {' '}
+  </Button>
+);
 
 export default InputComponent;
+

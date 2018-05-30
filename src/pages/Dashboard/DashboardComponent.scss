@@ -1,0 +1,36 @@
+@import "../../styles/_theme.scss";
+
+
+.dashboard-container {
+  overflow: hidden;
+  margin: 0;
+  height: 100vh;
+}
+
+.dashboard-row-container {
+  margin: 0;
+}
+
+.sidebar-container {
+  position: relative;
+  padding: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.dashboard-content-container {
+  padding: 0;
+}
+
+@media only screen and (max-width: 992px) {
+  .sidebar-container.responsive {
+    height: auto;
+  }
+}
+
+.landing-container {
+  padding: 2em;
+  background: $content-bg;
+  overflow-y: scroll;
+  height: 91.6vh;
+}

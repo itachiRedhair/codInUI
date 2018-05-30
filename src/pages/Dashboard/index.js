@@ -1,10 +1,5 @@
-import React, { Component } from 'react';
 
 // Component imports
-import DashboardComponent from './DashboardComponent';
+import DashboardComponent from './DashboardComponent.jsx';
 
-export default class Dashboard extends Component {
-  render() {
-    return <DashboardComponent />;
-  }
-}
+export default DashboardComponent;

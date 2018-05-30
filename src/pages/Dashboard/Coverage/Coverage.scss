@@ -4,8 +4,8 @@
 
 .container{
     // background: red;
-    height: 50vh;
-    width: 50vh;
+    // height: 50vh;
+    // width: 50vh;
 }
 
 
@@ -14,18 +14,17 @@
     // display: flex;
     // flex-wrap: wrap;
   }
-  
+
   .col-container {
     display: flex;
     flex-wrap: wrap;
   }
-  
+
   .col-container > .coverage-col {
     flex-grow: 1;
   }
-  
+
   .coverage-row-group:last-of-type {
     margin-bottom: 15em;
     height: 70%;
   }
-  

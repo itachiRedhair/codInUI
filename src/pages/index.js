@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 // Components imports
 import PrivateRoute from './../components/PrivateRoute';
-import Homepage from './Homepage';
+import Index from './Index';
 import Dashboard from './Dashboard';
-import LandingComponent from './Dashboard/LandingComponent';
+import LandingComponent from './Landing';
 import Loader from './../components/Loader';
 import ReduxToastr from 'react-redux-toastr';
 
@@ -63,8 +63,8 @@ class App extends Component {
         />
         <div>
           <Switch>
-            <Route exact key="login" path="/" component={Homepage} />
-            <Route exact key="signup" path="/signup" component={Homepage} />
+            <Route exact key="login" path="/" component={Index} />
+            <Route exact key="signup" path="/signup" component={Index} />
             <PrivateRoute path="/landing" component={LandingComponent} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
           </Switch>

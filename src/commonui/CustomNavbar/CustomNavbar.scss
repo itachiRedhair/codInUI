@@ -1,0 +1,15 @@
+@import "../../styles/_theme.scss";
+.navbar {
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+.logo-container {
+  font-size: 2.8rem;
+  color: $primary-text !important;
+  cursor: pointer;
+}
+
+.logo-container span {
+  color: $theme-color;
+}
