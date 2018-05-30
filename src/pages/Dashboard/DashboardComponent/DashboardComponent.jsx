@@ -13,7 +13,7 @@ import {
 
 //Components imports
 import Sidebar from "./../Sidebar";
-import Navbar from "./../Navbar";
+import CustomNavbar from "./../CustomNavbar";
 import Content from "./../Content";
 
 //API imports
@@ -25,14 +25,14 @@ import "./DashboardComponent.scss";
 export default class DashboardComponent extends Component {
 
   componentDidMount() {
-  
+
   }
 
   render() {
     return (
       <React.Fragment>
         <div className="dashboard-container">
-          <Navbar />
+          <CustomNavbar />
           <Row className="dashboard-row-container">
             <Col md={3} className="sidebar-container responsive">
               <Sidebar />

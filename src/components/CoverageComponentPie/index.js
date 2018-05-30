@@ -1,3 +1,3 @@
-import CoverageComponentPie from "./CoverageComponentPie.jsx";
+import CoverageComponentPie from './CoverageComponentPie.jsx';
 
 export default CoverageComponentPie;

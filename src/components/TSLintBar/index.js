@@ -1,23 +1,21 @@
 
-import TSLintBar from "./TSLintBar.jsx";
-import { connect } from "react-redux";
+import TSLintBar from './TSLintBar.jsx';
+import { connect } from 'react-redux';
 
-//action creators
-import { listTslintReport, listTslintReportDetails } from "../../modules/report";
+// action creators
+import { listTslintReport, listTslintReportDetails } from '../../modules/report';
 
 const mapDispatchToProps = {
-    listTslintReport,
-    listTslintReportDetails
-};
- 
-const mapStateToProps = state => {
-  return {
-    reportList: state.reportReducer.reportList,
-    reportListDetails: state.reportReducer.reportListDetails,
-    projectId: state.projectReducer.projectId
-  }; 
+  listTslintReport,
+  listTslintReportDetails,
 };
 
+const mapStateToProps = state => ({
+  reportList: state.reportReducer.reportList,
+  reportListDetails: state.reportReducer.reportListDetails,
+  projectId: state.projectReducer.projectId,
+});
+
 export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false
+  pure: false,
 })(TSLintBar);

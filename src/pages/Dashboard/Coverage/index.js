@@ -1,3 +1,3 @@
-import Coverage from "./Coverage.jsx";
+import Coverage from './Coverage.jsx';
 
 export default Coverage;

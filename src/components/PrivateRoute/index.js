@@ -1,11 +1,9 @@
-import PrivateRoute from "./PrivateRoute.jsx";
+import PrivateRoute from './PrivateRoute.jsx';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.authReducer.isAuthenticated
-  };
-};
+const mapStateToProps = state => ({
+  isAuthenticated: state.authReducer.isAuthenticated,
+});
 
 export default connect(mapStateToProps)(PrivateRoute);

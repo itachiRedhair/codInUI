@@ -1,3 +1,3 @@
-import ButtonComponent from "./ButtonComponent.jsx";
+import ButtonComponent from './ButtonComponent.jsx';
 
 export default ButtonComponent;

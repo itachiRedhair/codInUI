@@ -1,47 +1,47 @@
-import React, { Component } from "react";
-import { Redirect, Switch, Route, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { Redirect, Switch, Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-//Components imports
-import PrivateRoute from "./../components/PrivateRoute";
-import Homepage from "./Homepage";
-import Dashboard from "./Dashboard";
-import LandingComponent from "./Dashboard/LandingComponent"
-import Loader from "./../components/Loader";
+// Components imports
+import PrivateRoute from './../components/PrivateRoute';
+import Homepage from './Homepage';
+import Dashboard from './Dashboard';
+import LandingComponent from './Dashboard/LandingComponent';
+import Loader from './../components/Loader';
 import ReduxToastr from 'react-redux-toastr';
 
-//ActionCreatorImports
-import { actions as authAction } from "./../modules/auth";
-import { setLoadingStatus } from "./../modules/loader";
+// ActionCreatorImports
+import { actions as authAction } from './../modules/auth';
+import { setLoadingStatus } from './../modules/loader';
 
-//API imports
-import { getUser } from "./../utilities/api";
+// API imports
+import { getUser } from './../utilities/api';
 
-//Styles imports
-import "./../styles/_theme.scss";
+// Styles imports
+import './../styles/_theme.scss';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isUserRequestComplete: false
+      isUserRequestComplete: false,
     };
   }
 
   componentDidMount() {
     this.props.setLoadingStatus(true);
     getUser()
-      .then(response => {
+      .then((response) => {
         this.setState({
-          isUserRequestComplete: true
+          isUserRequestComplete: true,
         });
-        if (response.message !== "UNAUTHORIZED") {
+        if (response.message !== 'UNAUTHORIZED') {
           this.props.login();
-          this.props.history.push("/landing");
+          this.props.history.push('/landing');
         }
         this.props.setLoadingStatus(false);
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ isUserRequestComplete: true });
         this.props.setLoadingStatus(false);
         console.log(err);
@@ -59,7 +59,8 @@ class App extends Component {
           position="top-right"
           transitionIn="fadeIn"
           transitionOut="fadeOut"
-          progressBar />
+          progressBar
+        />
         <div>
           <Switch>
             <Route exact key="login" path="/" component={Homepage} />
@@ -70,30 +71,27 @@ class App extends Component {
         </div>
       </React.Fragment>
     ) : (
-        <div>
-          <Loader />
-          <ReduxToastr
-            timeOut={4000}
-            newestOnTop={false}
-            preventDuplicates
-            position="top-right"
-            transitionIn="fadeIn"
-            transitionOut="fadeOut"
-            progressBar />
-        </div>
+      <div>
+        <Loader />
+        <ReduxToastr
+          timeOut={4000}
+          newestOnTop={false}
+          preventDuplicates
+          position="top-right"
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          progressBar
+        />
+      </div>
 
-      );
+    );
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    login: () => dispatch(authAction.login()),
-    setLoadingStatus: loadingStatus => dispatch(setLoadingStatus(loadingStatus))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  login: () => dispatch(authAction.login()),
+  setLoadingStatus: loadingStatus => dispatch(setLoadingStatus(loadingStatus)),
+});
 
-export default withRouter(
-  connect(null, mapDispatchToProps, null, { pure: false })(App)
-);
+export default withRouter(connect(null, mapDispatchToProps, null, { pure: false })(App));
 // export default App;

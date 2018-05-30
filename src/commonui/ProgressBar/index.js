@@ -1,3 +1,3 @@
-import ProgressBarComponent from "./ProgressBar.jsx";
+import ProgressBarComponent from './ProgressBar.jsx';
 
 export default ProgressBarComponent;

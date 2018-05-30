@@ -1,3 +1,3 @@
-import TSLintSummary from "./TSLintSummary.jsx";
+import TSLintSummary from './TSLintSummary.jsx';
 
 export default TSLintSummary;

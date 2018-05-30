@@ -1,9 +1,9 @@
-import DashboardComponent from "./DashboardComponent.jsx";
-import { connect } from "react-redux";
+import DashboardComponent from './DashboardComponent.jsx';
+import { connect } from 'react-redux';
 
-//action creators
-import { createProject, showProject, setProjectId } from "./../../../modules/project";
-import { setModalState } from "./../../../modules/modalState";
+// action creators
+import { createProject, showProject, setProjectId } from './../../../modules/project';
+import { setModalState } from './../../../modules/modalState';
 
 const mapDispatchToProps = {
   createProject,
@@ -12,15 +12,13 @@ const mapDispatchToProps = {
   setProjectId,
 };
 
-const mapStateToProps = state => {
-  return {
-    projects: state.projectReducer.projects,
-    showModal: state.modalReducer.showModal,
-    projectId: state.projectReducer.projectId,
-    uid: state.authReducer.uid
-  };
-};
+const mapStateToProps = state => ({
+  projects: state.projectReducer.projects,
+  showModal: state.modalReducer.showModal,
+  projectId: state.projectReducer.projectId,
+  uid: state.authReducer.uid,
+});
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false
+  pure: false,
 })(DashboardComponent);

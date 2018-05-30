@@ -1,3 +1,3 @@
-import FirstRender from "./FirstRender.jsx";
+import FirstRender from './FirstRender.jsx';
 
 export default FirstRender;

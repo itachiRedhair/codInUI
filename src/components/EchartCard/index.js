@@ -1,3 +1,3 @@
-import EchartCard from "./EchartCard.jsx";
+import EchartCard from './EchartCard.jsx';
 
 export default EchartCard;

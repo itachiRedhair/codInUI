@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-//Component imports
-import HomepageComponent from "./HomepageComponent";
+// Component imports
+import HomepageComponent from './HomepageComponent';
 
 export default class Homepage extends Component {
   render() {

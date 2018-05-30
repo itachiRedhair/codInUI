@@ -1,7 +1,7 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const LOADER = "LOADER";
+export const LOADER = 'LOADER';
 
 // ------------------------------------
 // Action Creators
@@ -9,7 +9,7 @@ export const LOADER = "LOADER";
 
 export const setLoadingStatus = isLoading => ({
   type: LOADER,
-  isLoading
+  isLoading,
 });
 
 // ------------------------------------
@@ -19,8 +19,8 @@ export const setLoadingStatus = isLoading => ({
 const ACTION_HANDLERS = {
   [LOADER]: (state, action) => ({
     ...state,
-    isLoading: action.isLoading
-  })
+    isLoading: action.isLoading,
+  }),
 };
 
 // ------------------------------------
@@ -28,7 +28,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 
 const initialState = {
-  isLoading: false
+  isLoading: false,
 };
 
 export default (state = initialState, action) => {

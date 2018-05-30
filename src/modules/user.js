@@ -1,18 +1,18 @@
-//constants imports
-import constants from "./../constants";
-import config from "./../../config";
+// constants imports
+import constants from './../constants';
+import config from './../../config';
 
-//Action Creator Imports
-import { setLoadingStatus } from "./loader.js";
+// Action Creator Imports
+import { setLoadingStatus } from './loader.js';
 
-//API imports
-import { getUser } from "./../utilities/api";
+// API imports
+import { getUser } from './../utilities/api';
 
 // ------------------------------------
 // Constants
 // ------------------------------------
 
-export const USER_DATA = "USER_DATA";
+export const USER_DATA = 'USER_DATA';
 
 // ------------------------------------
 // Action Creators
@@ -20,7 +20,7 @@ export const USER_DATA = "USER_DATA";
 
 const showUsers = userResponse => ({
   type: USER_DATA,
-  payload: userResponse
+  payload: userResponse,
 });
 
 
@@ -28,29 +28,27 @@ const showUsers = userResponse => ({
 // Thunk Action Creators
 // ------------------------------------
 
-export const userDetails = () => (dispatch, getState) => {
-  return new Promise((resolve, reject) => {
-    dispatch(setLoadingStatus(true));   
-    getUser()
-      .then(response => {
-        dispatch(setLoadingStatus(false));
-        if (response) {
-          dispatch(showUsers(response));
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      })
-      .catch(err => {
-        dispatch(setLoadingStatus(false));
-        console.log(err);
+export const userDetails = () => (dispatch, getState) => new Promise((resolve, reject) => {
+  dispatch(setLoadingStatus(true));
+  getUser()
+    .then((response) => {
+      dispatch(setLoadingStatus(false));
+      if (response) {
+        dispatch(showUsers(response));
+        resolve(true);
+      } else {
         resolve(false);
-      });
-  });
-};
+      }
+    })
+    .catch((err) => {
+      dispatch(setLoadingStatus(false));
+      console.log(err);
+      resolve(false);
+    });
+});
 
 export const actions = {
-  showUsers
+  showUsers,
 };
 
 // ------------------------------------
@@ -60,8 +58,8 @@ export const actions = {
 const ACTION_HANDLERS = {
   [USER_DATA]: (state, action) => ({
     ...state,
-    user: action.payload
-  })
+    user: action.payload,
+  }),
 };
 
 // ------------------------------------
@@ -69,7 +67,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 
 const initialState = {
-  user: ""
+  user: '',
 };
 
 export default (state = initialState, action) => {

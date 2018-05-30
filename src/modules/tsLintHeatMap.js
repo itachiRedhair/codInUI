@@ -1,5 +1,5 @@
 // Imports
-import { getTsLintHeatMapData } from "../utilities/api";
+import { getTsLintHeatMapData } from '../utilities/api';
 // --------------------
 // Constants
 // --------------------
@@ -10,47 +10,45 @@ export const TS_LINT_HEATMAP = 'TS_LINT_HEATMAP';
 // --------------------
 
 const dispalyTsLintHeatmap = tsLintHeatmapData => ({
-    type: TS_LINT_HEATMAP,
-    payload: tsLintHeatmapData
+  type: TS_LINT_HEATMAP,
+  payload: tsLintHeatmapData,
 });
 
 // --------------------
 // Thunk action creator
 // --------------------
 
-export const showTsLintHeatMap = (projectId) => (dispatch, getState) => {
-    getTsLintHeatMapData(projectId)
-    .then(response => {
-        if(response){
-            dispatch(dispalyTsLintHeatmap(response));
-        }
-        else {
-            console.log('Response error');
-        }
+export const showTsLintHeatMap = projectId => (dispatch, getState) => {
+  getTsLintHeatMapData(projectId)
+    .then((response) => {
+      if (response) {
+        dispatch(dispalyTsLintHeatmap(response));
+      } else {
+        console.log('Response error');
+      }
     })
-    .catch(err => {
-        console.log('TsLint heatmap error', err);
-    })
-}
+    .catch((err) => {
+      console.log('TsLint heatmap error', err);
+    });
+};
 
 const initialState = {
-    tsLintHeatmapData: []
-}
+  tsLintHeatmapData: [],
+};
 
 // ---------------------
 // Actions
 // ---------------------
 
 const ACTION_HANDLERS = {
-    [TS_LINT_HEATMAP]: (state, action) => ({
-        ...state,
-        tsLintHeatmapData: [...action.payload]
-    })
-}
+  [TS_LINT_HEATMAP]: (state, action) => ({
+    ...state,
+    tsLintHeatmapData: [...action.payload],
+  }),
+};
 
 export default(state = initialState, action) => {
-    const handler = ACTION_HANDLERS[action.type];
-    return handler ? handler(state, action)
-                    : state
-
-}
+  const handler = ACTION_HANDLERS[action.type];
+  return handler ? handler(state, action)
+    : state;
+};

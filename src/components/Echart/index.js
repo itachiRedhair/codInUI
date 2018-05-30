@@ -1,7 +1,7 @@
-import React from "react";
-import Echart from "./Echart.jsx";
+import React from 'react';
+import Echart from './Echart.jsx';
 
-import "./Echart.scss";
+import './Echart.scss';
 
 export default props => (
   <div className="echarts-container">

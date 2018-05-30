@@ -1,79 +1,75 @@
-//constants imports
-import constants from "./../constants";
-import config from "./../../config";
+// constants imports
+import constants from './../constants';
+import config from './../../config';
 
-//Action Creator Imports
-import { setLoadingStatus } from "./loader.js";
+// Action Creator Imports
+import { setLoadingStatus } from './loader.js';
 
-//API imports
-import { addCollaborator, getContributors } from "./../utilities/api";
+// API imports
+import { addCollaborator, getContributors } from './../utilities/api';
 
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const ADD_COLLABORATOR = "ADD_COLLABORATOR";
-export const SHOW_COLLABORATOR = "SHOW_COLLABORATOR";
+export const ADD_COLLABORATOR = 'ADD_COLLABORATOR';
+export const SHOW_COLLABORATOR = 'SHOW_COLLABORATOR';
 // ------------------------------------
 // Action Creators
 // ------------------------------------
 
 const collaboratorAdded = names => ({
   type: ADD_COLLABORATOR,
-  payload: names
+  payload: names,
 });
 
 const showCollaborators = contributors => ({
-    type: SHOW_COLLABORATOR,
-    payload: contributors
-  });
+  type: SHOW_COLLABORATOR,
+  payload: contributors,
+});
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
 
-export const registerCollaborator = ( params ) => (dispatch, getState) => {
-  return new Promise((resolve, reject) => {
-    dispatch(setLoadingStatus(true));
-    addCollaborator( params )
-      .then(response => {
-        dispatch(setLoadingStatus(false));
-        if (response) {
-          dispatch(collaboratorAdded());
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      })
-      .catch(err => {
-        dispatch(setLoadingStatus(false));
-        console.log(err);
+export const registerCollaborator = params => (dispatch, getState) => new Promise((resolve, reject) => {
+  dispatch(setLoadingStatus(true));
+  addCollaborator(params)
+    .then((response) => {
+      dispatch(setLoadingStatus(false));
+      if (response) {
+        dispatch(collaboratorAdded());
+        resolve(true);
+      } else {
         resolve(false);
-      });
-  });
-};
-
-export const getCollaborators = (projectId) => (dispatch, getState) => {
-    return new Promise((resolve, reject) => {
-      dispatch(setLoadingStatus(true));
-      getContributors(projectId)
-        .then(response => {
-          dispatch(setLoadingStatus(false));
-          if (response) {
-            dispatch(showCollaborators(response.contributors));
-            resolve(true);
-          } else {
-            resolve(false);
-          }
-        })
-        .catch(err => {
-          dispatch(setLoadingStatus(false));
-          console.log(err);
-          resolve(false);
-        });
+      }
+    })
+    .catch((err) => {
+      dispatch(setLoadingStatus(false));
+      console.log(err);
+      resolve(false);
     });
-  };
+});
+
+export const getCollaborators = projectId => (dispatch, getState) => new Promise((resolve, reject) => {
+  dispatch(setLoadingStatus(true));
+  getContributors(projectId)
+    .then((response) => {
+      dispatch(setLoadingStatus(false));
+      if (response) {
+        dispatch(showCollaborators(response.contributors));
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    })
+    .catch((err) => {
+      dispatch(setLoadingStatus(false));
+      console.log(err);
+      resolve(false);
+    });
+});
 
 export const actions = {
-  collaboratorAdded
+  collaboratorAdded,
 };
 
 // ------------------------------------
@@ -86,8 +82,8 @@ const ACTION_HANDLERS = {
   }),
   [SHOW_COLLABORATOR]: (state, action) => ({
     ...state,
-    contributors: action.payload
-  })
+    contributors: action.payload,
+  }),
 };
 
 // ------------------------------------
@@ -95,7 +91,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 
 const initialState = {
-  contributors: []
+  contributors: [],
 };
 
 export default (state = initialState, action) => {

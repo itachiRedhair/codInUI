@@ -1,3 +1,3 @@
-import CoverageComponentTable from "./CoverageComponentTable.jsx";
+import CoverageComponentTable from './CoverageComponentTable.jsx';
 
 export default CoverageComponentTable;

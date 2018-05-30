@@ -1,3 +1,3 @@
-import CoverageSummary from "./CoverageSummary.jsx";
+import CoverageSummary from './CoverageSummary.jsx';
 
 export default CoverageSummary;

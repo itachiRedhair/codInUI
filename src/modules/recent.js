@@ -1,10 +1,10 @@
 // Imports
-import { getRecentActivities } from "../utilities/api";
+import { getRecentActivities } from '../utilities/api';
 // --------------------
 // Constants
 // --------------------
 
-export const RECENT_DATA = "RECENT_DATA";
+export const RECENT_DATA = 'RECENT_DATA';
 
 // --------------------
 // Action creators
@@ -12,7 +12,7 @@ export const RECENT_DATA = "RECENT_DATA";
 
 const recent = recentResponse => ({
   type: RECENT_DATA,
-  payload: recentResponse
+  payload: recentResponse,
 });
 
 // --------------------
@@ -22,22 +22,22 @@ const recent = recentResponse => ({
 export const recentList = () => (dispatch, getState) =>
   new Promise((resolve, reject) => {
     getRecentActivities()
-      .then(response => {
+      .then((response) => {
         if (response) {
           dispatch(recent(response));
           resolve(response);
         } else {
-          console.log("Response error");
+          console.log('Response error');
         }
       })
-      .catch(err => {
-        console.log("Report view error", err);
+      .catch((err) => {
+        console.log('Report view error', err);
       });
   });
 
 
 const initialState = {
-  recentData: []
+  recentData: [],
 };
 
 // ---------------------
@@ -47,8 +47,8 @@ const initialState = {
 const ACTION_HANDLERS = {
   [RECENT_DATA]: (state, action) => ({
     ...state,
-    recentData: [...action.payload]
-  })
+    recentData: [...action.payload],
+  }),
 };
 
 export default (state = initialState, action) => {

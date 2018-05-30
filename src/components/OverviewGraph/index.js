@@ -1,21 +1,19 @@
 
-import OverviewGraph from "./OverviewGraph.jsx";
-import { connect } from "react-redux";
+import OverviewGraph from './OverviewGraph.jsx';
+import { connect } from 'react-redux';
 
-//action creators
-import { listTslintReport } from "../../modules/report";
+// action creators
+import { listTslintReport } from '../../modules/report';
 
 const mapDispatchToProps = {
-    listTslintReport
+  listTslintReport,
 };
 
-const mapStateToProps = state => {
-  return {
-    reportList: state.reportReducer.reportList,
-    projectId: state.projectReducer.projectId
-  };
-};
+const mapStateToProps = state => ({
+  reportList: state.reportReducer.reportList,
+  projectId: state.projectReducer.projectId,
+});
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false
+  pure: false,
 })(OverviewGraph);
