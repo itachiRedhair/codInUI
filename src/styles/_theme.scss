@@ -2,24 +2,17 @@
 
 $primary-text: white;
 $secondary-text: white;
-
 $primary-bg: #0c0c0c;
-$secondary-bg: #242424;
-
+$secondary-bg: #343434;
 $card-bg: #181818;
 $card-heading-text: white;
-
 $sidebar-bg: #181818;
 $sidebar-primary-text: white;
 $sidebar-secondary-text: rgba(255, 255, 255, 0.5);
-
-$content-bg: #242424;
-
+// $content-bg: #42413D;
+$content-bg: #1a1a1d;
 $navbar-bg: #0c0c0c;
-
-// $theme-color-
 $theme-color: green;
-
 @font-face {
   font-family: FiraCode;
   src: url("../../../assets/fonts/firacode/FiraCode-Light.ttf");
@@ -27,6 +20,16 @@ $theme-color: green;
 
 body {
   font-family: "FiraCode";
+  background: $content-bg !important;
+}
+
+.reset-col-padding {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.text-bold {
+  font-weight: bold;
 }
 
 .dropdown-menu.dropdown-menu-right {
@@ -34,21 +37,25 @@ body {
 }
 
 /* width */
+
 ::-webkit-scrollbar {
   width: 2px;
 }
 
 /* Track */
+
 ::-webkit-scrollbar-track {
   background: $secondary-bg;
 }
 
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
   background: $theme-color;
 }
 
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
   background: $theme-color;
 }

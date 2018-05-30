@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // Components imports
@@ -59,7 +59,6 @@ class App extends Component {
           position="top-right"
           transitionIn="fadeIn"
           transitionOut="fadeOut"
-          progressBar
         />
         <div>
           <Switch>
@@ -71,20 +70,10 @@ class App extends Component {
         </div>
       </React.Fragment>
     ) : (
-      <div>
-        <Loader />
-        <ReduxToastr
-          timeOut={4000}
-          newestOnTop={false}
-          preventDuplicates
-          position="top-right"
-          transitionIn="fadeIn"
-          transitionOut="fadeOut"
-          progressBar
-        />
-      </div>
-
-    );
+        <div>
+          <Loader />
+        </div>
+      );
   }
 }
 

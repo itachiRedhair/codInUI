@@ -23,7 +23,9 @@ export default class LandingComponent extends Component {
       <div>
         <CustomNavbar />
         <Switch>
-          {viewToRender}
+          <div className="container">
+            {viewToRender}
+          </div>
         </Switch>
       </div>
     );

@@ -11,7 +11,7 @@ export default class Notification extends Component {
     const notificationIcon = <i className="fa fa-bell" />;
     return (
       <React.Fragment>
-        <NavDropdown eventKey={3} title={notificationIcon} id="basic-nav-dropdown">
+        <NavDropdown eventKey={3} title={notificationIcon}>
           <div className="notification-content">
             <span>
               <b>Jagdeep Soni</b> has invited you be to be a contributor of <b>Insite-UI@1.0.0</b>

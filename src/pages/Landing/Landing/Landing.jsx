@@ -7,7 +7,10 @@ import {
   Tab,
   TabContainer,
   TabContent,
-  TabPane
+  TabPane,
+  Panel,
+  ListGroup,
+  ListGroupItem,
 } from "react-bootstrap";
 import { Route, Switch, Redirect, NavLink } from "react-router-dom";
 
@@ -60,107 +63,79 @@ export default class Landing extends Component {
     this.props.setProjectModalState(true);
   }
 
-  render() {
+  getProjects = () => {
+    const projects = [];
+    const contributorProjects = [];
+    this.state.projects.map(project => {
 
-    const setHeight = {
-      height: "1.5em",
-      color: "white"
-    };
-    const recentName = {
-      color: "green"
-    };
-    const recentProject = {
-      fontWeight: "bold"
-    }
-    const errors = {
-      color: "#ff3232"
-    }
-    const warnings = {
-      color: "#fd822f"
-    }
-    let rows = [];
-    let projects = [];
-    let contributorProjects = [];
-    let submits = [];
-    if (this.state.projects.length !== 0) {
-      this.state.projects.map(project => {
-        if (project.created_by == this.state.userDataId) {
-          projects.push(
-            <li>
-              <NavLink
-                key={project._id}
-                value={project._id}
-                value2={project.type}
-                style={setHeight}
-                onClick={this.handleClicked}
-                to="/dashboard/overview"
-              >
-                {project.name}
-              </NavLink>
-            </li>
-          );
-        } else {
-          contributorProjects.push(
-            <li>
-              <NavLink
-                key={project._id}
-                value={project._id}
-                value2={project.type}
-                style={setHeight}
-                onClick={this.handleClicked}
-                to="/dashboard/overview"
-              >
-                {project.name}&nbsp;<i className="far fa-copyright" />
-              </NavLink>
-            </li>
-          );
-        }
-      });
-    }
-    if (this.props.recentData.length !== 0) {
-      let sData = this.props.recentData;
-      let submitLen = this.props.recentData.length;
-      for (let i = 0; i < submitLen; i++) {
-        let divElement = (
-          <div className="recent-activities">
-            <div className="recent-activities-content">
-              <div key={sData[i]._id} style={recentName}>{sData[i].user}
-              </div>&nbsp;has submitted Project&nbsp;
-                            <div style={recentProject}>{sData[i].project}</div>
-            </div>
-            <div className="detail-component">
-              <div className="detail-component-errors">
-                Errors:&nbsp;<span key={sData[i]._id} style={errors}>{sData[i].summary.lint.totalErrors}</span>
-              </div>
-              <div className="detail-component-errors">
-                Warnings:&nbsp;<span key={sData[i]._id} style={warnings}>{sData[i].summary.lint.totalWarnings}</span>
-              </div>
-            </div>
-            <div key={sData[i]._id} className="recent-activities-time">
-              Submitted On: {new Date(sData[i].submitted_at).toString()}
-            </div>
-          </div>
-        );
-        submits.push(divElement);
+      const userIcon = (project.created_by === this.state.userDataId)
+        ? <i className="fa fa-user" />
+        : <i className="fa fa-user-o" />;
+
+      const listGroupItem =
+        <ListGroupItem className="project-list-item" key={project._id}>
+          <NavLink value={project._id} value2={project.type} onClick={this.handleClicked} to="/dashboard/overview">
+            {userIcon} {project.name}
+          </NavLink>
+        </ListGroupItem>;
+
+      if (project.created_by === this.state.userDataId) {
+        projects.push(listGroupItem);
+      } else {
+        contributorProjects.push(listGroupItem);
       }
-    }
-    const listStyle = {
-      listStyle: "none"
-    };
-    const submitlistStyle = {
-      listStyle: "none",
-      height: "75vh",
-      overflowY: "scroll"
-    }
+    });
+    return { projects, contributorProjects };
+  };
+
+
+  // TODO: The type of recent activity may change
+  // Please have logic to prepareView According to the activity
+  getRecentActivities = () => {
+    const recentActivities = [];
+    this.props.recentData.map((aRecentActivity, index) => {
+      const recentActivityView =
+        <ListGroupItem className="recent-activity-list-item" key={index}>
+          <div>
+            <span className="text-bold">{aRecentActivity.user}</span> has submitted a report in project <span className="text-bold">{aRecentActivity.project}</span>
+          </div>
+          <div>
+            <span>{aRecentActivity.summary.lint.totalErrors}</span> |
+            <span> {aRecentActivity.summary.lint.totalWarnings}</span> |
+            <span> {new Date(aRecentActivity.submitted_at).toLocaleDateString()}</span>
+          </div>
+        </ListGroupItem>;
+      recentActivities.push(recentActivityView);
+    });
+    return recentActivities;
+  }
+
+  render() {
+    const { projects, contributorProjects } = this.getProjects();
+    const recentActivities = this.getRecentActivities();
 
     return (
       <React.Fragment>
-        {/* <CustomNavbar />   */}
         <div className="landing-container">
-          <Col md={4}>
+          <Col md={3} className="reset-col-padding">
             <div className="landing-sidebar">
-              <div className="newsfeed-placeholder p-5">
-                <h3 className="h2 lh-condensed mb-2">
+              <Panel className="panel-custom">
+                <Panel.Heading className="panel-heading-custom">
+                  <Panel.Title componentClass="h3">Your Projects</Panel.Title>
+                  <div>
+                    <button className="btn btn-outline btn-success" onClick={this.showProjectModal}>Add Project</button>
+                  </div>
+                </Panel.Heading>
+                <Panel.Body className="panel-body-custom">
+                  <ListGroup>
+                    {projects}
+                    {contributorProjects}
+                  </ListGroup>
+                </Panel.Body>
+              </Panel>
+              {/* TODO: This should be shown when the user has no projects? */}
+              {/* <div className="newsfeed-placeholder p-5">
+                <h3 className="h3 lh-condensed mb-2">
                   Discover interesting projects and people to populate your
                   personal news feed.
                                     </h3>
@@ -168,35 +143,29 @@ export default class Landing extends Component {
                   Your news feed helps you keep up with recent activity on
                   repositories you and people you
                                     </p>
-                <a className="btn btn-outline mt-2">Explore Codin</a>
-              </div>
-              <div className="box box-condensed mb-3">
-                <div className="box-header">
-                  <div>Repositories</div>
-                  <div>
-                    <a className="btn btn-outline mt-2" onClick={this.showProjectModal}>Add New</a>
-                  </div>
-                </div>
-                <div style={listStyle} className="box-body">
-                  {projects}
-                  {contributorProjects}
-                </div>
-              </div>
+              </div> */}
             </div>
           </Col>
-          <Col md={8} >
-            <div className="landing-body">
+          <Col md={9} className="recent-activities-container" >
+            <Panel className="panel-custom">
+              <Panel.Heading className="recent-activity-heading-custom">
+                <Panel.Title>Recent Activities</Panel.Title>
+              </Panel.Heading>
+              <Panel.Body className="recent-activity-body-custom">
+                <ListGroup scrolling className="recent-activity-list-group">
+                  {recentActivities}
+                </ListGroup>
+              </Panel.Body>
+            </Panel>
+            {/* <div className="landing-body">
               <div className="tab-container">
                 <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
                   <Tab eventKey={1} title="Recent Activities">
                     <ul style={submitlistStyle}>{submits}</ul>
                   </Tab>
-                  <Tab eventKey={2} title="Explore Repositories">
-                    {/* {contributorProjects} */}
-                  </Tab>
                 </Tabs>
               </div>
-            </div>
+            </div> */}
           </Col>
         </div>
         {this.props.showProjectModal && (
@@ -205,6 +174,4 @@ export default class Landing extends Component {
       </React.Fragment>
     );
   }
-
 }
-
