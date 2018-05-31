@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import moment from 'moment';
+
 import {
   Row,
   Col,
@@ -75,7 +77,7 @@ export default class Landing extends Component {
       const listGroupItem =
         <ListGroupItem className="project-list-item" key={project._id}>
           <NavLink value={project._id} value2={project.type} onClick={this.handleClicked} to="/dashboard/overview">
-            {userIcon} {project.name}
+            {userIcon} | {project.name}
           </NavLink>
         </ListGroupItem>;
 
@@ -97,12 +99,21 @@ export default class Landing extends Component {
       const recentActivityView =
         <ListGroupItem className="recent-activity-list-item" key={index}>
           <div>
-            <span className="text-bold">{aRecentActivity.user}</span> has submitted a report in project <span className="text-bold">{aRecentActivity.project}</span>
+            <span className="">{aRecentActivity.user}</span><span class="text-muted"> has submitted a report in project </span><span className="">{aRecentActivity.project}</span>
+            <span className="recent-activity-from-now pull-right text-muted"><i class="fa fa-clock-o" /> {moment(aRecentActivity.submitted_at).fromNow()} </span>
           </div>
-          <div>
-            <span>{aRecentActivity.summary.lint.totalErrors}</span> |
-            <span> {aRecentActivity.summary.lint.totalWarnings}</span> |
-            <span> {new Date(aRecentActivity.submitted_at).toLocaleDateString()}</span>
+          <div className="recent-activity-summary-container">
+            <span className="recent-activity-error text-danger">
+              <i className="fa fa-times" /> {aRecentActivity.summary.lint.totalErrors}
+            </span>
+            {/* <span className="text-muted"> | </span> */}
+            <span className="recent-activity-warning text-warning">
+              <i className="fa fa-exclamation-triangle" /> {aRecentActivity.summary.lint.totalWarnings}
+            </span>
+            {/* <span className="text-muted"> | </span> */}
+            <span className="recent-activity-maintainability text-info">
+              <i className="fa fa-area-chart" /> [ <i class="fa fa-angle-up text-success"></i> {aRecentActivity.summary.quality.averageMaintainability.toFixed(2)} | <i class="fa fa-angle-down text-danger"></i>  {aRecentActivity.summary.quality.minMaintainability.toFixed(2)} ]
+            </span>
           </div>
         </ListGroupItem>;
       recentActivities.push(recentActivityView);
@@ -134,20 +145,20 @@ export default class Landing extends Component {
                 </Panel.Body>
               </Panel>
               {/* TODO: This should be shown when the user has no projects? */}
-              {/* <div className="newsfeed-placeholder p-5">
-                <h3 className="h3 lh-condensed mb-2">
+              <div className="newsfeed-placeholder">
+                <h4 className="h4 lh-condensed">
                   Discover interesting projects and people to populate your
                   personal news feed.
-                                    </h3>
+                </h4>
                 <p className="f4">
                   Your news feed helps you keep up with recent activity on
-                  repositories you and people you
-                                    </p>
-              </div> */}
+                  repositories you and people you.
+                </p>
+              </div>
             </div>
           </Col>
           <Col md={9} className="recent-activities-container" >
-            <Panel className="panel-custom">
+            <Panel className="panel-custom ">
               <Panel.Heading className="recent-activity-heading-custom">
                 <Panel.Title>Recent Activities</Panel.Title>
               </Panel.Heading>

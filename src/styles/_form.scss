@@ -1,9 +1,69 @@
+@import './_theme.scss';
 $form-active-color: rgb(0, 191, 255);
 $form-inactive-color: lightgrey;
 $form-success-color: lightgreen;
 $form-error-color: red;
-
 .form-container {
-  background: white;
-  padding: 1em;
+  padding: 1.5em 2em; // border: 2px solid $primary-bg;
+  border-radius: 6px; // background-color: $primary-bg;
+  background-image: linear-gradient(to bottom, #3c3c3c 0, $content-bg 100%) !important;
+  color: $theme-color !important;
 }
+
+.form-container label {
+  font-weight: normal !important;
+}
+
+.form-group label {
+  font-weight: normal !important;
+}
+
+.form-container input {
+  background-color: #1e1e1e;
+  border-color: #111;
+  color: white;
+}
+
+.form-group input {
+  background-color: #1e1e1e;
+  border-color: #111;
+  color: white;
+}
+
+.form-container input:focus {
+  border-color: $theme-color;
+}
+
+.form-group input:focus {
+  border-color: $theme-color;
+}
+
+.form-container button {
+  background-color: $theme-color !important;
+  border-radius: 2px;
+  border-color: $theme-color;
+  background-image: none;
+  font-weight: lighter;
+  &:hover {
+    background-image: none;
+    border-color: darken($theme-color, 10%);
+    background-color: darken($theme-color, 10%) !important
+  }
+}
+
+.form-dropdown {
+  background-image: linear-gradient(to bottom, #3c3c3c 0, $content-bg 100%) !important;
+  border-color: black;
+  text-shadow: none;
+  color: #9a9a9a;
+  &:hover {
+    // background-image: linear-gradient(to bottom, #3c3c3c 0, #111 100%) !important;
+    background-color: red !important;
+    background-image: none;
+  }
+}
+
+// // This is to remove the padding of the input fields.
+// .form-container .form-control {
+//   padding-left: 0px;
+// }

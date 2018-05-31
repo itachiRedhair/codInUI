@@ -1,0 +1,20 @@
+@import '../../styles/_theme.scss';
+.modal-backdrop.in {
+  opacity: 0.8;
+}
+
+.modal-header {
+  border-color: black;
+}
+
+.modal-footer {
+  border-color: black;
+}
+
+.modal-content {
+  color: white;
+  background-image: linear-gradient(to bottom, #3c3c3c 0, #111 100%) !important;
+  &:hover {
+    background-image: linear-gradient(to bottom, #3c3c3c 0, #111 100%) !important;
+  }
+}

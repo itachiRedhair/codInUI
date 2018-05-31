@@ -33,34 +33,28 @@ export default class IndexComponent extends Component {
   render() {
     return (
       <div className="homepage-container">
-        <Row>
-          <Col className="background-alpha" md={8}>
-            <div className="welcome-text-container">
-              <div className="welcome-text-lg">Welcome to <span className="codin">Cod<span>In</span></span></div>
-              <div className="welcome-text-sm">Login to access your projects and reports</div>
-            </div>
-          </Col>
-          <Col md={4}>
-            <Row>
-              <Col className="login-signup-container">
-                <div
-                  className={`login-signup ${
-                    this.state.isLogin ? "reveal" : ""
-                    }`}
-                >
-                  <Login toggleSignup={this.toggleSignup} />
-                </div>
-                <div
-                  className={`login-signup ${
-                    !this.state.isLogin ? "reveal" : ""
-                    }`}
-                >
-                  <Signup toggleLogin={this.toggleLogin} />
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+
+        <div className="welcome-text-container text-muted">
+          <div className="welcome-text-lg">Welcome to <span className="codin">Cod<span>In</span></span></div>
+          <div className="welcome-text-sm">Login to access your projects and reports</div>
+        </div>
+
+        <div className="login-signup-container">
+          <div
+            className={`login-signup ${
+              this.state.isLogin ? "reveal" : ""
+              }`}
+          >
+            <Login toggleSignup={this.toggleSignup} />
+          </div>
+          <div
+            className={`login-signup ${
+              !this.state.isLogin ? "reveal" : ""
+              }`}
+          >
+            <Signup toggleLogin={this.toggleLogin} />
+          </div>
+        </div>
       </div>
     );
   }

@@ -77,12 +77,11 @@ class LoginComponent extends Component {
           value={password}
           onChange={this.handlePasswordChange}
         />
-        <Checkbox list={[`Keep me logged in`]} />
         <div className="form-action-container">
-          <div className="signup-prompt" onClick={this.props.toggleSignup}>New Here? Sign up</div>
+          <div className="signup-prompt text-muted" onClick={this.props.toggleSignup}>New Here? Sign up</div>
 
-          <Button onClick={this.handleSubmit} className="btn btn-outline">
-            Login <i className="fas fa-arrow-right arrow-icon" />
+          <Button onClick={this.handleSubmit} className="btn btn-success">
+            Login <i className="fa fa-caret-right" />
           </Button>
         </div>
       </form>

@@ -1,5 +1,4 @@
 @import '../../../styles/_theme.scss';
-
 .error-message {
   color: red;
 }
@@ -8,11 +7,6 @@
   text-align: start;
   cursor: pointer;
   text-decoration: underline;
-}
-
-// This is to remove the padding of the input fields.
-.form-container .form-control {
-  padding-left: 0px;
 }
 
 .form-action-container {

@@ -36,26 +36,20 @@ body {
   border-radius: 0;
 }
 
-/* width */
 
+
+
+/* width */
 ::-webkit-scrollbar {
   width: 2px;
+  border-radius: 1px;
 }
-
-/* Track */
-
 ::-webkit-scrollbar-track {
   background: $secondary-bg;
 }
-
-/* Handle */
-
 ::-webkit-scrollbar-thumb {
   background: $theme-color;
 }
-
-/* Handle on hover */
-
 ::-webkit-scrollbar-thumb:hover {
   background: $theme-color;
 }

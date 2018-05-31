@@ -4,10 +4,10 @@ import { Modal, ModalBody, ModalHeader, MenuItem, ModalFooter } from "react-boot
 //styles
 import './ModalComponent.scss';
 
-const ModalComponent = ({...props, children}) => {
-    return <Modal {...props}>
-        {children}
-    </Modal>;
+const ModalComponent = ({ ...props, children }) => {
+  return <Modal {...props}>
+    {children}
+  </Modal>;
 };
 
 export default ModalComponent;

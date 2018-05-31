@@ -92,11 +92,11 @@ class SignupComponent extends Component {
           onChange={this.handleConfirmPasswordChange}
         />
         <div className="form-action-container">
-          <div className="login-prompt" onClick={this.props.toggleLogin}>
+          <div className="login-prompt text-muted" onClick={this.props.toggleLogin}>
             Have an account? Log in
           </div>
-          <Button onClick={this.handleSubmit} className="login-button">
-            Signup <i className="fas fa-arrow-right arrow-icon" />
+          <Button onClick={this.handleSubmit} className="btn btn-success">
+            Signup <i className="fas fa-caret-right" />
           </Button>
         </div>
       </form>

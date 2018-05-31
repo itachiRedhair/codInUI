@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 // Components imports
 import PrivateRoute from './../components/PrivateRoute';
-import Index from './Index';
+import Index from './Index/index';
 import Dashboard from './Dashboard';
 import LandingComponent from './Landing';
 import Loader from './../components/Loader';
@@ -42,6 +42,7 @@ class App extends Component {
         this.props.setLoadingStatus(false);
       })
       .catch((err) => {
+        console.log('asdasdasdad');
         this.setState({ isUserRequestComplete: true });
         this.props.setLoadingStatus(false);
         console.log(err);
