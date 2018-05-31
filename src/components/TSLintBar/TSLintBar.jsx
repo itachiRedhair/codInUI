@@ -33,7 +33,6 @@ export default class TSLintBar extends Component {
         let errorCount = [];
         let warningCount = [];
         let filePath = "";
-        console.log("checking for tslint bar graph", this.state.reportListDetails);
         if (this.state.reportListDetails.length > 0) {
             let dataLength = this.state.reportListDetails.length;
             let dataAlias = this.state.reportListDetails;

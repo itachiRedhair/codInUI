@@ -48,10 +48,9 @@ export default class AddProjectComponent extends Component {
     this.props.createProject(this.state.projectName, this.state.projectType);
   };
 
-  handleTypeChange = e => {
-    console.log("type change", e.target.getAttribute('value'));
-    this.setState({ projectType: e.target.getAttribute('value') })
-  }
+    handleTypeChange = e => {
+        this.setState({ projectType: e.target.getAttribute('value') })
+    }
 
   render() {
     const projectName = this.state.projectName;

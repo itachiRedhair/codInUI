@@ -12,6 +12,9 @@ import './LandingComponent.scss';
 export default class LandingComponent extends Component {
   componentDidMount() {
     this.props.showProject();
+    this.props.fetchUnseenNotifications();
+    this.props.fetchAllNotifications();
+    this.props.userDetails();
   }
 
   render() {

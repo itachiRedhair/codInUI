@@ -8,5 +8,7 @@ import reportReducer from './report';
 import recentReducer from './recent';
 import userReducer from './user';
 import projectModalReducer from './projectModalState';
+import inviteReducer from './invitation';
+import notificationReducer from './notification';
 
-export { authReducer, loaderReducer, projectReducer, typeaheadReducer, modalReducer, contributorReducer, reportReducer, recentReducer, userReducer, projectModalReducer };
+export { authReducer, loaderReducer, projectReducer, typeaheadReducer, modalReducer, contributorReducer, reportReducer, recentReducer, userReducer, projectModalReducer, inviteReducer, notificationReducer };

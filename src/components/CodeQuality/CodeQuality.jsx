@@ -23,7 +23,6 @@ export default class CodeQuality extends Component {
 
         // let cyclomatic = 0;
         let maintainability = 0;
-        console.log("this.props.reportlisy", this.props.reportList);
         let len = this.props.reportList.length;
         if (len > 0) {
             // cyclomatic = this.props.reportList[len - 1].summary.quality.cyclomatic.toFixed(1);

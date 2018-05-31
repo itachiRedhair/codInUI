@@ -1,5 +1,48 @@
 @import "../../../styles/_variables.scss";
 @import "../../../styles/_theme.scss";
+
+
+.unseen-content {
+    // background: $notif-dot;
+    position: absolute;
+    top: 10px;
+    left: 24px;
+
+    height: 14px;
+    width: 14px;
+    border-radius: 7px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: red;
+
+    font-size: 0.95rem;    
+    color: $primary-text;
+
+}
+
+.hide-unseen-count {
+    font-size: 0rem !important;        
+    color: rgba(0,0,0,0) !important;
+}
+
+.unseen-count {
+    // padding-left: 2px;
+}
+
+// .notification-bell {
+//     display: flex;
+//     flex-direction: co
+// }
+
+.no-notifications {
+  padding: 1em;
+  width: 15em;
+}
+
+
 .notification-content {
   padding: 8px 20px;
   border-bottom: 1px dashed $theme-color;
