@@ -6,7 +6,7 @@
     background: $notif-dot;
     position: absolute;
     top: 1.5em;
-    right: 33.8em;
+    right: 35.8em;
     width: 9px ;
     background: red;
     font-size: 0.6em;
@@ -19,7 +19,10 @@
     padding-left: 2px;
 }
 
-
+.no-notifications {
+  padding: 1em;
+  width: 15em;
+}
 
 // .header .header-block-nav {
 //   .notifications {

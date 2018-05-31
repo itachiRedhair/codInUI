@@ -53,7 +53,7 @@ export default class Landing extends Component {
     this.props.setProjectId(e.target.getAttribute("value"));
     this.props.setProjectName(e.target.textContent);
     this.props.setProjectType(e.target.getAttribute("value2"))
-    this.props.userDetails();
+    // this.props.userDetails();
   };
 
   showProjectModal = () => {

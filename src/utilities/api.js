@@ -231,7 +231,7 @@ export const getRecentActivities = () => {
         });
 };
 
-// Invitations and notification
+// INVITATIONS
 
 export const inviteContributor = contributorParameters => {
     const url = `${constants.API_URL}/v1/user/invite`;
@@ -248,7 +248,6 @@ export const inviteContributor = contributorParameters => {
             projectID
         })
     };
-    console.log("url", url);
     return fetch(url, options)
         .then(response => {
             return response.json();
@@ -281,7 +280,7 @@ export const respondInvite = (acceptedStatus, pID) => {
         });
 };
 
-//notification unseen
+//NOTIFICATIONS
 export const getUnseenNotifications = () => {
     const url = `${constants.API_URL}/v1/notification/unseen`;
     const options = {
@@ -293,6 +292,19 @@ export const getUnseenNotifications = () => {
         .catch((err) => {
             throw new Error('unseen notification not loaded');
         });
+};
+
+export const getAllNotifications = () => {
+  const url = `${constants.API_URL}/v1/notification/all`;
+  const options = {
+      method: 'GET',
+      credentials: 'include',
+  };
+  return fetch(url, options)
+      .then(response => response.json())
+      .catch((err) => {
+          throw new Error('all notification not loaded');
+      });
 };
 
 export const notificationUpdate = (notifications) => {

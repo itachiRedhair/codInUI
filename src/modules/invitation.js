@@ -12,7 +12,8 @@ import { inviteContributor, respondInvite } from "./../utilities/api";
 // Constants
 // ------------------------------------
 export const SEND_INVITATION = "SEND_INVITATION";
-export const SHOW_COLLABORATOR = "SHOW_COLLABORATOR";
+export const INVITE_RESPOND = "INVITE_RESPOND";
+
 // ------------------------------------
 // Action Creators
 // ------------------------------------
@@ -22,9 +23,9 @@ const invitationSend = invitationResponse => ({
   payload: invitationResponse
 });
 
-const respondInvitationresponse = invresponse => ({
-    type: SHOW_COLLABORATOR,
-    payload: invresponse
+const respondInvitationResponse = invresponse => ({
+    type: INVITE_RESPOND,
+    // payload: invresponse
   });
 
 // ------------------------------------
@@ -36,8 +37,6 @@ export const sendInvitation = ( params ) => (dispatch, getState) => {
     dispatch(setLoadingStatus(true));
     inviteContributor( params )
       .then(response => {
-          console.log("---userid---", params);
-          console.log("---------checking in invitation reducers-------", response);
         dispatch(setLoadingStatus(false));
         if (response) {
           dispatch(invitationSend(response));
@@ -54,14 +53,14 @@ export const sendInvitation = ( params ) => (dispatch, getState) => {
   });
 };
 
-export const respondInvitation = (projectId, accepted) => (dispatch, getState) => {
+export const respondInvitation = (accepted, projectId) => (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       dispatch(setLoadingStatus(true));
-      respondInvite(projectId, accepted)
+      respondInvite(accepted, projectId)
         .then(response => {
           dispatch(setLoadingStatus(false));
           if (response) {
-            dispatch(respondInvitationResponse(response));
+            dispatch(respondInvitationResponse());
             resolve(true);
           } else {
             resolve(false);
@@ -87,9 +86,9 @@ const ACTION_HANDLERS = {
   [SEND_INVITATION]: (state, action) => ({
     ...state,
   }),
-  [SHOW_COLLABORATOR]: (state, action) => ({
-    ...state,
-    invresponse: action.payload
+  [INVITE_RESPOND]: (state, action) => ({
+    ...state
+    // invresponse: action.payload
   })
 };
 

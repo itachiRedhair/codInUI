@@ -35,7 +35,6 @@ class App extends Component {
                     this.props.history.push('/landing');
                 }
                 else {
-                    console.log("ssssssssss");
                     this.props.history.push('/')
                 }
                 this.props.setLoadingStatus(false);

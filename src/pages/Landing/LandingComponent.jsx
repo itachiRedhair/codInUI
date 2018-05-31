@@ -13,10 +13,11 @@ export default class LandingComponent extends Component {
   componentDidMount() {
     this.props.showProject();
     this.props.fetchUnseenNotifications();
+    this.props.fetchAllNotifications();
+    this.props.userDetails();
   }
 
   render() {
-      console.log("unseen from landing ", this.props.unseenNotifications);
     const viewToRender = this.props.projects.length > 0
       ? <Route exact path="/landing" component={Landing} />
       : <FirstRender />;

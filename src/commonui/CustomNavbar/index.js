@@ -8,4 +8,8 @@ const mapDispatchToProps = dispatch => ({
   userLogOut: () => dispatch(actions.userLogOut()),
 });
 
-export default connect(null, mapDispatchToProps)(CustomNavbar);
+const mapStateToProps = state => ({
+  user: state.userReducer.user
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomNavbar);

@@ -50,7 +50,7 @@ class CustomNavbar extends Component {
           </Navbar.Header>
           <Nav pullRight>
             <Notification className="dropdown" />
-            <NavDropdown eventKey={3} title="Anand Undavia" id="basic-nav-dropdown">
+            <NavDropdown eventKey={3} title={this.props.user?this.props.user.name:""} id="basic-nav-dropdown">
               <MenuItem eventKey={3.1}><div onClick={this.handleLogout}>LogOut</div></MenuItem>
             </NavDropdown>
           </Nav>

@@ -83,7 +83,7 @@ export default class Sidebar extends Component {
         this.props.listTslintReport(e.target.getAttribute("value"), "week");
         this.props.submissionList(e.target.getAttribute("value"));
         this.props.setProjectId(e.target.getAttribute("value"));
-        this.props.setProjectName(e.target.textContent);        
+        this.props.setProjectName(e.target.textContent);
         this.props.listTslintReport(e.target.getAttribute("value"), "week");
         this.props.userDetails();
     };
@@ -108,7 +108,7 @@ export default class Sidebar extends Component {
             height: "1.5em"
         };
         const projectName = this.state.projectName;
-        var rows = [];
+        let rows = [];
         let projects = [];
         let contributorProjects = [];
         if (this.props.projects.length !== 0) {
@@ -119,7 +119,7 @@ export default class Sidebar extends Component {
                             <NavLink
                                 key={project._id}
                                 value={project._id}
-                                value2={project.type}                                
+                                value2={project.type}
                                 style={setHeight}
                                 onClick={this.handleClicked}
                                 to="/dashboard/overview"
@@ -152,7 +152,7 @@ export default class Sidebar extends Component {
                 <div className=" add-project"  onClick={this.addCollaboratorModal}>
                     {/* <i
                         className="fa fa-users setting"
-                       
+
                     /> */}
                     <div>Add Collaborator</div>
                     <i className="fa fa-plus-circle fa-align" />
@@ -177,17 +177,17 @@ export default class Sidebar extends Component {
                             className="project-info-content"
                         >
                             <div className="project-name">
-                                {this.state.isProjectSelected && projects.length != 0
+                                {this.state.isProjectSelected && this.props.projects.length != 0
                                     ? this.state.selectedProject
-                                    : !this.state.isProjectSelected && projects.length != 0
+                                    : !this.state.isProjectSelected && this.props.projects.length != 0
                                         ? this.props.projectName
                                         : addProject}
                             </div>
                         </div>
                         <div className="project-date">
-                        {this.state.isProjectSelected && projects.length != 0
+                        {this.state.isProjectSelected && this.props.projects.length != 0
                                     ? this.state.selectedProjectType
-                                    : !this.state.isProjectSelected && projects.length != 0
+                                    : !this.state.isProjectSelected && this.props.projects.length != 0
                                         ? this.props.projectType
                                         : addProject}| 25/04/2018 | 4 contributors
                          </div>
@@ -205,7 +205,7 @@ export default class Sidebar extends Component {
                 >
                     <div className="sub-heading">Your Projects</div>
                     <div
-                        className={`${projects.length >= 3 ? "project-list-scroll" : ""}`}
+                        className={`${this.props.projects.length >= 3 ? "project-list-scroll" : ""}`}
                     >
                         <div >
                             <ul style={listStyle} className="project-list">
@@ -214,7 +214,7 @@ export default class Sidebar extends Component {
                             </ul>
                         </div>
                     </div>
-                    {projects.length != 0 ? addProject : ""}
+                    {this.props.projects.length != 0 ? addProject : ""}
                 </div>
                 <div
                     className={`nav-container responsive ${
@@ -258,9 +258,10 @@ export default class Sidebar extends Component {
                     {this.props.showModal && (
                         <Collaborator
                             projectIdState={
-                                this.state.isProjectSelected
-                                    ? this.props.projectId
-                                    : this.props.projects[0]._id
+                                // this.state.isProjectSelected
+                                //     ? this.props.projectId
+                                //     : this.props.projects[0]._id
+                                this.props.projectId
                             }
                         />
                     )}

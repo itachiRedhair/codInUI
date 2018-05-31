@@ -3,13 +3,16 @@ import { connect } from 'react-redux';
 import LandingComponent from './LandingComponent.jsx';
 // action creators
 import { showProject } from './../../modules/project';
-import { fetchUnseenNotifications } from './../../modules/notification';
+import { fetchUnseenNotifications, fetchAllNotifications } from './../../modules/notification';
+import { userDetails } from './../../modules/user';
 
 
 
 const mapDispatchToProps = {
   showProject,
-  fetchUnseenNotifications
+  fetchUnseenNotifications,
+  fetchAllNotifications,
+  userDetails
 };
 
 const mapStateToProps = state => ({
