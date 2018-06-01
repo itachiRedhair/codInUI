@@ -99,8 +99,8 @@ export default class Landing extends Component {
       const recentActivityView =
         <ListGroupItem className="recent-activity-list-item" key={index}>
           <div>
-            <span className="">{aRecentActivity.user}</span><span class="text-muted"> has submitted a report in project </span><span className="">{aRecentActivity.project}</span>
-            <span className="recent-activity-from-now pull-right text-muted"><i class="fa fa-clock-o" /> {moment(aRecentActivity.submitted_at).fromNow()} </span>
+            <span className="">{aRecentActivity.user}</span><span className="text-muted"> has submitted a report in project </span><span className="">{aRecentActivity.project}</span>
+            <span className="recent-activity-from-now pull-right text-muted"><i className="fa fa-clock-o" /> {moment(aRecentActivity.submitted_at).fromNow()} </span>
           </div>
           <div className="recent-activity-summary-container">
             <span className="recent-activity-error text-danger">
@@ -112,7 +112,7 @@ export default class Landing extends Component {
             </span>
             {/* <span className="text-muted"> | </span> */}
             <span className="recent-activity-maintainability text-info">
-              <i className="fa fa-area-chart" /> [ <i class="fa fa-angle-up text-success"></i> {aRecentActivity.summary.quality.averageMaintainability.toFixed(2)} | <i class="fa fa-angle-down text-danger"></i>  {aRecentActivity.summary.quality.minMaintainability.toFixed(2)} ]
+              <i className="fa fa-area-chart" /> [ <i className="fa fa-angle-up text-success"></i> {aRecentActivity.summary.quality.averageMaintainability.toFixed(2)} | <i className="fa fa-angle-down text-danger"></i>  {aRecentActivity.summary.quality.minMaintainability.toFixed(2)} ]
             </span>
           </div>
         </ListGroupItem>;

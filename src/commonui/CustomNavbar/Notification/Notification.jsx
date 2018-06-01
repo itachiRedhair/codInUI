@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavDropdown } from 'react-bootstrap';
+var _ = require('lodash');
 import './Notification.scss';
 import { notificationUpdate } from './../../../utilities/api';
 
@@ -40,14 +41,16 @@ export default class Notification extends Component {
     render() {
         let notifications = [];
         let unseenCount = 0;
-        let aliasUnseen = this.props.unseenNotifications;
         let aliasAll = this.props.allNotifications;
-        if (aliasUnseen.length > 0) {
-            unseenCount = aliasUnseen.length;
-        }
+        // if (aliasUnseen.length > 0) {
+        //     unseenCount = aliasUnseen.length;
+        // }
         if (aliasAll.length > 0) {
             // unseenCount = aliasAll.length;
             for (let i = aliasAll.length - 1; i >= 0; i--) {
+                if(aliasAll[i].seen === false) {
+                    unseenCount++;
+                }
                 const notificationElement =
                     <div className="notification-content">
                         <span>
@@ -65,7 +68,7 @@ export default class Notification extends Component {
                 notifications.push(notificationElement);
             }
         }
-        const notificationCount = (this.state.bellIcon && aliasUnseen.length > 0)
+        const notificationCount = (this.state.bellIcon && unseenCount > 0)
             ? (<div className="unseen-content">
                 <div className={unseenCount < 10 ? "unseen-count" : "unseen-count hide-unseen-count"}> {unseenCount} </div>
             </div>)

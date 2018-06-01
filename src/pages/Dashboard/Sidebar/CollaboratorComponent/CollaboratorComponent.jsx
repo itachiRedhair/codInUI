@@ -69,10 +69,6 @@ export default class Collaborator extends Component {
   };
 
   render() {
-    console.log(
-      "--------this.props.contributors---------",
-      this.props.contributors
-    );
     const setHeight = {
       height: "1.5em"
     };
