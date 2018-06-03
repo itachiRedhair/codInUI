@@ -1,7 +1,21 @@
 import { combineReducers } from 'redux';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 
-import { authReducer, loaderReducer, projectReducer, typeaheadReducer, modalReducer, contributorReducer, reportReducer, recentReducer, userReducer, projectModalReducer, inviteReducer, notificationReducer } from './../modules';
+import {
+  authReducer,
+  loaderReducer,
+  projectReducer,
+  typeaheadReducer,
+  modalReducer,
+  contributorReducer,
+  reportReducer,
+  recentReducer,
+  userReducer,
+  projectModalReducer,
+  inviteReducer,
+  notificationReducer,
+  toasterReducer
+} from './../modules';
 
 export default combineReducers({
   authReducer,
@@ -16,5 +30,6 @@ export default combineReducers({
   projectModalReducer,
   toastr: toastrReducer,
   inviteReducer,
-  notificationReducer
+  notificationReducer,
+  toasterReducer
 });

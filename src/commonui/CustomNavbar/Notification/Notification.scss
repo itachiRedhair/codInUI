@@ -65,3 +65,21 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
+
+.accept-container {
+    font-size: 1rem;
+    padding: 2px;
+    display: flex;
+    justify-content: space-around;
+    color: green;
+    font-weight: bold;
+}
+
+.decline-container {
+    font-size: 1rem;
+    padding: 2px;
+    display: flex;
+    justify-content: space-around;
+    color: red;
+    font-weight: bold;
+}

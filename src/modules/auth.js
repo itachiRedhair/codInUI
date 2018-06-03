@@ -133,7 +133,7 @@ const ACTION_HANDLERS = {
     user: action.payload,
   }),
   [AUTH_LOGOUT]: (state, action) => ({
-    ...state,
+    state: undefined,
     isAuthenticated: false,
   }),
 };

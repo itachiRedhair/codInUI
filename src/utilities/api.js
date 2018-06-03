@@ -125,7 +125,7 @@ export const getUserProject = () => {
         });
 };
 
-export const getUserSuggestions = (name) => {
+export const getUserSuggestions = ({ name }) => {
     const url = `${constants.API_URL}/v1/user/suggestions/${name}`;
     const options = {
         method: 'GET',
@@ -138,28 +138,28 @@ export const getUserSuggestions = (name) => {
         });
 };
 
-export const addCollaborator = (contributorParameters) => {
-    const url = `${constants.API_URL}/v1/project/contributor`;
-    const contributorName = contributorParameters.name;
-    const contributorID = contributorParameters.contributorID;
-    const projectID = contributorParameters.projectID;
-    const options = {
-        headers: getHeaders(),
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify({
-            contributorName,
-            contributorID,
-            projectID,
-        }),
-    };
+// export const addCollaborator = (contributorParameters) => {
+//   const url = `${constants.API_URL}/v1/project/contributor`;
+//   const contributorName = contributorParameters.name;
+//   const contributorID = contributorParameters.contributorID;
+//   const projectID = contributorParameters.projectID;
+//   const options = {
+//     headers: getHeaders(),
+//     method: 'POST',
+//     credentials: 'include',
+//     body: JSON.stringify({
+//       contributorName,
+//       contributorID,
+//       projectID,
+//     }),
+//   };
 
-    return fetch(url, options)
-        .then(response => response.json())
-        .catch((err) => {
-            throw new Error('Project Register Failed');
-        });
-};
+//   return fetch(url, options)
+//     .then(response => response.json())
+//     .catch((err) => {
+//       throw new Error('Project Register Failed');
+//     });
+// };
 
 export const getContributors = (projectId) => {
     const url = `${constants.API_URL}/v1/project/${projectId}`;
@@ -233,7 +233,7 @@ export const getRecentActivities = () => {
 
 // INVITATIONS
 
-export const inviteContributor = contributorParameters => {
+export const inviteContributor = contributorParameters => new Promise((resolve, reject) => {
     const url = `${constants.API_URL}/v1/user/invite`;
     // const contributorName = contributorParameters.name;
     const invitedUserID = contributorParameters.invitedUserID;
@@ -248,16 +248,23 @@ export const inviteContributor = contributorParameters => {
             projectID
         })
     };
-    return fetch(url, options)
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => {
-            throw new Error("Invitation Failed");
+    //Addded promise
+        fetch(url, options).then(response => {
+            const { status } = response;
+            if (status === 200) {
+                response.json().then(resolve);
+            } else if (status === 400) {
+                response.json().then(reject);
+            } else {
+                reject(new Error(response.statusText));
+            }
+        }).catch(err => {
+            // throw ;
+            reject(new Error("Invitation Failed"));
         });
-};
+})
 
-export const respondInvite = (acceptedStatus, pID) => {
+export const respondInvite = (acceptedStatus, pID) => new Promise((resolve, reject) => {
     const url = `${constants.API_URL}/v1/user/invite/respond`;
     const accepted = acceptedStatus;
     const projectID = pID;
@@ -270,15 +277,22 @@ export const respondInvite = (acceptedStatus, pID) => {
             accepted
         })
     };
-
-    return fetch(url, options)
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => {
-            throw new Error("Invitation respond Failed");
+    // Added Promise 
+        return fetch(url, options).then(response => {
+            const { status } = response;
+            if (status === 200) {
+                response.json().then(resolve);
+            } else if (status === 400) {
+                response.json().then(reject);
+            } else {
+                reject(new Error(response.statusText));
+            }
+        }).catch(err => {
+            // throw ;
+            // throw new Error("Invitation respond Failed");
+            reject(new Error("Invitation respond Failed"));
         });
-};
+});
 
 //NOTIFICATIONS
 export const getUnseenNotifications = () => {
@@ -295,16 +309,16 @@ export const getUnseenNotifications = () => {
 };
 
 export const getAllNotifications = () => {
-  const url = `${constants.API_URL}/v1/notification/all`;
-  const options = {
-      method: 'GET',
-      credentials: 'include',
-  };
-  return fetch(url, options)
-      .then(response => response.json())
-      .catch((err) => {
-          throw new Error('all notification not loaded');
-      });
+    const url = `${constants.API_URL}/v1/notification/all`;
+    const options = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    return fetch(url, options)
+        .then(response => response.json())
+        .catch((err) => {
+            throw new Error('all notification not loaded');
+        });
 };
 
 export const notificationUpdate = (notifications) => {

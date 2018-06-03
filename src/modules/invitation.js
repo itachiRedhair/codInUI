@@ -1,6 +1,10 @@
 //constants imports
 import constants from "./../constants";
 import config from "./../../config";
+import { showToast } from './toaster';
+import { showProject } from './project';
+import { recentList } from './recent';
+
 
 //Action Creator Imports
 import { setLoadingStatus } from "./loader.js";
@@ -13,69 +17,73 @@ import { inviteContributor, respondInvite } from "./../utilities/api";
 // ------------------------------------
 export const SEND_INVITATION = "SEND_INVITATION";
 export const INVITE_RESPOND = "INVITE_RESPOND";
+const { TYPE_SUCCESS, TYPE_WARN, TYPE_ERROR } = constants.toaster;
 
 // ------------------------------------
 // Action Creators
 // ------------------------------------
 
 const invitationSend = invitationResponse => ({
-  type: SEND_INVITATION,
-  payload: invitationResponse
+    type: SEND_INVITATION,
+    payload: invitationResponse
 });
 
 const respondInvitationResponse = invresponse => ({
     type: INVITE_RESPOND,
     // payload: invresponse
-  });
+});
 
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
 
-export const sendInvitation = ( params ) => (dispatch, getState) => {
-  return new Promise((resolve, reject) => {
-    dispatch(setLoadingStatus(true));
-    inviteContributor( params )
-      .then(response => {
-        dispatch(setLoadingStatus(false));
-        if (response) {
-          dispatch(invitationSend(response));
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      })
-      .catch(err => {
-        dispatch(setLoadingStatus(false));
-        console.log(err);
-        resolve(false);
-      });
-  });
+export const sendInvitation = (params) => (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+        dispatch(setLoadingStatus(true));
+        inviteContributor(params)
+            .then(response => {
+                console.log("inside invitation response reducer");
+                dispatch(setLoadingStatus(false));
+                dispatch(invitationSend(response));
+                dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Success' }));
+                resolve(response);
+            })
+            .catch(err => {
+                dispatch(setLoadingStatus(false));
+                dispatch(showToast({ type: TYPE_ERROR, msg: err.message }));
+                reject(err.message);
+
+            });
+    });
 };
 
 export const respondInvitation = (accepted, projectId) => (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      dispatch(setLoadingStatus(true));
-      respondInvite(accepted, projectId)
-        .then(response => {
-          dispatch(setLoadingStatus(false));
-          if (response) {
-            dispatch(respondInvitationResponse());
-            resolve(true);
-          } else {
-            resolve(false);
-          }
-        })
-        .catch(err => {
-          dispatch(setLoadingStatus(false));
-          console.log(err);
-          resolve(false);
-        });
+        dispatch(setLoadingStatus(true));
+        respondInvite(accepted, projectId)
+            .then(response => {
+                dispatch(setLoadingStatus(false));
+                dispatch(respondInvitationResponse());
+                if (accepted === true) {
+                    dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Invitation Accepted Successfully' }));
+                    dispatch(showProject());
+                    dispatch(recentList());
+                }
+                else {
+                    dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Invitation Declined' }));
+                }
+                resolve(response);
+            })
+            .catch(err => {
+                dispatch(setLoadingStatus(false));
+                dispatch(showToast({ type: TYPE_ERROR, msg: err.message }));
+                reject(err.message);
+            });
     });
-  };
+};
 
 export const actions = {
-  invitationSend
+    invitationSend
 };
 
 // ------------------------------------
@@ -83,13 +91,13 @@ export const actions = {
 // ------------------------------------
 
 const ACTION_HANDLERS = {
-  [SEND_INVITATION]: (state, action) => ({
-    ...state,
-  }),
-  [INVITE_RESPOND]: (state, action) => ({
-    ...state
-    // invresponse: action.payload
-  })
+    [SEND_INVITATION]: (state, action) => ({
+        ...state,
+    }),
+    [INVITE_RESPOND]: (state, action) => ({
+        ...state
+        // invresponse: action.payload
+    })
 };
 
 // ------------------------------------
@@ -97,10 +105,10 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 
 const initialState = {
-  invresponse: []
+    invresponse: []
 };
 
 export default (state = initialState, action) => {
-  const handler = ACTION_HANDLERS[action.type];
-  return handler ? handler(state, action) : state;
+    const handler = ACTION_HANDLERS[action.type];
+    return handler ? handler(state, action) : state;
 };
