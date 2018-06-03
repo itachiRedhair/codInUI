@@ -12,3 +12,17 @@
 .logo-container span {
   color: $theme-color;
 }
+
+.dropdown {
+  ul {
+    background: #0f0f0f;
+    a {
+      color: white;
+      text-align: center;
+      &:hover {
+        background: #7a7a7a;
+        color: white;
+      }
+    }
+  }
+}

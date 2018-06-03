@@ -1,4 +1,72 @@
-// .add-project-modal-header {
-//   display: flex;
-//   justify-content: space-between;
-// }
+@import '../../styles/_theme.scss';
+.add-project-modal-header {
+  .h4 {
+    color: white;
+  }
+}
+
+.add-project-modal-body label {
+  color: black;
+}
+
+.add-project-modal-body {
+  .input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .form-dropdown {
+    // padding-top: 2px;
+    margin-right: 15px;
+    margin-top: 5px;
+    color: white;
+    width: 150px;
+    background-position: 0 !important;
+    &:hover {
+      background-color: #3c3c3c !important;
+    }
+    &:focus,
+    &:hover {
+      color: white !important;
+      border-color: black !important;
+    }
+    .caret {
+      float: right;
+      margin-top: 6px;
+    }
+  }
+  .dropdown-menu {
+    background-color: #222;
+    a {
+      color: white !important;
+      &:hover {
+        background-color: none;
+        background-image: linear-gradient(to bottom, #6a6a6a, #7a7a7a 100%) !important;
+      }
+    }
+  }
+  .active {
+    a {
+      background-image: linear-gradient(to bottom, #7a7a7a 0, #343434 100%) !important;
+    }
+  }
+  .text-small {
+    font-size: 1.1rem;
+    i {
+      font-weight: bold;
+    }
+  }
+}
+
+.add-project-modal-footer {
+  .btn.btn-default {
+    color: #bababa;
+    text-shadow: none;
+    border-color: black;
+    background-image: linear-gradient(to bottom, #7a7a7a 0, #343434 100%) !important;
+    &:hover {
+      background-image: linear-gradient(to bottom, #6a6a6a 0, #7a7a7a 100%) !important;
+      background-position: 0 !important;
+    }
+  }
+}

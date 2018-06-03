@@ -16,79 +16,79 @@ import { getUser } from './../utilities/api';
 // Styles imports
 import './../styles/_theme.scss';
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isUserRequestComplete: false,
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isUserRequestComplete: false,
+    };
+  }
 
-    componentDidMount() {
-        this.props.setLoadingStatus(true);
-        getUser()
-            .then((response) => {
-                this.setState({
-                    isUserRequestComplete: true,
-                });
-                if (response.message !== 'UNAUTHORIZED') {
-                    this.props.login();
-                    this.props.history.push('/landing');
-                }
-                else {
-                    this.props.history.push('/')
-                }
-                this.props.setLoadingStatus(false);
-            })
-            .catch((err) => {
-                this.setState({ isUserRequestComplete: true });
-                this.props.setLoadingStatus(false);
-                console.log(err);
-            });
-    }
+  componentDidMount() {
+    this.props.setLoadingStatus(true);
+    getUser()
+      .then((response) => {
+        this.setState({
+          isUserRequestComplete: true,
+        });
+        if (response.message !== 'UNAUTHORIZED') {
+          this.props.login();
+          this.props.history.push('/landing');
+        }
+        else {
+          this.props.history.push('/')
+        }
+        this.props.setLoadingStatus(false);
+      })
+      .catch((err) => {
+        this.setState({ isUserRequestComplete: true });
+        this.props.setLoadingStatus(false);
+        console.log(err);
+      });
+  }
 
-    render() {
-        return this.state.isUserRequestComplete ? (
-            <React.Fragment>
-                <Loader />
-                <ReduxToastr
-                    timeOut={4000}
-                    newestOnTop={false}
-                    preventDuplicates
-                    position="top-right"
-                    transitionIn="fadeIn"
-                    transitionOut="fadeOut"
-                    // progressBar
-                />
-                <div>
-                    <Switch>
-                        <Route exact key="login" path="/" component={Index} />
-                        <Route exact key="signup" path="/signup" component={Index} />
-                        <PrivateRoute path="/landing" component={LandingComponent} />
-                        <PrivateRoute path="/dashboard" component={Dashboard} />
-                    </Switch>
-                </div>
-            </React.Fragment>
-        ) : (
-                <div>
-                    <Loader />
-                    <ReduxToastr
-                        timeOut={4000}
-                        newestOnTop={false}
-                        preventDuplicates
-                        position="top-right"
-                        transitionIn="fadeIn"
-                        transitionOut="fadeOut"
-                        // progressBar
-                    />
-                </div>
+  render() {
+    return this.state.isUserRequestComplete ? (
+      <React.Fragment>
+        <Loader />
+        <ReduxToastr
+          timeOut={4000}
+          newestOnTop={false}
+          preventDuplicates
+          position="top-right"
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+        // progressBar
+        />
+        <div>
+          <Switch>
+            <Route exact key="login" path="/" component={Index} />
+            <Route exact key="signup" path="/signup" component={Index} />
+            <PrivateRoute path="/landing" component={LandingComponent} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+          </Switch>
+        </div>
+      </React.Fragment>
+    ) : (
+        <div>
+          <Loader />
+          <ReduxToastr
+            timeOut={4000}
+            newestOnTop={false}
+            preventDuplicates
+            position="top-right"
+            transitionIn="fadeIn"
+            transitionOut="fadeOut"
+          // progressBar
+          />
+        </div>
 
-            );
-    }
+      );
+  }
 }
 
 const mapDispatchToProps = dispatch => ({
-    login: () => dispatch(authAction.login()),
-    setLoadingStatus: loadingStatus => dispatch(setLoadingStatus(loadingStatus)),
+  login: () => dispatch(authAction.login()),
+  setLoadingStatus: loadingStatus => dispatch(setLoadingStatus(loadingStatus)),
 });
 
 export default withRouter(connect(null, mapDispatchToProps, null, { pure: false })(App));

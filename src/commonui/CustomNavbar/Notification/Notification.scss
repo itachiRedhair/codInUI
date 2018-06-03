@@ -1,53 +1,47 @@
 @import "../../../styles/_variables.scss";
 @import "../../../styles/_theme.scss";
-
-
 .unseen-content {
-    // background: $notif-dot;
-    position: absolute;
-    top: 10px;
-    left: 24px;
-
-    height: 14px;
-    width: 14px;
-    border-radius: 7px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: red;
-
-    font-size: 0.95rem;    
-    color: $primary-text;
-
+  // background: $notif-dot;
+  position: absolute;
+  top: 10px;
+  left: 24px;
+  height: 14px;
+  width: 14px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
+  font-size: 0.95rem;
+  color: $primary-text;
 }
 
 .hide-unseen-count {
-    font-size: 0rem !important;        
-    color: rgba(0,0,0,0) !important;
+  font-size: 0rem !important;
+  color: rgba(0, 0, 0, 0) !important;
 }
 
-.unseen-count {
-    // padding-left: 2px;
+.notification-dropdown {
+  color: white;
+  ul {
+    background: #0f0f0f
+  }
 }
-
-// .notification-bell {
-//     display: flex;
-//     flex-direction: co
-// }
 
 .no-notifications {
-  padding: 1em;
-  width: 15em;
+  text-align: center;
 }
 
-
 .notification-content {
-  padding: 8px 20px;
-  border-bottom: 1px dashed $theme-color;
-  max-width: 25vw;
-  min-width: 25vw;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(154, 154, 154, 0.5);
+  max-width: 350px;
+  min-width: 350px;
+  font-size: 1.3rem;
+  .notification-highlight {
+    // font-size: 1.35rem;
+    color: $theme-color;
+  }
 }
 
 .notification-content:last-child {
@@ -55,7 +49,7 @@
 }
 
 .btn-container {
-  margin-top: 3px;
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -63,5 +57,4 @@
 
 .btn-container button {
   font-size: 1.2rem;
-  font-weight: bold;
 }

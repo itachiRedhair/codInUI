@@ -5,12 +5,12 @@ import {
   ModalBody,
   ModalHeader,
   MenuItem,
-  ModalFooter
+  ModalFooter,
+  Button
 } from "react-bootstrap";
 import { Typeahead, AsyncTypeahead } from "react-bootstrap-typeahead";
 //Component imports
 import ModalComponent from "../../../../commonui/Modal";
-import Button from "../../../../commonui/Button";
 import Input from "../../../../commonui/Input";
 
 //Styles imports
