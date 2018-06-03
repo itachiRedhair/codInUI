@@ -98,9 +98,9 @@ export default class Notification extends Component {
 
     return (
       <React.Fragment>
-        <NavDropdown onClick={this.updateNotifications} eventKey={3} title={notificationIcon} id="basic-nav-dropdown">
+        <NavDropdown onClick={this.updateNotifications} eventKey={3} title={notificationIcon} className="notification-dropdown">
           {/* {notifications} */}
-          {aliasAll.length > 0 ? notifications : <div className="no-notifications">No Notifications...</div>}
+          {aliasAll.length > 0 ? notifications : <div className="notification-content">No Notifications...</div>}
         </NavDropdown>
       </React.Fragment>
     )
