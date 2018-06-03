@@ -1,6 +1,10 @@
 //constants imports
 import constants from "./../constants";
 import config from "./../../config";
+import { showToast } from './toaster';
+import { showProject } from './project';
+import { recentList } from './recent';
+
 
 //Action Creator Imports
 import { setLoadingStatus } from "./loader.js";
@@ -13,6 +17,7 @@ import { inviteContributor, respondInvite } from "./../utilities/api";
 // ------------------------------------
 export const SEND_INVITATION = "SEND_INVITATION";
 export const INVITE_RESPOND = "INVITE_RESPOND";
+const { TYPE_SUCCESS, TYPE_WARN, TYPE_ERROR } = constants.toaster;
 
 // ------------------------------------
 // Action Creators
@@ -24,55 +29,58 @@ const invitationSend = invitationResponse => ({
 });
 
 const respondInvitationResponse = invresponse => ({
-    type: INVITE_RESPOND,
-    // payload: invresponse
-  });
+  type: INVITE_RESPOND,
+  // payload: invresponse
+});
 
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
 
-export const sendInvitation = ( params ) => (dispatch, getState) => {
+export const sendInvitation = (params) => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
-    inviteContributor( params )
+    inviteContributor(params)
       .then(response => {
         dispatch(setLoadingStatus(false));
-        if (response) {
-          dispatch(invitationSend(response));
-          resolve(true);
-        } else {
-          resolve(false);
-        }
+        dispatch(invitationSend(response));
+        dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Success' }));
+        resolve(response);
       })
       .catch(err => {
         dispatch(setLoadingStatus(false));
-        console.log(err);
-        resolve(false);
+        dispatch(showToast({ type: TYPE_ERROR, msg: err.message }));
+        reject(err.message);
+
       });
   });
 };
 
 export const respondInvitation = (accepted, projectId) => (dispatch, getState) => {
-    return new Promise((resolve, reject) => {
-      dispatch(setLoadingStatus(true));
-      respondInvite(accepted, projectId)
-        .then(response => {
-          dispatch(setLoadingStatus(false));
-          if (response) {
-            dispatch(respondInvitationResponse());
-            resolve(true);
-          } else {
-            resolve(false);
-          }
-        })
-        .catch(err => {
-          dispatch(setLoadingStatus(false));
-          console.log(err);
-          resolve(false);
-        });
-    });
-  };
+  return new Promise((resolve, reject) => {
+    dispatch(setLoadingStatus(true));
+    respondInvite(accepted, projectId)
+      .then(response => {
+        dispatch(setLoadingStatus(false));
+        dispatch(respondInvitationResponse());
+        if (accepted === true) {
+          console.log("inside respondInvitation reducer");
+          dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Invitation Accepted Successfully' }));
+          dispatch(showProject());
+          dispatch(recentList());
+        }
+        else {
+          dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Invitation Declined' }));
+        }
+        resolve(response);
+      })
+      .catch(err => {
+        dispatch(setLoadingStatus(false));
+        dispatch(showToast({ type: TYPE_ERROR, msg: err.message }));
+        reject(err.message);
+      });
+  });
+};
 
 export const actions = {
   invitationSend

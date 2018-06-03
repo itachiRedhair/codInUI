@@ -9,6 +9,9 @@ import {
   Button
 } from "react-bootstrap";
 import { Typeahead, AsyncTypeahead } from "react-bootstrap-typeahead";
+import { toastr } from 'react-redux-toastr';
+
+
 //Component imports
 import ModalComponent from "../../../../commonui/Modal";
 import Input from "../../../../commonui/Input";
@@ -27,7 +30,8 @@ export default class Collaborator extends Component {
       options: [],
       contributorID: "",
       collaboratorName: "",
-      projectID: ""
+      projectID: "",
+      alreadyInvited: false
     };
   }
 
@@ -53,26 +57,33 @@ export default class Collaborator extends Component {
   };
 
   _getCollaboratorId = e => {
+    console.log("enterrd the event");
+    // if (event.keyCode === 13) {
     this.setState({
       contributorID: e.target.getAttribute("value"),
       collaboratorName: e.target.getAttribute("user"),
       projectID: e.target.getAttribute("pid")
     });
+    // }
+
   };
+
+
 
   _addCollaborator = () => {
     this.props.sendInvitation({
-        //   name: this.state.collaboratorName,
-        invitedUserID: this.state.contributorID,
-        projectID: this.state.projectID
-    });
+      invitedUserID: this.state.contributorID,
+      projectID: this.state.projectID
+    }).then(body => {
+      // console.log('good');
+      // console.log(body);
+      // toastr.success('Invititaion sent successfully', 'Invititaion sent successfully')
+    }).catch(error => {
+      // toastr.warning('Faild to send invititaion', 'Reason: ' + error)
+    })
   };
 
   render() {
-    console.log(
-      "--------this.props.contributors---------",
-      this.props.contributors
-    );
     const setHeight = {
       height: "1.5em"
     };
@@ -109,28 +120,32 @@ export default class Collaborator extends Component {
         <ModalBody>
           <div className="contributor-display">
             Contributors of this project
-          </div>
+            </div>
           {contribUsers}
           <AsyncTypeahead
             {...this.state}
             labelKey="email"
-            minLength={2}
+            minLength={1}
+            delay={10}
             onSearch={this._handleSearch}
             placeholder="Search for a Codin user..."
             renderMenuItemChildren={(option, props) => (
               <ul>
                 <li
                   onClick={this._getCollaboratorId}
-                  key={option._id}
+                  // onKeyPress={this._getCollaboratorId.bind(this)}
+                  // onSubmit={ this._getCollaboratorId.bind(this) }
                   value={option._id}
                   user={option.email}
                   pid={this.props.projectIdState}
                 >
                   {option.email}
+
                 </li>
               </ul>
             )}
           />
+          {this.state.alreadyInvited ? <div className="already-invited">Contributor Already invited</div> : null}
           Collaborator id: {this.state.contributorID}
           Project id: {this.props.projectIdState}
         </ModalBody>

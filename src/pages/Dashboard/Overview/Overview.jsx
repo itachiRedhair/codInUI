@@ -17,59 +17,59 @@ import Loader from "./../../../components/Loader";
 import "./Overview.scss";
 
 export default class Overview extends Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    componentDidMount() {
-        this.props.listTslintReport(this.props.projectId, "week");
-    }
+  componentDidMount() {
+    this.props.listTslintReport(this.props.projectId, "week");
+  }
 
-    render() {
-        if (this.props.isFetching) {
-            return (<div><Loader /></div>)
-        }
-        else if (this.props.reportList.length === 0) {
-            return <Tutorial />
-        }
-        else {
-            return (
-                <React.Fragment>
-                    <Row className="overview-row-group col-container">
-                        <Col xs={12} sm={12} md={9} className="overview-col">
-                            <OverviewGraph />
-                        </Col>
-                    </Row>
-                    <Row className="overview-row-group col-container">
-                        <Col md={10} className="overview-col">
-                            <CodeQuality />
-                        </Col>
-                        <Col md={2} className="overview-col">
-                            <CPICard />
-                        </Col>
-                    </Row>
-                    <Row className="overview-row-group col-container">
-                        <Col md={12} className="overview-col">
-                            <TSLintSummary />
-                        </Col>
-                    </Row>
-                    {/* <Col md={2} className="overview-col">
+  render() {
+    const { projectId, reports } = this.props;
+    const projectReports = reports[projectId];
+    if (!projectReports) return null;
+    else if (!projectReports || (projectReports && projectReports.reportList.length === 0)) {
+      return <Tutorial />;
+    }
+    else {
+      return (
+        <React.Fragment>
+          <Row className="overview-row-group col-container">
+            <Col xs={12} sm={12} md={9} className="overview-col">
+              <OverviewGraph reportList={projectReports.reportList} />
+            </Col>
+          </Row>
+          <Row className="overview-row-group col-container">
+            <Col md={10} className="overview-col">
+              <CodeQuality reportList={projectReports.reportList} />
+            </Col>
+            <Col md={2} className="overview-col">
+              <CPICard reportList={projectReports.reportList} />
+            </Col>
+          </Row>
+          <Row className="overview-row-group col-container">
+            <Col md={12} className="overview-col">
+              <TSLintSummary reportList={projectReports.reportList} />
+            </Col>
+          </Row>
+          {/* <Col md={2} className="overview-col">
                             <CoverageSummary />
                         </Col> */}
-                    <Row>
-                        <Col md={12} className="overview-col">
-                            <RecentSubmits />
-                        </Col>
-                    </Row>
-                    <Row className="overview-row-group col-container">
-                        <Col md={12} className="overview-col">
-                            <OverviewHeatmap />
-                        </Col>
-                    </Row>
-                </React.Fragment>
-            );
-        }
+          <Row>
+            <Col md={12} className="overview-col">
+              <RecentSubmits />
+            </Col>
+          </Row>
+          <Row className="overview-row-group col-container">
+            <Col md={12} className="overview-col">
+              <OverviewHeatmap reportList={projectReports.reportList} />
+            </Col>
+          </Row>
+        </React.Fragment>
+      );
     }
+  }
 }
 
 //TODO: Add prop-types here

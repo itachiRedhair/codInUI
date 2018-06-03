@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
 import Notification from "./Notification";
-import Profile from "./Profile";
 import "./CustomNavbar.scss";
 
 class CustomNavbar extends Component {

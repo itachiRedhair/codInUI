@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 // Components imports
 import PrivateRoute from './../components/PrivateRoute';
 import Index from './Index/index';
 import Dashboard from './Dashboard';
 import LandingComponent from './Landing';
 import Loader from './../components/Loader';
-import ReduxToastr from 'react-redux-toastr';
+import Toaster from './../components/Toaster';
+
 // ActionCreatorImports
 import { actions as authAction } from './../modules/auth';
 import { setLoadingStatus } from './../modules/loader';
+
 // API imports
 import { getUser } from './../utilities/api';
+
 // Styles imports
 import './../styles/_theme.scss';
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -50,15 +56,7 @@ class App extends Component {
     return this.state.isUserRequestComplete ? (
       <React.Fragment>
         <Loader />
-        <ReduxToastr
-          timeOut={4000}
-          newestOnTop={false}
-          preventDuplicates
-          position="top-right"
-          transitionIn="fadeIn"
-          transitionOut="fadeOut"
-        // progressBar
-        />
+        <Toaster />
         <div>
           <Switch>
             <Route exact key="login" path="/" component={Index} />
@@ -68,21 +66,7 @@ class App extends Component {
           </Switch>
         </div>
       </React.Fragment>
-    ) : (
-        <div>
-          <Loader />
-          <ReduxToastr
-            timeOut={4000}
-            newestOnTop={false}
-            preventDuplicates
-            position="top-right"
-            transitionIn="fadeIn"
-            transitionOut="fadeOut"
-          // progressBar
-          />
-        </div>
-
-      );
+    ) : null;
   }
 }
 

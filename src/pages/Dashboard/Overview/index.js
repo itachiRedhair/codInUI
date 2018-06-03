@@ -10,8 +10,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => ({
   isLoading: state.loaderReducer.isLoading,
-  reportList: state.reportReducer.reportList,
-  isFetching: state.reportReducer.isFetching,
+  reports: state.reportReducer,
   projectId: state.projectReducer.projectId,
 });
 

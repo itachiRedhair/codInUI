@@ -11,7 +11,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-  reportList: state.reportReducer.reportList,
+  // reportList: state.reportReducer.reportList,
   reportListDetails: state.reportReducer.reportListDetails,
   projectId: state.projectReducer.projectId,
 });

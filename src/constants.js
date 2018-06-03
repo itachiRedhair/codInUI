@@ -18,6 +18,11 @@ const constants = {
     LOGGED_OUT: 'LOGGED_OUT',
     UNAUTHORIZED: 'UNAUTHORIZED',
   },
+  toaster: {
+    TYPE_SUCCESS: 'success',
+    TYPE_WARN: 'warn',
+    TYPE_ERROR: 'error'
+  }
 };
 
 export default constants;

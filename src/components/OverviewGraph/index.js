@@ -9,8 +9,7 @@ const mapDispatchToProps = {
   listTslintReport,
 };
 
-const mapStateToProps = state => ({
-  reportList: state.reportReducer.reportList,
+const mapStateToProps = (state) => ({
   projectId: state.projectReducer.projectId,
 });
 

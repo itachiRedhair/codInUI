@@ -10,5 +10,21 @@ import userReducer from './user';
 import projectModalReducer from './projectModalState';
 import inviteReducer from './invitation';
 import notificationReducer from './notification';
+import toasterReducer from './toaster';
 
-export { authReducer, loaderReducer, projectReducer, typeaheadReducer, modalReducer, contributorReducer, reportReducer, recentReducer, userReducer, projectModalReducer, inviteReducer, notificationReducer };
+
+export {
+  authReducer,
+  loaderReducer,
+  projectReducer,
+  typeaheadReducer,
+  modalReducer,
+  contributorReducer,
+  reportReducer,
+  recentReducer,
+  userReducer,
+  projectModalReducer,
+  inviteReducer,
+  notificationReducer,
+  toasterReducer
+};

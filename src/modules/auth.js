@@ -69,7 +69,6 @@ export const userLogIn = (email, password) => (dispatch, getState) => new Promis
   loginRequest({ email, password })
     .then((response) => {
       dispatch(setLoadingStatus(false));
-      console.log(response);
       if (response) {
         dispatch(login(response));
         resolve(response);
@@ -134,7 +133,7 @@ const ACTION_HANDLERS = {
     user: action.payload,
   }),
   [AUTH_LOGOUT]: (state, action) => ({
-    ...state,
+    state: undefined,
     isAuthenticated: false,
   }),
 };

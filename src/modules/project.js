@@ -74,6 +74,7 @@ export const createProject = (name, type) => (dispatch, getState) => new Promise
 export const showProject = () => (dispatch, getState) => new Promise((resolve, reject) => {
   getUserProject()
     .then((response) => {
+      console.log(response);
       if (response) {
         dispatch(listProject(response));
         resolve(response);

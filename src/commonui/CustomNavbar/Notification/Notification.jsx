@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { NavDropdown } from 'react-bootstrap';
+var _ = require('lodash');
 import './Notification.scss';
 import { notificationUpdate } from './../../../utilities/api';
 
 export default class Notification extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       bellIcon: true,
-      notificationId: ""
+      notificationId: "",
     }
   }
 
@@ -37,39 +37,57 @@ export default class Notification extends Component {
     this.props.respondInvitation(false, e.target.getAttribute('value'));
   }
 
+  updateNotifications = () => {
+    notificationUpdate(this.props.notificationIds).then(response => {
+      this.setState({
+        bellIcon: false
+      })
+    })
+  }
+
+
   render() {
     let notifications = [];
     let unseenCount = 0;
     let aliasUnseen = this.props.unseenNotifications;
     let aliasAll = this.props.allNotifications;
-    if (aliasUnseen.length > 0) {
-      unseenCount = aliasUnseen.length;
-    }
-    if (aliasAll.length > 0) {
-      // unseenCount = aliasAll.length;
-      for (let i = aliasAll.length - 1; i >= 0; i--) {
-        const notificationElement =
-          <div className="notification-content">
-            <span>
-              <span className="notification-highlight">{aliasAll[i].details.inviter.name}</span> has invited you be to be a contributor of <span className="notification-highlight">{aliasAll[i].details.project.name}</span>
-            </span>
-            <div className="btn-container">
-              <button className="btn btn-outline btn-danger" bsStyle="danger" value={aliasAll[i].details.project._id} onClick={this.handleDeclineInvitation}>
-                <i className="fa fa-times" /> Decline</button>
-              <button className="btn btn-outline btn-success" value={aliasAll[i].details.project._id} onClick={this.handleAcceptInvitation}>
-                <i className="fa fa-check" /> Accept</button>
-
-            </div>
-          </div>;
-        notifications.push(notificationElement);
+    for (let i = 0; i < aliasAll.length; i++) {
+      if (aliasAll[i].seen === false) {
+        unseenCount++;
       }
+
+      let actionContainer = null;
+      if (aliasAll[i].details.responded === true) {
+        if (aliasAll[i].details.accepted === true) {
+          actionContainer =
+            <div className="accept-container">Invitation was accepted</div>;
+        } else {
+          actionContainer =
+            <div className="decline-container">Invitation was declined</div>
+        }
+      } else {
+        actionContainer =
+          <div className="btn-container">
+            <button className="btn btn-outline btn-danger" bsStyle="danger" value={aliasAll[i].details.project._id} onClick={this.handleDeclineInvitation}>
+              <i className="fa fa-times" /> Decline</button>
+            <button className="btn btn-outline btn-success" value={aliasAll[i].details.project._id} onClick={this.handleAcceptInvitation}>
+              <i className="fa fa-check" /> Accept</button>
+          </div>
+      }
+      const notificationElement =
+        <div className="notification-content">
+          <span>
+            <span className="notification-highlight">{aliasAll[i].details.inviter.name}</span> has invited you be to be a contributor of <span className="notification-highlight">{aliasAll[i].details.project.name}</span>
+          </span>
+          {actionContainer}
+        </div>;
+      notifications.push(notificationElement);
     }
-    const notificationCount = (this.state.bellIcon && aliasUnseen.length > 0)
+    const notificationCount = (this.state.bellIcon && unseenCount > 0)
       ? (<div className="unseen-content">
         <div className={unseenCount < 10 ? "unseen-count" : "unseen-count hide-unseen-count"}> {unseenCount} </div>
       </div>)
       : null
-
     const notificationIcon =
       <span>
         <span className="notification-bell">
@@ -77,12 +95,99 @@ export default class Notification extends Component {
           {notificationCount}
         </span>
       </span>;
+
     return (
       <React.Fragment>
-        <NavDropdown eventKey={3} title={notificationIcon} onClick={this.handleSelect} className="notification-dropdown">
-          {aliasAll.length > 0 ? notifications : <div className="notification-content no-notifications">No notifications</div>}
+        <NavDropdown onClick={this.updateNotifications} eventKey={3} title={notificationIcon} id="basic-nav-dropdown">
+          {/* {notifications} */}
+          {aliasAll.length > 0 ? notifications : <div className="no-notifications">No Notifications...</div>}
         </NavDropdown>
       </React.Fragment>
-    );
+    )
   }
+
+  // render() {
+  //   let notifications = [];
+  //   let unseenCount = 0;
+  //   let notificationElement = "";
+  //   let aliasAll = this.props.allNotifications;
+  //   if (aliasAll.length > 0) {
+  //     for (let i = 0; i < aliasAll.length; i++) {
+  //       if (aliasAll[i].seen === false) {
+  //         unseenCount++;
+  //       }
+  //       if (aliasAll[i].details.responded === true) {
+  //         if (aliasAll[i].details.accepted === true) {
+  //           notificationElement =
+  //             <div className="notification-content">
+  //               <span>
+  //                 <b>{aliasAll[i].details.inviter.name}</b> has invited you be to be a contributor of <b>{aliasAll[i].details.project.name}</b>
+  //               </span>
+  //               <div className="accept-container">
+  //                 Invitation was accepted
+  //                               </div>
+  //             </div>;
+  //         }
+  //         else {
+  //           notificationElement =
+  //             <div className="notification-content">
+  //               <span>
+  //                 <b>{aliasAll[i].details.inviter.name}</b> has invited you be to be a contributor of <b>{aliasAll[i].details.project.name}</b>
+  //               </span>
+  //               <div className="decline-container">
+  //                 <b> Invitation was declined</b>
+  //               </div>
+  //             </div>;
+  //         }
+  //       }
+  //       else {
+  //         notificationElement =
+  //           <div className="notification-content">
+  //             <span>
+  //               <b>{aliasAll[i].details.inviter.name}</b> has invited you be to be a contributor of <b>{aliasAll[i].details.project.name}</b>
+  //             </span>
+  //             <div className="btn-container">
+  //               <button className="btn btn-outline btn-success" value={aliasAll[i].details.project._id} onClick={this.handleAcceptInvitation}>
+  //                 <i className="fa fa-check" /> Accept
+  //                       </button>
+  //               <button className="btn btn-outline btn-danger" bsStyle="danger" value={aliasAll[i].details.project._id} onClick={this.handleDeclineInvitation}>
+  //                 <i className="fa fa-times" /> Decline
+  //                       </button>
+  //             </div>
+  //           </div>;
+  //       }
+
+  //       notifications.push(notificationElement);
+  //     }
+  //   }
+  //   const notificationCount = (this.state.bellIcon && unseenCount > 0)
+  //     ? (<div className="unseen-content">
+  //       <div className={unseenCount < 10 ? "unseen-count" : "unseen-count hide-unseen-count"}> {unseenCount} </div>
+  //     </div>)
+  //     : null
+
+  //   const notificationIcon =
+  //     <span>
+  //       <span className="notification-bell">
+  //         <i className="fa fa-bell" />
+  //         {notificationCount}
+  //       </span>
+  //     </span>;
+  //   return (
+  //     <React.Fragment>
+  //       <NavDropdown eventKey={3} title={notificationIcon} onClick={this.handleSelect} className="notification-dropdown">
+  //         {aliasAll.length > 0 ? notifications : <div className="notification-content no-notifications">No notifications</div>}
+
+
+  //         return (
+  //     <React.Fragment>
+  //           <NavDropdown onClick={this.updateNotifications} eventKey={3} title={notificationIcon} id="basic-nav-dropdown">
+  //             {/* {notifications} */}
+  //             {aliasAll.length > 0 ? notifications : <div className="no-notifications">No Notifications...</div>}
+  //           </NavDropdown>
+  //         </React.Fragment>
+  //         );
+  //       }
+  //     }
+
 }
