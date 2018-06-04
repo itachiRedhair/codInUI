@@ -15,15 +15,13 @@ export default class Notification extends Component {
 
   componentDidMount() {
     // this.props.fetchUnseenNotifications();
-
     this.setState({
       notificationId: this.props.unseenNotifications._id
     })
   }
 
   handleSelect = () => {
-    notificationUpdate(this.props.notificationIds).then(response => {
-    })
+    notificationUpdate(this.props.notificationIds);
     this.setState({
       bellIcon: false
     })

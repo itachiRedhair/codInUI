@@ -4,6 +4,7 @@ import config from "./../../config";
 import { showToast } from './toaster';
 import { showProject } from './project';
 import { recentList } from './recent';
+import { fetchAllNotifications } from './notification';
 
 
 //Action Creator Imports
@@ -44,7 +45,7 @@ export const sendInvitation = (params) => (dispatch, getState) => {
       .then(response => {
         dispatch(setLoadingStatus(false));
         dispatch(invitationSend(response));
-        dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Success' }));
+        dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Invitation sent' }));
         resolve(response);
       })
       .catch(err => {
@@ -66,6 +67,7 @@ export const respondInvitation = (accepted, projectId) => (dispatch, getState) =
         if (accepted === true) {
           console.log("inside respondInvitation reducer");
           dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Invitation Accepted Successfully' }));
+          dispatch(fetchAllNotifications());
           dispatch(showProject());
           dispatch(recentList());
         }
