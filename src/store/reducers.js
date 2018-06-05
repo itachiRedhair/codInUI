@@ -17,7 +17,7 @@ import {
   toasterReducer
 } from './../modules';
 
-export default combineReducers({
+const appReducer = combineReducers({
   authReducer,
   loaderReducer,
   projectReducer,
@@ -33,3 +33,12 @@ export default combineReducers({
   notificationReducer,
   toasterReducer
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === 'AUTH_LOGOUT') {
+    state = undefined;
+  }
+  return appReducer(state, action);
+};
+
+export default rootReducer;

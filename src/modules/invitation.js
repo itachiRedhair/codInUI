@@ -65,7 +65,6 @@ export const respondInvitation = (accepted, projectId) => (dispatch, getState) =
         dispatch(setLoadingStatus(false));
         dispatch(respondInvitationResponse());
         if (accepted === true) {
-          console.log("inside respondInvitation reducer");
           dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Invitation Accepted Successfully' }));
           dispatch(fetchAllNotifications());
           dispatch(showProject());
@@ -73,6 +72,7 @@ export const respondInvitation = (accepted, projectId) => (dispatch, getState) =
         }
         else {
           dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Invitation Declined' }));
+          dispatch(fetchAllNotifications());
         }
         resolve(response);
       })

@@ -70,26 +70,35 @@ export const logoutRequest = () => {
 
 export const signUpRequest = ({
   name, email, password, confirm,
-}) => {
-  const url = `${constants.API_URL}/v1/user/signup`;
+}) => new Promise((resolve, reject) => {
+    const url = `${constants.API_URL}/v1/user/signup`;
 
-  const options = {
-    headers: getHeaders(),
-    method: 'POST',
-    body: JSON.stringify({
-      name,
-      email,
-      password,
-      confirm,
-    }),
-  };
+    const options = {
+      headers: getHeaders(),
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        confirm,
+      }),
+    };
 
-  return fetch(url, options)
-    .then(response => response.json())
-    .catch((err) => {
-      throw new Error('Signup Failed');
+    //Addded promise
+    fetch(url, options).then(response => {
+      const { status } = response;
+      if (status === 200) {
+        response.json().then(resolve);
+      } else if (status === 400) {
+        response.json().then(reject);
+      } else {
+        reject(new Error(response.statusText));
+      }
+    }).catch(err => {
+      // throw ;
+      reject(new Error("Signup Failed"));
     });
-};
+  });
 
 export const projectRegisterRequest = (projectNamee, projectType) => {
   const url = `${constants.API_URL}/v1/project/register`;

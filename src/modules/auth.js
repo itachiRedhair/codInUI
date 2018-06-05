@@ -1,6 +1,7 @@
 // constants imports
 import constants from './../constants';
 import config from './../../config';
+import { showToast } from './toaster';
 
 // Action Creator Imports
 import { setLoadingStatus } from './loader.js';
@@ -20,6 +21,7 @@ export const SIGNUP = 'SIGNUP';
 export const AUTH_LOGIN = 'AUTH_LOGIN';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const IS_SIGNEDUP = 'IS_SIGNEDUP';
+const { TYPE_SUCCESS, TYPE_WARN, TYPE_ERROR } = constants.toaster;
 
 // ------------------------------------
 // Action Creators
@@ -82,28 +84,21 @@ export const userLogIn = (email, password) => (dispatch, getState) => new Promis
     });
 });
 
-export const userSignUp = (name, email, password, confirm) => (
-  dispatch,
-  getState,
-) => new Promise((resolve, reject) => {
+export const userSignUp = (name, email, password, confirm) => (dispatch, getState, ) => new Promise((resolve, reject) => {
   dispatch(setLoadingStatus(true));
-
-  signUpRequest({
-    name, email, password, confirm,
-  })
+  signUpRequest({ name, email, password, confirm, })
     .then((response) => {
       dispatch(setLoadingStatus(false));
-      if (response.result.ok == 1) {
-        dispatch(signup());
-        dispatch(isSignedUp());
-        resolve(true);
-      } else {
-        resolve(false);
-      }
+      dispatch(signup());
+      dispatch(isSignedUp());
+      dispatch(showToast({ type: TYPE_SUCCESS, msg: 'registered successfully' }));
+      resolve(true);
     })
     .catch((err) => {
       dispatch(setLoadingStatus(false));
-      resolve(false);
+      dispatch(showToast({ type: TYPE_ERROR, msg: err.message }));
+      reject(err.message);
+      // resolve(false);
     });
 });
 

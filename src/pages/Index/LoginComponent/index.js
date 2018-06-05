@@ -4,9 +4,15 @@ import { connect } from 'react-redux';
 // action creators
 import { actions } from './../../../modules/auth';
 
-const mapDispatchToProps = dispatch => ({
-  userLogIn: (username, password) =>
-    dispatch(actions.userLogIn(username, password)),
+const mapDispatchToProps = (dispatch) => ({
+  userLogIn: (username, password) => dispatch(actions.userLogIn(username, password))
 });
 
-export default connect(null, mapDispatchToProps)(LoginComponent);
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    test: 'test'
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent);

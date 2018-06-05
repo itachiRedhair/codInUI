@@ -1,17 +1,17 @@
 // constants imports
-import constants from './../constants';
-import config from './../../config';
+import constants from "./../constants";
+import config from "./../../config";
 
 // Action Creator Imports
-import { setLoadingStatus } from './loader.js';
+import { setLoadingStatus } from "./loader.js";
 
 // API imports
-import { getUserSuggestions } from './../utilities/api';
+import { getUserSuggestions } from "./../utilities/api";
 
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const GET_SUGGESTIONS = 'GET_SUGGESTIONS';
+export const GET_SUGGESTIONS = "GET_SUGGESTIONS";
 
 // ------------------------------------
 // Action Creators
@@ -19,35 +19,36 @@ export const GET_SUGGESTIONS = 'GET_SUGGESTIONS';
 
 const typeahead = names => ({
   type: GET_SUGGESTIONS,
-  payload: names,
+  payload: names
 });
 
 // ------------------------------------
 // Thunk Action Creators
 // ------------------------------------
 
-export const userSuggestions = name => (dispatch, getState) => new Promise((resolve, reject) => {
-  dispatch(setLoadingStatus(true));
+export const userSuggestions = name => (dispatch, getState) =>
+  new Promise((resolve, reject) => {
+    dispatch(setLoadingStatus(true));
 
-  getUserSuggestions({ name })
-    .then((response) => {
-      dispatch(setLoadingStatus(false));
-      if (response) {
-        dispatch(typeahead(response.suggestions));
-        resolve(true);
-      } else {
+    getUserSuggestions({ name })
+      .then(response => {
+        dispatch(setLoadingStatus(false));
+        if (response) {
+          dispatch(typeahead(response.suggestions));
+          resolve(response.suggestions);
+        } else {
+          resolve(false);
+        }
+      })
+      .catch(err => {
+        dispatch(setLoadingStatus(false));
+        console.log(err);
         resolve(false);
-      }
-    })
-    .catch((err) => {
-      dispatch(setLoadingStatus(false));
-      console.log(err);
-      resolve(false);
-    });
-});
+      });
+  });
 
 export const actions = {
-  typeahead,
+  typeahead
 };
 
 // ------------------------------------
@@ -57,8 +58,8 @@ export const actions = {
 const ACTION_HANDLERS = {
   [GET_SUGGESTIONS]: (state, action) => ({
     ...state,
-    names: [...action.payload],
-  }),
+    names: [...action.payload]
+  })
 };
 
 // ------------------------------------
@@ -66,7 +67,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 
 const initialState = {
-  names: [],
+  names: []
 };
 
 export default (state = initialState, action) => {

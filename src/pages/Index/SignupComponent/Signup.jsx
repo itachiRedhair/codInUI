@@ -1,53 +1,50 @@
-import React, { Component } from "react";
-import { Row, Col, Button } from "react-bootstrap";
-import { Route, withRouter, Link } from "react-router-dom";
-import { toastr } from 'react-redux-toastr'
+import React, { Component } from 'react';
+import { Row, Col, Button } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
+import { toastr } from 'react-redux-toastr';
 
 //components
-import Input from "./../../../commonui/Input";
-import Checkbox from "./../../../commonui/Checkbox";
+import Input from './../../../commonui/Input';
+import Checkbox from './../../../commonui/Checkbox';
 
 //styles
-import "./../../../styles/_form.scss";
-import "./Signup.scss";
+import './../../../styles/_form.scss';
+import './Signup.scss';
 
 class SignupComponent extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      name: "",
-      email: "",
-      password: "",
-      confirm: "",
+      name: '',
+      email: '',
+      password: '',
+      confirm: '',
       register: false
     };
   }
 
-  getValidationState = () => { };
+  getValidationState = () => {};
 
-  handleNameChange = e => this.setState({ name: e.target.value })
+  handleNameChange = (e) => this.setState({ name: e.target.value });
 
-  handleEmailChange = e => this.setState({ email: e.target.value });
+  handleEmailChange = (e) => this.setState({ email: e.target.value });
 
-  handlePasswordChange = e => this.setState({ password: e.target.value });
+  handlePasswordChange = (e) => this.setState({ password: e.target.value });
 
-  handleConfirmPasswordChange = e => this.setState({ confirm: e.target.value });
+  handleConfirmPasswordChange = (e) => this.setState({ confirm: e.target.value });
 
   handleSubmit = () => {
     // console.log(this.state.email, this.state.password, this.state.confirm);
     this.props
-      .userSignUp(this.state.name, this.state.email, this.state.password, this.state.confirm)
-      .then(signup => {
-        if (signup) {
-          toastr.success('Success', 'Sign up successful', {
-            timeOut: 1500,
-            onHideComplete: () => this.props.toggleLogin(),
-            showCloseButton: false,
-          })
-        } else {
-          // TODO: Show some error
-        }
-      });
+    .userSignUp(this.state.name, this.state.email, this.state.password, this.state.confirm)
+    .then(signup => {
+      if (signup) {
+        this.props.toggleLogin();
+      }
+      else {
+        // TODO: Show some error
+      }
+    })
   };
 
   render() {

@@ -1,154 +1,98 @@
-import React, { Component } from "react";
-import { Route, Switch, Redirect, NavLink } from "react-router-dom";
-import {
-  Modal,
-  ModalBody,
-  ModalHeader,
-  MenuItem,
-  ModalFooter,
-  Button
-} from "react-bootstrap";
-import { Typeahead, AsyncTypeahead } from "react-bootstrap-typeahead";
-import { toastr } from 'react-redux-toastr';
-
+import React, { Component } from 'react';
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'react-bootstrap';
+import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 
 //Component imports
-import ModalComponent from "../../../../commonui/Modal";
-import Input from "../../../../commonui/Input";
+import ModalComponent from '../../../../commonui/Modal';
+import Input from '../../../../commonui/Input';
 
 //Styles imports
-import "./CollaboratorComponent.scss";
-import "../../../../styles/_theme.scss";
+import './CollaboratorComponent.scss';
+import '../../../../styles/_theme.scss';
 
 export default class Collaborator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      showModal: true,
-      isLoading: false,
-      options: [],
-      contributorID: "",
-      collaboratorName: "",
-      projectID: "",
-      alreadyInvited: false
+      asyncTypeaheadState: {
+        isLoading: false,
+        options: []
+      },
+      collaborators: []
     };
   }
 
   componentDidMount = () => {
-    this.props.getCollaborators(this.props.projectIdState);
+    this.props.getCollaborators(this.props.projectId);
   };
 
   hideProjectModal = () => {
-    // this.setState({
-    //   showModal: false
-    // });
     this.props.setModalState(false);
   };
 
-  _handleSearch = query => {
-    this.setState({ isLoading: true });
-    this.props.userSuggestions(query);
-    var options = this.props.names;
-    this.setState({
-      isLoading: false,
-      options
-    });
+  _handleSearch = (query) => {
+    if (query.trim()) {
+      this.setState({
+        asyncTypeaheadState: {
+          isLoading: true
+        }
+      });
+
+      this.props.userSuggestions(query).then((options) => {
+        this.setState({
+          asyncTypeaheadState: {
+            isLoading: false,
+            options
+          }
+        });
+      });
+    }
   };
 
-  _getCollaboratorId = e => {
-    console.log("enterrd the event");
-    // if (event.keyCode === 13) {
+  onCollaboratorSelect = (selectedCollaborators) => {
     this.setState({
-      contributorID: e.target.getAttribute("value"),
-      collaboratorName: e.target.getAttribute("user"),
-      projectID: e.target.getAttribute("pid")
+      collaborators: selectedCollaborators
     });
-    // }
-
   };
-
-
 
   _addCollaborator = () => {
-    this.props.sendInvitation({
-      invitedUserID: this.state.contributorID,
-      projectID: this.state.projectID
-    }).then(body => {
-      // console.log('good');
-      // console.log(body);
-      // toastr.success('Invititaion sent successfully', 'Invititaion sent successfully')
-    }).catch(error => {
-      // toastr.warning('Faild to send invititaion', 'Reason: ' + error)
-    })
+    if (this.state.collaborators.length !== 0) {
+      const { _id } = this.state.collaborators[0];
+      this.props.sendInvitation({
+        invitedUserID: _id,
+        projectID: this.props.projectId
+      });
+    }
   };
 
   render() {
-    const setHeight = {
-      height: "1.5em"
-    };
     let contribUsers = [];
     if (this.props.contributors.length != 0) {
-      this.props.contributors.map(user => {
-        if (typeof user !== "object") {
-          contribUsers.push(
-            <ul>
-              <div key={user} style={setHeight}>
-                {user}
-              </div>
-            </ul>
-          );
-        } else {
-          contribUsers.push(
-            <ul>
-              <div key={user.name} style={setHeight}>
-                {user.name}
-              </div>
-            </ul>
-          );
-        }
-      });
+      contribUsers = this.props.contributors.map((user) => <div key={user.name}>{user.name}</div>);
     }
     return (
-      <ModalComponent
-        show={this.props.showModal}
-        onHide={this.hideProjectModal}
-      >
+      <ModalComponent show={this.props.showModal} onHide={this.hideProjectModal}>
         <ModalHeader>
           <i className="fa fa-close" onClick={this.hideProjectModal} />
         </ModalHeader>
         <ModalBody>
-          <div className="contributor-display">
-            Contributors of this project
-            </div>
+          <div className="contributor-display">Contributors of this project</div>
           {contribUsers}
           <AsyncTypeahead
-            {...this.state}
+            {...this.state.asyncTypeaheadState}
             labelKey="email"
-            minLength={1}
-            delay={10}
+            minLength={3}
+            selectHintOnEnter={true}
             onSearch={this._handleSearch}
             placeholder="Search for a Codin user..."
-            renderMenuItemChildren={(option, props) => (
-              <ul>
-                <li
-                  onClick={this._getCollaboratorId}
-                  // onKeyPress={this._getCollaboratorId.bind(this)}
-                  // onSubmit={ this._getCollaboratorId.bind(this) }
-                  value={option._id}
-                  user={option.email}
-                  pid={this.props.projectIdState}
-                >
-                  {option.email}
-
-                </li>
-              </ul>
-            )}
+            ref={(ref) => (this._typeahead = ref)}
+            onChange={(selected) => {
+              this.onCollaboratorSelect(selected);
+            }}
+            renderMenuItemChildren={(option, props) => <span>{option.email}</span>}
           />
-          {this.state.alreadyInvited ? <div className="already-invited">Contributor Already invited</div> : null}
-          Collaborator id: {this.state.contributorID}
-          Project id: {this.props.projectIdState}
         </ModalBody>
+        <span>Collaborator:{this.state.collaborators[0] && this.state.collaborators[0]._id}</span>
         <ModalFooter>
           <Button bsStyle="primary" onClick={this._addCollaborator}>
             Add Collaborator

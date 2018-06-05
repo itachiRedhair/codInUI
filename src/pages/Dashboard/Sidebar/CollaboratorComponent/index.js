@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // action creators
 import { userSuggestions } from '../../../../modules/typeahead';
 import { setModalState } from '../../../../modules/modalState';
-import { sendInvitation } from "../../../../modules/invitation";
+import { sendInvitation } from '../../../../modules/invitation';
 import { registerCollaborator, getCollaborators } from '../../../../modules/collaborator.js';
 
 const mapDispatchToProps = {
@@ -13,13 +13,13 @@ const mapDispatchToProps = {
   setModalState,
   registerCollaborator,
   getCollaborators,
-  sendInvitation  
+  sendInvitation
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   names: state.typeaheadReducer.names,
   showModal: state.modalReducer.showModal,
-  contributors: state.contributorReducer.contributors,
+  contributors: state.contributorReducer.contributors
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Collaborator);
