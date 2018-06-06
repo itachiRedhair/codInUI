@@ -1,5 +1,5 @@
-@import "../../../styles/_variables.scss";
-@import "../../../styles/_theme.scss";
+@import '../../../styles/_variables.scss';
+@import '../../../styles/_theme.scss';
 .unseen-content {
   // background: $notif-dot;
   position: absolute;
@@ -24,7 +24,7 @@
 .notification-dropdown {
   color: white;
   ul {
-    background: #0f0f0f
+    background: #0f0f0f;
   }
 }
 
@@ -60,19 +60,19 @@
 }
 
 .accept-container {
-    font-size: 1rem;
-    padding: 2px;
-    display: flex;
-    justify-content: space-around;
-    color: green;
-    font-weight: bold;
+  font-size: 1rem;
+  padding: 2px;
+  display: flex;
+  justify-content: space-around;
+  color: green;
+  font-weight: bold;
 }
 
 .decline-container {
-    font-size: 1rem;
-    padding: 2px;
-    display: flex;
-    justify-content: space-around;
-    color: red;
-    font-weight: bold;
+  font-size: 1rem;
+  padding: 2px;
+  display: flex;
+  justify-content: space-around;
+  color: red;
+  font-weight: bold;
 }

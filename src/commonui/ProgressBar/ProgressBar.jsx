@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, ProgressBar } from "react-bootstrap";
 
-//styles
+// styles
 import "./ProgressBar.scss";
 
 export default class ProgressBarComponent extends Component {

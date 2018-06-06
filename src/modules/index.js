@@ -11,9 +11,10 @@ import projectModalReducer from './projectModalState';
 import inviteReducer from './invitation';
 import notificationReducer from './notification';
 import toasterReducer from './toaster';
+import { reducer as toastrReducer } from 'react-redux-toastr';
 
 
-export {
+const appReducers = {
   authReducer,
   loaderReducer,
   projectReducer,
@@ -26,5 +27,9 @@ export {
   projectModalReducer,
   inviteReducer,
   notificationReducer,
-  toasterReducer
-};
+  toasterReducer,
+  toastr: toastrReducer
+}
+
+export default appReducers;
+

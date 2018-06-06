@@ -31,7 +31,8 @@ class CustomNavbar extends Component {
             <NavDropdown
               eventKey={3}
               title={this.props.user ? this.props.user.name : ''}
-              id="basic-nav-dropdown">
+              id="basic-nav-dropdown"
+            >
               <MenuItem eventKey={3.1} onClick={this.handleLogout}>
                 Log Out <i className="fa fa-sign-out" />
               </MenuItem>

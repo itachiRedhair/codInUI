@@ -6,8 +6,6 @@ import { showProject } from './../../modules/project';
 import { fetchUnseenNotifications, fetchAllNotifications } from './../../modules/notification';
 import { userDetails } from './../../modules/user';
 
-
-
 const mapDispatchToProps = {
   showProject,
   fetchUnseenNotifications,
@@ -15,11 +13,16 @@ const mapDispatchToProps = {
   userDetails
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   projects: state.projectReducer.projects,
-  unseenNotifications:  state.notificationReducer.unseenNotifications
+  unseenNotifications: state.notificationReducer.unseenNotifications
 });
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(LandingComponent);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  null,
+  {
+    pure: false
+  }
+)(LandingComponent);

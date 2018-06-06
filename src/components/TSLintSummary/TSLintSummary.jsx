@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-var _ = require('lodash');
 import { Row, Col } from "react-bootstrap";
 
-//Components imports
+// Components imports
 import Echart from "./../../components/Echart";
 import Card from "./../../commonui/Card";
 import { getChartOptions, TYPE_BAR } from "./../../utilities/chartOptions";
 
-//Styles imports
+// Styles imports
 import "./TSLintSummary.scss";
+
+const _ = require('lodash');
 
 export default class TSLintSummary extends Component {
 
@@ -21,31 +22,31 @@ export default class TSLintSummary extends Component {
     }
 
     render() {
-        let summaryData = [];
-        let len = this.props.reportList.length;
-        let errorCountData = [];
+        const summaryData = [];
+        const len = this.props.reportList.length;
+        const errorCountData = [];
         let totalErrorCount = "";
         let avgError = 0;
-        let xAxisData = [];
-        let yAxisData = [];
+        const xAxisData = [];
+        const yAxisData = [];
         let errCount = 0;
         if (len > 0) {
             totalErrorCount = this.props.reportList[len - 1].summary.lint.total; // changed,  previosly it was summary.total
-            let recentData = this.props.reportList[len - 1].summary.lint.errorCounts; // changed, previosly it was summary.lint.errorcounts
-            let keys = Object.keys(recentData);
-            let values = Object.values(recentData);
-            let errLen = Math.min(5, keys.length);
+            const recentData = this.props.reportList[len - 1].summary.lint.errorCounts; // changed, previosly it was summary.lint.errorcounts
+            const keys = Object.keys(recentData);
+            const values = Object.values(recentData);
+            const errLen = Math.min(5, keys.length);
             for (let i = 0; i < errLen; i++) {
-                let xData = {
+                const xData = {
                     value: keys[i]
                 };
                 xAxisData.push(xData);
-                let yData = {
+                const yData = {
                     value: values[i]
                 };
                 yAxisData.push(yData);
                 errCount += values[i];
-                let eData = {
+                const eData = {
                     value: values[i],
                     name: keys[i]
                 }
@@ -57,9 +58,9 @@ export default class TSLintSummary extends Component {
             if (params.data.value >= avgError) {
                 return "red";
             }
-            else {
+            
                 return "green"
-            }
+            
         }
         const options = {
             grid: {
@@ -101,24 +102,24 @@ export default class TSLintSummary extends Component {
         if (errorCountData.length === 0) {
             return <div>Echarts should be here</div>;
         }
-        else {
+        
             return (
-                <Card title="TSLint Summary">
-                    <div className="tslint-summary-container">
-                        <Row className="tslint-summary">
-                            <Col md={4} className="error-number-container">
-                                <div className="digit">
-                                    <div className="error-number">{errCount}</div>
-                                    <div>Errors</div>
-                                </div>
-                            </Col>
-                            <Col md={8}>
-                                <Echart width="550px" height="300px" options={tempOptions} />
-                            </Col>
-                        </Row>
-                    </div>
-                </Card>
+              <Card title="TSLint Summary">
+                <div className="tslint-summary-container">
+                  <Row className="tslint-summary">
+                    <Col md={4} className="error-number-container">
+                      <div className="digit">
+                        <div className="error-number">{errCount}</div>
+                        <div>Errors</div>
+                      </div>
+                    </Col>
+                    <Col md={8}>
+                      <Echart width="550px" height="300px" options={tempOptions} />
+                    </Col>
+                  </Row>
+                </div>
+              </Card>
             );
-        }
+        
     }
 }

@@ -1,85 +1,39 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import {
-  Modal,
-  ModalBody,
-  ModalHeader,
-  MenuItem,
-  ModalFooter,
-  DropdownButton,
-  ButtonToolbar,
-  Button
-} from 'react-bootstrap';
+import { Button, Panel, Well, Collapse } from 'react-bootstrap';
 
-//Component imports
-import ModalComponent from '../../../commonui/Modal';
-import Input from './../../../commonui/Input';
+// Component imports
 import Collaborator from './CollaboratorComponent';
-import AddProjectComponent from './../../../components/AddProjectComponent';
 
-//API imports
-import { getUser } from '../../../utilities/api';
-import { getUserProject } from '../../../utilities/api';
+// API imports
 
-//Styles imports
+// Styles imports
 import './Sidebar.scss';
 import '../../../styles/_theme.scss';
 
-const navLinkActiveStyle = {
-  fontWeight: 'bold',
-  background: '#242424',
-  color: 'white',
-  paddingLeft: '1em',
-  borderLeft: '0.5em solid green'
-};
-
-export default class Sidebar extends Component {
+class Sidebar extends Component {
   constructor(props) {
     super(props);
     // this.handleClicked = this.handleClicked.bind(this);
     this.state = {
-      showProjectDropdownContent: false,
-      selectedProject: '',
-      selectedProjectType: '',
-      selectedProjectDate: '',
-      showProjectModal: false,
-      showCollaboratorModal: false,
-      isProjectSelected: false,
-      projectName: '',
-      projectType: 'Choose Type',
-      isProjectCreated: false,
-      userDataId: ''
+      isStaticCodeAnalysisReportsOpen: true,
+      isProjectConfigurationsOpen: false
     };
   }
 
   componentDidMount() {
     this.props.showProject();
-    getUser()
-      .then((response) => {
-        this.setState({
-          userDataId: response._id
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   handleProjectInfoClick = (e) => {
     e.preventDefault();
-    this.setState(({ showProjectDropdownContent }) => {
-      return { showProjectDropdownContent: !showProjectDropdownContent };
-    });
+    this.setState(({ showProjectDropdownContent }) => ({
+      showProjectDropdownContent: !showProjectDropdownContent
+    }));
   };
 
   handleClicked = (e) => {
-    this.setState({
-      selectedProject: e.target.textContent,
-      selectedProjectType: e.target.getAttribute('value2'),
-      isProjectSelected: true,
-      //   projectId: e.target.getAttribute('value'),
-      showProjectDropdownContent: false
-    });
     this.props.listTslintReport(e.target.getAttribute('value'), 'week');
     this.props.submissionList(e.target.getAttribute('value'));
     this.props.setProjectId(e.target.getAttribute('value'));
@@ -88,154 +42,140 @@ export default class Sidebar extends Component {
     this.props.userDetails();
   };
 
-  showProjectModal = () => {
-    // this.setState({
-    //     showProjectModal: true
-    // });
-    this.props.setProjectModalState(true);
-  };
   addCollaboratorModal = () => {
     this.props.setModalState(true);
   };
-  hideProjectModal = () => {
-    this.setState({
-      showProjectModal: false
-    });
-  };
+
+  toggleAccordion = () => {};
 
   render() {
-    const setHeight = {
-      height: '1.5em'
-    };
-    const projectName = this.state.projectName;
-    let rows = [];
-    let projects = [];
-    let contributorProjects = [];
-    if (this.props.projects.length !== 0) {
-      this.props.projects.map((project) => {
-        if (project.created_by == this.state.userDataId) {
-          projects.push(
-            <li>
-              <NavLink
-                key={project._id}
-                value={project._id}
-                value2={project.type}
-                style={setHeight}
-                onClick={this.handleClicked}
-                to="/dashboard/overview">
-                <i className="fa fa-user" /> | {project.name}
-              </NavLink>
-            </li>
-          );
-        } else {
-          contributorProjects.push(
-            <li>
-              <NavLink
-                key={project._id}
-                value={project._id}
-                value2={project.type}
-                style={setHeight}
-                onClick={this.handleClicked}
-                to="/dashboard/overview">
-                <i className="fa fa-user-o" /> | {project.name}
-              </NavLink>
-            </li>
-          );
-        }
-      });
-    }
-
-    const addProject = (
-      <div className="register-container">
-        <div className=" add-project" onClick={this.addCollaboratorModal}>
-          {/* <i
-                        className="fa fa-users setting"
-
-                    /> */}
-          <div>Add Collaborator</div>
-          <i className="fa fa-plus-circle fa-align" />
-        </div>
-        <div className=" add-project" onClick={this.showProjectModal}>
-          <div>Add Project</div>
-          <i className="fa fa-plus-circle fa-align" />
-        </div>
-      </div>
-    );
-    const listStyle = {
-      listStyle: 'none'
-    };
     return (
-      <div className="sidebar">
-        <div className="project-info" onClick={this.handleProjectInfoClick}>
-          <div className="project-content">
-            <div className="project-info-content">
-              <div className="project-name">
-                {this.state.isProjectSelected && this.props.projects.length != 0
-                  ? this.state.selectedProject
-                  : !this.state.isProjectSelected && this.props.projects.length != 0
-                    ? this.props.projectName
-                    : addProject}
+      <div className="sidebar-main-container">
+        <Panel className="panel-custom">
+          <Panel.Heading className="panel-heading-custom">
+            <Panel.Title componentClass="h3">
+              <div className="panel-heading-container">{this.props.projectName}</div>
+              <div className="project-summary text-muted">
+                <span>{this.props.projectType}</span>
+                <span>|</span>
+                <span>
+                  {' '}
+                  <i className="fa fa-calendar" /> 03/04/2018
+                </span>
+                <span>|</span>
+                <span>
+                  <i className="fa fa-user" />&nbsp;5
+                </span>
               </div>
-            </div>
-            <div className="project-date">
-              {this.state.isProjectSelected && this.props.projects.length != 0
-                ? this.state.selectedProjectType
-                : !this.state.isProjectSelected && this.props.projects.length != 0
-                  ? this.props.projectType
-                  : addProject}| 25/04/2018 | 4 contributors
-            </div>
-          </div>
-          {this.state.showProjectDropdownContent ? (
-            <i className="fas fa-caret-up project-dropdown-icon" />
-          ) : (
-            <i className="fas fa-caret-down project-dropdown-icon" />
-          )}
-        </div>
-        <div
-          className={`project-dropdown-content ${
-            this.state.showProjectDropdownContent ? 'reveal' : ''
-          }`}>
-          <div className="sub-heading">Your Projects</div>
-          <div className={`${this.props.projects.length >= 3 ? 'project-list-scroll' : ''}`}>
-            <div>
-              <ul style={listStyle} className="project-list">
-                {projects}
-                {contributorProjects}
-              </ul>
-            </div>
-          </div>
-          {this.props.projects.length != 0 ? addProject : ''}
-        </div>
-        <div
-          className={`nav-container responsive ${
-            this.state.showProjectDropdownContent ? 'reveal' : ''
-          }`}>
-          <nav className="menu">
-            <ul className="sidebar-menu metismenu" id="sidebar-menu">
-              <li className="active">
-                <NavLink activeStyle={navLinkActiveStyle} to="/dashboard/overview">
-                  <i className="fa fa-tachometer" /> Overview
-                </NavLink>
-              </li>
-              {/* <div className="report-container">
-                                <div className="reports">Reports</div>
-                            </div> */}
-              <li className="active open bb">
-                <NavLink activeStyle={navLinkActiveStyle} to="/dashboard/tslint">
-                  <i className="fa fa-file-text-o" /> TS Lint Report
-                </NavLink>
-              </li>
-              <li className="active open bb">
-                <NavLink activeStyle={navLinkActiveStyle} to="/dashboard/coverage">
-                  <i className="fa fa-file-text-o" /> Coverage Report
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-          {this.props.showProjectModal && <AddProjectComponent />}
-          {this.props.showModal && <Collaborator projectId={this.props.projectId} />}
-        </div>
+            </Panel.Title>
+          </Panel.Heading>
+          <Panel.Body className="panel-body-custom">
+            <Button
+              className={
+                this.state.isStaticCodeAnalysisReportsOpen
+                  ? 'accordion-button accordion-button-active'
+                  : 'accordion-button'
+              }
+              onClick={() =>
+                this.setState({
+                  isStaticCodeAnalysisReportsOpen: !this.state.isStaticCodeAnalysisReportsOpen
+                })
+              }>
+              Static Code Analysis Reports{' '}
+              <i
+                className={
+                  this.state.isStaticCodeAnalysisReportsOpen ? 'fa fa-caret-up' : 'fa fa-caret-down'
+                }
+              />
+            </Button>
+            <Collapse in={this.state.isStaticCodeAnalysisReportsOpen}>
+              <div>
+                <Well>
+                  <ul>
+                    <li>
+                      <NavLink
+                        className="navlink"
+                        activeClassName="navlink-active"
+                        to="/dashboard/overview">
+                        <i className="fa fa-tachometer" /> | Overview
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        className="navlink"
+                        activeClassName="navlink-active"
+                        to="/dashboard/tslint">
+                        <i className="fa fa-book" /> | Lint Reports
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        className="navlink"
+                        activeClassName="navlink-active"
+                        to="/dashboard/coverage">
+                        <i className="fa fa-line-chart" /> | Code Coverage
+                      </NavLink>
+                    </li>
+                  </ul>
+                </Well>
+              </div>
+            </Collapse>
+            <Button
+              className={
+                this.state.isProjectConfigurationsOpen
+                  ? 'accordion-button accordion-button-active'
+                  : 'accordion-button'
+              }
+              onClick={() =>
+                this.setState({
+                  isProjectConfigurationsOpen: !this.state.isProjectConfigurationsOpen
+                })
+              }>
+              Project Configuration{' '}
+              <i
+                className={
+                  this.state.isProjectConfigurationsOpen ? 'fa fa-caret-up' : 'fa fa-caret-down'
+                }
+              />
+            </Button>
+            <Collapse in={this.state.isProjectConfigurationsOpen}>
+              <div>
+                <Well>
+                  <ul>
+                    <li>
+                      <NavLink
+                        className="navlink"
+                        activeClassName="navlink-active"
+                        onClick={this.addCollaboratorModal}
+                        to="#"
+                      >
+                        <i className="fa fa-user-plus" /> | Invite A Contributor
+                      </NavLink>
+                    </li>
+                  </ul>
+                </Well>
+              </div>
+            </Collapse>
+          </Panel.Body>
+        </Panel>
+        {this.props.showModal && <Collaborator projectId={this.props.projectId} />}
       </div>
     );
   }
 }
+
+export default Sidebar;
+
+Sidebar.propTypes = {
+  showProject: PropTypes.func.isRequired,
+  listTslintReport: PropTypes.func.isRequired,
+  submissionList: PropTypes.func.isRequired,
+  setProjectId: PropTypes.func.isRequired,
+  setProjectName: PropTypes.func.isRequired,
+  userDetails: PropTypes.func.isRequired,
+  setModalState: PropTypes.func.isRequired,
+  projectName: PropTypes.string.isRequired,
+  projectType: PropTypes.string.isRequired,
+  projectId: PropTypes.string.isRequired,
+  showModal: PropTypes.string.isRequired
+};

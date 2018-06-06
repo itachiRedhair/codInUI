@@ -4,11 +4,11 @@ import { Row, Col, ProgressBar } from "react-bootstrap";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import ProgressBarComponent from "../../commonui/ProgressBar";
 
-//Components imports
+// Components imports
 import Echart from "./../../components/Echart";
 import Card from "./../../commonui/Card";
 
-//Syles imports
+// Syles imports
 import "./CoverageComponentPie.scss";
 
 export default class CoverageComponentPie extends Component {

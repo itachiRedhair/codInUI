@@ -1,11 +1,11 @@
 import React from "react";
 
-//Components imports
+// Components imports
 import Echart from "./../Echart";
 import Card from "./../../commonui/Card";
 import EchartCard from "./../../components/EchartCard";
 
-//Syltes import
+// Syltes import
 import "./CoverageSummary.scss";
 
 const tempOptions = {

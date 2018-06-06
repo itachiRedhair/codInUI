@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
-//Components imports
+// Components imports
 import Input from './../../../commonui/Input';
 import Checkbox from './../../../commonui/Checkbox';
 
-//Constants imports
+// Constants imports
 import constants from './../../../constants';
 
-//styles
+// styles
 import './../../../styles/_form.scss';
 import './LoginForm.scss';
 

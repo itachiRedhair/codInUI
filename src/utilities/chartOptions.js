@@ -1,6 +1,6 @@
-import '../styles/_theme.scss';
-
 import { merge } from 'lodash';
+
+import '../styles/_theme.scss';
 
 export const TYPE_LINE = 'line';
 export const TYPE_BAR = 'bar';
@@ -13,134 +13,152 @@ const barOptions = {
   tooltip: {
     trigger: 'axis',
     axisPointer: {
-      type: 'shadow',
-    },
+      type: 'shadow'
+    }
   },
   legend: {
     textStyle: {
       color: 'white',
-      fontFamily: 'FiraCode',
-    },
+      fontFamily: 'FiraCode'
+    }
   },
   xAxis: {
     nameTextStyle: {
-      color: 'white',
+      color: '#9a9a9a'
     },
     axisLabel: {
-      fontFamily: 'FiraCode',
+      fontFamily: 'FiraCode'
     },
     axisLine: {
       lineStyle: {
-        color: 'white',
-      },
-    },
+        color: '#9a9a9a'
+      }
+    }
   },
   yAxis: {
     nameTextStyle: {
-      color: 'white',
+      color: 'white'
     },
     axisLine: {
       show: true,
       lineStyle: {
-        color: 'white',
-      },
+        color: 'white'
+      }
     },
     axisLabel: {
       fontFamily: 'FiraCode',
-    },
-    axisLabel: {
-      color: 'white',
-    },
-  },
+      color: 'white'
+    }
+  }
+};
+
+const categoryLineOptionsFormatter = (params) => {
+  const error = params[0];
+  const warning = params[1];
+  const maintainability = params[2];
+
+  const errorText = `<span class="text-danger"><i class="fa fa-times"></i> ${error.data}</span>`;
+  const warningText = `<span class="text-warning"><i class="fa fa-exclamation-triangle"></i> ${
+    warning.data
+  }</span>`;
+  const maintainabilityText = `<span class="text-info"><i class="fa fa-area-chart"></i> ${
+    maintainability.data
+  }</span>`;
+
+  return `${errorText} | ${warningText} | ${maintainabilityText}`;
 };
 
 const categoryLineOptions = {
   tooltip: {
     trigger: 'axis',
+    backgroundColor: '#121212',
+    textStyle: {
+      color: '#9a9a9a',
+      fontFamily: 'FiraCode'
+    },
+    formatter: categoryLineOptionsFormatter
   },
   legend: {
     textStyle: {
       color: 'white',
-      fontFamily: 'FiraCode',
-    },
-    data: [],
+      fontFamily: 'FiraCode'
+    }
   },
   grid: {
     show: false,
+    top: '5%',
+    bottom: '5%',
+    left: '6%',
+    right: '5%'
   },
   xAxis: {
     type: 'category',
-    boundaryGap: true,
+    boundaryGap: false,
     minInterval: 3600 * 1000 * 24,
     nameTextStyle: {
-      fontFamily: 'FiraCode',
+      color: '#9a9a9a',
+      fontFamily: 'FiraCode'
     },
     axisLine: {
       lineStyle: {
-        color: 'white',
-      },
+        color: '#9a9a9a'
+      }
     },
     axisLabel: {
-      fontFamily: 'FiraCode',
-    },
-    boundaryGap: false,
+      fontFamily: 'FiraCode'
+    }
   },
   yAxis: {
     type: 'value',
     splitLine: {
-      show: true,
-      lineStyle: {
-        color: 'rgba(255,255,255,0)',
-      },
+      show: false
     },
     axisLabel: {
-      fontFamily: 'FiraCode',
+      fontFamily: 'FiraCode'
     },
     axisLine: {
       lineStyle: {
-        color: 'white',
-      },
-    },
-  },
+        color: '#9a9a9a'
+      }
+    }
+  }
 };
 
 const heatMapOptions = {
-
   animation: false,
   grid: {
     height: 'auto',
-    width: 'auto',
-    // y: "10%"
+    width: 'auto'
   },
   xAxis: {
     type: 'category',
 
     axisLine: {
       lineStyle: {
-        color: 'white',
-      },
+        color: 'white'
+      }
     },
     axisLabel: {
-      fontFamily: 'FiraCode',
+      fontFamily: 'FiraCode'
     },
     splitArea: {
-      show: true,
-    },
+      show: true
+    }
   },
   yAxis: {
     type: 'category',
     axisLine: {
       lineStyle: {
-        color: 'white',
-      },
+        color: 'white'
+      }
     },
     axisLabel: {
-      fontFamily: 'FiraCode',
+      fontFamily: 'FiraCode'
     },
     splitArea: {
-      show: true,
-    },
-  },
+      show: true
+    }
+  }
 };
 
 export const getChartOptions = (type, overrides) => {

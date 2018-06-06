@@ -8,14 +8,14 @@ import ProgressBarComponent from "../../../commonui/ProgressBar";
 
 import { AgGridReact, AgGridColumn } from "ag-grid-react";
 
-//Components imports
+// Components imports
 import CoverageComponentTable from "../../../components/CoverageComponentTable";
 import CoverageComponentPie from "../../../components/CoverageComponentPie";
 
-//Syles imports
+// Syles imports
 import "./Coverage.scss";
 
-let data = [
+const data = [
   {
     total: {
       lines: { total: 1041, covered: 412, skipped: 0, pct: 39.58 },
@@ -68,15 +68,15 @@ export default class TSLintReport extends Component {
     };
   }
   componentDidMount() {
-    let keyData = Object.keys(data[0]);
-    let valueData = Object.values(data[0]);
+    const keyData = Object.keys(data[0]);
+    const valueData = Object.values(data[0]);
     let coverageData = {};
-    let wholeData = {};
-    let column = {};
-    let row = [];
-    let piePrefix = data[0].total;
+    const wholeData = {};
+    const column = {};
+    const row = [];
+    const piePrefix = data[0].total;
 
-    let headData = [
+    const headData = [
       {
         name: "lines",
         value: piePrefix.lines.covered / piePrefix.lines.total * 100
@@ -107,27 +107,27 @@ export default class TSLintReport extends Component {
           100
         ).toFixed(2),
         lines:
-          (valueData[i].lines.covered / valueData[i].lines.total * 100).toFixed(
+          `${(valueData[i].lines.covered / valueData[i].lines.total * 100).toFixed(
             2
-          ) + `${"%"}`,
+          )  }${"%"}`,
         branches:
-          (
+          `${(
             valueData[i].branches.covered /
             valueData[i].branches.total *
             100
-          ).toFixed(2) + `${"%"}`,
+          ).toFixed(2)  }${"%"}`,
         functions:
-          (
+          `${(
             valueData[i].functions.covered /
             valueData[i].functions.total *
             100
-          ).toFixed(2) + `${"%"}`,
+          ).toFixed(2)  }${"%"}`,
         statements:
-          (
+          `${(
             valueData[i].statements.covered /
             valueData[i].statements.total *
             100
-          ).toFixed(2) + `${"%"}`
+          ).toFixed(2)  }${"%"}`
       };
       row.push(coverageData);
     }

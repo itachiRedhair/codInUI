@@ -1,98 +1,107 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 
-//Components imports
-import Echart from "./../Echart";
-import Card from "./../../commonui/Card";
-import EchartCard from "./../../components/EchartCard";
-import { getChartOptions, TYPE_LINE } from "./../../utilities/chartOptions";
-//Api imports
-import { getUserProject } from "../../utilities/api";
-
+// Components imports
+import EchartCard from './../../components/EchartCard';
+import { getChartOptions, TYPE_LINE } from './../../utilities/chartOptions';
 
 class OverviewGraph extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      projectId: "",
-      reportList: [],
-      chartData: [],
-      chartDays: [],
-      tOptions: {}
-    };
-  }
-
-  componentDidMount() {
-    // this.props.listTslintReport(this.props.projectId, "week");
-  }
+  cachedChart = null;
 
   render() {
-    let tsLintErrorData = [];
-    let tsLintWarningData = [];
-    // let cyclomatic = [];
-    let maintainability = [];
-    let tsLintDays = [];
-    for (let i = 0; i < this.props.reportList.length; i++) {
-      if (this.props.reportList[i].summary) {
-        // let errArray = Object.values(this.props.reportList[i].summary.lint.errorCounts);
-        // let topErrArray = errArray.sort().splice(0,5);
-        tsLintErrorData.push(this.props.reportList[i].summary.lint.totalErrors);
-        tsLintWarningData.push(this.props.reportList[i].summary.lint.totalWarnings);
-        // cyclomatic.push(this.props.reportList[i].summary.quality.cyclomatic.toFixed(2));
-        maintainability.push(this.props.reportList[i].summary.quality.averageMaintainability.toFixed(2));
-        tsLintDays.push(new Date(this.props.reportList[i].meta.submitted_at).toDateString());
+    const tsLintErrorData = [];
+    const tsLintWarningData = [];
+    const maintainability = [];
+    const tsLintDays = [];
+    this.props.reportList.forEach((report) => {
+      if (report.summary) {
+        tsLintErrorData.push(report.summary.lint.totalErrors);
+        tsLintWarningData.push(report.summary.lint.totalWarnings);
+        maintainability.push(report.summary.quality.averageMaintainability.toFixed(2));
+        tsLintDays.push(moment(report.meta.submitted_at).format('L'));
       }
-    }
+    });
+
     const options = {
       legend: {
-        data: [{ name: "TSLint Errors", textStyle: { color: "#ff3232" } }, { name: "Warnings", textStyle: { color: "#fd822f" } }, { name: "Cyclomatic", textStyle: { color: "#0082f0" } }, { name: "Maintainability", textStyle: { color: "#ffff99" } }]
+        data: [
+          { name: 'Lint Errors', textStyle: { color: '#a94442' } },
+          { name: 'Lint Warnings', textStyle: { color: '#8a6d3b' } },
+          { name: 'Maintainability', textStyle: { color: '#31708f' } },
+        ],
       },
       xAxis: {
-        data: tsLintDays
+        data: tsLintDays,
       },
       series: [
         {
-          name: "TSLint Errors",
-          type: "line",
+          name: 'Lint Errors',
+          type: 'line',
           smooth: true,
           lineStyle: {
-            color: "#ff3232"
+            color: '#a94442',
           },
-          data: tsLintErrorData
+          data: tsLintErrorData,
+          symbol: 'roundRect',
+          symbolSize: 6,
+          itemStyle: {
+            color: '#a94442',
+          },
         },
         {
-          name: "Warnings",
-          type: "line",
+          name: 'Lint Warnings',
+          type: 'line',
           smooth: true,
           lineStyle: {
-            color: "#fd822f"
+            color: '#8a6d3b',
           },
-          data: tsLintWarningData
+          data: tsLintWarningData,
+          symbol: 'roundRect',
+          symbolSize: 6,
+          itemStyle: {
+            color: '#8a6d3b',
+          },
         },
         {
-          name: "Maintainability",
-          type: "line",
+          name: 'Maintainability',
+          type: 'line',
           smooth: true,
           lineStyle: {
-            color: "#ffff99"
+            color: '#31708f',
           },
-          data: maintainability
-        }
-      ]
+          data: maintainability,
+          symbol: 'roundRect',
+          symbolSize: 6,
+          itemStyle: {
+            color: '#31708f',
+          },
+        },
+      ],
     };
+
     const tempOptions = getChartOptions(TYPE_LINE, options);
     if (tsLintDays.length === 0) {
       return <div>Echarts should be here</div>;
-    } else {
-      return (
+    }
+    if (!this.cachedChart) {
+      this.cachedChart = (
         <EchartCard
-          title="Trend Graph"
+          title="History of Code Linting & Maintainability"
           options={tempOptions}
           height="60vh"
           autoSize
         />
       );
+    } else {
+      // console.log('using cached chart');
     }
+    return this.cachedChart;
   }
 }
 
 export default OverviewGraph;
+
+OverviewGraph.propTypes = {
+  reportList: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

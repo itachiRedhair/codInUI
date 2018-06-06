@@ -1,11 +1,10 @@
-import React from 'react';
+// import React from 'react';
 import Echart from './Echart.jsx';
 
-import './Echart.scss';
+export default Echart;
 
-export default props => (
-  <div className="echarts-container">
-    <Echart {...props} />
-  </div>
-);
-
+// export default (props) => (
+//   <div className="echarts-container">
+//     <Echart {...props} />
+//   </div>
+// );

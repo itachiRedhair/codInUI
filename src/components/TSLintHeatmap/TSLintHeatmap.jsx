@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import moment from "moment";
-var _ = require('lodash');
 
-//Components imports
+// Components imports
 import EchartCard from "./../../components/EchartCard";
 import { getCPI } from "./../../utilities/cpi";
 import { getChartOptions, TYPE_HEATMAP } from "./../../utilities/chartOptions";
+
+const _ = require('lodash');
 
 
 export default class TSLintHeatmap extends Component {
@@ -23,21 +24,19 @@ export default class TSLintHeatmap extends Component {
         const idayNo = _.range(1, moment().daysInMonth()+1, 1);
         const dayNo = idayNo.map(String)
         const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        let alias = this.props.reportList;
+        const alias = this.props.reportList;
         if (alias.length > 0) {
             for (let i = 0; i < alias.length - 1; i++) {
-                let ms = alias[i].meta.submitted_at;
-                let d = new Date(ms);
-                let e = d.getDate().toString();
-                let toGetDayNo = new Date(d);
-                let dayName = days[toGetDayNo.getDay()];
-                let totalErrors = alias[i].summary.lint.totalErrors;
+                const ms = alias[i].meta.submitted_at;
+                const d = new Date(ms);
+                const e = d.getDate().toString();
+                const toGetDayNo = new Date(d);
+                const dayName = days[toGetDayNo.getDay()];
+                const totalErrors = alias[i].summary.lint.totalErrors;
                 data.push([days.indexOf(dayName), dayNo.indexOf(e), totalErrors]);
             }
         }
-        data = data.map(function (item) {
-            return [item[1], item[0], item[2]];
-        });
+        data = data.map((item) => [item[1], item[0], item[2]]);
         const options = {
             xAxis: {
                 data: dayNo
@@ -49,7 +48,7 @@ export default class TSLintHeatmap extends Component {
                 {
                     name: "CPI",
                     type: "heatmap",
-                    data: data,
+                    data,
                     label: {
                         normal: {
                             show: true
@@ -66,12 +65,12 @@ export default class TSLintHeatmap extends Component {
         };
         const tempOptions = getChartOptions(TYPE_HEATMAP, options);
         return (
-            <EchartCard
-                title="Error Heatmap"
-                options={tempOptions}
-                height="350px"
-                autoSize
-            />
+          <EchartCard
+            title="Error Heatmap"
+            options={tempOptions}
+            height="350px"
+            autoSize
+          />
         );
     }
 }

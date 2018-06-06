@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
-//Components imports
+// Components imports
 import Echart from "./../Echart";
 import Card from "./../../commonui/Card";
 import EchartCard from "./../../components/EchartCard";
 
-var data = [
+const data = [
   {
     name: "50",
     value: 50,
@@ -138,7 +138,7 @@ const tempOptions = {
   series: {
     type: "sunburst",
     highlightPolicy: "ancestor",
-    data: data,
+    data,
     radius: [0, "60%"],
     sort: null,
     levels: [

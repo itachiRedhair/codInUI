@@ -1,11 +1,17 @@
-import React, { Component } from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import "./Loader.scss";
+import './Loader.scss';
 
-export default ({ isLoading }) => {
-  return isLoading ? (
+const Loader = ({ isLoading }) =>
+  isLoading ? (
     <div className="loader-container">
       <div className="loader" />
     </div>
   ) : null;
+
+export default Loader;
+
+Loader.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
 };

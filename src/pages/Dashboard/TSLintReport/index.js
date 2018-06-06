@@ -1,20 +1,14 @@
-import TSLintReport from './TSLintReport.jsx';
 import { connect } from 'react-redux';
+import TSLintReport from './TSLintReport.jsx';
 
 // action creators
-import { listTslintReport } from '../../../modules/report';
 
-const mapDispatchToProps = {
-  listTslintReport,
-};
-
-const mapStateToProps = state => ({
-  isLoading: state.loaderReducer.isLoading,
-  isFetching: state.reportReducer.isFetching,
+const mapStateToProps = (state) => ({
   reports: state.reportReducer,
-  projectId: state.projectReducer.projectId,
+  projectId: state.projectReducer.projectId
 });
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(TSLintReport);
+export default connect(
+  mapStateToProps,
+  null
+)(TSLintReport);

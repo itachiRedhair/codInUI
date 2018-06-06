@@ -1,51 +1,32 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import {
-  Row,
-  Col,
-  Grid,
-  Tabs,
-  Tab,
-  TabContainer,
-  TabContent,
-  TabPane,
-  Panel,
-  ListGroup,
-  ListGroupItem
-} from 'react-bootstrap';
+import { Col, Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-//Components imports
+// Components imports
 import AddProjectComponent from './../../../components/AddProjectComponent';
-// import CustomNavbar from "./../../CustomNavbar";
-import FirstRender from './../FirstRender';
 
-//API imports
+// API imports
 import { getUser } from '../../../utilities/api';
 
-//Styles imports
+// Styles imports
 import './Landing.scss';
 
-export default class Landing extends Component {
+class Landing extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      projects: []
-    };
+    this.state = {};
   }
 
   componentDidMount() {
     this.props.recentList();
-    this.props.showProject().then((response) => {
-      this.setState({
-        projects: response
-      });
-    });
     getUser()
       .then((response) => {
         this.setState({
-          userDataId: response._id
+          /* eslint no-underscore-dangle: 0 */
+          userDataId: response._id,
         });
       })
       .catch((err) => {
@@ -53,21 +34,52 @@ export default class Landing extends Component {
       });
   }
 
-  handleClicked = (e) => {
+  onProjectClicked = (e) => {
     this.props.setProjectId(e.target.getAttribute('value'));
-    this.props.setProjectName(e.target.textContent);
+    this.props.setProjectName(e.target.getAttribute('value3'));
     this.props.setProjectType(e.target.getAttribute('value2'));
+    this.props.listTslintReport(e.target.getAttribute('value'), 'week');
     // this.props.userDetails();
   };
 
-  showProjectModal = () => {
-    this.props.setProjectModalState(true);
+  getRecentActivities = () => {
+    let recentActivities = [];
+    recentActivities = this.props.recentData.map((aRecentActivity) => (
+      <ListGroupItem className="recent-activity-list-item" key={aRecentActivity.submitted_at}>
+        <div>
+          <span className="">{aRecentActivity.user}</span>
+          <span className="text-muted"> has submitted a report in project </span>
+          <span className="">{aRecentActivity.project}</span>
+          <span className="recent-activity-from-now pull-right text-muted">
+            <i className="fa fa-clock-o" /> {moment(aRecentActivity.submitted_at).fromNow()}{' '}
+          </span>
+        </div>
+        <div className="recent-activity-summary-container">
+          <span className="recent-activity-error text-danger">
+            <i className="fa fa-times" /> {aRecentActivity.summary.lint.totalErrors}
+          </span>
+          {/* <span className="text-muted"> | </span> */}
+          <span className="recent-activity-warning text-warning">
+            <i className="fa fa-exclamation-triangle" />{' '}
+            {aRecentActivity.summary.lint.totalWarnings}
+          </span>
+          {/* <span className="text-muted"> | </span> */}
+          <span className="recent-activity-maintainability text-info">
+            <i className="fa fa-area-chart" /> [ <i className="fa fa-angle-up text-success" />{' '}
+            {aRecentActivity.summary.quality.averageMaintainability.toFixed(2)} |{' '}
+            <i className="fa fa-angle-down text-danger" />{' '}
+            {aRecentActivity.summary.quality.minMaintainability.toFixed(2)} ]
+          </span>
+        </div>
+      </ListGroupItem>
+    ));
+    return recentActivities;
   };
 
   getProjects = () => {
     const projects = [];
     const contributorProjects = [];
-    this.state.projects.map((project) => {
+    this.props.projects.map((project) => {
       const userIcon =
         project.created_by === this.state.userDataId ? (
           <i className="fa fa-user" />
@@ -78,9 +90,10 @@ export default class Landing extends Component {
       const listGroupItem = (
         <ListGroupItem className="project-list-item" key={project._id}>
           <NavLink
+            value3={project.name}
             value={project._id}
             value2={project.type}
-            onClick={this.handleClicked}
+            onClick={this.onProjectClicked}
             to="/dashboard/overview">
             {userIcon} | {project.name}
           </NavLink>
@@ -96,44 +109,12 @@ export default class Landing extends Component {
     return { projects, contributorProjects };
   };
 
+  showProjectModal = () => {
+    this.props.setProjectModalState(true);
+  };
+
   // TODO: The type of recent activity may change
   // Please have logic to prepareView According to the activity
-  getRecentActivities = () => {
-    const recentActivities = [];
-    this.props.recentData.map((aRecentActivity, index) => {
-      const recentActivityView = (
-        <ListGroupItem className="recent-activity-list-item" key={index}>
-          <div>
-            <span className="">{aRecentActivity.user}</span>
-            <span className="text-muted"> has submitted a report in project </span>
-            <span className="">{aRecentActivity.project}</span>
-            <span className="recent-activity-from-now pull-right text-muted">
-              <i className="fa fa-clock-o" /> {moment(aRecentActivity.submitted_at).fromNow()}{' '}
-            </span>
-          </div>
-          <div className="recent-activity-summary-container">
-            <span className="recent-activity-error text-danger">
-              <i className="fa fa-times" /> {aRecentActivity.summary.lint.totalErrors}
-            </span>
-            {/* <span className="text-muted"> | </span> */}
-            <span className="recent-activity-warning text-warning">
-              <i className="fa fa-exclamation-triangle" />{' '}
-              {aRecentActivity.summary.lint.totalWarnings}
-            </span>
-            {/* <span className="text-muted"> | </span> */}
-            <span className="recent-activity-maintainability text-info">
-              <i className="fa fa-area-chart" /> [ <i className="fa fa-angle-up text-success" />{' '}
-              {aRecentActivity.summary.quality.averageMaintainability.toFixed(2)} |{' '}
-              <i className="fa fa-angle-down text-danger" />{' '}
-              {aRecentActivity.summary.quality.minMaintainability.toFixed(2)} ]
-            </span>
-          </div>
-        </ListGroupItem>
-      );
-      recentActivities.push(recentActivityView);
-    });
-    return recentActivities;
-  };
 
   render() {
     const { projects, contributorProjects } = this.getProjects();
@@ -178,20 +159,10 @@ export default class Landing extends Component {
                 <Panel.Title>Recent Activities</Panel.Title>
               </Panel.Heading>
               <Panel.Body className="recent-activity-body-custom">
-                <ListGroup scrolling className="recent-activity-list-group">
-                  {recentActivities}
-                </ListGroup>
+                {/* removed scrolling */}
+                <ListGroup className="recent-activity-list-group">{recentActivities}</ListGroup>
               </Panel.Body>
             </Panel>
-            {/* <div className="landing-body">
-              <div className="tab-container">
-                <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
-                  <Tab eventKey={1} title="Recent Activities">
-                    <ul style={submitlistStyle}>{submits}</ul>
-                  </Tab>
-                </Tabs>
-              </div>
-            </div> */}
           </Col>
         </div>
         {this.props.showProjectModal && <AddProjectComponent />}
@@ -199,3 +170,17 @@ export default class Landing extends Component {
     );
   }
 }
+
+export default Landing;
+
+Landing.propTypes = {
+  recentList: PropTypes.func.isRequired,
+  listTslintReport: PropTypes.func.isRequired,
+  setProjectId: PropTypes.func.isRequired,
+  setProjectName: PropTypes.func.isRequired,
+  setProjectType: PropTypes.func.isRequired,
+  setProjectModalState: PropTypes.func.isRequired,
+  showProjectModal: PropTypes.bool.isRequired,
+  recentData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  projects: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

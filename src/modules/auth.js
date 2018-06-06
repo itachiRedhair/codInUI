@@ -47,6 +47,7 @@ const isSignedUp = () => ({
 // Thunk Action Creators
 // ------------------------------------
 
+// TODO: Use status code rather than msg
 export const userLogOut = () => (dispatch, getState) => new Promise((resolve, reject) => {
   dispatch(setLoadingStatus(true));
 

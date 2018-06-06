@@ -1,8 +1,10 @@
-@import "../../../styles/_theme.scss";
-
 .content-container {
-  padding: 2em;
-  background: $content-bg;
+  max-height: 92vh;
+  min-height: 92vh;
+  margin-top: -20px;
   overflow-y: scroll;
-  height: 100vh;
+  overflow-x: hidden;
+  padding-left: 5px;
+  // padding-top: 5px;
+  box-shadow: inset 4px 4px 12px
 }

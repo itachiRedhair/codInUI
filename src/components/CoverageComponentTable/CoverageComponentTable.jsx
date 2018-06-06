@@ -8,10 +8,10 @@ import ProgressBarComponent from "../../commonui/ProgressBar";
 
 import { AgGridReact, AgGridColumn } from "ag-grid-react";
 
-//Components imports
+// Components imports
 import Card from "./../../commonui/Card";
 
-//Syles imports
+// Syles imports
 import "./CoverageComponentTable.scss";
 
 export default class CoverageComponentTable extends Component {

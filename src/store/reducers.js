@@ -1,38 +1,9 @@
 import { combineReducers } from 'redux';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 
-import {
-  authReducer,
-  loaderReducer,
-  projectReducer,
-  typeaheadReducer,
-  modalReducer,
-  contributorReducer,
-  reportReducer,
-  recentReducer,
-  userReducer,
-  projectModalReducer,
-  inviteReducer,
-  notificationReducer,
-  toasterReducer
-} from './../modules';
+import reducers from './../modules';
 
-const appReducer = combineReducers({
-  authReducer,
-  loaderReducer,
-  projectReducer,
-  typeaheadReducer,
-  modalReducer,
-  contributorReducer,
-  reportReducer,
-  recentReducer,
-  userReducer,
-  projectModalReducer,
-  toastr: toastrReducer,
-  inviteReducer,
-  notificationReducer,
-  toasterReducer
-});
+const appReducer = combineReducers(reducers);
 
 const rootReducer = (state, action) => {
   if (action.type === 'AUTH_LOGOUT') {

@@ -36,13 +36,14 @@ class Toaster extends Component {
 
   render() {
     const { toaster } = this.props;
-    const toast = <ReduxToastr
+    const toast = (<ReduxToastr
       timeOut={1500}
       newestOnTop={false}
       preventDuplicatesa
       position="top-right"
       transitionIn="fadeIn"
-      transitionOut="fadeOut" />
+      transitionOut="fadeOut"
+    />)
     return !toaster ? null : toast;
   }
 }

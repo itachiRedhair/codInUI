@@ -1,7 +1,82 @@
-.contributor-display {
-  font-weight: bold;
-  font-size: 1.2rem;
+@import '../../../../styles/_theme.scss';
+.add-contributor-modal-header {
+  color: white;
 }
-.already-invited {
-  color: red;
+
+.add-contributor-modal-body {
+  display: flex;
+  flex-direction: row;
+  .contributor-list-container {
+    flex: 4;
+    color: black;
+    .fa.fa-user,
+    .fa.fa-user-o {
+      color: $theme-color;
+    }
+    .list-group {
+      margin-bottom: 0px;
+    }
+    .list-group-item {
+      background-color: #1e1e1e;
+      border-color: black;
+      color: #9a9a9a;
+      padding: 6px 8px; // background-image: linear-gradient(to bottom, #7a7a7a 0, #343434 100%) !important;
+    }
+  }
+  .add-contributor-form-container {
+    flex: 8;
+    padding-left: 15px;
+    .info {
+      font-size: 12px;
+      display: inline-block;
+    }
+    .add-contributor-form {
+      label {
+        color: black;
+        font-weight: normal;
+        .dropdown-menu {
+          background-image: linear-gradient(to bottom, #3c3c3c 0, $content-bg 100%) !important;
+          border-color: black;
+          text-shadow: none;
+          font-weight: normal;
+          a {
+            padding: 5px 10px;
+            color: #9a9a9a !important;
+            &:hover {
+              background-image: linear-gradient(to bottom, #6a6a6a, #3a3a3a 100%) !important;
+            }
+          }
+        }
+      }
+      input {
+        background-color: #1e1e1e;
+        border-color: #111;
+        color: white;
+        border-radius: 0px;
+        text-shadow: none;
+        &:focus {
+          border: none;
+          box-shadow: none;
+          border-bottom: 2px solid $theme-color; // border-color: ;
+        }
+      }
+      .rbt-input-hint {
+        text-shadow: none;
+        color: #9a9a9a !important;
+      }
+    }
+  }
+}
+
+.add-contributor-modal-footer {
+  .btn.btn-default {
+    color: #bababa;
+    text-shadow: none;
+    border-color: black;
+    background-image: linear-gradient(to bottom, #7a7a7a 0, #343434 100%) !important;
+    &:hover {
+      background-image: linear-gradient(to bottom, #6a6a6a 0, #7a7a7a 100%) !important;
+      background-position: 0 !important;
+    }
+  }
 }

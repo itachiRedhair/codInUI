@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-//Styles imports
+// Styles imports
 import './FirstRender.scss';
 
 export default class FirstRender extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Media } from "react-bootstrap";
 
-//Styles imports
+// Styles imports
 import "./Card.scss";
 
 class Card extends Component {

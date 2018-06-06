@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // action creators
 import { fetchUnseenNotifications, fetchAllNotifications } from '../../../modules/notification';
 import { respondInvitation } from '../../../modules/invitation';
+
 const mapDispatchToProps = {
     // fetchUnseenNotifications,
     fetchAllNotifications,

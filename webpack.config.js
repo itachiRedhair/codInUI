@@ -1,24 +1,18 @@
-// import webpack from 'webpack';
-// import path from 'path';
-// import HtmlWebpackPlugin from 'html-webpack-plugin';
-
-// import config from './config';
-
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./config');
 
-const { dir_src, dir_dist } = config;
+const { dirSrc, dirDist } = config;
 
 module.exports = {
-  entry: path.join(dir_src, 'index.js'),
+  entry: path.join(dirSrc, 'index.js'),
   output: {
-    path: dir_dist,
+    path: dirDist,
     publicPath: '/',
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: dir_dist,
+    contentBase: dirDist,
     historyApiFallback: true,
   },
   module: {
@@ -26,7 +20,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
-        include: dir_src,
+        include: dirSrc,
         exclude: /node_modules/,
       },
       {
@@ -46,7 +40,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|ttf|woff|woff2|otf)$/,
-        include: dir_src,
+        include: dirSrc,
         use: [
           {
             loader: 'url-loader',
@@ -60,7 +54,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(dir_src, 'index.html'),
+      template: path.join(dirSrc, 'index.html'),
       filename: 'index.html',
       inject: 'body',
     }),

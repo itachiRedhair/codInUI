@@ -2,7 +2,6 @@
 
 .card {
   background-color: $card-bg;
-  //   box-shadow: 0px 1px 7px #555;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,22 +10,21 @@
 }
 
 .card-title {
-  border-bottom: 2px solid green;
-  margin-bottom: 12px;
-  padding: 0.7em;
-  font-size: 2rem;
+  padding: 10px;
+  font-size: 18px;
   color: $card-heading-text;
-  background: $secondary-bg;
+  background:  $card-bg;
+  text-align: center;
 }
 
 .card-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // text-align: center;
+  // height: 100%;
 
-  &.scroll {
-    overflow-y: scroll;
-  }
+  // &.scroll {
+  //   overflow-y: scroll;
+  // }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormGroup, Checkbox } from "react-bootstrap";
 
-//styles
+// styles
 import "./Checkbox.scss";
 
 const CheckboxComponent = ({ list }) => {

@@ -1,4 +1,4 @@
-//constants imports
+// constants imports
 import constants from "./../constants";
 import config from "./../../config";
 import { showToast } from './toaster';
@@ -7,10 +7,10 @@ import { recentList } from './recent';
 import { fetchAllNotifications } from './notification';
 
 
-//Action Creator Imports
+// Action Creator Imports
 import { setLoadingStatus } from "./loader.js";
 
-//API imports
+// API imports
 import { inviteContributor, respondInvite } from "./../utilities/api";
 
 // ------------------------------------
@@ -38,8 +38,7 @@ const respondInvitationResponse = invresponse => ({
 // Thunk Action Creators
 // ------------------------------------
 
-export const sendInvitation = (params) => (dispatch, getState) => {
-  return new Promise((resolve, reject) => {
+export const sendInvitation = (params) => (dispatch, getState) => new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
     inviteContributor(params)
       .then(response => {
@@ -55,10 +54,8 @@ export const sendInvitation = (params) => (dispatch, getState) => {
 
       });
   });
-};
 
-export const respondInvitation = (accepted, projectId) => (dispatch, getState) => {
-  return new Promise((resolve, reject) => {
+export const respondInvitation = (accepted, projectId) => (dispatch, getState) => new Promise((resolve, reject) => {
     dispatch(setLoadingStatus(true));
     respondInvite(accepted, projectId)
       .then(response => {
@@ -82,7 +79,6 @@ export const respondInvitation = (accepted, projectId) => (dispatch, getState) =
         reject(err.message);
       });
   });
-};
 
 export const actions = {
   invitationSend

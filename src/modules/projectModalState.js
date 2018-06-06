@@ -7,9 +7,9 @@ export const MODAL_STATE = 'MODAL_STATE';
 // Action Creators
 // ------------------------------------
 
-export const setProjectModalState = showProjectModal => ({
+export const setProjectModalState = (showProjectModal) => ({
   type: MODAL_STATE,
-  showProjectModal,
+  showProjectModal
 });
 
 // ------------------------------------
@@ -19,8 +19,8 @@ export const setProjectModalState = showProjectModal => ({
 const ACTION_HANDLERS = {
   [MODAL_STATE]: (state, action) => ({
     ...state,
-    showProjectModal: action.showProjectModal,
-  }),
+    showProjectModal: action.showProjectModal
+  })
 };
 
 // ------------------------------------
@@ -29,6 +29,16 @@ const ACTION_HANDLERS = {
 
 const initialState = {
   showProjectModal: false,
+  projectTypes: [
+    {
+      id: 1,
+      name: 'Angular'
+    },
+    {
+      id: 2,
+      name: 'React'
+    }
+  ]
 };
 
 export default (state = initialState, action) => {

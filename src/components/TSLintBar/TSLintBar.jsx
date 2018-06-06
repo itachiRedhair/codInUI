@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import path from "path";
 
-//Components imports
+// Components imports
 import Echart from "./../Echart";
 import Card from "./../../commonui/Card";
 import EchartCard from "./../../components/EchartCard";
 import { getChartOptions, TYPE_BAR } from "./../../utilities/chartOptions";
 
-//Styles import
+// Styles import
 import "./TSLintBar.scss";
 
 export default class TSLintBar extends Component {
@@ -29,13 +29,13 @@ export default class TSLintBar extends Component {
     }
 
     render() {
-        let fileNames = [];
-        let errorCount = [];
-        let warningCount = [];
+        const fileNames = [];
+        const errorCount = [];
+        const warningCount = [];
         let filePath = "";
         if (this.state.reportListDetails.length > 0) {
-            let dataLength = this.state.reportListDetails.length;
-            let dataAlias = this.state.reportListDetails;
+            const dataLength = this.state.reportListDetails.length;
+            const dataAlias = this.state.reportListDetails;
 
             for (let i = 0; i < dataLength; i++) {
                 filePath = dataAlias[i].file.substring(
@@ -104,20 +104,20 @@ export default class TSLintBar extends Component {
         const tempOptions = getChartOptions(TYPE_BAR, options);
         if (this.state.reportListDetails.length === 0) {
             return <div>tslint bar graph should be there</div>;
-        } else {
+        } 
             return (
-                <div className="tslint-bar-container">
-                    <EchartCard
-                        title="TSLint Bar Graph"
-                        options={tempOptions}
-                        height={
+              <div className="tslint-bar-container">
+                <EchartCard
+                  title="TSLint Bar Graph"
+                  options={tempOptions}
+                  height={
                             25 * (fileNames.length < 5 ? 5 : fileNames.length - 5) + 300
                         }
-                        autoSize
-                        contentScroll
-                    />
-                </div>
+                  autoSize
+                  contentScroll
+                />
+              </div>
             );
-        }
+        
     }
 }

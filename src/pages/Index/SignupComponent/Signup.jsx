@@ -3,11 +3,11 @@ import { Row, Col, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { toastr } from 'react-redux-toastr';
 
-//components
+// components
 import Input from './../../../commonui/Input';
 import Checkbox from './../../../commonui/Checkbox';
 
-//styles
+// styles
 import './../../../styles/_form.scss';
 import './Signup.scss';
 
@@ -36,15 +36,14 @@ class SignupComponent extends Component {
   handleSubmit = () => {
     // console.log(this.state.email, this.state.password, this.state.confirm);
     this.props
-    .userSignUp(this.state.name, this.state.email, this.state.password, this.state.confirm)
-    .then(signup => {
-      if (signup) {
-        this.props.toggleLogin();
-      }
-      else {
-        // TODO: Show some error
-      }
-    })
+      .userSignUp(this.state.name, this.state.email, this.state.password, this.state.confirm)
+      .then((signup) => {
+        if (signup) {
+          this.props.toggleLogin();
+        } else {
+          // TODO: Show some error
+        }
+      });
   };
 
   render() {

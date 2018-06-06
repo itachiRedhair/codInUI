@@ -23,7 +23,7 @@ const aNotifications = response => ({
 });
 
 const uNotificationsId = response => {
-  let nId = [];
+  const nId = [];
   for (let i = 0; i < response.length; i++) {
     nId.push(response[i]._id);
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 
 // Components imports
@@ -9,7 +10,7 @@ import CustomNavbar from '../../commonui/CustomNavbar';
 // Styles imports
 import './LandingComponent.scss';
 
-export default class LandingComponent extends Component {
+class LandingComponent extends Component {
   componentDidMount() {
     this.props.showProject();
     this.props.fetchUnseenNotifications();
@@ -18,19 +19,30 @@ export default class LandingComponent extends Component {
   }
 
   render() {
-    const viewToRender = this.props.projects.length > 0
-      ? <Route exact path="/landing" component={Landing} />
-      : <FirstRender />;
+    const viewToRender =
+      this.props.projects.length > 0 ? (
+        <Route exact path="/landing" component={Landing} />
+      ) : (
+        <FirstRender />
+      );
 
     return (
       <div>
         <CustomNavbar />
         <Switch>
-          <div className="container">
-            {viewToRender}
-          </div>
+          <div className="container">{viewToRender}</div>
         </Switch>
       </div>
     );
   }
 }
+
+export default LandingComponent;
+
+LandingComponent.propTypes = {
+  showProject: PropTypes.func.isRequired,
+  fetchUnseenNotifications: PropTypes.func.isRequired,
+  fetchAllNotifications: PropTypes.func.isRequired,
+  userDetails: PropTypes.func.isRequired,
+  projects: PropTypes.arrayOf(PropTypes.object).isRequired
+};
