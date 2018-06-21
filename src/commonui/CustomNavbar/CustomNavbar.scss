@@ -2,6 +2,10 @@
 @import "../../styles/_new_colors.scss";
 .navbar {
   border-radius: 0px;
+
+  .dropdown-menu {
+    box-shadow: 4px 4px 12px black;
+  }
 }
 
 .logo-container {

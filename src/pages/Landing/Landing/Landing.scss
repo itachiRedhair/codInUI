@@ -68,9 +68,8 @@
 
 .recent-activity-body-custom {
   background-color: $grey_disabled;
-  height: 78vh;
+  height: calc(100vh - 144px);
   padding: 0px !important;
-
   .empty-recent-activity-container {
     display: flex;
     height: 100%;

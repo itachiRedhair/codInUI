@@ -32,6 +32,8 @@ class Sidebar extends Component {
     return null;
   };
 
+
+
   getTooltip = () => (
     <Tooltip id={1}>
       <div className="config-tooltip-container">

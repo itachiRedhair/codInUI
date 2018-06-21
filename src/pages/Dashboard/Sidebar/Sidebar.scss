@@ -1,8 +1,7 @@
 @import '../../../styles/_theme.scss';
 @import '../../../styles/_new_colors.scss';
 .sidebar-main-container {
-  margin-top: -19px;
-  background-color: $grey_muted;
+  height: calc(100vh - 52px);
   .panel {
     margin-bottom: 0px !important;
     .panel-heading {
@@ -25,8 +24,7 @@
       }
     }
     .panel-body-custom {
-      max-height: 80vh;
-      min-height: 80vh;
+      height: calc(100vh - 125px);
       padding: 0px;
       padding-right: 0px;
       display: flex;

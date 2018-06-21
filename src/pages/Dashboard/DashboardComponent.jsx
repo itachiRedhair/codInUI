@@ -21,12 +21,12 @@ class DashboardComponent extends Component {
     return (
       <React.Fragment>
         <CustomNavbar />
-        <div className="dashboard-container container">
-          <Row className="dashboard-row-container">
-            <Col md={3} className="sidebar-container responsive reset-col-padding">
+        <div className="container dashboard-container">
+          <Row className="custom-row">
+            <Col md={3} className="blocks reset-col-padding">
               <Sidebar match={this.props.match} />
             </Col>
-            <Col md={9} className="dashboard-content-container  reset-col-padding">
+            <Col md={9} className="blocks reset-col-padding">
               <Content />
             </Col>
           </Row>

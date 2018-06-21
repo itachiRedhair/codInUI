@@ -109,7 +109,7 @@ export default class AddProjectComponent extends Component {
             <div className="text-muted text-small">
               <span>
                 * You can initialize this project in your source directory using &ldquo;
-                <i>codin --init</i>&rdquo;
+                <i>codin init</i>&rdquo;
               </span>
             </div>
           </ModalBody>
