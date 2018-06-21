@@ -68,7 +68,7 @@ export const respondInvitation = (accepted, projectId) => (dispatch, getState) =
           dispatch(recentList());
         }
         else {
-          dispatch(showToast({ type: TYPE_SUCCESS, msg: 'Invitation Declined' }));
+          dispatch(showToast({ type: TYPE_WARN, msg: 'Invitation Was Declined' }));
           dispatch(fetchAllNotifications());
         }
         resolve(response);
