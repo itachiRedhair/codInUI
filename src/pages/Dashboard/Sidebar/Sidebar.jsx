@@ -37,7 +37,7 @@ class Sidebar extends Component {
   };
 
   getTooltip = () => (
-    <Tooltip>
+    <Tooltip id={1}>
       <div className="config-tooltip-container">
         You can download the config file and place it inside{' '}
         <span className="highlight">
