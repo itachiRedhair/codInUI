@@ -51,7 +51,11 @@ export default class AddProjectComponent extends Component {
     this.setState({ projectType: e.target.getAttribute('value') });
   };
   addProject = () => {
-    this.props.createProject(this.state.projectName, this.state.projectType.toLowerCase());
+    this.props
+      .createProject(this.state.projectName, this.state.projectType.toLowerCase())
+      .then(() => {
+        this.props.setProjectModalState(false);
+      });
   };
   hideProjectModal = () => {
     this.props.setProjectModalState(false);
@@ -69,11 +73,7 @@ export default class AddProjectComponent extends Component {
   renderDropdownButton = () => {
     const { projectTypes } = this.props;
     const menuItems = projectTypes.map((type, index) => (
-      <MenuItem
-        key={type.id}
-        eventKey={type.id}
-        value={type.name}
-        onClick={this.handleTypeChange}>
+      <MenuItem key={type.id} eventKey={type.id} value={type.name} onClick={this.handleTypeChange}>
         {this.getFaIconForProjectType(type.name)} {type.name}
       </MenuItem>
     ));
