@@ -7,7 +7,7 @@ import './Toaster.scss';
 class Toaster extends Component {
   componentDidUpdate() {
     const { toaster } = this.props;
-    const { TYPE_SUCCESS, TYPE_ERROR, TYPE_WARN } = constants.toaster;
+    const { TYPE_SUCCESS, TYPE_ERROR, TYPE_WARN, TYPE_HIDDEN } = constants.toaster;
     if (toaster) {
       switch (toaster.type) {
         case TYPE_SUCCESS: {
@@ -20,6 +20,9 @@ class Toaster extends Component {
         }
         case TYPE_WARN: {
           toastr.warning('Warning', toaster.msg);
+          break;
+        }
+        case TYPE_HIDDEN: {
           break;
         }
         default: {
@@ -36,7 +39,7 @@ class Toaster extends Component {
       <ReduxToastr
         timeOut={1500}
         newestOnTop={false}
-        preventDuplicatesa
+        preventDuplicates
         position="top-right"
         transitionIn="fadeIn"
         transitionOut="fadeOut"
@@ -50,7 +53,7 @@ export default Toaster;
 
 Toaster.defaultProps = {
   toaster: {
-    type: constants.toaster.TYPE_WARN,
+    type: constants.toaster.TYPE_HIDDEN,
     msg: 'Something unexpected happened',
   },
 };

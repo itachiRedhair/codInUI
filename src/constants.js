@@ -14,7 +14,8 @@ const constants = {
   toaster: {
     TYPE_SUCCESS: 'success',
     TYPE_WARN: 'warn',
-    TYPE_ERROR: 'error'
+    TYPE_ERROR: 'error',
+    TYPE_HIDDEN: 'hidden'
   },
 
   projectIcons : {
