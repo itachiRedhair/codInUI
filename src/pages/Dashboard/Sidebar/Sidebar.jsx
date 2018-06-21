@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import path from 'path';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Button, Panel, Well, Collapse, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import moment from 'moment';
 
@@ -32,10 +32,6 @@ class Sidebar extends Component {
     return null;
   };
 
-  addCollaboratorModal = () => {
-    this.props.setModalState(true);
-  };
-
   getTooltip = () => (
     <Tooltip id={1}>
       <div className="config-tooltip-container">
@@ -46,14 +42,26 @@ class Sidebar extends Component {
         </span>{' '}
         folder.
         <br />This will have the same effect as running{' '}
-        <span className="highlight">{'"'}codin init{'"'}</span> in the project
-        directory.
+        <span className="highlight">
+          {'"'}codin init{'"'}
+        </span>{' '}
+        in the project directory.
         <br />With the config file at the right place, you can execute{' '}
-        <span className="highlight">{'"'}codin generate{'"'}</span> and{' '}
-        <span className="highlight">{'"'}codin submit{'"'}</span> right away!
+        <span className="highlight">
+          {'"'}codin generate{'"'}
+        </span>{' '}
+        and{' '}
+        <span className="highlight">
+          {'"'}codin submit{'"'}
+        </span>{' '}
+        right away!
       </div>
     </Tooltip>
   );
+
+  addCollaboratorModal = () => {
+    this.props.setModalState(true);
+  };
 
   render() {
     const configURL = `${constants.API_URL}/v1/project/${this.props.projectId}/config`;
@@ -163,7 +171,10 @@ class Sidebar extends Component {
                       </NavLink>
                     </li>
                     <li>
-                      <OverlayTrigger placement="right" overlay={this.getTooltip()} trigger={['hover', 'focus']}>
+                      <OverlayTrigger
+                        placement="right"
+                        overlay={this.getTooltip()}
+                        trigger={['hover', 'focus']}>
                         <a className="navlink" activeClassName="navlink-active" href={configURL}>
                           <i className="fa fa-download" /> | Download Config File
                         </a>
@@ -186,6 +197,7 @@ export default Sidebar;
 Sidebar.propTypes = {
   setModalState: PropTypes.func.isRequired,
   projectName: PropTypes.string.isRequired,
+  projectId: PropTypes.string.isRequired,
   projectType: PropTypes.string.isRequired,
   match: PropTypes.shape({
     url: PropTypes.string.isRequired,

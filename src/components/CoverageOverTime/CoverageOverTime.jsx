@@ -55,6 +55,10 @@ class CoverageOverTime extends Component {
         extraCssText: 'box-shadow: 0 0 3px rgba(255, 255, 255, 0.4);',
       },
       legend: {
+        textStyle: {
+          color: 'white',
+          fontFamily: 'FiraCode',
+        },
         data: [
           { name: 'Lines Covered', textStyle: { color: '#1a9bfc' } },
           { name: 'Statements Covered', textStyle: { color: '#4C53D6' } },
