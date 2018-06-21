@@ -1,0 +1,28 @@
+.tslint-row-group {
+  padding: 1em;
+}
+
+.col-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-container > .tslint-col {
+  flex-grow: 1;
+}
+
+.tslint-row-group.tslint-bar {
+  height: 22em;
+}
+
+.tslint-row-group.tslint-bar:hover {
+  height: auto;
+}
+
+.tslint-row-group {
+  padding: 1em;
+}
+
+.tslint-row-group:last-of-type {
+  margin-bottom: 15em;
+}

@@ -1,0 +1,45 @@
+.title {
+  font-size: 1.45;
+  font-weight: 600;
+  margin-bottom: 0;
+  &.l {
+    font-size: 1.6
+  }
+  &.s {
+    font-size: 1.4
+  }
+  .card & {
+    font-size: 1.1;
+    color: black;
+  }
+}
+
+.title-description {
+  margin: 0;
+  font-size: 0.9;
+  font-weight: normal;
+  color: grey;
+  &.s {
+    font-size: 0.8
+  }
+}
+
+.subtitle {
+  font-size: 1.2;
+  margin: 0;
+  color: grey;
+}
+
+.text-primary {
+  color: darkblue;
+}
+
+.text-muted {
+  color: lighten(grey, 10%);
+}
+
+pre {
+  padding: 0;
+  border: none;
+  background: none;
+}

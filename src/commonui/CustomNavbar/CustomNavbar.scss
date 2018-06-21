@@ -1,0 +1,36 @@
+@import "../../styles/_theme.scss";
+@import "../../styles/_new_colors.scss";
+.navbar {
+  border-radius: 0px;
+}
+
+.logo-container {
+  font-size: 28px;
+  color: $primary-text !important;
+  cursor: pointer;
+  span {
+    color: $theme-color;
+  }
+  &:hover {
+    font-size: 32px;
+    transition: all 0.1s;
+  }
+}
+
+.dropdown {
+  ul {
+    background: #0f0f0f;
+    min-width: 250px;
+    li {
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+    a {
+      color: white;
+      &:hover {
+        background: #6a6a6a;
+        color: black;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+@import "./../../styles/form.scss";
+
+.text-field {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 0.15em solid $form-inactive-color;
+
+  &:focus {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 0.15em solid $form-inactive-color;
+  }
+}
+
+.input-label {
+  color: green;
+}

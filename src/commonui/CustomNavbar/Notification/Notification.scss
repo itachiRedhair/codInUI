@@ -1,0 +1,71 @@
+@import '../../../styles/_variables.scss';
+@import '../../../styles/_theme.scss';
+@import '../../../styles/_new_colors.scss';
+.unseen-content {
+  position: absolute;
+  top: 10px;
+  left: 24px;
+  height: 14px;
+  width: 14px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
+  font-size: 0.95rem;
+  color: $primary-text;
+}
+
+.hide-unseen-count {
+  font-size: 0rem !important;
+  color: rgba(0, 0, 0, 0) !important;
+}
+
+.notification-dropdown {
+  color: white;
+  ul {
+    background: #0f0f0f;
+    box-shadow: 4px 4px 12px black;
+    max-height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}
+
+.no-notifications {
+  text-align: center;
+}
+
+.notification-content {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(154, 154, 154, 0.5);
+  max-width: 400px;
+  min-width: 400px;
+  font-size: 14px;
+  line-height: 20px;
+  .notification-highlight {
+    color: white;
+  }
+}
+
+.notification-content:last-child {
+  border-bottom: none;
+}
+
+.action-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  button {
+    font-size: 11px;
+  }
+  .accepted {
+    color: $theme-color;
+  }
+  .declined {
+    color: $text_errors;
+  }
+}

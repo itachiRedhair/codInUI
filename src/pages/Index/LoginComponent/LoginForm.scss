@@ -1,0 +1,21 @@
+@import '../../../styles/_theme.scss';
+.error-message {
+  color: red;
+}
+
+.signup-prompt {
+  text-align: start;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.form-action-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invalid-field {
+  border-color: red !important;
+}

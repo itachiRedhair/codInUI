@@ -1,0 +1,131 @@
+@import 'fonts';
+@import 'theme';
+
+// Some best-practice CSS that's useful for most apps
+// Just remove them if they're not what you want
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-width: 300px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  font-family: 'FiraCode';
+  background: $content-bg !important;
+}
+
+a,
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
+.reset-col-padding {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.reset-row-margin {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.dropdown-menu.dropdown-menu-right {
+  border-radius: 0;
+}
+
+/* width */
+
+::-webkit-scrollbar {
+  width: 2px;
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $theme-color;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $theme-color;
+}
+
+.btn.btn-success {
+  background-color: $theme-color !important;
+  border-radius: 2px;
+  border-color: $theme-color;
+  background-image: none;
+  font-weight: lighter;
+  &:hover {
+    background-image: none;
+    border-color: darken($theme-color, 10%) !important;
+    background-color: darken($theme-color, 10%) !important;
+  }
+  &:focus {
+    border-color: darken($theme-color, 10%) !important;
+  }
+}
+
+.btn.btn-default {
+  color: $text_medium_emphasis;
+  text-shadow: none;
+  border-color: black;
+  background-color: $grey_normal !important;
+  background-image: none !important;
+  &:hover {
+    background-image: none;
+    border-color: darken($grey_normal, 10%) !important;
+    background-color: darken($grey_normal, 10%) !important;
+  }
+}
+
+.btn.btn-danger {
+  // color: $text_high_emphasis;
+  text-shadow: none;
+  // border-color: black;
+  background-color: $text_errors !important;
+  background-image: none !important;
+  &:hover {
+    background-image: none;
+    border-color: darken($text_errors, 10%) !important;
+    background-color: darken($text_errors, 10%) !important;
+  }
+}
+
+.progress-bar-success {
+  background-image: none !important;
+  background-color: #87d37c;
+}
+
+.tooltip-inner {
+  max-width: 300px;
+}
+
+.config-tooltip-container {
+  padding: 12px 8px !important;
+  font-family: 'FiraCode' !important;
+  text-align: left !important;
+  color: $text_high_emphasis;
+  .highlight {
+    color: $primary_color;
+    font-weight: bold;
+  }
+}

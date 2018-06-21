@@ -1,0 +1,21 @@
+@import '../../styles/_theme.scss';
+.modal-backdrop.in {
+  opacity: 0.6;
+}
+
+.modal-header {
+  border-color: black;
+}
+
+.modal-footer {
+  border-color: black;
+}
+
+.modal-content {
+  color: white;
+  border-radius: 4px;
+  background-color: lighten(#303030, 10%);
+  &:hover {
+    background-color: lighten(#303030, 10%);
+  }
+}

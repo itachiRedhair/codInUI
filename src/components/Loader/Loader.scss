@@ -1,0 +1,35 @@
+@import "./../../styles/_theme.scss";
+
+.loader-container {
+  z-index: 200;
+  position: absolute;
+  background: $content-bg;
+  height: 100%;
+  width: 100%;
+  opacity: 0.8;
+}
+
+.loader {
+  position: fixed;
+  z-index: 2000;
+  border: 16px solid white;
+  border-top: 16px solid $theme-color;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

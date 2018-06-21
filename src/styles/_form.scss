@@ -1,0 +1,52 @@
+@import 'theme';
+
+$form-active-color: rgb(0, 191, 255);
+$form-inactive-color: lightgrey;
+$form-success-color: lightgreen;
+$form-error-color: red;
+
+.form-container {
+  padding: 1.5em 2em;
+  border-radius: 6px;
+  background-image: linear-gradient(to bottom, #3c3c3c 0, $content-bg 100%) !important;
+  color: $theme-color !important;
+}
+
+.form-container label {
+  font-weight: normal !important;
+}
+
+.form-group label {
+  font-weight: normal !important;
+}
+
+.form-container input {
+  background-color: #1e1e1e;
+  border-color: #111;
+  color: white;
+}
+
+.form-group input {
+  background-color: #1e1e1e;
+  border-color: #111;
+  color: white;
+}
+
+.form-container input:focus {
+  border-color: $theme-color;
+}
+
+.form-group input:focus {
+  border-color: $theme-color;
+}
+
+// .form-dropdown {
+//   background-image: none !important;
+//   background-color: $grey_muted;
+//   border-color: black;
+//   text-shadow: none;
+//   &:hover {
+//     background-image: none;
+//     background-color: $grey_muted !important;
+//   }
+// }

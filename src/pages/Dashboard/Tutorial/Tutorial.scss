@@ -1,0 +1,107 @@
+@import '../../../styles/_theme.scss';
+.tutorial-container {
+  color: #9a9a9a;
+  .well {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #121212 0, #131313 100%);
+    border-color: black;
+    .fa.fa-exclamation-triangle {
+      font-size: 18px;
+    }
+    .warning {
+      font-size: 16px;
+      span {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.command {
+  font-style: italic;
+}
+
+.shell-wrap {
+  width: 35em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin: 15px;
+  box-shadow: 4px 4px 12px black;
+  margin-bottom: 50px;
+  .shell-top-bar {
+    font-weight: bold;
+    color: #525252;
+    padding: 5px 0;
+    font-size: 12px;
+    margin-bottom: 0px;
+    border: 1px solid #cccccc;
+    border-bottom: none;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background: #f7f7f7;
+    .shell-title {
+      display: flex;
+      flex-direction: row;
+    }
+    .icons {
+      padding: 0px 4px;
+      i {
+        margin: 0px 2px;
+      }
+    }
+    .user-name {
+      flex: 1;
+      text-align: center;
+    }
+  }
+  .shell-body {
+    margin: 0;
+    padding: 5px;
+    list-style: none;
+    background: #141414;
+    color: #45d40c;
+    font-size: 12px;
+    line-height: 1.4em;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+  .shell-body li {
+    word-wrap: break-word;
+    position: relative;
+  }
+  .shell-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.project-type {
+  display: flex;
+  flex-direction: column;
+}
+
+.blue {
+  color: #0082f0 !important;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.green {
+  color: #45d40c;
+}

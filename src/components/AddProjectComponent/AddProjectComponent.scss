@@ -1,0 +1,58 @@
+@import '../../styles/_theme.scss';
+@import '../../styles/_new_colors.scss';
+.add-project-modal-body label {
+  color: black;
+}
+
+.add-project-modal-body {
+
+  .invalid-input {
+    border-bottom: 2px solid red !important;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  // This is the drop down button
+  .form-dropdown {
+    margin-right: 15px;
+    margin-top: 5px;
+    width: 160px;
+    text-shadow: none;
+    color: white !important;
+    background-position: 0 !important;
+    background-color: $grey_muted !important;
+    &.btn.btn-default {
+      background-image: none !important;
+      border-color: black !important;
+      box-shadow: none !important;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-color: black;
+    }
+  }
+
+  // This is actual drop down
+  .dropdown-menu {
+    background-color: $grey_muted !important;
+    background-image: none !important;
+    a {
+      color: white;
+      text-align: left;
+      &:hover {
+        background-color: $grey_disabled;
+        background-image: none !important;
+      }
+    }
+  }
+  .text-small {
+    font-size: 11px;
+    i {
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@import "./../../styles/_theme.scss";
+@import "./../../styles/_new_colors.scss";
+
+.recent-submit-table-container {
+  padding: 0px 30px;
+}
+
+.recent-submit-table {
+  text-align: left;
+  color: #9a9a9a;
+  td {
+    border-color: $black !important;
+  }
+  th {
+    border-color: $black !important;
+  }
+}
+
+.recent-submit-table-scroll {
+  height: 13em;
+  overflow-y: scroll;
+}

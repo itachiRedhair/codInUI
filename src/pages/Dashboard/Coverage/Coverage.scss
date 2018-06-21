@@ -1,0 +1,32 @@
+@import "../../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
+@import "../../../../node_modules/ag-grid/dist/styles/ag-grid.css";
+@import "../../../../node_modules/ag-grid/dist/styles/ag-theme-balham.css";
+
+.coverage-container {
+  padding: 15px;
+}
+
+// .container {
+//   // background: red;
+//   // height: 50vh;
+//   // width: 50vh;
+// }
+
+// .coverage-row-group {
+//   padding: 1em; // display: flex;
+//   // flex-wrap: wrap;
+// }
+
+// .col-container {
+//   display: flex;
+//   flex-wrap: wrap;
+// }
+
+.col-container>.coverage-col {
+  flex-grow: 1;
+}
+
+// .coverage-row-group:last-of-type {
+//   margin-bottom: 15em;
+//   height: 70%;
+// }

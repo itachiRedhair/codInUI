@@ -1,0 +1,108 @@
+@import '../../../styles/_theme.scss';
+@import '../../../styles/_new_colors.scss';
+.sidebar-main-container {
+  margin-top: -19px;
+  background-color: $grey_muted;
+  .panel {
+    margin-bottom: 0px !important;
+    .panel-heading {
+      .panel-heading-container {
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+      }
+      .project-summary {
+        display: flex;
+        justify-content: space-around;
+        font-size: 12px;
+        margin: 10px 0px;
+        text-transform: capitalize;
+        .fa.fa-calendar::before {
+          content: '\f073' !important;
+        }
+      }
+    }
+    .panel-body-custom {
+      max-height: 80vh;
+      min-height: 80vh;
+      padding: 0px;
+      padding-right: 0px;
+      display: flex;
+      flex-direction: column;
+      .accordion-button {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        font-weight: lighter;
+        background-color: #343434 !important;
+        box-shadow: 1px 1px 2px black;
+        color: white;
+        text-shadow: none;
+        background-position: 0px 0px !important;
+        border-radius: 0px;
+        border: none !important;
+        margin-bottom: 2px;
+        &:focus {
+          outline: none;
+        }
+      }
+      .accordion-button-active {
+        background-color: #121212 !important;
+        margin-bottom: 0px;
+      }
+      .well {
+        border: none;
+        border-radius: 0px;
+        background-image: none;
+        background-color: #121212;
+        padding: 0px 10px;
+        padding-bottom: 20px;
+        box-shadow: 1px 1px 2px black;
+        ul {
+          list-style-type: none;
+          padding-left: 0px;
+          li {
+            padding: 0px;
+            border: 1px solid #343434;
+            border-radius: 0px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+    .panel-title {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .project-name-container {
+      color: white;
+    }
+  }
+  .navlink {
+    background-color: $grey_normal;
+    display: block;
+    flex: 1;
+    padding: 10px 0px 10px 15px;
+    color: #9a9a9a;
+    border-color: $grey_normal !important;
+    &:hover {
+      text-decoration: none;
+      color: white;
+    }
+    &:focus {
+      text-decoration: none;
+    }
+  }
+  .navlink-active {
+    border-left: 2px solid $theme-color !important;
+    color: $theme-color !important;
+    text-decoration: none;
+  }
+}

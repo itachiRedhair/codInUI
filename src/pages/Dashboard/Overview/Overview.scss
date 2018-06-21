@@ -1,0 +1,13 @@
+.col-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-container>.overview-col {
+  //   flex-grow: 1;
+}
+
+.overview-col {
+  flex: 1;
+  min-height: 30vh;
+}

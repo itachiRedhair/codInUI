@@ -1,0 +1,51 @@
+@import "../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
+@import "../../../node_modules/ag-grid/dist/styles/ag-grid.css";
+@import "../../../node_modules/ag-grid/dist/styles/ag-theme-balham.css";
+@import '../../styles/_new_colors.scss';
+// .container {
+//   // background: red;
+//   // height: 50vh;
+//   // width: 50vh;
+// }
+
+.ag-theme-balham {
+  height: 100vh;
+  text-align: left;
+  font-family: 'FiraCode';
+  // color: white;
+}
+
+.ag-header-row, .ag-root, .ag-row {
+  border: none !important;
+}
+
+.ag-row {
+  padding: 4px 6px;
+}
+.ag-row-even {
+  background-color: #1a1a1d !important;
+}
+
+.ag-row-odd {
+  background-color: darken(#1a1a1d, 4%) !important;
+}
+
+.ag-header-viewport {
+  background-color:  #1a1a1d;
+  border-color: $black;
+  color: #9a9a9a;
+  font-family: 'FiraCode';
+
+}
+
+.ag-body-viewport {
+  background-color:  #1a1a1d;
+  color: #9a9a9a;
+}
+
+.progress {
+  background-image: none !important;
+  background-color: $grey_disabled !important;
+  border: 1px solid black !important;
+  // border-radius: 0px !important;
+}

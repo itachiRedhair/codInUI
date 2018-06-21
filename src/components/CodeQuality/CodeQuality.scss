@@ -1,0 +1,50 @@
+@import "./../../styles/_theme.scss";
+
+.tslint-summary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.tslint-summary {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.cyclomatic-number-container {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 2em;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.error-number {
+  font-size: 6rem;
+}
+
+.digit {
+  color: $primary-text;
+}
+
+.cyclomatic-number-container::before {
+  content: "";
+  position: absolute;
+  color: $primary-text;
+  right: 0;
+  height: 80%;
+  border-right: 2px solid grey;
+}
+
+.error-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.divider {
+    border-right: .17em solid gray;
+}

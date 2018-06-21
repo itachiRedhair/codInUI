@@ -1,0 +1,133 @@
+@import '../../../styles/_theme.scss';
+@import '../../../styles/_new_colors.scss';
+.landing-container {
+  color: white;
+  display: flex;
+}
+
+.landing-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-heading-custom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(to bottom, #3c3c3c 0, #222 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-color: black !important;
+}
+
+.panel-custom {
+  border: none !important;
+  border-color: black !important;
+}
+
+.shadow {
+  box-shadow: 1px 1px 4px !important;
+}
+
+.panel-body-custom {
+  background-color: $grey_disabled;
+  ul {
+    margin: 0px;
+    box-shadow: none !important;
+  }
+}
+
+.project-list-item {
+  background-color: inherit;
+  border: none;
+  padding: 8px 0px;
+  a {
+    text-decoration: none !important;
+    color: white;
+    .fa-user {
+      color: $theme-color;
+    }
+  }
+}
+
+.recent-activities-container {
+  padding-left: 40px;
+}
+
+.recent-activity-heading-custom {
+  background-image: linear-gradient(to bottom, #3c3c3c 0, #222 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-color: black !important;
+}
+
+.recent-activity-heading-custom .panel-title {
+  font-size: 2.2rem !important;
+}
+
+.recent-activity-body-custom {
+  background-color: $grey_disabled;
+  height: 78vh;
+  padding: 0px !important;
+
+  .empty-recent-activity-container {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 160px;
+    text-align: center;
+    .fas.fa-info-circle {
+      font-size: 20px;
+      padding: 10px 0px;
+    }
+  }
+}
+
+.recent-activity-list-group {
+  height: 100%;
+  overflow: hidden !important;
+  overflow-y: scroll !important;
+}
+
+.recent-activity-list-item {
+  background-color: $secondary-bg !important;
+  border: none !important;
+  margin: 16px 8px;
+  box-shadow: 1px 1px 2px black;
+  text-decoration: none;
+
+  a {
+    color: white;
+  }
+
+  &:last-child {
+    margin-bottom: 16px;
+  }
+}
+
+.recent-activity-from-now {
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+.recent-activity-summary-container {
+  padding-top: 6px;
+  padding: 10px 15px;
+  margin: 0px -15px -10px -15px;
+}
+
+.recent-activity-error {
+  display: inline-block;
+  min-width: 18vh;
+  max-width: 18vh;
+  margin: 0 auto;
+}
+
+.recent-activity-warning {
+  display: inline-block;
+  min-width: 18vh;
+  max-width: 18vh;
+}

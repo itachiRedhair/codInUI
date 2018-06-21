@@ -1,0 +1,34 @@
+@import '../../styles/_new_colors.scss';
+
+.rrt-success {
+  background-color: $primary_color !important;
+}
+
+.rrt-error {
+  background-color: $text-errors !important;
+}
+
+.rrt-info {
+  background-color: $text-info !important;
+}
+
+
+.rrt-middle-container {
+  font-family: 'FiraCode' !important;
+}
+
+.rrt-holder {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  & * {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+}
+
+.rrt-right-container {
+  padding: 0px 10px !important;
+  color: $black !important;
+}
