@@ -26,10 +26,10 @@ class Tutorial extends Component {
       ),
       cursor: (
         <span className="cursor">
-          {this.props.projectName}:~ {this.props.user.name}$
+          {this.props.projectName.split('@')[0]}:~ {this.props.user.name}$
         </span>
       ),
-      pwd: `\\Users\\${this.props.projectName}`,
+      pwd: `\\Users\\${this.props.projectName.split('@')[0]}`,
     };
     const projectList = this.props.projects.map(
       (projectItem) =>
@@ -77,7 +77,7 @@ class Tutorial extends Component {
               <div className="shell-wrap">
                 <div className="shell-top-bar">{shell.topBar}</div>
                 <ul className="shell-body">
-                  <li>{this.props.projectName}/ codin init</li>
+                  <li>{this.props.projectName.split('@')[0]}/ codin init</li>
                   <div className="shell-content">
                     <span>info: EXECUTING &quot;init&quot;</span>
                     <span>info: Initializing Code Investigator in &quot;{shell.pwd}&quot;</span>
@@ -90,7 +90,7 @@ class Tutorial extends Component {
               <div className="shell-wrap">
                 <div className="shell-top-bar">{shell.topBar}</div>
                 <ul className="shell-body">
-                  <li>{this.props.projectName}/ codin init</li>
+                  <li>{this.props.projectName.split('@')[0]}/ codin init</li>
                   <div className="shell-content">
                     <span>info: EXECUTING &quot;init&quot;</span>
                     <span>info: Initializing Code Investigator in &quot;{shell.pwd}&quot;</span>
@@ -110,7 +110,7 @@ class Tutorial extends Component {
               <div className="shell-wrap">
                 <div className="shell-top-bar">{shell.topBar}</div>
                 <ul className="shell-body">
-                  <li>{this.props.projectName}/ codin init</li>
+                  <li>{this.props.projectName.split('@')[0]}/ codin init</li>
                   <div className="shell-content">
                     <span>info: EXECUTING &quot;init&quot;</span>
                     <span>info: Initializing Code Investigator in &quot;{shell.pwd}&quot;</span>
