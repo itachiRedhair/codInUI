@@ -56,7 +56,6 @@ class CoverageOverTime extends Component {
       },
       legend: {
         textStyle: {
-          color: 'white',
           fontFamily: 'FiraCode',
         },
         data: [
