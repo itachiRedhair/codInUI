@@ -32,8 +32,6 @@ class Sidebar extends Component {
     return null;
   };
 
-
-
   getTooltip = () => (
     <Tooltip id={1}>
       <div className="config-tooltip-container">
@@ -42,7 +40,7 @@ class Sidebar extends Component {
           {this.props.projectName.split('@')[0]}
           {path.sep}.codin
         </span>{' '}
-        folder.
+        folder and change the file name to <span className="highlight">.config</span>.
         <br />This will have the same effect as running{' '}
         <span className="highlight">
           {'"'}codin init{'"'}
