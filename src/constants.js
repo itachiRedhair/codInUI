@@ -3,7 +3,7 @@ import config from './../config';
 const constants = {
   API_URL: config.env.DEV
     ? 'http://codin-backend.qbbvxnf82n.us-east-1.elasticbeanstalk.com'
-    : 'prod_url',
+    : 'http://codin-backend.qbbvxnf82n.us-east-1.elasticbeanstalk.com',
   // API_URL: config.env.DEV ? "http://localhost:3000" : "prod_url",
 
   // TODO: Remove this
